@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculadora de Status</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f1220;
+      color: #e6e6e6;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .box {
+      background: #161a22;
+      border: 1px solid #2a2f3e;
+      padding: 16px;
+      max-width: 420px;
+      border-radius: 6px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      background: #0f1220;
+      color: #fff;
+      border: 1px solid #2a2f3e;
+      border-radius: 4px;
+    }
+
+    .result {
+      margin-top: 16px;
+      padding: 10px;
+      background: #1e2330;
+      border-radius: 4px;
+    }
+
+    .stat {
+      margin: 4px 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Calculadora de PV / PE / SAN</h1>
+
+  <div class="box">
+    <label>
+      Classe
+      <select id="classe">
+        <option value="combatente">Combatente</option>
+        <option value="especialista">Especialista</option>
+        <option value="ocultista">Ocultista</option>
+      </select>
+    </label>
+
+    <label>
+      Vigor
+      <input type="number" id="vigor" value="1" min="0">
+    </label>
+
+    <label>
+      Presença
+      <input type="number" id="presenca" value="1" min="0">
+    </label>
+
+    <label>
+      Nível de Exposição
+      <input type="number" id="nivel" value="1" min="1">
+    </label>
+
+    <div class="result">
+      <div class="stat">PV: <span id="pv">0</span></div>
+      <div class="stat">PE: <span id="pe">0</span></div>
+      <div class="stat">SAN: <span id="san">0</span></div>
+    </div>
+  </div>
+
+  <script>
+    const data = {
+      combatente: {
+        pvBase: 20,
+        pvPorNivel: 4,
+        peBase: 2,
+        pePorNivel: 2,
+        sanBase: 12,
+        sanPorNivel: 3,
+      },
+      especialista: {
+        pvBase: 16,
+        pvPorNivel: 3,
+        peBase: 3,
+        pePorNivel: 3,
+        sanBase: 16,
+        sanPorNivel: 4,
+      },
+      ocultista: {
+        pvBase: 12,
+        pvPorNivel: 2,
+        peBase: 4,
+        pePorNivel: 4,
+        sanBase: 20,
+        sanPorNivel: 5,
+      },
+    };
+
+    const inputs = document.querySelectorAll("input, select");
+
+    function calcular() {
+      const classe = document.getElementById("classe").value;
+      const vigor = Number(document.getElementById("vigor").value);
+      const presenca = Number(document.getElementById("presenca").value);
+      const nivel = Number(document.getElementById("nivel").value);
+
+      const c = data[classe];
+
+      const pv =
+        c.pvBase +
+        vigor +
+        (nivel - 1) * (c.pvPorNivel + vigor);
+
+      const pe =
+        c.peBase +
+        presenca +
+        (nivel - 1) * (c.pePorNivel + presenca);
+
+      const san =
+        c.sanBase +
+        (nivel - 1) * c.sanPorNivel;
+
+      document.getElementById("pv").textContent = pv;
+      document.getElementById("pe").textContent = pe;
+      document.getElementById("san").textContent = san;
+    }
+
+    inputs.forEach(i => i.addEventListener("input", calcular));
+    calcular();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+export const ATRIBUTOS_MAP = {
+  FOR: "forca",
+  AGI: "agilidade",
+  INT: "intelecto",
+  VIG: "vigor",
+  PRE: "presenca",
+};
+
+export const PERICIAS_MAP = {
+    ACRO:"acrobacia",
+    ADES:"adestramento",
+    ARTE:"artes",
+    ATLE:"atletismo",
+    ATUA:"atualidades",
+    CIEN:"ciencias",
+    CRIM:"crime",
+    DIPL:"diplomacia",
+    ENGA:"enganacao",
+    FORT:"fortitude",
+    FURT:"furtividade",
+    INIC:"iniciativa",
+    INTI:"intimidacao",
+    INTU:"intuicao",
+    INVE:"investigacao",
+    LUTA:"luta",
+    MEDI:"medicina",
+    OCUL:"ocultismo",
+    PERC:"percepcao",
+    PILO:"pilotagem",
+    PONT:"pontaria",
+    PROF:"profissao",
+    REFL:"reflexos",
+    RELI:"religiao",
+    SOBR:"sobrevivencia",
+    TATI:"tatica",
+    TECN:"tecnologia",
+    VONT:"vontade"
+};

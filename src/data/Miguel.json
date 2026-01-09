@@ -1,0 +1,374 @@
+{
+    "id": "miguel",
+    "infos": {
+        "nome": "Miguel Aurelis Doyle",
+        "idade": 15,
+        "jogador": "Matheus",
+        "patente": "Agente de elite",
+        "classe": "Ocultista",
+        "trilha": "Lâmina Paranormal",
+        "origem": "Investigador",
+        "nex": 90,
+        "nivel": 20,
+        "peRodada": 20,
+        "afinidade": "Conhecimento",
+        "deslocamento": 12,
+        "nacionalidade": "Brasileiro",
+        "narrativa": {
+            "aparencia": "À primeira vista, Miguel aparenta ser menor e mais frágil do que realmente é. Com cerca de 1,49 de altura e 29 kg, sua aparência juvenil costuma enganar, reforçada pelas roupas pesadas e largas que utiliza quase o tempo todo. Casacos espessos, mantos e camadas de tecido ocultam deliberadamente seu físico, criando a impressão de um corpo frágil e pouco desenvolvido.\n\nSob essas vestimentas, porém, Miguel possui um corpo surpreendentemente atlético e musculoso para sua idade, moldado por treinamentos intensos, fugas, confrontos e pela própria adaptação ao Paranormal. Seus movimentos são precisos e controlados, revelando força e resistência que raramente condizem com sua estatura.\n\nSeus cabelos são loiros extremamente claros, quase pálidos, mas podem ser disfarçados e alterados para diversas cores, como azul escuro, preto, castanho, branco ou dourado. Os olhos, naturalmente azuis, também podem assumir outras tonalidades, especialmente em momentos de forte instabilidade emocional ou uso intenso de rituais.\n\nEm postura e expressão, Miguel costuma parecer simples e reservado, mantendo o corpo levemente retraído e os gestos contidos. No entanto, em situações de perigo ou concentração extrema, essa fachada se desfaz, revelando uma presença firme, atenta e perigosamente consciente do ambiente ao redor.",
+            "historia": "Miguel Aurelis Doyle nasceu em uma família famosa, mas longe de qualquer envolvimento direto com o Paranormal. A infância foi relativamente tranquila até os seis anos de idade, quando, durante uma viagem com seus pais para a Inglaterra, Miguel desapareceu sem deixar vestígios. Oficialmente, o caso nunca foi solucionado. Para o mundo, ele simplesmente se perdeu.\n\nA verdade, porém, é muito mais profunda.\n\nDurante aquele desaparecimento, Miguel teve contato direto com uma entidade ligada ao Medo. O encontro não foi violento, nem imediato, mas silencioso e inevitável. Ele foi levado para a Barreira, um lugar onde o tempo não se comporta como deveria e onde a presença humana se torna algo frágil. Lá, Miguel permaneceu por um período indefinido, tempo suficiente para que sua percepção da realidade fosse alterada para sempre.\n\nQuando retornou, foi encontrado sem ferimentos aparentes, mas profundamente mudado. Apesar de fisicamente ainda ser uma criança, algo em seu olhar denunciava que ele havia visto coisas que não deveriam ser vistas. Seus pais nunca receberam explicações claras, e Miguel nunca conseguiu expressar completamente o que vivenciou naquele lugar.\n\nCom o passar dos anos, manifestações sutis começaram a surgir: sonhos vívidos demais, sensações constantes de estar sendo observado, lapsos de memória e uma facilidade incomum para compreender conceitos ocultos. Esses sinais eventualmente chamaram a atenção da Ordem, que passou a monitorá-lo à distância.\n\nAo ingressar oficialmente como investigador, Miguel demonstrou uma afinidade natural com o Paranormal, especialmente com entidades ligadas ao Conhecimento. Diferente de outros agentes, ele não encara o oculto apenas como uma ameaça, mas como algo que precisa ser entendido, mesmo que isso cobre um preço alto.\n\nHoje, já como Agente de Elite, Miguel carrega não apenas o peso das missões que enfrentou, mas também a constante sensação de que parte de si nunca deixou a Barreira. Ele sabe que sua ligação com o Medo não foi um acidente, e teme que, em algum momento, aquilo que o levou uma vez possa chamá-lo de volta.",
+            "primeiroEncontro": "O primeiro contato de Miguel com o Paranormal ocorreu aos seis anos de idade, durante uma viagem com seus pais para a Inglaterra. Em um momento de distração aparentemente banal, Miguel desapareceu sem deixar qualquer rastro físico. O que de fato aconteceu só é parcialmente compreendido até hoje.\n\nDurante esse desaparecimento, Miguel entrou em contato direto com uma entidade associada ao Medo. O encontro não se manifestou de forma agressiva ou violenta; ao contrário, foi silencioso, quase contemplativo. A entidade o conduziu até a Barreira, um espaço onde a lógica humana se dissolve e o tempo perde significado. Miguel permaneceu nesse local por um período impossível de medir, exposto a conceitos e presenças que sua mente infantil não deveria ser capaz de processar.\n\nEsse contato inicial não apenas marcou o início de sua ligação com o Paranormal, mas também deixou cicatrizes invisíveis, que continuam a influenciar seus sonhos, pensamentos e reações até os dias atuais.",
+            "fobias": "Miguel apresenta episódios recorrentes de ansiedade crônica, manifestados por insônia, hipervigilância constante e dificuldade em relaxar mesmo em ambientes seguros. Esses sintomas se intensificam após exposições prolongadas ao Paranormal ou situações em que ele perde o controle da situação. Em momentos de estresse extremo, também demonstra sinais de dissociação leve, como lapsos de atenção, sensação de irrealidade e dificuldade em distinguir memórias reais de lembranças oriundas da Barreira.\n\nAlém disso, Miguel sofre de crises ocasionais de enxaqueca severa, geralmente acompanhadas de sensibilidade à luz e sons, frequentemente precedidas por sonhos vívidos ou pesadelos relacionados ao Medo. Embora não haja um diagnóstico médico formal, essas crises parecem estar diretamente ligadas à sua conexão paranormal e à sobrecarga de informações que sua mente processa.",
+            "personalidade": "Miguel é, em essência, uma pessoa calma e introspectiva. Prefere observar antes de agir e raramente toma decisões impulsivas. Com pessoas próximas, demonstra um lado surpreendentemente amigável e até protetor, criando laços profundos, embora silenciosos. Ele tende a assumir responsabilidades além do necessário, sentindo-se culpado quando algo foge de seu controle.\n\nOs eventos recentes e suas constantes crises psicológicas afetaram significativamente sua estabilidade emocional. Miguel desenvolveu uma forte necessidade de controle, tanto sobre si mesmo quanto sobre o ambiente ao seu redor, acreditando que qualquer descuido pode resultar em consequências irreversíveis. Essa postura o torna extremamente atento, estratégico e cauteloso, mas também o distancia emocionalmente de situações em que deveria simplesmente confiar.\n\nApesar disso, ele ainda preserva empatia e compaixão genuínas, especialmente por aqueles que sofrem influência direta do Paranormal, pois enxerga neles reflexos do que ele próprio se tornou.",
+            "piorPesadelo": "O maior medo de Miguel não se manifesta na forma de monstros ou entidades, mas na ideia de impotência. Seu pior pesadelo é estar consciente, lúcido e ainda assim incapaz de agir enquanto pessoas importantes para ele sofrem ou desaparecem, da mesma forma que seus pais um dia desapareceram.\n\nEm seus sonhos mais recorrentes, Miguel se vê tentando estender a mão para alguém que se afasta lentamente, enquanto o ambiente ao redor se distorce e a Barreira começa a se fechar. Ele sabe exatamente o que está acontecendo, entende o perigo, mas não consegue se mover ou usar qualquer habilidade. Para ele, essa sensação de estar presente e ainda assim falhar é mais aterradora do que qualquer manifestação paranormal."
+        },
+        "portrait": "",
+        "carga": 15
+    },
+    "atributos": {
+        "forca": 3,
+        "agilidade": 5,
+        "intelecto": 4,
+        "presenca": 4,
+        "vigor": 3
+    },
+    "pericias": {
+        "acrobacia": {
+            "treino": "expert",
+            "bonus": 0
+        },
+        "adestramento": {
+            "treino": "veterano",
+            "bonus": 0
+        },
+        "artes": {
+            "treino": "expert",
+            "bonus": 0
+        },
+        "atletismo": {
+            "treino": "expert",
+            "bonus": 0
+        },
+        "atualidades": {
+            "treino": "treinado",
+            "bonus": 0
+        },
+        "ciencias": {
+            "treino": "expert",
+            "bonus": 0
+        },
+        "crime": {
+            "treino": "veterano",
+            "bonus": 0
+        },
+        "diplomacia": {
+            "treino": "expert",
+            "bonus": 5
+        },
+        "enganacao": {
+            "treino": "expert",
+            "bonus": 0
+        },
+        "fortitude": {
+            "treino": "expert",
+            "bonus": 0
+        },
+        "furtividade": {
+            "treino": "expert",
+            "bonus": 5
+        },
+        "iniciativa": {
+            "treino": "veterano",
+            "bonus": 0
+        },
+        "intimidacao": {
+            "treino": "expert",
+            "bonus": 5
+        },
+        "intuicao": {
+            "treino": "expert",
+            "bonus": 5
+        },
+        "investigacao": {
+            "treino": "expert",
+            "bonus": 0
+        },
+        "luta": {
+            "treino": "expert",
+            "bonus": 10
+        },
+        "medicina": {
+            "treino": "veterano",
+            "bonus": 0
+        },
+        "ocultismo": {
+            "treino": "expert",
+            "bonus": 0
+        },
+        "percepcao": {
+            "treino": "expert",
+            "bonus": 0
+        },
+        "pilotagem": {
+            "treino": "destreinado",
+            "bonus": 0
+        },
+        "pontaria": {
+            "treino": "expert",
+            "bonus": 0
+        },
+        "profissao": {
+            "treino": "expert",
+            "type": "Detetive",
+            "bonus": 0
+        },
+        "reflexos": {
+            "treino": "expert",
+            "bonus": 10
+        },
+        "religiao": {
+            "treino": "treinado",
+            "bonus": 0
+        },
+        "sobrevivencia": {
+            "treino": "veterano",
+            "bonus": 0
+        },
+        "tatica": {
+            "treino": "treinado",
+            "bonus": 0
+        },
+        "tecnologia": {
+            "treino": "expert",
+            "bonus": 0
+        },
+        "vontade": {
+            "treino": "expert",
+            "bonus": 0
+        }
+    },
+    "status": {
+        "vida": 110,
+        "sanidade": 115,
+        "esforco": 160,
+        "defesas": {
+            "passiva": 31,
+            "bonusReflexos": 0,
+            "bonusFortitude": 0
+        },
+        "resistencias": {
+            "elementos": {
+                "Mental": 10,
+                "Morte": 10,
+                "Conhecimento": 10,
+                "Sangue": 10,
+                "Energia": 10
+            },
+            "outras": {
+                "Dano": 10,
+                "Fisica": 5,
+                "Balistica": 5,
+                "Corte": 0,
+                "Impacto": 0,
+                "Perfuracao": 0,
+                "Eletricidade": 0,
+                "Fogo": 0,
+                "Frio": 0,
+                "Quimica": 0
+            }
+        }
+    },
+    "poderes": [
+        {
+            "id": 0,
+            "titulo": "Faro para Pistas",
+            "descricao": "Uma vez por cena, quando fizer um teste para procurar pistas, você pode gastar 1 PE para receber +5 nesse teste.",
+            "tags": [
+                "origem",
+                "investigacao"
+            ]
+        },
+        {
+            "id": 1,
+            "titulo": "Escolhido pelo Outro Lado",
+            "descricao": "Você pode lançar rituais de 1º círculo. Você pode lançar rituais de 2º círculo. (NEX 25%) Você pode lançar rituais de 3º círculo. (NEX 55%) Você pode lançar rituais de 4º círculo. (NEX 85%)",
+            "tags": [
+                "classe",
+                "ritual"
+            ]
+        },
+        {
+            "id": 2,
+            "titulo": "Sensitivo",
+            "descricao": "Você consegue sentir as emoções e intenções de outros personagens, como medo, raiva ou malícia, recebendo +5 em testes de Diplomacia, Intimidação e Intuição.",
+            "tags": [
+                "outros",
+                "passivo",
+                "social",
+                "exploracao",
+                "investigacao"
+            ]
+        },
+        {
+            "id": 3,
+            "titulo": "Lutador",
+            "descricao": "Recebe +10 em testes de luta e reflexos. Ataques desarmados causar 2d6+2. Ao usar uma Espada, soma sua inteligência em testes de ataque. Pode fazer 2 ataques em uma rodada ao custo de 2 PE.",
+            "tags": [
+                "outros",
+                "combate"
+            ]
+        },
+        {
+            "id": 4,
+            "titulo": "Dificil de Matar",
+            "descricao": "Numa cena de combate, tem esquivas infinitas.",
+            "tags": [
+                "outros",
+                "combate",
+                "reacao"
+            ]
+        },
+        {
+            "id": 5,
+            "titulo": "Acustumado ao medo",
+            "descricao": "Rituais de 1º, 2º e 3º circulo não consomem mais sanidade.",
+            "tags": [
+                "outros",
+                "ritual",
+                "passivo"
+            ]
+        },
+        {
+            "id": 6,
+            "titulo": "Pequeno",
+            "descricao": "Você possui tamanho Pequeno (+5 em testes de Furtividade). Os inimigos tem dificuldade em te acertar, +5 de Defesa.",
+            "tags": [
+                "outros",
+                "combate",
+                "passivo",
+                "exploracao"
+            ]
+        },
+        {
+            "id": 7,
+            "titulo": "Camuflar Ocultismo",
+            "descricao": "Você pode gastar uma ação livre para esconder símbolos e sigilos que estejam desenhados ou gravados em objetos ou em sua pele, tornando-os invisíveis para outras pessoas além de você mesmo. \nAlém disso, quando lança um ritual, pode gastar +2 PE para lançá-lo sem usar componentes ritualísticos e sem gesticular (o que permite conjurar um ritual com as mãos presas), usando apenas concentração. Outros seres só perceberão que você lançou um ritual se passarem num teste de Ocultismo (DT 25).",
+            "tags": [
+                "classe",
+                "passivo",
+                "ritual"
+            ]
+        },
+        {
+            "id": 8,
+            "titulo": "Intuição Paranormal",
+            "descricao": "Sempre que usa a ação facilitar investigação, você soma seu Intelecto ou Presença no teste (à sua escolha).",
+            "tags": [
+                "classe",
+                "investigacao",
+                "passivo"
+            ]
+        },
+        {
+            "id": 9,
+            "titulo": "Ritual Potente",
+            "descricao": "Você soma seu Intelecto nas rolagens de dano ou nos efeitos de cura de seus rituais.",
+            "tags": [
+                "classe",
+                "ritual",
+                "passivo"
+            ]
+        },
+        {
+            "id": 10,
+            "titulo": "Movimento Tático",
+            "descricao": "Você pode gastar 1 PE para ignorar a penalidade em deslocamento por terreno difícil e por escalar até o final do turno.",
+            "tags": [
+                "classe",
+                "combate",
+                "exploracao"
+            ]
+        },
+        {
+            "id": 11,
+            "titulo": "Reflexos Defensivos",
+            "descricao": "Você recebe +2 em Defesa e em testes de resistência.",
+            "tags": [
+                "classe",
+                "combate",
+                "passivo"
+            ]
+        },
+        {
+            "id": 12,
+            "titulo": "Lâmina Maldita",
+            "descricao": "Você aprende o ritual Amaldiçoar Arma. Se já o conhece, pode gastar +1 PE quando o lança para reduzir seu tempo de conjuração para movimento. Além disso, quando conjura esse ritual, você pode usar Ocultismo, em vez de Luta ou Pontaria, para testes de ataque com a arma amaldiçoada.",
+            "tags": [
+                "trilha",
+                "ritual",
+                "combate"
+            ]
+        },
+        {
+            "id": 13,
+            "titulo": "Gladiador Paranormal",
+            "descricao": ". Sempre que acerta um ataque corpo a corpo em um inimigo, você recebe 2 PE temporários. Você pode ganhar um máximo de PE temporários por cena igual ao seu limite de PE. PE temporários desaparecem no final da cena",
+            "tags": [
+                "trilha",
+                "combate",
+                "suporte"
+            ]
+        },
+        {
+            "id": 14,
+            "titulo": "Conjuração Marcial",
+            "descricao": "Uma vez por rodada, quando você lança um ritual com execução de uma ação padrão, pode gastar 2 PE para fazer um ataque corpo a corpo como uma ação livre",
+            "tags": [
+                "trilha",
+                "combate",
+                "reacao"
+            ]
+        }
+    ],
+    "inventario": [
+        {
+            "tipo": "arma",
+            "nome": "Life Counter",
+            "descricao": "Uma katana especial. Pertencia ao pai de Zero, dado a ele no 18º aniversário. Erosiva; Energética.",
+            "categoria": 1,
+            "peso": 31,
+            "imagem": "",
+            "paranormal": true,
+            "arma": {
+                "tipo": "Corte",
+                "critico": "17",
+                "ataques": [
+                    {
+                        "titulo": "Normal",
+                        "atributo": "INT",
+                        "pericias": "luta",
+                        "descricao": "Ataque padrão."
+                    }
+                ],
+                "danos": [
+                    {
+                        "titulo": "Normal",
+                        "dados": "1d10+/FOR/+2*/INT/+1d8"
+                    },
+                    {
+                        "titulo": "Critico",
+                        "dados": "2d10+2*/FOR/+4*/INT/ + 2*1"
+                    }
+                ],
+                "especiais": [
+                    {
+                        "descricao": "Afiada (+1 no dano)",
+                        "paranormal": false
+                    }
+                ]
+            }
+        }
+    ],
+    "rituais": [],
+    "dados": []
+}
