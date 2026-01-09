@@ -49,7 +49,7 @@ export default function AtributosTab({ character }) {
             return (
               <RollTooltip
                 key={nome}
-                roll={isActive ? lastRoll : null}
+                rolls={isActive ? [lastRoll] : null}
                 rollType="teste"
                 critico={20}
                 bonus={0}

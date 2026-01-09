@@ -221,13 +221,10 @@ export default class Dice {
     } catch (e) {
       throw new Error("Erro ao calcular bônus: " + e.message);
     }
-    console.log({
+
+    return {
       rolls,
       bonus: baseBonus
-    })
-    // return {
-    //   rolls,
-    //   bonus: baseBonus
-    // };
+    };
   }
 }

@@ -13,7 +13,10 @@ function resolveTeste({ atributo, pericias }, character) {
   const perName = PERICIAS_MAP[perKey];
 
   const attrValue = character.atributos?.[attrName] ?? 0;
-  const perData = character.pericias?.[perName] ?? { treino: 0, bonus: 0 };
+  const perData = character.pericias?.[perName] ?? {
+    treino: "destreinado",
+    bonus: 0,
+  };
 
   const skillValue = TREINO_BONUS[perData.treino] + perData.bonus;
 
@@ -57,41 +60,6 @@ export default function InventarioTab({ character }) {
       ...prev,
       [key]: result,
     }));
-  }
-
-  function ItemCard({ item }) {
-    return (
-      <Card style={{ backgroundColor: "#1e2330", border: "1px solid #2a2f3e" }}>
-        <Card.Body>
-          <div className="d-flex justify-content-between">
-            <strong>{item.nome}</strong>
-            <div>
-              {item.paranormal && (
-                <Badge bg="danger" className="me-1">
-                  Paranormal
-                </Badge>
-              )}
-              <Badge bg="secondary">Cat. {item.categoria}</Badge>
-            </div>
-          </div>
-
-          <div style={{ fontSize: "0.85rem", color: "#9aa0b3" }}>
-            Peso: {item.peso}
-            {item.quantidade != null && ` × ${item.quantidade}`}
-          </div>
-
-          <div style={{ marginTop: "0.4rem", whiteSpace: "pre-wrap" }}>
-            {item.descricao}
-          </div>
-
-          {item.efeito && (
-            <div style={{ marginTop: "0.4rem", color: "#c7d2fe" }}>
-              {item.efeito}
-            </div>
-          )}
-        </Card.Body>
-      </Card>
-    );
   }
 
   function ArmaCard({ item }) {
@@ -139,10 +107,10 @@ export default function InventarioTab({ character }) {
                     • <strong>{a.titulo}</strong>
                     <span style={{ color: "#9aa0b3" }}>{display}</span>
                     <RollTooltip
-                      roll={rolls.rolls}
+                      rolls={rolls[key]?.rolls ?? []}
                       rollType="teste"
                       critico={arma.critico}
-                      bonus={rolls?.bonus ?? 0}
+                      bonus={rolls[key]?.bonus ?? 0}
                     >
                       <Button
                         size="sm"
@@ -178,9 +146,9 @@ export default function InventarioTab({ character }) {
                   >
                     • <strong>{d.titulo}</strong>
                     <RollTooltip
-                      roll={rolls[key]}
+                      rolls={rolls[key]?.rolls ?? []}
                       rollType="soma"
-                      bonus={rolls[key]?.baseBonus ?? 0}
+                      bonus={rolls[key]?.bonus ?? 0}
                     >
                       <Button
                         size="sm"
@@ -193,19 +161,6 @@ export default function InventarioTab({ character }) {
                   </div>
                 );
               })}
-            </div>
-          )}
-
-          {/* ESPECIAIS */}
-          {arma.especiais?.length > 0 && (
-            <div style={{ marginTop: "0.6rem" }}>
-              <strong>Especiais</strong>
-              {arma.especiais.map((e, i) => (
-                <div key={i} style={{ fontSize: "0.85rem" }}>
-                  • {e.descricao}{" "}
-                  {e.paranormal && <Badge bg="danger">Paranormal</Badge>}
-                </div>
-              ))}
             </div>
           )}
         </Card.Body>
@@ -255,18 +210,6 @@ export default function InventarioTab({ character }) {
           <Section title="Armas">
             {armas.map((i) => (
               <ArmaCard key={i.nome} item={i} />
-            ))}
-          </Section>
-
-          <Section title="Equipamentos">
-            {equipamentos.map((i) => (
-              <ItemCard key={i.nome} item={i} />
-            ))}
-          </Section>
-
-          <Section title="Itens">
-            {itens.map((i) => (
-              <ItemCard key={i.nome} item={i} />
             ))}
           </Section>
         </Stack>
