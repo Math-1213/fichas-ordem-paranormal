@@ -334,9 +334,10 @@
         {
             "tipo": "arma",
             "nome": "Life Counter",
-            "descricao": "Uma katana especial. Pertencia ao pai de Zero, dado a ele no 18º aniversário. Erosiva; Energética.",
-            "categoria": 1,
+            "descricao": "Uma katana especial. Pertencia ao pai de Zero, dado a ele no 18º aniversário.",
+            "categoria": 4,
             "peso": 2,
+            "alcance": "Médio",
             "imagem": "",
             "paranormal": true,
             "arma": {
@@ -348,22 +349,184 @@
                         "atributo": "INT",
                         "pericias": "luta",
                         "descricao": "Ataque padrão."
+                    },
+                    {
+                        "titulo": "Arma Amaldiçoada",
+                        "atributo": "INT",
+                        "pericias": "ocul",
+                        "descricao": "Ataque padrão."
+                    },
+                    {
+                        "titulo": "Normal Energética",
+                        "atributo": "INT",
+                        "pericias": "luta",
+                        "bonus": 5,
+                        "descricao": "Ataque padrão."
+                    },
+                    {
+                        "titulo": "Arma Amaldiçoada Energética",
+                        "atributo": "INT",
+                        "pericias": "ocul",
+                        "bonus": 5,
+                        "descricao": "Ataque padrão."
                     }
                 ],
                 "danos": [
                     {
                         "titulo": "Normal",
-                        "dados": "1d10+/FOR/+2*/INT/+1d8"
+                        "dados": "2d10+/FOR/+/INT/"
                     },
                     {
                         "titulo": "Critico",
-                        "dados": "2d10+2*/FOR/+4*/INT/ + 2*1"
+                        "dados": "6d10+2*/FOR/+2*/INT/"
+                    },
+                    {
+                        "titulo": "Erosivo",
+                        "dados": "1d8"
+                    },
+                    {
+                        "titulo": "Erosivo Constante",
+                        "dados": "2d8"
                     }
                 ],
                 "especiais": [
                     {
-                        "descricao": "Afiada (+1 no dano)",
-                        "paranormal": false
+                        "nome": "Energética",
+                        "descricao": "Você pode gastar 2 PE por ataque para transformar a arma (exceto seu cabo ou empunhadura) ou a munição disparada pela arma em Energia pura. Durante este ataque, a arma fornece +5 em testes de ataque, ignora resistência a dano e converte todo o dano causado para Energia. Armas corpo a corpo emanam luz como uma lâmpada; munição toma uma forma plasmática iluminada como feixes de luz.",
+                        "paranormal": true
+                    },
+                    {
+                        "nome": "Erosiva",
+                        "descricao": "A arma acelera o envelhecimento dos alvos, causando +1d8 pontos de dano de Morte. Quando ataca, você pode gastar 2 PE. Se fizer isso e acertar o ataque, a vítima sofre 2d4 pontos de dano de Morte no início de seus turnos pelas próximas duas rodadas.",
+                        "paranormal": true
+                    }
+                ]
+            }
+        },
+        {
+            "tipo": "arma",
+            "nome": "Death Counter",
+            "descricao": "Espada Curta, Similar a uma adaga;",
+            "categoria": 4,
+            "alcance": "Curto",
+            "peso": 1,
+            "imagem": "",
+            "paranormal": true,
+            "arma": {
+                "tipo": "Corte",
+                "critico": "17",
+                "ataques": [
+                    {
+                        "titulo": "Normal",
+                        "atributo": "INT",
+                        "pericias": "luta",
+                        "descricao": "Ataque padrão."
+                    },
+                    {
+                        "titulo": "Arma Amaldiçoada",
+                        "atributo": "INT",
+                        "pericias": "ocul",
+                        "descricao": "Ataque padrão."
+                    }
+                ],
+                "danos": [
+                    {
+                        "titulo": "Normal",
+                        "dados": "1d10+/FOR/+2*/INT/"
+                    },
+                    {
+                        "titulo": "Critico",
+                        "dados": "2d10+2*/FOR/+4*/INT/"
+                    },
+                    {
+                        "titulo": "Lancinante",
+                        "dados": "1d8"
+                    },
+                    {
+                        "titulo": "Lancinante Critico",
+                        "dados": "2d8"
+                    }
+                ],
+                "especiais": [
+                    {
+                        "nome": "Predadora",
+                        "descricao": "A arma tem sede de sangue e persegue seus alvos, anulando penalidades por camuflagem e cobertura leves. Além disso, a margem de ameaça da arma duplica",
+                        "paranormal": true
+                    },
+                    {
+                        "nome": "Lancinante",
+                        "descricao": "A arma inflige ferimentos terríveis, causando +1d8 de dano de Sangue. Este dado é multiplicado em acertos críticos. Por exemplo, se a arma possuir crítico x3, em um acerto crítico o dano adicional de lancinante vira +3d8.",
+                        "paranormal": true
+                    },
+                    {
+                        "nome": "Senciente",
+                        "descricao": "Você pode gastar uma ação de movimento e 2 PE para imbuir a arma com uma fagulha de sua consciência. A arma flutua ao seu lado e, uma vez por rodada, ataca um ser em alcance curto (ou no alcance da arma, o que for maior) a sua escolha, com as mesmas estatísticas que teria se você a estivesse empunhando. Você pode gastar 1 PE no início de cada um de seus turnos para manter esse efeito. Se não o fizer, a arma cai no chão. Você pode usar uma ação de movimento para apanhar a arma no ar caso precise. Soltar a arma para que volte a flutuar para ativar a maldição é uma ação livre.",
+                        "paranormal": true
+                    }
+                ]
+            }
+        },
+        {
+            "tipo": "arma",
+            "nome": "Scarlet",
+            "descricao": "Pistola .38, pertencente à família de Miguel a gerações. Senciente, Predadora, Sanguinária.",
+            "categoria": 4,
+            "alcance": "Longo",
+            "peso": 1,
+            "imagem": "",
+            "paranormal": true,
+            "arma": {
+                "tipo": "Balistico",
+                "critico": "17",
+                "ataques": [
+                    {
+                        "titulo": "Normal",
+                        "atributo": "AGI",
+                        "pericias": "pont",
+                        "bonus": 4,
+                        "descricao": "Ataque padrão."
+                    },
+                    {
+                        "titulo": "Normal",
+                        "atributo": "AGI",
+                        "pericias": "ocul",
+                        "bonus": 4,
+                        "descricao": "Arma Amaldiçoada"
+                    }
+                ],
+                "danos": [
+                    {
+                        "titulo": "Normal",
+                        "dados": "1d12+/INT/"
+                    },
+                    {
+                        "titulo": "Critico",
+                        "dados": "2d12+2*/INT/"
+                    },
+                    {
+                        "titulo": "Sangramento",
+                        "dados": "1d6"
+                    },
+                    {
+                        "titulo": "Cura Sanguinaria",
+                        "dados": "2d10"
+                    }
+                ],
+                "especiais": [
+                    {
+                        "nome": "Predadora",
+                        "descricao": "A arma tem sede de sangue e persegue seus alvos, anulando penalidades por camuflagem e cobertura leves. Além disso, a margem de ameaça da arma duplica",
+                        "paranormal": true
+                    },
+                    {
+                        "nome": "Sanguinaria",
+                        "descricao": "Os ferimentos causados pela arma se rasgam além da área acertada. Um ser atingido fica sangrando. Sangramento causado pela arma é cumulativo — um ser atingido duas vezes perde 2d6 pontos de dano de sangramento por rodada. Além disso, quando você faz um acerto crítico com a arma ela drena o sangue derramado, o que deixa o alvo fraco e concede a você 2d10 pontos de vida temporários.",
+                        "paranormal": true
+                    },
+                    {
+                        "nome": "Senciente",
+                        "descricao": "Você pode gastar uma ação de movimento e 2 PE para imbuir a arma com uma fagulha de sua consciência. A arma flutua ao seu lado e, uma vez por rodada, ataca um ser em alcance curto (ou no alcance da arma, o que for maior) a sua escolha, com as mesmas estatísticas que teria se você a estivesse empunhando. Você pode gastar 1 PE no início de cada um de seus turnos para manter esse efeito. Se não o fizer, a arma cai no chão. Você pode usar uma ação de movimento para apanhar a arma no ar caso precise. Soltar a arma para que volte a flutuar para ativar a maldição é uma ação livre.",
+                        "paranormal": true
                     }
                 ]
             }

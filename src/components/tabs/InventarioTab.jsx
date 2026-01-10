@@ -1,11 +1,31 @@
-import { Card, Stack, Badge, Alert, Button } from "react-bootstrap";
+import {
+  Card,
+  Stack,
+  Badge,
+  Alert,
+  Button,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import { useState } from "react";
+import styled from "styled-components";
 import Dice from "../../models/Dice";
 import RollTooltip from "../ui/RollTooltip";
 import { ATRIBUTOS_MAP, PERICIAS_MAP } from "../../configs/dice";
 import { TREINO_BONUS } from "../../configs/skills";
+import { toRoman } from "../../configs/number";
 
-function resolveTeste({ atributo, pericias }, character) {
+const WideTooltip = styled(Tooltip)`
+  .tooltip-inner {
+    width: 40vw;
+    max-width: 500px;
+    min-width: 320px;
+    white-space: normal;
+    text-align: left;
+  }
+`;
+
+function resolveTeste({ atributo, pericias, bonus = 0 }, character) {
   const attrKey = atributo.toUpperCase();
   const perKey = pericias.toUpperCase();
 
@@ -18,10 +38,10 @@ function resolveTeste({ atributo, pericias }, character) {
     bonus: 0,
   };
 
-  const skillValue = TREINO_BONUS[perData.treino] + perData.bonus;
+  const skillValue = TREINO_BONUS[perData.treino] + perData.bonus + bonus;
 
   return {
-    expression: `/${attrKey}/d20 + /${perKey}/`,
+    expression: `/${attrKey}/d20 + /${perKey}/ + ${bonus}`,
     display: `${attrValue}d20 + ${skillValue}`,
   };
 }
@@ -29,6 +49,39 @@ function resolveTeste({ atributo, pericias }, character) {
 function calcPeso(item) {
   const qtd = item.quantidade ?? 1;
   return item.peso * qtd;
+}
+
+function getDamageDisplay(damage, character) {
+  const { atributos } = character;
+  const expr = damage.dados;
+
+  const diceMatch = expr.match(/^(\d+d\d+)/);
+  if (!diceMatch) return expr;
+
+  const dice = diceMatch[1];
+  const rest = expr.slice(dice.length);
+
+  let bonusTotal = 0;
+
+  const attrRegex = /([+-]?)(\d*)\*?\/([A-Z]{3})\//g;
+  let match;
+
+  while ((match = attrRegex.exec(rest)) !== null) {
+    const sign = match[1] === "-" ? -1 : 1;
+    const multiplier = match[2] ? Number(match[2]) : 1;
+    const attrKey = ATRIBUTOS_MAP[match[3]];
+    const attrValue = atributos[attrKey] || 0;
+
+    bonusTotal += sign * multiplier * attrValue;
+  }
+
+  const numericPart = rest.replace(attrRegex, "").match(/[+-]?\d+/g);
+
+  if (numericPart) {
+    bonusTotal += numericPart.reduce((sum, n) => sum + Number(n), 0);
+  }
+
+  return bonusTotal !== 0 ? `${dice} + ${bonusTotal}` : dice;
 }
 
 export default function InventarioTab({ character }) {
@@ -62,6 +115,29 @@ export default function InventarioTab({ character }) {
     }));
   }
 
+  function EspecialBadge({ especial }) {
+    return (
+      <OverlayTrigger
+        placement="top"
+        overlay={
+          <WideTooltip id={`tooltip-${especial.nome}`}>
+            <strong>{especial.nome}</strong>
+            <div style={{ fontSize: "0.9rem", marginTop: "0.4rem" }}>
+              {especial.descricao}
+            </div>
+          </WideTooltip>
+        }
+      >
+        <Badge
+          bg={especial.paranormal ? "danger" : "secondary"}
+          style={{ cursor: "help" }}
+        >
+          {especial.nome}
+        </Badge>
+      </OverlayTrigger>
+    );
+  }
+
   function ArmaCard({ item }) {
     const arma = item.arma;
 
@@ -79,8 +155,28 @@ export default function InventarioTab({ character }) {
           </div>
 
           <div style={{ fontSize: "0.8rem", color: "#9aa0b3" }}>
-            Crítico: ≥ {arma.critico} | Peso: {item.peso}
+            Crítico: ≥ {arma.critico} | Peso: {item.peso} | Alcance:{" "}
+            {item.alcance} | Categoria: {toRoman(item.categoria)}
           </div>
+
+          {/* ESPECIAIS / MALDIÇÕES */}
+          {arma.especiais?.length > 0 && (
+            <div style={{ marginTop: "0.6rem" }}>
+              <strong>Modificações</strong>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.4rem",
+                  flexWrap: "wrap",
+                  marginTop: "0.3rem",
+                }}
+              >
+                {arma.especiais.map((e, i) => (
+                  <EspecialBadge key={`esp-${item.nome}-${i}`} especial={e} />
+                ))}
+              </div>
+            </div>
+          )}
 
           <div style={{ marginTop: "0.4rem" }}>{item.descricao}</div>
 
@@ -105,7 +201,6 @@ export default function InventarioTab({ character }) {
                     }}
                   >
                     • <strong>{a.titulo}</strong>
-                    <span style={{ color: "#9aa0b3" }}>{display}</span>
                     <RollTooltip
                       rolls={rolls[key]?.rolls ?? []}
                       rollType="teste"
@@ -117,7 +212,7 @@ export default function InventarioTab({ character }) {
                         variant="outline-light"
                         onClick={() => handleRoll(key, expression, "teste")}
                       >
-                        Testar
+                        {display}
                       </Button>
                     </RollTooltip>
                   </div>
@@ -130,9 +225,9 @@ export default function InventarioTab({ character }) {
           {arma.danos?.length > 0 && (
             <div style={{ marginTop: "0.6rem" }}>
               <strong>Danos</strong>
-
               {arma.danos.map((d, i) => {
                 const key = `dmg-${item.nome}-${i}`;
+                const display = getDamageDisplay(d, character);
 
                 return (
                   <div
@@ -144,7 +239,7 @@ export default function InventarioTab({ character }) {
                       gap: "0.5rem",
                     }}
                   >
-                    • <strong>{d.titulo}</strong>
+                    • <strong>{d.titulo} </strong>
                     <RollTooltip
                       rolls={rolls[key]?.rolls ?? []}
                       rollType="soma"
@@ -154,8 +249,9 @@ export default function InventarioTab({ character }) {
                         size="sm"
                         variant="outline-danger"
                         onClick={() => handleRoll(key, d.dados, "soma")}
+                        style={{ margin: "1px" }}
                       >
-                        Dano
+                        {display}
                       </Button>
                     </RollTooltip>
                   </div>

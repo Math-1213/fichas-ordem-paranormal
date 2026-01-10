@@ -19,7 +19,8 @@ export default function RollTooltip({
     : 0;
 
   const totalFinal = diceTotal + bonus;
-  const isCritico = allDiceValues.includes(critico);
+  const isCritico =
+    rollType !== "soma" && allDiceValues.some((value) => value >= critico);
 
   const shakeKeyframes = `
     @keyframes roll-shake {
@@ -55,14 +56,12 @@ export default function RollTooltip({
                   animation: isCritico ? "roll-shake 0.35s" : "none",
                 }}
               >
-                <div style={{ fontSize: "0.75rem", color: "#9aa0b3" }}>
-                  Rolagem ({rollType})
-                </div>
 
                 {rolls.map((r, i) => (
                   <div key={i} style={{ fontSize: "0.8rem" }}>
                     <span style={{ color: "#9aa0b3" }}>
-                      {r.baseQuantity}{r.dice}:
+                      {r.baseQuantity}
+                      {r.dice}:
                     </span>{" "}
                     {r.rolls.map((v, j) => (
                       <span
