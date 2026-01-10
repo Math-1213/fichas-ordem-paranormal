@@ -1,3 +1,18 @@
+/**
+ * PERICIAS
+ * ----------
+ * Define todas as perícias do sistema.
+ *
+ * Cada chave representa o ID interno da perícia.
+ * O valor descreve como ela funciona mecanicamente.
+ *
+ * Campos:
+ * - label: Nome exibido na interface
+ * - atributo: Atributo base usado nos testes dessa perícia
+ * - somenteTreinada: Se true, só pode ser usada se o personagem tiver treino
+ * - carga: Se sofre penalidade quando o personagem está sobrecarregado
+ * - kit: Se exige um kit apropriado
+ */
 export const PERICIAS = {
   acrobacia: {
     label: "Acrobacia",
@@ -197,6 +212,14 @@ export const PERICIAS = {
   },
 };
 
+/**
+ * TREINO_BONUS
+ * ------------
+ * Define o bônus numérico aplicado às perícias
+ * de acordo com o nível de treino do personagem.
+ *
+ * Esses valores são somados diretamente no teste.
+ */
 export const TREINO_BONUS = {
   destreinado: 0,
   treinado: 5,
@@ -204,6 +227,12 @@ export const TREINO_BONUS = {
   expert: 15,
 };
 
+/**
+ * TREINO_LABELS
+ * -------------
+ * Versão legível dos níveis de treino.
+ * Usado para exibição na interface.
+ */
 export const TREINO_LABELS = {
   destreinado: "Destreinado",
   treinado: "Treinado",
@@ -211,6 +240,12 @@ export const TREINO_LABELS = {
   expert: "Expert",
 };
 
+/**
+ * TREINO_COLORS
+ * -------------
+ * Define a cor visual associada a cada nível de treino.
+ * Geralmente usado em Badges e indicadores visuais.
+ */
 export const TREINO_COLORS = {
   destreinado: "secondary", // cinza
   treinado: "success",      // verde

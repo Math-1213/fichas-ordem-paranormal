@@ -15,6 +15,7 @@ import RollTooltip from "../ui/RollTooltip";
 import { ATRIBUTOS_MAP, PERICIAS_MAP } from "../../configs/dice";
 import { TREINO_BONUS } from "../../configs/skills";
 import { toRoman } from "../../configs/number";
+import { formatExpression } from "../../configs/dice";
 
 const WideTooltip = styled(Tooltip)`
   .tooltip-inner {
@@ -26,6 +27,12 @@ const WideTooltip = styled(Tooltip)`
   }
 `;
 
+/**
+ * Resolve a lógica de um teste de perícia baseado em chaves de tradução.
+ * @param {Object} config - Objeto contendo { atributo, pericias, bonus }.
+ * @param {Character} character - Instância do personagem.
+ * @returns {Object} { expression: string, display: string }
+ */
 function resolveTeste({ atributo, pericias, bonus = 0 }, character) {
   const attrKey = atributo.toUpperCase();
   const perKey = pericias.toUpperCase();
@@ -47,11 +54,36 @@ function resolveTeste({ atributo, pericias, bonus = 0 }, character) {
   };
 }
 
+/**
+ * Calcula o peso total de um item considerando sua pilha.
+ * * @param {Object} item - Objeto do item do inventário.
+ * @param {number} item.peso - Peso unitário do item.
+ * @param {number} [item.quantidade=1] - Quantidade atual do item (fallback: 1).
+ * @returns {number} O peso total ocupado pelo item (Peso * Quantidade).
+ * * @example
+ * // Retorna 2 (item de peso 1 com quantidade 2)
+ * calcPeso({ peso: 1, quantidade: 2 });
+ */
 function calcPeso(item) {
   const qtd = item.quantidade ?? 1;
   return item.peso * qtd;
 }
 
+/**
+ * Interpreta e formata expressões de dano dinâmicas para exibição.
+ * * A função utiliza Regex para encontrar referências a atributos (ex: /FOR/) e multiplicadores
+ * (ex: 2* /AGI/) dentro de uma string de dados, substituindo-os pelos valores reais do personagem
+ * e somando bônus numéricos fixos.
+ * * @param {Object} damage - Objeto contendo os dados do dano.
+ * @param {string} damage.dados - Expressão original (ex: "1d10 + 2* /FOR/ + 5").
+ * @param {Object} character - Instância do personagem que fornece os atributos.
+ * @returns {string} String formatada para o jogador (ex: "1d10 + 11").
+ * * @logic
+ * 1. Extrai o prefixo de dados (ex: "2d6").
+ * 2. Processa multiplicadores e atributos via regex: `/([+-]?)(\d*)\*?\/([A-Z]{3})\//g`.
+ * 3. Limpa a string para somar valores numéricos residuais.
+ * 4. Retorna a combinação final consolidada.
+ */
 function getDamageDisplay(damage, character) {
   const { atributos } = character;
   const expr = damage.dados;
@@ -85,6 +117,12 @@ function getDamageDisplay(damage, character) {
   return bonusTotal !== 0 ? `${dice} + ${bonusTotal}` : dice;
 }
 
+/**
+ * Seção retrátil para organização de listas.
+ * @param {string} title - Título da seção.
+ * @param {number} count - Quantidade de itens na seção.
+ * @param {ReactNode} children - Conteúdo a ser exibido.
+ */
 function CollapsibleSection({ title, count, children }) {
   const [open, setOpen] = useState(false);
 
@@ -122,31 +160,13 @@ function CollapsibleSection({ title, count, children }) {
   );
 }
 
-function formatExpression(expr, character) {
-  if (!expr) return "";
-
-  // Substitui /XXX/ pelo valor do Atributo ou bônus da Perícia
-  return expr.replace(/\/([A-Z]{3,})\//g, (match, key) => {
-    const upperKey = key.toUpperCase();
-
-    // Tenta Atributo
-    if (ATRIBUTOS_MAP[upperKey]) {
-      return character.atributos?.[ATRIBUTOS_MAP[upperKey]] ?? 0;
-    }
-
-    // Tenta Perícia
-    if (PERICIAS_MAP[upperKey]) {
-      const perData = character.pericias?.[PERICIAS_MAP[upperKey]] ?? {
-        treino: "destreinado",
-        bonus: 0,
-      };
-      return TREINO_BONUS[perData.treino] + perData.bonus;
-    }
-
-    return "0";
-  });
-}
-
+/**
+ * Aba de Gerenciamento de Inventario.
+ * Mostra as armas, equipamentos, itens. Permite a execução de testes automaticos.
+ * * @component
+ * @param {Object} props
+ * @param {Character} props.character - Instância do personagem para cálculo de perícias e resistências.
+ */
 export default function InventarioTab({ character, onUpdateInventory }) {
   const inventario = character.inventario ?? [];
   const cargaMax = character.infos.carga ?? 0;
@@ -162,6 +182,16 @@ export default function InventarioTab({ character, onUpdateInventory }) {
 
   const [rolls, setRolls] = useState({});
 
+  /**
+   * Executa uma rolagem de dados baseada em uma expressão complexa.
+   * * @param {string} key - Identificador único (geralmente o ID do item) para armazenar o resultado.
+   * @param {string} expression - A fórmula a ser calculada (ex: "1d20 + /FOR/").
+   * @param {string} rollType - Tipo da rolagem para regras específicas (ex: "dano", "teste").
+   * * @logic
+   * Utiliza o método estático `Dice.parseRollExpression` para injetar os atributos e perícias
+   * do personagem diretamente na fórmula antes de processar os dados físicos. O resultado
+   * é armazenado no estado local `rolls`, mapeado pela `key`.
+   */
   function handleRoll(key, expression, rollType) {
     const result = Dice.parseRollExpression(
       expression,
@@ -178,6 +208,15 @@ export default function InventarioTab({ character, onUpdateInventory }) {
     }));
   }
 
+  /**
+   * Exibe uma Badge informativa com Tooltip para propriedades especiais de itens.
+   * * @component
+   * @param {Object} especial - Objeto contendo { nome, descricao, paranormal }.
+   * * @visual
+   * - Vermelho (danger): Se a propriedade for 'paranormal' (ex: Itens Amaldiçoados).
+   * - Cinza (secondary): Para propriedades mundanas ou técnicas.
+   * - Tooltip largo: Garante legibilidade para descrições longas de regras.
+   */
   function EspecialBadge({ especial }) {
     return (
       <OverlayTrigger
@@ -201,6 +240,14 @@ export default function InventarioTab({ character, onUpdateInventory }) {
     );
   }
 
+  /**
+   * Gerencia a atualização da quantidade de um item no inventário.
+   * * @param {string} itemName - Nome/ID do item a ser alterado.
+   * @param {number} delta - Valor a ser somado ou subtraído (ex: +1 ou -1).
+   * * @logic
+   * Mapeia o inventário atual e gera uma nova lista imutável. Garante que a quantidade
+   * nunca seja inferior a 0. Ao final, chama `onUpdateInventory` para persistir os dados.
+   */
   function updateQuantity(itemName, delta) {
     const novoInventario = character.inventario.map((item) => {
       if (item.nome === itemName) {
@@ -213,6 +260,16 @@ export default function InventarioTab({ character, onUpdateInventory }) {
     onUpdateInventory(novoInventario);
   }
 
+  /**
+   * Widget de controle numérico para o inventário.
+   * * @component
+   * @param {Object} item - O item que terá sua quantidade controlada.
+   * * @features
+   * - Botão de decremento (-) em vermelho.
+   * - Input centralizado com sanitização de Regex (permite apenas dígitos).
+   * - Botão de incremento (+) em verde.
+   * - Lógica de 'delta' no `onChange` para reaproveitar a função `updateQuantity`.
+   */
   function QtdControl({ item }) {
     return (
       <div
@@ -276,6 +333,16 @@ export default function InventarioTab({ character, onUpdateInventory }) {
     );
   }
 
+  /**
+   * Card especializado para exibição e interação com Armas.
+   * * @param {Object} item - O objeto do item que contém a propriedade 'arma'.
+   * @param {Object} item.arma - Detalhes técnicos (tipo, critico, ataques, danos).
+   * * @features
+   * - Cabeçalho dinâmico com tipo de arma e selo 'Paranormal'.
+   * - Listagem de modificações usando 'EspecialBadge'.
+   * - Integração com 'RollTooltip' para exibir resultados de dados anteriores.
+   * - Suporte a múltiplos ataques (ex: Ataque Padrão vs Ataque Furtivo) e múltiplos tipos de dano.
+   */
   function ArmaCard({ item }) {
     const arma = item.arma;
 
@@ -442,6 +509,15 @@ export default function InventarioTab({ character, onUpdateInventory }) {
     );
   }
 
+  /**
+   * Card para itens de inventário que possuem mecânicas de uso ou efeitos passivos.
+   * * @features
+   * - Controle de quantidade integrado (QtdControl).
+   * - Exibição de 'Efeito' com estilo destacado (itálico e cor roxa).
+   * - Botões de ação dinâmica: substitui chaves como /INT/ por valores reais
+   * no texto do botão usando 'formatExpression'.
+   * - Suporte a testes (d20) e rolagens de dados genéricos (soma).
+   */
   function EquipamentoCard({ item }) {
     const keyTeste = `eqp-test-${item.nome}`;
     const keyDado = `eqp-dado-${item.nome}`;
@@ -520,6 +596,12 @@ export default function InventarioTab({ character, onUpdateInventory }) {
     );
   }
 
+  /**
+   * Card simplificado para itens comuns de inventário.
+   * * @description
+   * Focado em economia de espaço vertical, exibe apenas nome, descrição curta
+   * e o seletor de quantidade. Ideal para itens que não possuem mecânicas de dado.
+   */
   function ItemCard({ item }) {
     return (
       <Card style={{ backgroundColor: "#1e2330", border: "1px solid #2a2f3e" }}>

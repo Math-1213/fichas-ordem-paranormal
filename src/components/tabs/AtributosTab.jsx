@@ -3,6 +3,10 @@ import { Card, Row, Col } from "react-bootstrap";
 import Dice from "../../models/Dice";
 import RollTooltip from "../ui/RollTooltip";
 
+/**
+ * Mapeamento para exibição amigável dos nomes dos atributos técnicos.
+ * @constant
+ */
 const ATRIBUTOS_LABELS = {
   forca: "Força",
   agilidade: "Agilidade",
@@ -11,11 +15,25 @@ const ATRIBUTOS_LABELS = {
   vigor: "Vigor",
 };
 
+/**
+ * Aba de Atributos do Personagem.
+ * Permite visualizar os valores base e realizar rolagens rápidas clicando no atributo.
+ * * @component
+ * @param {Object} props
+ * @param {Character} props.character - Instância do personagem atual.
+ */
 export default function AtributosTab({ character }) {
   const atributos = character.atributos;
   const [lastRoll, setLastRoll] = useState(null);
   const [activeAttr, setActiveAttr] = useState(null);
 
+  /**
+   * Executa a lógica de rolagem de um atributo.
+   * Ordem Paranormal: Rola-se uma quantidade de d20 igual ao valor do atributo
+   * e seleciona-se o maior valor (tipo "teste").
+   * * @param {string} nome - Identificador interno do atributo (ex: "forca").
+   * @param {number} valor - Valor numérico do atributo (quantidade de dados).
+   */
   function handleRoll(nome, valor) {
     const roll = Dice.roll("d20", valor, "teste", 0, 0);
     setLastRoll(roll);

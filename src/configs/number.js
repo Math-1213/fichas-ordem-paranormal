@@ -1,5 +1,26 @@
+/**
+ * toRoman
+ * -------
+ * Converte um número decimal em algarismos romanos.
+ *
+ * Regras:
+ * - null, undefined, NaN ou valores não numéricos → "-"
+ * - valores <= 0 → "-"
+ * - valores > 100 → "-"
+ * - valores válidos (1 a 100) → algarismos romanos
+ *
+ * Usado principalmente para exibição de categorias.
+ */
 export function toRoman(num) {
-  if (num <= 0 || num > 100) return "";
+  // inválido ou não numérico
+  if (num == null || typeof num !== "number" || Number.isNaN(num)) {
+    return "-";
+  }
+
+  // fora do intervalo suportado
+  if (num <= 0 || num > 100) {
+    return "-";
+  }
 
   const map = [
     { value: 100, symbol: "C" },

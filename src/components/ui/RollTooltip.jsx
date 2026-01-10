@@ -1,5 +1,24 @@
 import { OverlayTrigger, Tooltip, Form } from "react-bootstrap";
 
+/**
+ * @typedef {Object} RollDetail
+ * @property {number} baseQuantity - Quantidade de dados originais.
+ * @property {string} dice - O tipo de dado (ex: "d20").
+ * @property {number[]} rolls - Lista de resultados individuais de cada dado.
+ * @property {number} result - Resultado da operação (maior valor para testes, soma para danos).
+ */
+
+/**
+ * Componente que exibe um Tooltip detalhado ao passar o mouse ou clicar em um resultado.
+ * Inclui animação de "shake" para críticos e possibilidade de ajuste manual de bônus.
+ * * @param {Object} props
+ * @param {RollDetail[]} props.rolls - Array de objetos contendo os detalhes das rolagens executadas.
+ * @param {React.ReactNode} props.children - O elemento que disparará o Tooltip (ex: um Botão).
+ * @param {"teste" | "soma"} [props.rollType="teste"] - Define a lógica de exibição e cálculo.
+ * @param {number} [props.critico=20] - Margem de crítico para destacar valores no d20.
+ * @param {number} [props.bonus=0] - Bônus fixo aplicado ao total.
+ * @param {Function} [props.onBonusChange] - Callback opcional para permitir edição do bônus direto no Tooltip.
+ */
 export default function RollTooltip({
   rolls = [],
   children,
@@ -8,20 +27,24 @@ export default function RollTooltip({
   bonus = 0,
   onBonusChange,
 }) {
+  // Verifica se há dados para exibir. Caso contrário, mostra "Clique para rolar".
   const hasRoll = Array.isArray(rolls) && rolls.length > 0;
 
+  // Achata todos os arrays de resultados para facilitar a verificação de críticos.
   const allDiceValues = hasRoll ? rolls.flatMap((r) => r.rolls ?? []) : [];
 
+  // Calcula a soma dos resultados dos grupos de dados (antes do bônus fixo).
   const diceTotal = hasRoll
-    ? rolls.reduce((s, r) => {
-        return s + (r.result ?? 0);
-      }, 0)
+    ? rolls.reduce((s, r) => s + (r.result ?? 0), 0)
     : 0;
 
   const totalFinal = diceTotal + bonus;
+  // Lógica de Crítico: Apenas para testes (não somas) se algum dado for >= margem.
   const isCritico =
     rollType !== "soma" && allDiceValues.some((value) => value >= critico);
 
+  /** * Definição de animação para feedback visual de sucesso crítico
+   */
   const shakeKeyframes = `
     @keyframes roll-shake {
       0% { transform: translateX(0); }
@@ -56,7 +79,6 @@ export default function RollTooltip({
                   animation: isCritico ? "roll-shake 0.35s" : "none",
                 }}
               >
-
                 {rolls.map((r, i) => (
                   <div key={i} style={{ fontSize: "0.8rem" }}>
                     <span style={{ color: "#9aa0b3" }}>

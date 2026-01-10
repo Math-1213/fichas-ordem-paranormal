@@ -9,18 +9,35 @@ import {
   TREINO_COLORS,
 } from "../../configs/skills";
 
+/**
+ * Aba de Perícias do Personagem.
+ * Lista todas as perícias do sistema, cruzando os dados de treinamento do personagem
+ * com os atributos base e bônus de itens.
+ * * @component
+ * @param {Object} props
+ * @param {Character} props.character - Instância do personagem para buscar atributos e bônus.
+ */
 export default function PericiasTab({ character }) {
+  // Dados de treino e bônus específicos deste personagem
   const pericias = character.pericias;
 
+  // Estados para gerenciar a exibição do resultado do dado no Tooltip
   const [lastRoll, setLastRoll] = useState(null);
   const [active, setActive] = useState(null);
 
+  /**
+   * Realiza o teste de perícia.
+   * Lógica: Quantidade de dados = Atributo Base. Bônus Final = Treino + Bônus de Item.
+   * * @param {string} nome - ID da perícia (ex: "luta", "ocultismo").
+   */
   function handleRoll(nome) {
     const config = PERICIAS[nome];
     const data = pericias[nome] ?? { treino: "destreinado", bonus: 0 };
 
+    // Valor fixo somado ao dado (Ex: Treinado +5, Especialista +10)
     const treinoBonus = TREINO_BONUS[data.treino] ?? 0;
 
+    // Busca o valor do atributo vinculado (Ex: Luta usa FORÇA)
     const atributoValor = character.getAtributo(config.atributo);
 
     const roll = Dice.roll(
@@ -56,7 +73,7 @@ export default function PericiasTab({ character }) {
         </Card.Header>
 
         <Card.Body style={{ padding: "0.75rem" }}>
-          {/* CABEÇALHO DAS COLUNAS */}
+          {/* Cabeçalho das Colunas - Apenas Visual */}
           <Row
             style={{
               padding: "0.35rem 0.5rem",
@@ -69,13 +86,9 @@ export default function PericiasTab({ character }) {
             }}
           >
             <Col md={4}>Perícia</Col>
-
             <Col md={2}>Atributo</Col>
-
             <Col md={2}>Treino</Col>
-
             <Col md={2}>Bônus</Col>
-
             <Col
               md={2}
               style={{ color: "#8b5cf6", fontWeight: 700, textAlign: "right" }}
@@ -84,14 +97,13 @@ export default function PericiasTab({ character }) {
             </Col>
           </Row>
 
-          {/* LISTA DAS PERÍCIAS */}
+          {/* Mapeia a lista GLOBAL de perícias do sistema */}
           {Object.keys(PERICIAS).map((nome) => {
             const config = PERICIAS[nome];
             const data = pericias[nome] ?? { treino: "destreinado", bonus: 0 };
 
             const treinoBonus = TREINO_BONUS[data.treino] ?? 0;
             const totalBonus = treinoBonus + data.bonus;
-
             const isActive = active === nome;
 
             return (
@@ -101,7 +113,7 @@ export default function PericiasTab({ character }) {
                 rollType="teste"
                 critico={20}
                 bonus={totalBonus}
-                >
+              >
                 <Row
                   onClick={() => handleRoll(nome)}
                   className="align-items-center"
@@ -113,61 +125,71 @@ export default function PericiasTab({ character }) {
                     borderRadius: "6px",
                     marginBottom: "0.3rem",
                     height: "60px",
+                    transition: "all 0.2s",
                   }}
                 >
-                  {/* Nome + Tags */}
+                  {/* Nome da Perícia e Indicadores (Badges) */}
                   <Col md={4}>
-                    <div>
-                      {config.label} <span />
+                    <div style={{ fontWeight: 500 }}>
+                      {config.label}
                       {data.type && (
-                        <Badge bg="success" className="me-1">
+                        <Badge bg="success" className="ms-2">
                           {data.type}
                         </Badge>
                       )}
                     </div>
 
                     <div style={{ marginTop: "0.15rem" }}>
+                      {/* Badge "Somente Treinada": Avisa que o teste é impossível se destreinado */}
                       {config.somenteTreinada && (
-                        <Badge bg="danger" className="me-1">
+                        <Badge
+                          bg="danger"
+                          className="me-1"
+                          style={{ fontSize: "0.6rem" }}
+                        >
                           Somente Treinada
                         </Badge>
                       )}
-
+                      {/* Badge "Kit": Indica necessidade de item específico para evitar penalidade */}
                       {config.kit && (
-                        <Badge bg="warning" className="me-1">
+                        <Badge
+                          bg="warning"
+                          className="me-1"
+                          style={{ fontSize: "0.6rem" }}
+                        >
                           Kit
                         </Badge>
                       )}
-
-                      {config.carga && <Badge bg="secondary">Carga</Badge>}
+                      {/* Badge "Carga": Indica que penalidade de carga afeta esta perícia */}
+                      {config.carga && (
+                        <Badge bg="secondary" style={{ fontSize: "0.6rem" }}>
+                          Carga
+                        </Badge>
+                      )}
                     </div>
                   </Col>
 
-                  {/* Atributo base */}
-                  <Col md={2} style={{ color: "#9aa0b3" }}>
+                  {/* Sigla do Atributo Base (FOR, AGI, etc) */}
+                  <Col md={2} style={{ color: "#9aa0b3", fontSize: "0.8rem" }}>
                     {config.atributo.toUpperCase()}
                   </Col>
 
-                  {/* Estado */}
+                  {/* Nível de Treinamento (Badges Coloridas) */}
                   <Col md={2}>
                     <Badge
                       bg={TREINO_COLORS[data.treino] ?? "secondary"}
-                      style={{
-                        fontSize: "0.7rem",
-                        fontWeight: 600,
-                        letterSpacing: "0.03em",
-                      }}
+                      style={{ fontSize: "0.7rem", fontWeight: 600 }}
                     >
                       {TREINO_LABELS[data.treino]}
                     </Badge>
                   </Col>
 
-                  {/* Bônus extra */}
-                  <Col md={2} style={{ color: "#9aa0b3" }}>
+                  {/* Bônus Numérico Adicional (Itens/Poderes) */}
+                  <Col md={2} style={{ color: "#9aa0b3", fontSize: "0.85rem" }}>
                     Extra: {data.bonus >= 0 ? `+${data.bonus}` : data.bonus}
                   </Col>
 
-                  {/* Bônus total */}
+                  {/* Bônus Total (Soma de Treino + Extra) */}
                   <Col
                     md={2}
                     style={{

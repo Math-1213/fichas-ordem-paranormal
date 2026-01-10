@@ -2,40 +2,18 @@ import { PERICIAS_MAP, ATRIBUTOS_MAP } from "../configs/dice";
 import { TREINO_BONUS } from "../configs/skills";
 
 /**
- * Classe utilitária para rolagens de dados.
- * Não deve ser instanciada.
- *
- * Suporta:
- * - rolagens de soma (ex: dano)
- * - rolagens de teste (ex: testes de perícia)
- * - bônus numéricos
- * - vantagem e desvantagem por modificador de dados
+ * Classe utilitária para processamento de rolagens de dados e interpretação de fórmulas.
+ * Esta classe é estática e não deve ser instanciada.
  */
 export default class Dice {
   /**
-   * Realiza uma rolagem de dados.
-   *
-   * @param {string} diceType Tipo do dado (ex: "d4", "d6", "d20")
-   * @param {number} quantity Quantidade base de dados a serem rolados
-   * @param {"soma" | "teste"} rollType Tipo de rolagem:
-   * - "soma": soma todos os dados rolados
-   * - "teste": seleciona o maior resultado (ou o pior em caso de desvantagem extrema)
-   * @param {number} [bonus=0] Valor fixo somado ao resultado final
-   * @param {number} [modifier=0] Modificador de quantidade de dados:
-   * - positivo: vantagem
-   * - negativo: desvantagem
-   *
-   * @returns {Object} Resultado detalhado da rolagem
-   * @returns {string} returns.dice Tipo do dado utilizado
-   * @returns {number} returns.baseQuantity Quantidade base de dados
-   * @returns {number} returns.modifier Modificador aplicado (vantagem/desvantagem)
-   * @returns {number} returns.finalQuantity Quantidade final de dados rolados
-   * @returns {number[]} returns.rolls Lista com os valores de cada dado rolado
-   * @returns {"soma" | "teste"} returns.rollType Tipo de rolagem executada
-   * @returns {number} returns.bonus Bônus aplicado
-   * @returns {number} returns.result Resultado base antes do bônus
-   * @returns {number} returns.total Resultado final com bônus
-   * @returns {boolean} returns.forcedWorst Indica se o pior resultado foi forçado
+   * Executa uma rolagem física de dados e aplica lógica de vantagem/desvantagem.
+   * * @param {string} diceType - O tipo do dado (ex: "d20", "d6").
+   * @param {number} quantity - Quantidade base de dados (ex: valor do Atributo).
+   * @param {"soma" | "teste"} rollType - "soma" para danos/curas, "teste" para pegar o melhor resultado.
+   * @param {number} [bonus=0] - Valor fixo somado ao final.
+   * @param {number} [modifier=0] - Modificador de dados (Vantagem +1, Desvantagem -1).
+   * * @returns {Object} Objeto contendo os detalhes da rolagem e o total calculado.
    */
   static roll(diceType, quantity, rollType, bonus = 0, modifier = 0) {
     const sides = Dice.#parseDice(diceType);
@@ -43,20 +21,18 @@ export default class Dice {
     let finalQuantity = quantity + modifier;
     let forceWorst = false;
 
-    // Caso a quantidade final seja zero ou negativa,
-    // força a rolagem de 2 dados e seleciona o pior resultado
+    // Regra de Ordem Paranormal: Se a reserva de dados for <= 0,
+    // rola-se 2 e pega o pior resultado.
     if (finalQuantity <= 0) {
       finalQuantity = 2;
       forceWorst = true;
     }
 
-    // Segurança mínima (nunca rolar menos de 1 dado)
     if (finalQuantity < 1) finalQuantity = 1;
 
     const rolls = Dice.#rollDice(finalQuantity, sides);
 
     let baseResult;
-
     if (rollType === "soma") {
       baseResult = rolls.reduce((a, b) => a + b, 0);
     } else if (rollType === "teste") {
@@ -82,12 +58,8 @@ export default class Dice {
   }
 
   /**
-   * Rola uma quantidade específica de dados com N lados.
-   *
+   * Gera números aleatórios simulando dados físicos.
    * @private
-   * @param {number} quantity Quantidade de dados
-   * @param {number} sides Número de lados do dado
-   * @returns {number[]} Lista de valores rolados
    */
   static #rollDice(quantity, sides) {
     return Array.from(
@@ -97,43 +69,41 @@ export default class Dice {
   }
 
   /**
-   * Converte uma string de dado (ex: "d20") em número de lados.
-   *
+   * Extrai o número de lados de uma string "dX".
    * @private
-   * @param {string} diceType Tipo do dado
-   * @returns {number} Número de lados do dado
-   * @throws {Error} Caso o tipo de dado seja inválido
    */
   static #parseDice(diceType) {
     if (typeof diceType !== "string" || !diceType.startsWith("d")) {
       throw new Error("Tipo de dado inválido");
     }
-
     const sides = Number(diceType.slice(1));
-
-    if (isNaN(sides) || sides <= 0) {
-      throw new Error("Tipo de dado inválido");
-    }
-
+    if (isNaN(sides) || sides <= 0) throw new Error("Tipo de dado inválido");
     return sides;
   }
 
+  /**
+   * Resolve uma variável entre barras (ex: /FOR/) para seu valor numérico.
+   * Busca em abreviações de atributos, perícias ou nomes completos.
+   * * @private
+   * @param {string} key - A chave enviada (ex: "FOR", "Luta").
+   * @param {Object} atributos - Mapa de atributos do personagem.
+   * @param {Object} pericias - Mapa de perícias do personagem.
+   * @returns {number} O valor numérico correspondente.
+   */
   static #resolveVariable(key, atributos, pericias) {
     if (!key) return 0;
-
     const rawKey = key.toUpperCase();
 
-    // ATRIBUTOS (INT, FOR, etc)
+    // 1. Busca por sigla de Atributo (ex: FOR)
     if (ATRIBUTOS_MAP[rawKey]) {
       const attrName = ATRIBUTOS_MAP[rawKey];
       return Number(atributos?.[attrName] ?? 0);
     }
 
-    // PERÍCIAS (LUTA, ATLE, etc)
+    // 2. Busca por sigla de Perícia (ex: LUTA)
     if (PERICIAS_MAP[rawKey]) {
       const perName = PERICIAS_MAP[rawKey];
       const pericia = pericias?.[perName];
-
       if (!pericia) return 0;
 
       const treinoBonus = TREINO_BONUS[pericia.treino] ?? 0;
@@ -142,7 +112,7 @@ export default class Dice {
       return treinoBonus + bonus;
     }
 
-    // Nome completo digitado (ex: /luta/, /intelecto/)
+    // 3. Busca por nome completo (Atributo ou Perícia)
     const attrByName = Object.entries(ATRIBUTOS_MAP).find(
       ([, name]) => name.toLowerCase() === key.toLowerCase()
     );
@@ -167,64 +137,56 @@ export default class Dice {
   }
 
   /**
-   * Converte uma string de expressão (ex: "/INT/d10 + /LUTA/") em uma rolagem.
-   *
-   * @private
-   * @param {string} expression Expressão
-   * @param {Object} characterInfos As informações do atributos e Pericias
-   * @param {string} rollType Se é um teste ou uma soma
-   * @returns {Object} Retorna a expressão original, expressão formatada, os dados, e o bonus
+   * O "Cérebro" da classe. Interpreta uma string complexa e retorna as rolagens processadas.
+   * Suporta variáveis (/INT/), bônus matemáticos (2*3) e múltiplos dados.
+   * * @example
+   * parseRollExpression("/INT/d20 + /LUTA/ + 2", char, "teste")
+   * * @param {string} expression - A fórmula da rolagem (ex: "/FOR/d20 + 5").
+   * @param {Object} characterContext - Objeto contendo { atributos, pericias }.
+   * @param {"soma" | "teste"} rollType - Como tratar os dados encontrados na string.
+   * @returns {Object} Objeto com { rolls: Array, bonus: number }.
    */
   static parseRollExpression(
     expression,
     { atributos = {}, pericias = {} },
     rollType = "soma"
   ) {
-    // /INT/D20+/FOR/ + 2*2d8
+    let expr = expression.toLowerCase();
 
-    let expr = expression.toLowerCase()
-
-    // Resolver variáveis e operador ?
+    // Resolver variáveis com fallback de segurança (?)
+    // O operador ? nas strings do JSON indica um valor mínimo de 1.
     expr = expr.replace(/\/([^/]+)\/\?/gi, (_, key) =>
       Dice.#resolveVariable(key, atributos, pericias)
     );
     expr = expr.replace(/\?/g, "1");
 
+    // Resolve variáveis padrão /XXX/
     expr = expr.replace(/\/([^/]+)\//gi, (_, key) =>
       Dice.#resolveVariable(key, atributos, pericias)
     );
     expr = expr.replace(/\s+/g, "");
 
-    // Capturar dados SEM consumir o bônus
     const diceRegex = /(\d*)d(\d+)/gi;
-
     let rolls = [];
+
+    // Identifica cada "XdY" na string, rola-os e substitui por "0" para isolar o bônus
     expr = expr.replace(diceRegex, (match, qty, sides) => {
       const quantity = qty ? Number(qty) : 1;
-
       const roll = Dice.roll(`d${sides}`, quantity, rollType);
-
       rolls.push(roll);
-
-      // substitui por 0 para sobrar só o bônus matemático
       return "0";
     });
 
-    // Avaliar somente o bônus fixo
+    // Calcula o que sobrou da string (matemática pura) usando um avaliador seguro
     let baseBonus = 0;
     try {
-      if (!/^[\d+\-*/().]+$/.test(expr)) {
-        throw new Error("Expressão inválida após parsing");
-      }
-
+      if (!/^[\d+\-*/().]+$/.test(expr))
+        throw new Error("Caracteres inválidos");
       baseBonus = Function(`"use strict"; return (${expr})`)();
     } catch (e) {
-      throw new Error("Erro ao calcular bônus: " + e.message);
+      throw new Error("Erro no cálculo do bônus: " + e.message);
     }
 
-    return {
-      rolls,
-      bonus: baseBonus
-    };
+    return { rolls, bonus: baseBonus };
   }
 }

@@ -23,7 +23,8 @@
             "piorPesadelo": "O maior medo de Miguel não se manifesta na forma de monstros ou entidades, mas na ideia de impotência. Seu pior pesadelo é estar consciente, lúcido e ainda assim incapaz de agir enquanto pessoas importantes para ele sofrem ou desaparecem, da mesma forma que seus pais um dia desapareceram.\n\nEm seus sonhos mais recorrentes, Miguel se vê tentando estender a mão para alguém que se afasta lentamente, enquanto o ambiente ao redor se distorce e a Barreira começa a se fechar. Ele sabe exatamente o que está acontecendo, entende o perigo, mas não consegue se mover ou usar qualquer habilidade. Para ele, essa sensação de estar presente e ainda assim falhar é mais aterradora do que qualquer manifestação paranormal."
         },
         "portrait": "",
-        "carga": 15
+        "carga": 15,
+        "dtRitual": 34
     },
     "atributos": {
         "forca": 3,
@@ -487,7 +488,7 @@
                         "descricao": "Ataque padrão."
                     },
                     {
-                        "titulo": "Normal",
+                        "titulo": "Arma Amaldiçoada",
                         "atributo": "AGI",
                         "pericias": "ocul",
                         "bonus": 4,
@@ -564,6 +565,34 @@
             "dado": "1d8 + /PRE/"
         }
     ],
-    "rituais": [],
+    "rituais": [
+        {
+            "nome": "Amaldiçoar Arma",
+            "elementos":["sangue", "morte","Conhecimento","energia"],
+            "circulo": 1,
+            "execucao": "Padrão",
+            "alcance": "Toque",
+            "alvo": " 1 arma corpo a corpo ou pacote de munição",
+            "duracao": "Cena",
+            "resistencia": "",
+            "normal": {
+                "custo": 1,
+                "efeito": "Você imbui a arma ou munições com o elemento, fazendo com que causem +1d6 de dano do tipo do elemento.",
+                "dados": "1d6"
+            },
+            "discente": {
+                "custo": 3,
+                "efeito": "Muda o bônus de dano para +2d6.",
+                "dados": "2d6",
+                "requerimento": "Requer 2º círculo."
+            },
+            "verdadeiro": {
+                "custo": 8,
+                "efeito": "Muda o bônus de dano para +4d6.",
+                "dados": "4d6",
+                "requerimento": "Requer 3º círculo e afinidade."
+            }
+        }
+    ],
     "dados": []
 }

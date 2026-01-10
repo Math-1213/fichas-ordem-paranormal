@@ -1,6 +1,13 @@
 import { useEffect } from "react";
 import { Card, Row, Col, Accordion } from "react-bootstrap";
 
+/**
+ * Aba de Informações Gerais do Personagem.
+ * Exibe dados biográficos, técnicos de Ordem Paranormal e a narrativa (história/aparência).
+ * * @component
+ * @param {Object} props
+ * @param {Character} props.character - Instância da classe Character contendo os métodos e dados.
+ */
 export default function InfosTab({ character }) {
   const { infos } = character;
   const { narrativa } = infos;
@@ -57,6 +64,13 @@ export default function InfosTab({ character }) {
     }
 `;
 
+  /**
+   * Sub-componente interno para renderizar pares de Label/Valor.
+   * @param {string} label - Título do dado (ex: "Classe")
+   * @param {any} value - Valor a ser exibido
+   * @param {number} [md=4] - Largura da coluna no grid Bootstrap (1-12)
+   * @returns {JSX.Element|null} Retorna null se o valor for vazio para economizar espaço.
+   */
   function InfoItem({ label, value, md = 4 }) {
     if (value === undefined || value === null || value === "") return null;
 
