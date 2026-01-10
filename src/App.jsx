@@ -9,7 +9,7 @@ import InfosTab from "./components/tabs/InfosTab";
 import AtributosTab from "./components/tabs/AtributosTab";
 import PericiasTab from "./components/tabs/PericiasTab";
 import StatusTab from "./components/tabs/StatusTab";
-import PoderesTab from './components/tabs/PoderesTab'
+import PoderesTab from "./components/tabs/PoderesTab";
 import InventarioTab from "./components/tabs/InventarioTab";
 import RitualTab from "./components/tabs/RituaisTab";
 import DadosTab from "./components/tabs/DadosTab";
@@ -22,6 +22,14 @@ function App() {
     if (!selected) return;
 
     setCharacter(new Character(selected.data));
+  }
+
+  function updateCharacterInventory(newItemList) {
+    const updatedChar = new Character({
+      ...character,
+      inventario: newItemList,
+    });
+    setCharacter(updatedChar);
   }
 
   return (
@@ -68,19 +76,20 @@ function App() {
             <Tab eventKey="status" title="Status">
               <StatusTab character={character} />
             </Tab>
-            
+
             <Tab eventKey="poderes" title="Poderes">
               <PoderesTab character={character} />
             </Tab>
-            
+
             <Tab eventKey="inventario" title="Inventario">
-              <InventarioTab character={character} />
+              <InventarioTab character={character} onUpdateInventory={updateCharacterInventory}/>
+              
             </Tab>
-            
+
             <Tab eventKey="rituais" title="Rituais">
               <RitualTab character={character} />
             </Tab>
-            
+
             <Tab eventKey="dados" title="Dados">
               <DadosTab character={character} />
             </Tab>

@@ -410,7 +410,7 @@
             "categoria": 4,
             "alcance": "Curto",
             "peso": 1,
-            "imagem": "",
+            "imagem": "https://fichasop.com/assets/img/Armas/faca_militar.png",
             "paranormal": true,
             "arma": {
                 "tipo": "Corte",
@@ -530,6 +530,38 @@
                     }
                 ]
             }
+        },
+        {
+            "tipo": "equipamento",
+            "nome": "Jaqueta Reforçada",
+            "descricao": "Protege contra impactos leves.",
+            "categoria": 1,
+            "peso": 2,
+            "quantidade": 1,
+            "paranormal": false,
+            "efeito": "+2 em resistência física"
+        },
+        {
+            "tipo": "item",
+            "nome": "Pasta de Documentos",
+            "descricao": "Uma pasta usada para guardar documentos de um caso",
+            "categoria": 0,
+            "peso": 0,
+            "quantidade": 1,
+            "paranormal": false,
+            "efeito": "Nenhum pratico. Serve apenas para organizar as coisas encontradas em missões"
+        },
+        {
+            "tipo": "equipamento",
+            "nome": "Cicatrizante",
+            "descricao": "Usado para para curar",
+            "categoria": 0,
+            "peso": 1,
+            "quantidade": 2,
+            "paranormal": false,
+            "efeito": "Permite curar 1d8 de vida",
+            "teste": "/PRE/d20 + /MEDI/",
+            "dado": "1d8 + /PRE/"
         }
     ],
     "rituais": [],
