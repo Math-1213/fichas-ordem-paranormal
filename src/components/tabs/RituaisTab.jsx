@@ -9,7 +9,7 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
-import { formatExpression } from "../../configs/dice";
+import { formatExpression, handleRoll } from "../../configs/dice";
 import { getElementText } from "../../configs/paranormal";
 import RollTooltip from "../ui/RollTooltip";
 
@@ -17,9 +17,11 @@ function getElementos(lista = []) {
   return lista.map(getElementText).join(" | ");
 }
 
-export default function RitualTab({ character, handleRoll, rolls = {} }) {
+export default function RitualTab({ character }) {
   const rituais = character.rituais ?? [];
   const dtRitual = character.infos?.dtRitual ?? "-";
+
+  const [rolls, setRolls] = useState({});
 
   const [nome, setNome] = useState("");
   const [elemento, setElemento] = useState("");
@@ -105,8 +107,8 @@ export default function RitualTab({ character, handleRoll, rolls = {} }) {
             key={ritual.nome + i}
             ritual={ritual}
             character={character}
-            handleRoll={handleRoll}
             rolls={rolls}
+            setRolls={setRolls}
           />
         ))}
       </Accordion>
@@ -114,7 +116,7 @@ export default function RitualTab({ character, handleRoll, rolls = {} }) {
   );
 }
 
-function RitualCard({ ritual, character, handleRoll, rolls }) {
+function RitualCard({ ritual, character, rolls, setRolls }) {
   return (
     <Accordion.Item
       eventKey={ritual.nome}
@@ -150,7 +152,7 @@ function RitualCard({ ritual, character, handleRoll, rolls }) {
             name="Normal"
             data={ritual.normal}
             character={character}
-            handleRoll={handleRoll}
+            setRolls={setRolls}
             rollKey={`rit-${ritual.nome}-norm`}
             rolls={rolls}
           />
@@ -159,7 +161,7 @@ function RitualCard({ ritual, character, handleRoll, rolls }) {
               name="Discente"
               data={ritual.discente}
               character={character}
-              handleRoll={handleRoll}
+              setRolls={setRolls}
               rollKey={`rit-${ritual.nome}-disc`}
               rolls={rolls}
             />
@@ -169,7 +171,7 @@ function RitualCard({ ritual, character, handleRoll, rolls }) {
               name="Verdadeiro"
               data={ritual.verdadeiro}
               character={character}
-              handleRoll={handleRoll}
+              setRolls={setRolls}
               rollKey={`rit-${ritual.nome}-verd`}
               rolls={rolls}
             />
@@ -180,7 +182,7 @@ function RitualCard({ ritual, character, handleRoll, rolls }) {
   );
 }
 
-function RitualVersion({ name, data, character, handleRoll, rollKey, rolls }) {
+function RitualVersion({ name, data, character, rollKey, rolls, setRolls }) {
   const { custo, efeito, dados } = data;
 
   // Pegamos o resultado da rolagem deste ritual específico do estado global
@@ -213,7 +215,9 @@ function RitualVersion({ name, data, character, handleRoll, rollKey, rolls }) {
               variant="outline-danger"
               size="sm"
               className="fw-bold"
-              onClick={() => handleRoll(rollKey, dados, "soma")}
+              onClick={() =>
+                handleRoll(rollKey, dados, "soma", setRolls, character)
+              }
             >
               Rolar {formatExpression(dados, character)}
             </Button>

@@ -1,3 +1,4 @@
+import Dice from "../models/Dice";
 /**
  * @file Mapeamentos de chaves curtas para nomes de propriedades do Personagem.
  * Utilizado pelo motor de rolagens (Dice.js) para traduzir /SIGLA/ em valores reais.
@@ -93,4 +94,40 @@ export function formatExpression(expr, character) {
 
     return "0";
   });
+}
+
+/**
+ * Executa uma rolagem de dados baseada em uma expressão complexa.
+ * * @param {string} key - Identificador único (geralmente o ID do item) para armazenar o resultado.
+ * @param {string} expression - A fórmula a ser calculada (ex: "1d20 + /FOR/").
+ * @param {string} rollType - Tipo da rolagem para regras específicas (ex: "dano", "teste").
+ * * @logic
+ * Utiliza o método estático `Dice.parseRollExpression` para injetar os atributos e perícias
+ * do personagem diretamente na fórmula antes de processar os dados físicos. O resultado
+ * é armazenado no estado local `rolls`, mapeado pela `key`.
+ */
+export function handleRoll(
+  key,
+  expression,
+  rollType = "soma",
+  setRolls,
+  character
+) {
+  try {
+    const result = Dice.parseRollExpression(
+      expression,
+      {
+        atributos: character.atributos, // Agora o character chegará aqui via argumento
+        pericias: character.pericias,
+      },
+      rollType
+    );
+
+    setRolls((prev) => ({
+      ...prev,
+      [key]: result,
+    }));
+  } catch (error) {
+    console.error("Erro na rolagem de dados:", error.message);
+  }
 }

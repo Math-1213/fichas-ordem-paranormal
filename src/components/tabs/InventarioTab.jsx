@@ -15,7 +15,7 @@ import RollTooltip from "../ui/RollTooltip";
 import { ATRIBUTOS_MAP, PERICIAS_MAP } from "../../configs/dice";
 import { TREINO_BONUS } from "../../configs/skills";
 import { toRoman } from "../../configs/number";
-import { formatExpression } from "../../configs/dice";
+import { formatExpression, handleRoll } from "../../configs/dice";
 
 const WideTooltip = styled(Tooltip)`
   .tooltip-inner {
@@ -181,32 +181,6 @@ export default function InventarioTab({ character, onUpdateInventory }) {
   const itens = inventario.filter((i) => i.tipo === "item");
 
   const [rolls, setRolls] = useState({});
-
-  /**
-   * Executa uma rolagem de dados baseada em uma expressão complexa.
-   * * @param {string} key - Identificador único (geralmente o ID do item) para armazenar o resultado.
-   * @param {string} expression - A fórmula a ser calculada (ex: "1d20 + /FOR/").
-   * @param {string} rollType - Tipo da rolagem para regras específicas (ex: "dano", "teste").
-   * * @logic
-   * Utiliza o método estático `Dice.parseRollExpression` para injetar os atributos e perícias
-   * do personagem diretamente na fórmula antes de processar os dados físicos. O resultado
-   * é armazenado no estado local `rolls`, mapeado pela `key`.
-   */
-  function handleRoll(key, expression, rollType) {
-    const result = Dice.parseRollExpression(
-      expression,
-      {
-        atributos: character.atributos,
-        pericias: character.pericias,
-      },
-      rollType
-    );
-
-    setRolls((prev) => ({
-      ...prev,
-      [key]: result,
-    }));
-  }
 
   /**
    * Exibe uma Badge informativa com Tooltip para propriedades especiais de itens.
@@ -455,7 +429,15 @@ export default function InventarioTab({ character, onUpdateInventory }) {
                         <Button
                           size="sm"
                           variant="outline-light"
-                          onClick={() => handleRoll(key, expression, "teste")}
+                          onClick={() =>
+                            handleRoll(
+                              key,
+                              expression,
+                              "teste",
+                              setRolls,
+                              character
+                            )
+                          }
                         >
                           {display}
                         </Button>
@@ -492,7 +474,15 @@ export default function InventarioTab({ character, onUpdateInventory }) {
                           <Button
                             size="sm"
                             variant="outline-danger"
-                            onClick={() => handleRoll(key, d.dados, "soma")}
+                            onClick={() =>
+                              handleRoll(
+                                key,
+                                d.dados,
+                                "soma",
+                                setRolls,
+                                character
+                              )
+                            }
                           >
                             {d.titulo}: {display}
                           </Button>
@@ -568,7 +558,15 @@ export default function InventarioTab({ character, onUpdateInventory }) {
                 <Button
                   size="sm"
                   variant="outline-info"
-                  onClick={() => handleRoll(keyTeste, item.teste, "teste")}
+                  onClick={() =>
+                    handleRoll(
+                      keyTeste,
+                      item.teste,
+                      "teste",
+                      setRolls,
+                      character
+                    )
+                  }
                 >
                   Teste: {formatExpression(item.teste, character)}
                 </Button>
@@ -584,7 +582,9 @@ export default function InventarioTab({ character, onUpdateInventory }) {
                 <Button
                   size="sm"
                   variant="outline-warning"
-                  onClick={() => handleRoll(keyDado, item.dado, "soma")}
+                  onClick={() =>
+                    handleRoll(keyDado, item.dado, "soma", setRolls, character)
+                  }
                 >
                   Rolar: {formatExpression(item.dado, character)}
                 </Button>
