@@ -1495,6 +1495,33 @@
                 "efeito": "Muda a duração para a missão inteira.",
                 "requerimento": "Requer 4º círculo."
             }
+        },
+        {
+            "nome": "Proteção contra Rituais",
+            "elementos": [
+                "medo"
+            ],
+            "circulo": 2,
+            "execucao": "Padrão",
+            "alcance": "Toque",
+            "alvo": "1 ser",
+            "duracao": "Cena",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 3,
+                "efeito": "Você canaliza uma aura de Medo puro. O alvo recebe resistência a dano paranormal 5 e +5 em testes de resistência contra rituais e habilidades de criaturas paranormais.",
+                "dados": null
+            },
+            "discente": {
+                "custo": 6,
+                "efeito": "Muda o alvo para até 5 seres tocados. O alvo recebe resistência a dano paranormal 5 e +5 em testes de resistência contra rituais e habilidades de criaturas paranormais. (Requer 3º Círculo)",
+                "dados": null
+            },
+            "verdadeiro": {
+                "custo": 9,
+                "efeito": "Muda o alvo para até 5 seres tocados, a resistência a dano paranormal para 10 e o bônus em testes de resistência para +10. (Requer 4º Círculo)",
+                "dados": null
+            }
         }
     ],
     "dados": [

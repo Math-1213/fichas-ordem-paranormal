@@ -10,7 +10,7 @@ import {
   Button,
 } from "react-bootstrap";
 import { formatExpression, handleRoll } from "../../configs/dice";
-import { getElementText } from "../../configs/paranormal";
+import { getElementText, ELEMENT_DATA } from "../../configs/paranormal";
 import RollTooltip from "../ui/RollTooltip";
 
 function getElementos(lista = []) {
@@ -44,11 +44,11 @@ export default function RitualTab({ character }) {
       <Card style={{ backgroundColor: "#1e2330", border: "1px solid #2a2f3e" }}>
         <Card.Body className="d-flex justify-content-between align-items-center py-2">
           <span
-            style={{ color: "#9aa0b3", fontWeight: "bold", fontSize: "0.8rem" }}
+            style={{ color: "#9aa0b3", fontWeight: "bold", fontSize: "0.9rem" }}
           >
             DT DOS RITUAIS
           </span>
-          <Badge bg="primary" style={{ fontSize: "1rem" }}>
+          <Badge bg="primary" style={{ fontSize: "1.1rem" }}>
             {dtRitual}
           </Badge>
         </Card.Body>
@@ -74,7 +74,7 @@ export default function RitualTab({ character }) {
                 value={elemento}
                 onChange={(e) => setElemento(e.target.value)}
               >
-                <option value="">Elementos</option>
+                <option value="">Todos Elementos</option>
                 <option value="morte">Morte</option>
                 <option value="conhecimento">Conhecimento</option>
                 <option value="energia">Energia</option>
@@ -120,26 +120,74 @@ export default function RitualTab({ character }) {
 }
 
 function RitualCard({ ritual, character, rolls, setRolls }) {
+  const primaryElement =
+    (ritual.elementos?.length > 0) ? ritual.elementos[0]?.toLowerCase() : "vazio";
+  const styleData = ELEMENT_DATA[primaryElement] || ELEMENT_DATA.vazio;
+
   return (
     <Accordion.Item
       eventKey={ritual.nome}
-      className="mb-2 border-secondary overflow-hidden"
+      className="mb-3 overflow-hidden"
+      style={{
+        backgroundColor: "#161a22",
+        border: `1px solid #2a2f3e`,
+        borderLeft: `5px solid ${styleData.color}`, // Borda colorida lateral
+        borderRadius: "8px",
+      }}
     >
-      <Accordion.Header>
+      <Accordion.Header className="ritual-header">
         <div className="d-flex justify-content-between w-100 pe-3 align-items-center">
-          <div>
-            <div className="fw-bold text-white">{ritual.nome}</div>
-            <div style={{ fontSize: "0.7rem", color: "#9aa0b3" }}>
-              {getElementos(ritual.elementos)} • {ritual.circulo}º Círculo
+          <div className="d-flex align-items-center gap-3">
+            {/* ÍCONE DO ELEMENTO */}
+            {styleData.icon && (
+              <img
+                src={styleData.icon}
+                alt={primaryElement}
+                style={{
+                  width: "32px",
+                  height: "32px",
+                  filter: `drop-shadow(0 0 5px ${styleData.color}55)`,
+                }}
+              />
+            )}
+            <div>
+              <div
+                className="fw-bold text-white"
+                style={{ fontSize: "1.1rem" }}
+              >
+                {ritual.nome}
+              </div>
+              <div
+                style={{
+                  fontSize: "0.75rem",
+                  color: styleData.color,
+                  textTransform: "uppercase",
+                  fontWeight: "bold",
+                }}
+              >
+                {getElementos(ritual.elementos)} • {ritual.circulo}º Círculo
+              </div>
             </div>
           </div>
-          <Badge bg="dark" className="border border-secondary">
+          <Badge
+            bg="dark"
+            className="border border-secondary"
+            style={{ color: "#9aa0b3" }}
+          >
             {ritual.execucao}
           </Badge>
         </div>
       </Accordion.Header>
-      <Accordion.Body style={{ backgroundColor: "#11141d", color: "#e6e6e6" }}>
-        <div className="mb-3" style={{ fontSize: "0.8rem", color: "#9aa0b3" }}>
+
+      <Accordion.Body style={{ backgroundColor: "#0b0e14", color: "#e6e6e6" }}>
+        <div
+          className="p-2 mb-3 rounded"
+          style={{
+            backgroundColor: "#1a1d26",
+            fontSize: "0.85rem",
+            border: "1px solid #2a2f3e",
+          }}
+        >
           <strong>Alcance:</strong> {ritual.alcance} | <strong>Duração:</strong>{" "}
           {ritual.duracao}
           {ritual.resistencia && (
@@ -167,6 +215,7 @@ function RitualCard({ ritual, character, rolls, setRolls }) {
               setRolls={setRolls}
               rollKey={`rit-${ritual.nome}-disc`}
               rolls={rolls}
+              color={styleData.color}
             />
           )}
           {ritual.verdadeiro && (
@@ -177,6 +226,7 @@ function RitualCard({ ritual, character, rolls, setRolls }) {
               setRolls={setRolls}
               rollKey={`rit-${ritual.nome}-verd`}
               rolls={rolls}
+              color={styleData.color}
             />
           )}
         </Accordion>
@@ -185,29 +235,46 @@ function RitualCard({ ritual, character, rolls, setRolls }) {
   );
 }
 
-function RitualVersion({ name, data, character, rollKey, rolls, setRolls }) {
+function RitualVersion({
+  name,
+  data,
+  character,
+  rollKey,
+  rolls,
+  setRolls,
+  color,
+}) {
   const { custo, efeito, dados } = data;
-
-  // Pegamos o resultado da rolagem deste ritual específico do estado global
   const rollData = rolls[rollKey] || { rolls: [], bonus: 0 };
 
   return (
-    <Accordion.Item eventKey={name} className="bg-transparent border-0">
+    <Accordion.Item eventKey={name} className="bg-transparent border-0 mb-1">
       <Accordion.Header className="ritual-version-header">
         <div className="d-flex justify-content-between w-100 pe-3">
-          <span className={name === "Normal" ? "text-light" : "text-info"}>
+          <span
+            className="fw-bold"
+            style={{ color: name === "Normal" ? "#fff" : color }}
+          >
             {name}
           </span>
-          <Badge bg="dark" className="text-info border border-info">
+          <Badge
+            bg="dark"
+            style={{
+              color: color || "#00e5ff",
+              border: `1px solid ${color || "#00e5ff"}55`,
+            }}
+          >
             {custo} PE
           </Badge>
         </div>
       </Accordion.Header>
-      <Accordion.Body className="pt-0 pb-3" style={{ fontSize: "0.85rem" }}>
-        <p className="text-secondary mb-2">
+      <Accordion.Body
+        className="pt-0 pb-3"
+        style={{ fontSize: "0.95rem", lineHeight: "1.4" }}
+      >
+        <p style={{ color: "#adb5bd" }}>
           {formatExpression(efeito, character)}
         </p>
-
         {dados && (
           <RollTooltip
             rolls={rollData.rolls}
@@ -215,9 +282,10 @@ function RitualVersion({ name, data, character, rollKey, rolls, setRolls }) {
             bonus={rollData.bonus}
           >
             <Button
-              variant="outline-danger"
+              variant="outline-light"
               size="sm"
-              className="fw-bold"
+              className="fw-bold mt-2"
+              style={{ borderColor: color, color: color }}
               onClick={() =>
                 handleRoll(rollKey, dados, "soma", setRolls, character)
               }
