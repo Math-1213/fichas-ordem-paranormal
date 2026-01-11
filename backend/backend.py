@@ -1,5 +1,6 @@
 from flask import Flask
 from backend.router.character_routes import character_bp
+from flask_cors import CORS
 
 def create_app() -> Flask:
     """
@@ -12,6 +13,7 @@ def create_app() -> Flask:
         Flask: O objeto da aplicação configurado com os Blueprints.
     """
     app = Flask(__name__)
+    CORS(app)
 
     # Registro de rotas através de Blueprints
     app.register_blueprint(character_bp)
