@@ -5,7 +5,8 @@ from backend.controllers.character_controller import CharacterController
 character_bp = Blueprint("characters", __name__, url_prefix="/characters")
 
 # Lista de seções permitidas para evitar acessos indevidos a chaves inexistentes
-valid_parts = ["infos", "atributos", "pericias", "status", "poderes", "inventario", "rituais", "dados"]
+valid_parts = ["infos", "atributos", "pericias", "status"]
+valid_lists = ["poderes", "inventario", "rituais", "dados"]
 
 @character_bp.get("/")
 def list_characters():
@@ -29,6 +30,9 @@ def create_character():
         Status: 201 Created.
     """
     data = request.json
+    if not data or "infos" not in data or "nome" not in data.get("infos", {}):
+        return jsonify({"error": "O personagem precisa ter ao menos um nome em 'infos'"}), 400
+    
     return jsonify(CharacterController.create(data)), 201
 
 @character_bp.get("/summary")
@@ -87,12 +91,45 @@ def update_character_part(parte, id):
     Returns:
         JSON: O personagem completo atualizado.
     """
-    if parte not in valid_parts:
+    if parte not in valid_parts and parte not in valid_lists:
         return jsonify({"error": f"Parte '{parte}' inválida"}), 400
 
     new_data = request.json
+    if new_data is None:
+        return jsonify({"error": "Corpo da requisição vazio"}), 400
+
+    # Validação de tipo: se for lista, o dado enviado deve ser lista
+    if parte in valid_lists and not isinstance(new_data, (list, dict)):
+         return jsonify({"error": f"A parte '{parte}' espera uma lista ou objeto"}), 400
+
     updated = CharacterController.update_part(id, parte, new_data)
-    
     if not updated:
         return jsonify({"error": "Personagem não encontrado"}), 404
     return jsonify(updated)
+
+# Rota para ADICIONAR item em uma lista
+@character_bp.post("/<lista>/<id>")
+def add_item(lista, id):
+    if lista not in valid_lists:
+        return jsonify({"error": "Lista inválida"}), 400
+        
+    item_data = request.json
+    result = CharacterController.add_to_list(id, lista, item_data)
+    
+    if not result:
+        return jsonify({"error": "Personagem não encontrado ou parte não é uma lista"}), 404
+        
+    return jsonify(result), 201
+
+# Rota para REMOVER item de uma lista
+@character_bp.delete("/<lista>/<id>/<item_id>")
+def remove_item(lista, id, item_id):
+    if lista not in valid_lists:
+        return jsonify({"error": "Lista inválida"}), 400
+        
+    result = CharacterController.remove_from_list(id, lista, item_id)
+    
+    if not result:
+        return jsonify({"error": "Item ou Personagem não encontrado"}), 404
+        
+    return jsonify(result), 200

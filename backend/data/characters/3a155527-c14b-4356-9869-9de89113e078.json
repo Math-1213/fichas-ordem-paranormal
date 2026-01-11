@@ -1,0 +1,43 @@
+{
+  "id": "3a155527-c14b-4356-9869-9de89113e078",
+  "infos": {
+    "nome": "O Observador",
+    "classe": "Desconhecida",
+    "nex": 100,
+    "afinidade": "Morte"
+  },
+  "atributos": {
+    "forca": 1,
+    "agilidade": 2,
+    "intelecto": 5,
+    "presenca": 5,
+    "vigor": 4
+  },
+  "pericias": {},
+  "status": {
+    "vida": 250,
+    "sanidade": 200,
+    "esforco": 300,
+    "resistencias": {
+      "Morte": 20,
+      "Fisico": 10
+    }
+  },
+  "poderes": [],
+  "inventario": [],
+  "rituais": [
+    {
+      "nome": "Eco Espiral",
+      "circulo": 2,
+      "custo": 3,
+      "id": "736e0481-d69f-4b8b-8f6d-82e941893a5f"
+    },
+    {
+      "nome": "Poeira da Morte",
+      "circulo": 3,
+      "custo": 6,
+      "id": "094f5017-e4fb-44f5-9e41-af26d877924f"
+    }
+  ],
+  "dados": []
+}
