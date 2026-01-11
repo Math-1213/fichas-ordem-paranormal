@@ -16,7 +16,7 @@ export const ELEMENT_DATA = {
   sangue: { color: "#ff1744", icon: "/elementos/Sangue.png" },
   morte: { color: "#757575", icon: "/elementos/Morte.png" },
   conhecimento: { color: "#ffea00", icon: "/elementos/Conhecimento.png" },
-  energia: { color: "#00e5ff", icon: "/elementos/Energia.png" },
+  energia: { color: "#9D00FF", icon: "/elementos/Energia.png" },
   medo: { color: "#ffffff", icon: "/elementos/Medo.png" },
   vazio: { color: "#2a2f3e", icon: "" },
 };
