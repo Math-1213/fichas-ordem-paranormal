@@ -30,7 +30,7 @@ Certifique-se de ter o [Node.js](https://nodejs.org/) instalado (versão 18 ou s
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
+   git clone [https://github.com/Math-1213/fichas-ordem-paranormal.git](https://github.com/Math-1213/fichas-ordem-paranormal.git)
    ```
 2. Entre na pasta do projeto:
 
