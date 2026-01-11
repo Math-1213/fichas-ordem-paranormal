@@ -35,7 +35,7 @@ Certifique-se de ter o [Node.js](https://nodejs.org/) instalado (versão 18 ou s
 2. Entre na pasta do projeto:
 
    ```bash
-   cd nome-do-repositorio
+   cd fichas-ordem-paranormal
    ```
 
 3. Instale as dependências:
