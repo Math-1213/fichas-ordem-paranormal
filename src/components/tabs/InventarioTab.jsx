@@ -515,55 +515,81 @@ export default function InventarioTab({ character, onUpdateInventory }) {
     return (
       <Card style={{ backgroundColor: "#1e2330", border: "1px solid #2a2f3e" }}>
         <Card.Body>
-          <div className="d-flex justify-content-between align-items-start">
-            <div>
-              <strong>{item.nome}</strong>
-              <div style={{ fontSize: "0.8rem", color: "#9aa0b3" }}>
-                Peso: {item.peso} | Categoria: {toRoman(item.categoria)}
+          <div className="d-flex gap-3">
+            {/* Lado Esquerdo: Imagem (se existir) */}
+            {item.imagem && (
+              <div style={{ flexShrink: 0 }}>
+                <img
+                  src={item.imagem}
+                  alt={item.nome}
+                  style={{
+                    width: "64px",
+                    height: "64px",
+                    objectFit: "contain",
+                    borderRadius: "4px",
+                    backgroundColor: "rgba(0,0,0,0.2)",
+                    padding: "2px",
+                  }}
+                />
               </div>
-            </div>
-            <div className="d-flex align-items-center gap-2">
-              {item.paranormal && <Badge bg="danger">Paranormal</Badge>}
-              <QtdControl item={item} />
+            )}
+
+            {/* Lado Direito: Conteúdo principal */}
+            <div className="flex-grow-1">
+              <div className="d-flex justify-content-between align-items-start">
+                <div>
+                  <strong>{item.nome}</strong>
+                  <div style={{ fontSize: "0.8rem", color: "#9aa0b3" }}>
+                    Peso: {item.peso} | Categoria: {toRoman(item.categoria)}
+                  </div>
+                </div>
+                <div className="d-flex align-items-center gap-2">
+                  {item.paranormal && <Badge bg="danger">Paranormal</Badge>}
+                  <QtdControl item={item} />
+                </div>
+              </div>
+
+              {/* Badges de Modificações/Maldições */}
+              {item.especiais?.length > 0 && (
+                <div style={{ marginTop: "0.6rem" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "0.4rem",
+                      flexWrap: "wrap",
+                      marginTop: "0.3rem",
+                    }}
+                  >
+                    {item.especiais.map((e, i) => (
+                      <EspecialBadge
+                        key={`esp-${item.nome}-${i}`}
+                        especial={e}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div style={{ marginTop: "0.4rem", fontSize: "0.9rem" }}>
+                {item.descricao}
+              </div>
+
+              {item.efeito && (
+                <div
+                  style={{
+                    marginTop: "0.5rem",
+                    color: "#8b5cf6",
+                    fontSize: "0.85rem",
+                    fontStyle: "italic",
+                  }}
+                >
+                  <strong>Efeito:</strong> {item.efeito}
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Badges de Modificações/Maldições */}
-          {item.especiais?.length > 0 && (
-            <div style={{ marginTop: "0.6rem" }}>
-              <strong>Modificações</strong>
-              <div
-                style={{
-                  display: "flex",
-                  gap: "0.4rem",
-                  flexWrap: "wrap",
-                  marginTop: "0.3rem",
-                }}
-              >
-                {item.especiais.map((e, i) => (
-                  <EspecialBadge key={`esp-${item.nome}-${i}`} especial={e} />
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div style={{ marginTop: "0.4rem", fontSize: "0.9rem" }}>
-            {item.descricao}
-          </div>
-
-          {item.efeito && (
-            <div
-              style={{
-                marginTop: "0.5rem",
-                color: "#8b5cf6",
-                fontSize: "0.85rem",
-                fontStyle: "italic",
-              }}
-            >
-              <strong>Efeito:</strong> {item.efeito}
-            </div>
-          )}
-
+          {/* Rodapé: Botões de Rolagem */}
           <div
             className="d-flex gap-2 mt-3 pt-2"
             style={{ borderTop: "1px solid #2a2f3e" }}
