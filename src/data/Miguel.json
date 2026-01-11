@@ -22,8 +22,8 @@
             "personalidade": "Miguel é, em essência, uma pessoa calma e introspectiva. Prefere observar antes de agir e raramente toma decisões impulsivas. Com pessoas próximas, demonstra um lado surpreendentemente amigável e até protetor, criando laços profundos, embora silenciosos. Ele tende a assumir responsabilidades além do necessário, sentindo-se culpado quando algo foge de seu controle.\n\nOs eventos recentes e suas constantes crises psicológicas afetaram significativamente sua estabilidade emocional. Miguel desenvolveu uma forte necessidade de controle, tanto sobre si mesmo quanto sobre o ambiente ao seu redor, acreditando que qualquer descuido pode resultar em consequências irreversíveis. Essa postura o torna extremamente atento, estratégico e cauteloso, mas também o distancia emocionalmente de situações em que deveria simplesmente confiar.\n\nApesar disso, ele ainda preserva empatia e compaixão genuínas, especialmente por aqueles que sofrem influência direta do Paranormal, pois enxerga neles reflexos do que ele próprio se tornou.",
             "piorPesadelo": "O maior medo de Miguel não se manifesta na forma de monstros ou entidades, mas na ideia de impotência. Seu pior pesadelo é estar consciente, lúcido e ainda assim incapaz de agir enquanto pessoas importantes para ele sofrem ou desaparecem, da mesma forma que seus pais um dia desapareceram.\n\nEm seus sonhos mais recorrentes, Miguel se vê tentando estender a mão para alguém que se afasta lentamente, enquanto o ambiente ao redor se distorce e a Barreira começa a se fechar. Ele sabe exatamente o que está acontecendo, entende o perigo, mas não consegue se mover ou usar qualquer habilidade. Para ele, essa sensação de estar presente e ainda assim falhar é mais aterradora do que qualquer manifestação paranormal."
         },
-        "portrait": "",
-        "carga": 15,
+        "portrait": "https://media.discordapp.net/attachments/768811773393502238/1459719360665882675/Miguel_Doyle.png?ex=69644d17&is=6962fb97&hm=c7728c45ba68e8dded5421d16b793483c4bd2eb9bdb8d12fbbcf99d94901d48d&=&format=webp&quality=lossless&width=224&height=733",
+        "carga": 17,
         "dtRitual": 34
     },
     "atributos": {
@@ -52,11 +52,13 @@
         },
         "atualidades": {
             "treino": "treinado",
-            "bonus": 0
+            "bonus": 0,
+            "dadosExtras": 1
         },
         "ciencias": {
             "treino": "expert",
-            "bonus": 0
+            "bonus": 0,
+            "dadosExtras": 1
         },
         "crime": {
             "treino": "veterano",
@@ -68,7 +70,7 @@
         },
         "enganacao": {
             "treino": "expert",
-            "bonus": 0
+            "bonus": 5
         },
         "fortitude": {
             "treino": "expert",
@@ -104,7 +106,8 @@
         },
         "ocultismo": {
             "treino": "expert",
-            "bonus": 0
+            "bonus": 0,
+            "dadosExtras": 1
         },
         "percepcao": {
             "treino": "expert",
@@ -141,7 +144,8 @@
         },
         "tecnologia": {
             "treino": "expert",
-            "bonus": 0
+            "bonus": 0,
+            "dadosExtras": 1
         },
         "vontade": {
             "treino": "expert",
@@ -349,11 +353,11 @@
         {
             "tipo": "arma",
             "nome": "Life Counter",
-            "descricao": "Uma katana especial. Pertencia ao pai de Zero, dado a ele no 18º aniversário.",
+            "descricao": "Uma katana de lâmina impecável e equilíbrio perfeito. Forjada com um metal que parece pulsar levemente ao toque, ela foi um presente que Miguel recebeu de seu pai em seu 14º aniversário.",
             "categoria": 4,
             "peso": 2,
             "alcance": "Médio",
-            "imagem": "",
+            "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734281336127692/Lifecounter.png?ex=69645afd&is=6963097d&hm=f75044a0e322f2ff728472ad2e59177e35e1095781a9927f7e65c75d597ab1ab&=&format=webp&quality=lossless&width=733&height=733",
             "paranormal": true,
             "arma": {
                 "tipo": "Corte",
@@ -421,11 +425,11 @@
         {
             "tipo": "arma",
             "nome": "Death Counter",
-            "descricao": "Espada Curta, Similar a uma adaga;",
+            "descricao": "Uma lâmina curta e robusta, desenhada para a eficiência letal em espaços fechados. Embora se assemelhe a uma faca militar, seu peso e fio revelam uma natureza mais sombria. É o par silencioso da Life Counter; onde uma preserva, a outra encerra.",
             "categoria": 4,
             "alcance": "Curto",
             "peso": 1,
-            "imagem": "https://fichasop.com/assets/img/Armas/faca_militar.png",
+            "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734281831317504/Gemini_Generated_Image_hbwot8hbwot8hbwo.png?ex=69645afd&is=6963097d&hm=116ba46a1a5c2a7bc8e9406f611117c68247b700412af7477b55571d5162a47c&=&format=webp&quality=lossless&width=733&height=733",
             "paranormal": true,
             "arma": {
                 "tipo": "Corte",
@@ -484,11 +488,11 @@
         {
             "tipo": "arma",
             "nome": "Scarlet",
-            "descricao": "Pistola .38, pertencente à família de Miguel a gerações. Senciente, Predadora, Sanguinária.",
+            "descricao": "Uma relíquia de família que passou por gerações dos Doyle. O cano da Scarlet ostenta gravuras desgastadas pelo tempo, e o metal frio parece ter desenvolvido uma consciência faminta.",
             "categoria": 4,
             "alcance": "Longo",
             "peso": 1,
-            "imagem": "",
+            "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734282477113465/Gemini_Generated_Image_b1i5ajb1i5ajb1i5.png?ex=69645afd&is=6963097d&hm=840e32b561709dcdae13bbb04d1b25712e3c7f86d6786d5686f8c888abe91779&=&format=webp&quality=lossless&width=733&height=733",
             "paranormal": true,
             "arma": {
                 "tipo": "Balistico",
@@ -547,16 +551,6 @@
             }
         },
         {
-            "tipo": "equipamento",
-            "nome": "Jaqueta Reforçada",
-            "descricao": "Protege contra impactos leves.",
-            "categoria": 1,
-            "peso": 2,
-            "quantidade": 1,
-            "paranormal": false,
-            "efeito": "+2 em resistência física"
-        },
-        {
             "tipo": "item",
             "nome": "Pasta de Documentos",
             "descricao": "Uma pasta usada para guardar documentos de um caso",
@@ -569,99 +563,112 @@
         {
             "tipo": "equipamento",
             "nome": "Cicatrizante",
-            "descricao": "Usado para para curar",
-            "categoria": 0,
+            "descricao": " Um spray contendo um remédio com potente efeito cicatrizante. Você pode gastar uma ação padrão e este item para curar 2d8+2 PV em você ou em um ser adjacente.",
+            "categoria": 1,
             "peso": 1,
             "quantidade": 2,
             "paranormal": false,
-            "efeito": "Permite curar 1d8 de vida",
-            "teste": "/PRE/d20 + /MEDI/",
-            "dado": "1d8 + /PRE/"
+            "efeito": "Permite curar 2d8 + 2 de vida",
+            "dado": "2d8 + 2 + /INT/"
         },
-        [
-            {
-                "tipo": "equipamento",
-                "nome": "Anel do Medo",
-                "descricao": "Um anel com uma aura inquietante.",
-                "categoria": 2,
-                "peso": 0,
-                "quantidade": 1,
-                "paranormal": true,
-                "efeito": "Reduz o custo de qualquer habilidade em -2 PE (mínimo 1 PE)."
-            },
-            {
-                "tipo": "item",
-                "nome": "Caderno de Anotações",
-                "descricao": "Um bloco de notas simples para registros rápidos.",
-                "categoria": 0,
-                "peso": 1,
-                "quantidade": 1,
-                "paranormal": false,
-                "efeito": "Nenhum prático."
-            },
-            {
-                "tipo": "item",
-                "nome": "Bestiário/Grimório",
-                "descricao": "Livro contendo pesquisas detalhadas sobre o Outro Lado.",
-                "categoria": 1,
-                "peso": 1,
-                "quantidade": 1,
-                "paranormal": true,
-                "efeito": "+1d20 em testes de Ocultismo."
-            },
-            {
-                "tipo": "equipamento",
-                "nome": "Celular 'Paranormal'",
-                "descricao": "Smartphone Universe S27 modificado com bateria movida a rituais.",
-                "categoria": 2,
-                "peso": 1,
-                "quantidade": 1,
-                "paranormal": true,
-                "efeito": "+1d20 em Tecnologia, Atualidade e Ciência. Lanterna Tática inclusa.",
-                "teste": "Custo: 2 PE por 25% de bateria."
-            },
-            {
-                "tipo": "equipamento",
-                "nome": "Skate Elétrico",
-                "descricao": "Skate resistente com motor e bateria carregável paranormalmente.",
-                "categoria": 1,
-                "peso": 1,
-                "quantidade": 1,
-                "paranormal": true,
-                "efeito": "Aumenta o deslocamento em +9."
-            },
-            {
-                "tipo": "equipamento",
-                "nome": "Bolsa de Couro (Estilo Indiana Jones)",
-                "descricao": "Uma bolsa prática e resistente.",
-                "categoria": 1,
-                "peso": 0,
-                "quantidade": 1,
-                "paranormal": false,
-                "efeito": "Aumenta a capacidade de carga em +2 espaços."
-            },
-            {
-                "tipo": "equipamento",
-                "nome": "Casaco (Proteção Leve Reforçada)",
-                "descricao": "Possui as maldições Abascanta e Letárgica.",
-                "categoria": 4,
-                "peso": 3,
-                "quantidade": 1,
-                "paranormal": true,
-                "efeito": "+9 Defesa (+5 base, +2 Letárgica, +2 Reforçada), +5 em resistência contra rituais, 25% de chance de ignorar crítico.",
-                "especial": "Reação: gastar PE igual ao custo do ritual para refleti-lo."
-            },
-            {
-                "tipo": "equipamento",
-                "nome": "Kit de Disfarce Marcado",
-                "descricao": "Maquiagens e acessórios com selos de Conhecimento.",
-                "categoria": 1,
-                "peso": 1,
-                "quantidade": 1,
-                "paranormal": true,
-                "efeito": "+5 em testes de Enganação."
-            }
-        ]
+        {
+            "tipo": "equipamento",
+            "nome": "Anel do Medo",
+            "descricao": "Um aro metálico que gela o dedo de quem o usa. O ar ao redor do anel parece distorcer-se em sombras tênues, sussurrando segredos sobre como dobrar a realidade com menos esforço. Ele facilita a manifestação do paranormal, mas o custo mental é uma inquietação constante.",
+            "categoria": 2,
+            "peso": 0,
+            "quantidade": 1,
+            "paranormal": true,
+            "efeito": "Reduz o custo de qualquer habilidade em -2 PE.",
+            "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734283265511629/Gemini_Generated_Image_cjx740cjx740cjx7.png?ex=69645afd&is=6963097d&hm=822f1c6ea2701c2c3025958a8eb07cb01518eef5e48bdd7ce4118f82fcfc5766&=&format=webp&quality=lossless&width=733&height=733"
+        },
+        {
+            "tipo": "item",
+            "nome": "Caderno de Anotações",
+            "descricao": "Um bloco de notas simples para registros rápidos.",
+            "categoria": 0,
+            "peso": 0,
+            "quantidade": 1,
+            "paranormal": false,
+            "efeito": "Nenhum prático."
+        },
+        {
+            "tipo": "equipamento",
+            "nome": "Bestiário/Grimório",
+            "descricao": "Um tomo encadernado em couro gasto, preenchido com anotações frenéticas, diagramas ocultos e esboços de criaturas que não deveriam existir. Folhear suas páginas é mergulhar na loucura de quem veio antes, garantindo uma compreensão perigosa sobre os mistérios do Medo.",
+            "categoria": 1,
+            "peso": 1,
+            "quantidade": 1,
+            "paranormal": true,
+            "efeito": "+1d20 em testes de Ocultismo.",
+            "imagem": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAbCAYAAAAdx42aAAAOKElEQVR4AQCBAH7/AC8zT/8vM0//LzNP/y8zT/8wNE7/MDRO/zA0Tf8wNE3/MTVM/zE1TP8xNUv/MTVK/zI2Sv8yNkr/MjZJ/zI2Sf8yNkn/MjZJ/zI2Sf8yNkn/MjZJ/zI2Sf8yNkr/MjZK/zE2Sv8xNUv/MTVL/zE1S/8xNUz/MTVM/zE1TP8xNUz/AIEAfv8ALzNP/y80Tv8wNE7/MDRO/zA0Tv8wNE3/MDRN/zE1TP8xNUv/MTVL/zI2Sv8yNkr/MjZJ/zI2Sf8yNkn/MzdI/zM3SP8zN0j/MzdI/zM3SP8yN0j/MjZJ/zI2Sf8yNkn/MjZK/zI2Sv8xNkr/MTVL/zE1S/8xNUv/MTVL/zE1S/8AgQB+/wAwNE3/MDRN/zA0Tf8xNU3/MTVM/zE1TP8xNUv/MTZL/zI2Sv8yNkn/MjZJ/zM3SP8zN0j/MzdI/zM3R/8zN0f/MzdH/zM3R/8zN0f/MzdH/zM3R/8zN0f/MzdI/zM3SP8zN0j/MjZJ/zI2Sf8yNkn/MjZK/zI2Sv8yNkr/MjZK/wCBAH7/ADE1S/8xNUv/MTZL/zI2S/8yNkr/MjZK/zI2Sf8zN0n/MzdI/zM3R/8zN0f/NDhG/zQ4Rv80OEX/NDhF/zQ4Rf80OEX/NDhF/zQ4Rf80OEX/NDhF/zQ4Rf80OEb/NDhG/zQ4Rv8zN0f/MzdH/zM3R/8zN0j/MzdI/zM3SP8zN0j/AIEAfv8AMzdJ/zM3Sf8zN0j/MzdI/zM3SP8zOEf/NDhH/zQ4Rv80OEb/NTlF/zU5RP81OUT/NTlD/zU5Q/82OkP/NjpC/zY6Qv82OkL/NjpC/zY6Qv82OkL/NTlD/zU5Q/81OUP/NTlE/zU5RP80OUT/NDhF/zQ4Rf80OEX/NDhF/zQ4Rf8AgQB+/wA0OEb/NDlG/zU5Rf81OUX/NTlF/zU5RP81OUT/NjpD/zY6Q/82OkL/NjpB/zc7Qf83O0D/NztA/zc7QP83Oz//Nzs//zc7P/83Oz//Nzs//zc7QP83O0D/NztA/zc7QP82OkH/NjpB/zY6Qf82OkL/NjpC/zY6Qv81OkL/NTlC/wCBAH7/ADY6Q/82OkP/NjpC/zc7Qv83O0L/NztB/zc7Qf83O0D/ODw//zg8P/84PD7/ODw+/zk9Pf85PT3/OT09/zk9PP85PTz/OT08/zk9PP85PTz/OT08/zk9Pf84PD3/ODw9/zg8Pv84PD7/ODw+/zc7P/83Oz//Nzs//zc7P/83Oz//AIEAfv8AODw//zg8P/84PD//ODw//zk9Pv85PT7/OT09/zk9Pf86Pjz/Oj48/zo+O/86Pjv/Oj46/zs/Ov87Pzn/Oz85/zs/Of87Pzn/Oz85/zs/Of86Pjn/Oj45/zo+Ov86Pjr/Oj46/zk9O/85PTv/OT07/zk9PP85PTz/OT08/zk9PP8AgQB+/wA6Pjz/Oj48/zo+PP86Pjz/Oj87/zs/O/87Pzr/Oz86/zs/Of88QDj/PEA4/zxAN/88QDf/PEA2/zxANv89QTb/PUE2/zxBNv88QDb/PEA2/zxANv88QDb/PEA2/zxAN/87Pzf/Oz83/zs/OP87Pzj/Oz84/zo+Of86Pjn/Oj45/wCBAH7/ADxAOf88QDn/PEA5/zxAOf88QDj/PEE4/z1BN/89QTf/PUE2/z1BNf8+QjX/PkI0/z5CNP8+QjP/PkIz/z5CM/8+QjP/PkIz/z5CM/8+QjP/PkIz/z5CM/89QTP/PUE0/z1BNP89QTT/PEA1/zxANf88QDX/PEA2/zxANv88QDb/AIEAfv8APkI3/z5CN/8+Qjb/PkI2/z5CNv8+QjX/PkI1/z9DNP8/QzP/P0Mz/z9DMv8/QzL/P0Qx/0BEMf9ARDD/QEQw/0BEMP9ARDD/P0Qw/z9DMP8/QzD/P0Mw/z9DMf8+QzH/PkIx/z5CMv8+QjL/PkIy/z1BM/89QTP/PUEz/z1BM/8AgQB+/wA/QzT/P0M0/z9DNP8/QzT/P0Mz/0BEM/9ARDL/QEQy/0BEMf9ARDH/QUUw/0FFMP9BRS//QUUv/0FFLv9BRS7/QUUu/0FFLv9BRS7/QUUu/0BELv9ARC7/QEQv/0BEL/8/Qy//P0Mw/z9DMP8/QzD/P0Mw/z5CMf8+QjH/PkIx/wCBAH7/AEBEM/9ARDP/QEQz/0BEMv9ARTL/QUUx/0FFMf9BRTD/QUUw/0FFL/9CRi7/QkYu/0JGLf9CRi3/QkYt/0JGLP9CRiz/QkYs/0JGLP9CRiz/QUUs/0FFLf9BRS3/QUUt/0BELv9ARC7/QEQu/0BELv8/Qy//P0Mv/z9DL/8/Qy//AIEAfv8AQUUy/0FFMv9BRTL/QUUx/0FFMf9CRjD/QkYw/0JGL/9CRi//QkYu/0JGLf9DRy3/Q0cs/0NHLP9DRyz/Q0cr/0NHK/9DRyv/QkYr/0JGK/9CRiv/QkYs/0FFLP9BRSz/QUUs/0FFLf9ARC3/QEQt/0BELv9ARC7/QEQu/0BELv8AgQB+/wBCRjL/QkYx/0JGMf9CRjH/QkYx/0JGMP9CRi//QkYv/0NHLv9DRy7/Q0ct/0NHLf9DRyz/Q0cs/0NHK/9DRyv/Q0cr/0NHK/9DRyv/Qkcr/0JGK/9CRiv/QkYr/0FFLP9BRSz/QUUs/0FFLf9ARC3/QEQt/0BELf9ARC7/QEQu/wCBAH7/AEJGMv9CRjL/QkYy/0JGMf9CRjH/QkYw/0JGMP9DRy//Q0cv/0NHLv9DRy3/Q0ct/0NHLP9DRyz/Q0cs/0NHK/9DRyv/Q0cr/0NHK/9CRyv/QkYr/0JGK/9CRiz/QUUs/0FFLP9BRS3/QEUt/0BELf9ARC7/QEQu/0BELv9ARC7/AIEAfv8AQkYz/0JGM/9CRjL/QkYy/0JGMv9CRjH/QkYx/0JHMP9DRy//Q0cv/0NHLv9DRy7/Q0ct/0NHLf9DRyz/Q0cs/0NHLP9DRyz/QkYs/0JGLP9CRiz/QkYs/0FFLP9BRS3/QUUt/0BELf9ARC7/QEQu/0BELv8/RC//P0Mv/z9DL/8AgQB+/wBBRTT/QUU0/0FGNP9CRjP/QkYz/0JGM/9CRjL/QkYx/0JGMf9CRjD/QkYw/0NHL/9DRy//Q0cu/0NHLv9CRi3/QkYt/0JGLf9CRi3/QkYt/0FFLf9BRS7/QUUu/0BELv9ARC7/QEQv/z9DL/8/Qy//P0Mw/z9DMP8/QzD/P0Mw/wCBAH7/AEFFNv9BRTb/QUU2/0FFNf9BRTX/QUU0/0FFNP9BRjP/QkYz/0JGMv9CRjH/QkYx/0JGMP9CRjD/QkYw/0JGL/9CRi//QUUv/0FFL/9BRS//QUUv/0BEL/9ARDD/QEQw/z9DMP8/QzH/P0Mx/z5CMf8+QjH/PkIy/z5CMv8+QjL/AIEAfv8AQEQ4/0BEOP9ARDj/QEQ3/0BEN/9ARDb/QUU2/0FFNf9BRTX/QUU0/0FFNP9BRTP/QUUy/0FFMv9BRTL/QUUx/0FFMf9ARTH/QEQx/0BEMf9ARDH/P0Mx/z9DMv8/QzL/PkIy/z5CM/8+QjP/PUEz/z1BM/89QTT/PUE0/z1BNP8AgQB+/wA/Qzr/P0M6/z9DOv8/Qzr/P0M5/0BEOf9ARDj/QEQ4/0BEN/9ARDb/QEQ2/0BENf9ARDX/QEQ0/0BENP9ARDT/QEQz/z9EM/8/QzP/P0Mz/z9DM/8+QjT/PkI0/z1CNP89QTT/PUE1/zxBNf88QDX/PEA2/zxANv88QDb/PEA2/wCBAH7/AD5CPf8+Qjz/PkI8/z5CPP8/Qzz/P0M7/z9DOv8/Qzr/P0M5/z9DOf8/Qzj/P0M3/z9DN/8/Qzf/P0M2/z9DNv8/Qzb/PkI2/z5CNf8+Qjb/PkI2/z1BNv89QTb/PEA2/zxAN/88QDf/Oz83/zs/OP87Pzj/Oz84/zs/OP86Pzj/AIEAfv8APUE//z1BP/89Qj7/PkI+/z5CPv8+Qj3/PkI9/z5CPP8+Qjv/PkI7/z5COv8+Qjr/PkI5/z5COf8+Qjj/PkI4/z5COP89QTj/PUE4/z1BOP89QTj/PEA4/zxAOP87Pzn/Oz85/zs/Of86Pjr/Oj46/zo+Ov86Pjr/OT46/zk9Ov8AgQB+/wA9QUH/PUFB/z1BQP89QUD/PUFA/z1BP/89QT//PUE+/z1BPf89QT3/PUE8/z1BPP89QTv/PUE7/z1BOv89QTr/PUE6/z1BOv88QDr/PEA6/zxAOv87Pzr/Oz86/zo/Ov86Pjv/Oj47/zk9O/85PTz/OT08/zk9PP85PTz/OD08/wCBAH7/ADxAQv88QEL/PEBC/zxAQv88QEH/PEBB/zxAQP89QUD/PUE//z1BPv89QT7/PUE9/z1BPf89QTz/PEE8/zxAO/88QDv/PEA7/zxAO/87Pzv/Oz87/zs/O/86Pjz/Oj48/zk9PP85PT3/OT09/zg8Pf84PD3/ODw+/zg8Pv84PD7/AIEAfv8APEBD/zxAQ/88QEP/PEBD/zxAQv88QEL/PEBB/zxAQf88QED/PEA//zxAP/88QD7/PEA+/zxAPf88QD3/PEA8/zxAPP87Pzz/Oz88/zs/PP86Pjz/Oj48/zo+Pf85PT3/OT09/zg9Pv84PD7/ODw+/zg8P/83Oz//Nzs//zc7P/8BgQB+/wA7P0T/Oz9E/zs/RP87P0P/PEBD/zxAQv88QEL/PEBB/zxAQf88QED/PEA//zxAP/88QD7/PEA+/zxAPf88QD3/Oz89/zs/Pf87Pz3/Oj89/zo+Pf86Pj3/OT09/zk9Pv85PT7/ODw+/zg8P/84PD//Nzs//zc7P/83Oz//Nzs//yQuvqY0Pmm6AAAAAElFTkSuQmCC"
+        },
+        {
+            "tipo": "equipamento",
+            "nome": "Celular 'Paranormal'",
+            "descricao": "Um smartphone topo de linha, mas cujos componentes internos foram substituídos por fiação de ouro e cobre gravada com selos. A bateria nunca acaba, desde que o usuário esteja disposto a ceder um pouco de sua própria energia vital para alimentar os circuitos transcendentais.",
+            "categoria": 2,
+            "peso": 1,
+            "quantidade": 1,
+            "paranormal": true,
+            "efeito": "+1d20 em Tecnologia, Atualidade e Ciência. Lanterna Tática inclusa.",
+            "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734284196778037/Gemini_Generated_Image_ubkdgsubkdgsubkd.png?ex=69645afd&is=6963097d&hm=6b733cc0605530021621f929a22190e820f5a9c5665146b04d93f21dad30dc2a&=&format=webp&quality=lossless&width=733&height=733"
+        },
+        {
+            "tipo": "equipamento",
+            "nome": "Skate Elétrico",
+            "descricao": "Um deck de alta resistência modificado com um motor que emite um zumbido sutil em uma frequência inaudível. Ele ignora o atrito comum e parece deslizar sobre o asfalto como se estivesse sendo empurrado por mãos invisíveis, permitindo deslocamentos rápidos em perseguições urbanas.",
+            "categoria": 1,
+            "peso": 1,
+            "quantidade": 1,
+            "paranormal": true,
+            "efeito": "Aumenta o deslocamento em +9.",
+            "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734284683448454/Gemini_Generated_Image_86f50986f50986f5.png?ex=69645afe&is=6963097e&hm=42ad72bb5daaa854a7c92215e4593871cf1c9615aba7db6287aae58735712843&=&format=webp&quality=lossless&width=733&height=733"
+        },
+        {
+            "tipo": "equipamento",
+            "nome": "Bolsa de Couro",
+            "descricao": "Uma bolsa de tiracolo prática, com compartimentos internos que parecem sempre ter espaço para 'só mais uma coisa'. Resistente ao tempo e ao clima, é a companheira ideal para exploradores de ruínas e cenas de crime.",
+            "categoria": 1,
+            "peso": 0,
+            "quantidade": 1,
+            "paranormal": false,
+            "efeito": "Aumenta a capacidade de carga em +2 espaços.",
+            "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734285157273835/Gemini_Generated_Image_wio59twio59twio5.png?ex=69645afe&is=6963097e&hm=b01f07f0c6ff1aa118ab4af848f9713104ee3756e53d32afdd13a2696bfe8483&=&format=webp&quality=lossless&width=733&height=733"
+        },
+        {
+            "tipo": "equipamento",
+            "nome": "Casaco (Proteção Leve Reforçada)",
+            "descricao": "Um presente guardado com carinho por anos. O tecido, além de reforçado, possui um forro que retém o calor e as memórias de quem o entregou.",
+            "categoria": 4,
+            "peso": 3,
+            "quantidade": 1,
+            "paranormal": true,
+            "efeito": "+9 Defesa (+5 base, +2 Letárgica, +2 Reforçada), +5 em resistência contra rituais, 25% de chance de ignorar crítico.",
+            "especiais": [
+                {
+                    "nome": "Letárgica",
+                    "descricao": " A proteção desacelera ataques perigosos, concedendo +2 em Defesa. Além disso, você recebe 25% de chance (para proteção leve ou escudo) e 50% de chance (para pesada) de ignorar o dano extra de acertos críticos e ataques furtivos.",
+                    "paranormal": true
+                },
+                {
+                    "nome": "Abascanta",
+                    "descricao": "Abascanta. Você recebe +5 em testes de resistência contra rituais. Uma vez por cena, quando você é alvo de um ritual, pode gastar uma reação e PE igual ao custo dele para refleti-lo de volta ao conjurador. As características do ritual (efeitos, DT…) se mantêm, mas você toma quaisquer decisões exigidas por ele.",
+                    "paranormal": true
+                }
+            ],
+            "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734285840941140/Gemini_Generated_Image_a161vza161vza161.png?ex=69645afe&is=6963097e&hm=e25c0f9d7f02985c725f46fda50096039c9b4e467c0046c565c1b5f63ac0607f&=&format=webp&quality=lossless&width=733&height=733"
+        },
+        {
+            "tipo": "equipamento",
+            "nome": "Kit de Disfarce Marcado",
+            "descricao": "Um conjunto de cosméticos e próteses que, sob a luz certa, revelam selos de Conhecimento gravados nos frascos. Ao aplicá-los, a identidade do usuário parece se misturar à realidade, tornando mentiras visualmente indiscutíveis.",
+            "categoria": 1,
+            "peso": 1,
+            "quantidade": 1,
+            "paranormal": true,
+            "efeito": "+5 em testes de Enganação."
+        }
     ],
     "rituais": [
         {
@@ -991,506 +998,504 @@
                 "requerimento": "Requer 3º círculo."
             }
         },
-        [
-            {
-                "nome": "Esconder dos Olhos",
-                "elementos": [
-                    "conhecimento"
-                ],
-                "circulo": 2,
-                "execucao": "Livre",
-                "alcance": "Pessoal",
-                "alvo": "Você",
-                "duracao": "1 rodada",
-                "resistencia": "Nenhuma",
-                "normal": {
-                    "custo": 3,
-                    "efeito": "Fica invisível (camuflagem total e +15 em Furtividade). O efeito termina se atacar ou usar habilidade hostil."
-                },
-                "discente": {
-                    "custo": 6,
-                    "efeito": "Duração: Sustentada. Cria uma esfera de 3m; você e aliados dentro dela ficam invisíveis.",
-                    "requerimento": "Requer 3º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 10,
-                    "efeito": "Execução: Padrão, Alcance: Toque, Alvo: 1 ser. O efeito não é dissipado ao atacar.",
-                    "requerimento": "Requer 4º círculo e afinidade."
-                }
+        {
+            "nome": "Esconder dos Olhos",
+            "elementos": [
+                "conhecimento"
+            ],
+            "circulo": 2,
+            "execucao": "Livre",
+            "alcance": "Pessoal",
+            "alvo": "Você",
+            "duracao": "1 rodada",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 3,
+                "efeito": "Fica invisível (camuflagem total e +15 em Furtividade). O efeito termina se atacar ou usar habilidade hostil."
             },
-            {
-                "nome": "Fortalecimento Sensorial",
-                "elementos": [
-                    "sangue"
-                ],
-                "circulo": 1,
-                "execucao": "Padrão",
-                "alcance": "Pessoal",
-                "alvo": "Você",
-                "duracao": "Cena",
-                "resistencia": "Nenhuma",
-                "normal": {
-                    "custo": 1,
-                    "efeito": "Recebe +1d20 em testes de Investigação, Luta, Percepção e Pontaria."
-                },
-                "discente": {
-                    "custo": 3,
-                    "efeito": "Além do normal, inimigos sofrem -1d20 em testes de ataque contra você.",
-                    "requerimento": "Requer 2º círculo."
-                }
+            "discente": {
+                "custo": 6,
+                "efeito": "Duração: Sustentada. Cria uma esfera de 3m; você e aliados dentro dela ficam invisíveis.",
+                "requerimento": "Requer 3º círculo."
             },
-            {
-                "nome": "Inexistir",
-                "elementos": [
-                    "conhecimento"
-                ],
-                "circulo": 4,
-                "execucao": "Padrão",
-                "alcance": "Toque",
-                "alvo": "1 ser",
-                "duracao": "Instantânea",
-                "resistencia": "Vontade parcial",
-                "normal": {
-                    "custo": 10,
-                    "efeito": "Causa 10d12+10 de Conhecimento. Se resistir, sofre 2d12 e fica debilitado. Se cair a 0 PV, é apagado da existência.",
-                    "dados": "10d12+10+/INT/"
-                },
-                "discente": {
-                    "custo": 15,
-                    "efeito": "Dano aumenta para 15d12+15. Se resistir, sofre 3d12.",
-                    "dados": "15d12+15+/INT/"
-                },
-                "verdadeiro": {
-                    "custo": 20,
-                    "efeito": "Dano aumenta para 20d12+20. Se resistir, sofre 4d12.",
-                    "dados": "20d12+20+/INT/",
-                    "requerimento": "Requer afinidade."
-                }
-            },
-            {
-                "nome": "Lâmina do Medo",
-                "elementos": [
-                    "medo"
-                ],
-                "circulo": 4,
-                "execucao": "Padrão",
-                "alcance": "Toque",
-                "alvo": "1 ser",
-                "duracao": "Instantânea",
-                "resistencia": "Fortitude parcial",
-                "normal": {
-                    "custo": 10,
-                    "efeito": "Se o alvo falhar na resistência, os PV caem a 0 (morrendo). Se passar, sofre 10d8 de Medo (ignora resistências) e fica apavorado.",
-                    "dados": "10d8+/INT/"
-                }
-            },
-            {
-                "name": "Localização",
-                "elementos": [
-                    "conhecimento"
-                ],
-                "circulo": 2,
-                "execucao": "Padrão",
-                "alcance": "Pessoal",
-                "alvo": "Área: círculo com 90m de raio",
-                "duracao": "Cena",
-                "resistencia": "Nenhuma",
-                "normal": {
-                    "custo": 3,
-                    "efeito": "Indica a direção e distância de uma pessoa ou objeto escolhido dentro do raio."
-                },
-                "discente": {
-                    "custo": 6,
-                    "efeito": "Alcance: Toque, Alvo: 1 pessoa, Duração: 1 hora. O alvo descobre o caminho mais direto para entrar ou sair de um lugar.",
-                    "requerimento": "Requer 3º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 10,
-                    "efeito": "Aumenta a área de busca para um raio de 1km.",
-                    "requerimento": "Requer 4º círculo."
-                }
-            },
-            {
-                "name": "Paradoxo",
-                "elementos": [
-                    "morte"
-                ],
-                "circulo": 2,
-                "execucao": "Padrão",
-                "alcance": "Médio",
-                "alvo": "Área: esfera com 6m de raio",
-                "duracao": "Instantânea",
-                "resistencia": "Fortitude reduz à metade",
-                "normal": {
-                    "custo": 3,
-                    "efeito": "Implosão temporal causando 6d6 de dano de Morte em todos na área.",
-                    "dados": "6d6+/INT/"
-                },
-                "discente": {
-                    "custo": 6,
-                    "efeito": "Cria esfera de 1,5m (Duração: Cena). Causa 4d6 de Morte a quem estiver no espaço. Pode mover a esfera 9m com ação de movimento.",
-                    "dados": "4d6+/INT/",
-                    "requerimento": "Requer 3º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 10,
-                    "efeito": "Dano aumenta para 13d6. Alvos reduzidos a 0 PV morrem imediatamente se falharem na Fortitude (viram cinzas).",
-                    "dados": "13d6+/INT/",
-                    "requerimento": "Requer 4º círculo."
-                }
-            },
-            {
-                "name": "Proteção contra Rituais",
-                "elementos": [
-                    "medo"
-                ],
-                "circulo": 2,
-                "execucao": "Padrão",
-                "alcance": "Toque",
-                "alvo": "1 ser",
-                "duracao": "Cena",
-                "resistencia": "Nenhuma",
-                "normal": {
-                    "custo": 3,
-                    "efeito": "Alvo recebe RD Paranormal 5 e +5 em testes de resistência contra rituais e criaturas."
-                },
-                "discente": {
-                    "custo": 6,
-                    "efeito": "Muda o alvo para até 5 seres tocados.",
-                    "requerimento": "Requer 3º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 9,
-                    "efeito": "Até 5 seres tocados recebem RD Paranormal 10 e +10 em testes de resistência.",
-                    "requerimento": "Requer 4º círculo."
-                }
-            },
-            {
-                "name": "Purgatório",
-                "elementos": [
-                    "sangue"
-                ],
-                "circulo": 3,
-                "execucao": "Padrão",
-                "alcance": "Curto",
-                "alvo": "Área de 6m de raio",
-                "duracao": "Sustentada",
-                "resistencia": "Fortitude parcial",
-                "normal": {
-                    "custo": 6,
-                    "efeito": "Poça de sangue que torna inimigos vulneráveis a danos físicos. Se tentar sair da área, sofre 6d6 de Sangue e pode ficar imóvel se falhar na Fortitude.",
-                    "dados": "6d6+/INT/"
-                }
-            },
-            {
-                "name": "Salto Fantasma",
-                "elementos": [
-                    "energia"
-                ],
-                "circulo": 3,
-                "execucao": "Padrão",
-                "alcance": "Médio",
-                "alvo": "Você",
-                "duracao": "Instantânea",
-                "resistencia": "Nenhuma",
-                "normal": {
-                    "custo": 6,
-                    "efeito": "Teletransporta-se para um local imaginado/visto. Não pode agir pelo resto do turno após saltar."
-                },
-                "discente": {
-                    "custo": 8,
-                    "efeito": "Execução: Reação. Salta 1,5m, recebendo +10 na Defesa e Reflexos contra um ataque iminente.",
-                    "requerimento": "Requer 3º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 10,
-                    "efeito": "Alcance Longo. Transporta você e até dois seres voluntários tocados.",
-                    "requerimento": "Requer 4º círculo."
-                }
-            },
-            {
-                "nome": "Tecer Ilusão",
-                "elementos": [
-                    "conhecimento"
-                ],
-                "circulo": 1,
-                "execucao": "Padrão",
-                "alcance": "Médio",
-                "alvo": "Ilusão até 4 cubos de 1,5m",
-                "duracao": "Cena",
-                "resistencia": "Vontade desacredita",
-                "normal": {
-                    "custo": 1,
-                    "efeito": "Cria imagens ou sons simples. Objetos atravessam a ilusão sem sofrer dano. Dissipa se você sair do alcance."
-                },
-                "discente": {
-                    "custo": 3,
-                    "efeito": "Duração: Sustentada. Ilusão de imagem, som complexo, odor e tato combinados. Seres precisam de Vontade para atravessar.",
-                    "requerimento": "Requer 2º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 6,
-                    "efeito": "Ilusão de perigo mortal. Alvos que interagem devem fazer Vontade a cada turno ou sofrem 6d6 de Conhecimento.",
-                    "dados": "6d6+/INT/",
-                    "requerimento": "Requer 3º círculo."
-                }
-            },
-            {
-                "nome": "Tela de Ruído",
-                "elementos": [
-                    "energia"
-                ],
-                "circulo": 2,
-                "execucao": "Padrão ou Reação",
-                "alcance": "Pessoal",
-                "alvo": "Você",
-                "duracao": "Cena",
-                "resistencia": "Nenhuma (ou Reflexos no Verdadeiro)",
-                "normal": {
-                    "custo": 3,
-                    "efeito": "Recebe 30 PV temporários contra danos físicos (Corte, Impacto, Perfuração, Balístico). Como reação: recebe RD 15 contra o dano sofrido."
-                },
-                "discente": {
-                    "custo": 6,
-                    "efeito": "Aumenta para 60 PV temporários ou RD 30 como reação.",
-                    "requerimento": "Requer 3º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 10,
-                    "efeito": "Alcance: Curto. Cria uma esfera imóvel que impede a passagem de qualquer ser, objeto ou dano. Alvo pode fazer Reflexos para evitar.",
-                    "requerimento": "Requer 4º círculo."
-                }
-            },
-            {
-                "nome": "Teletransporte",
-                "elementos": [
-                    "energia"
-                ],
-                "circulo": 4,
-                "execucao": "Padrão",
-                "alcance": "Toque",
-                "alvo": "Até 5 seres voluntários",
-                "duracao": "Instantânea",
-                "resistencia": "Nenhuma",
-                "normal": {
-                    "custo": 10,
-                    "efeito": "Transporta alvos a até 1.000km. Requer teste de Ocultismo (DT 25 a 35). Falha por 5 ou mais causa Atordoamento por 1d4 rodadas."
-                },
-                "verdadeiro": {
-                    "custo": 15,
-                    "efeito": "Pode se teletransportar para qualquer local na Terra."
-                }
-            },
-            {
-                "nome": "Terceiro Olho",
-                "elementos": [
-                    "conhecimento"
-                ],
-                "circulo": 1,
-                "execucao": "Padrão",
-                "alcance": "Pessoal",
-                "alvo": "Você",
-                "duracao": "Cena",
-                "resistencia": "Nenhuma",
-                "normal": {
-                    "custo": 1,
-                    "efeito": "Enxerga auras paranormais (Fraca, Moderada, Poderosa). Ação de Movimento descobre se um ser tem poderes ou rituais."
-                },
-                "discente": {
-                    "custo": 3,
-                    "efeito": "Muda a duração para 1 dia.",
-                    "requerimento": "Requer 2º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 6,
-                    "efeito": "Também enxerga objetos e seres invisíveis (formas translúcidas).",
-                    "requerimento": "Requer 3º círculo."
-                }
-            },
-            {
-                "nome": "Velocidade Mortal",
-                "elementos": [
-                    "morte"
-                ],
-                "circulo": 2,
-                "execucao": "Padrão",
-                "alcance": "Curto",
-                "alvo": "1 ser",
-                "duracao": "Sustentada",
-                "resistencia": "Nenhuma",
-                "normal": {
-                    "custo": 3,
-                    "efeito": "O alvo recebe uma ação de movimento adicional por turno (não pode ser usada para rituais)."
-                },
-                "discente": {
-                    "custo": 6,
-                    "efeito": "O alvo recebe uma ação PADRÃO adicional por turno.",
-                    "requerimento": "Requer 3º círculo."
-                }
-            },
-            {
-                "nome": "Aurora da Verdade",
-                "elementos": [
-                    "conhecimento"
-                ],
-                "circulo": 2,
-                "execucao": "Padrão",
-                "alcance": "Curto",
-                "alvo": "Área: esfera com 3m de raio",
-                "duracao": "Sustentada",
-                "resistencia": "Vontade parcial",
-                "normal": {
-                    "custo": 3,
-                    "efeito": "Seres na área só podem falar a verdade (Vontade anula). Invisíveis ou camuflados são revelados por sigilos dourados."
-                },
-                "discente": {
-                    "custo": 6,
-                    "efeito": "Alcance Médio, Área esfera de 9m. O conjurador não é mais afetado pelo efeito.",
-                    "requerimento": "Requer 3º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 10,
-                    "efeito": "Alcance Longo, Duração Cena. Você ouve tudo na área independente da distância.",
-                    "requerimento": "Requer 4º círculo e afinidade."
-                }
-            },
-            {
-                "nome": "Pronunciar Sigilo",
-                "elementos": [
-                    "conhecimento"
-                ],
-                "circulo": 4,
-                "execucao": "Padrão",
-                "alcance": "Curto",
-                "alvo": "1 ser",
-                "duracao": "Instantânea / Especial",
-                "resistencia": "Vontade parcial",
-                "normal": {
-                    "custo": 10,
-                    "efeito": "Escolha um efeito: Esquecer (Atordoado 1d4+1 rod), Cegar (Cego) ou Inexistir (Alvo sai da realidade por 1d4+1 rod)."
-                },
-                "discente": {
-                    "custo": 15,
-                    "efeito": "Muda o alcance para Extremo.",
-                    "requerimento": "Requer 4º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 20,
-                    "efeito": "Muda o alvo para até cinco seres.",
-                    "requerimento": "Requer afinidade."
-                }
-            },
-            {
-                "nome": "Reescrever Ferimentos (HB)",
-                "elementos": [
-                    "conhecimento"
-                ],
-                "circulo": 1,
-                "execucao": "Padrão",
-                "alcance": "Toque",
-                "alvo": "1 ser",
-                "duracao": "Instantânea",
-                "resistencia": "Nenhuma",
-                "normal": {
-                    "custo": 1,
-                    "efeito": "Reescreve a realidade dos ferimentos, curando 3d8+3 PV.",
-                    "dados": "3d8+3+/INT/"
-                },
-                "discente": {
-                    "custo": 3,
-                    "efeito": "Aumenta a cura para 5d8+5 PV.",
-                    "dados": "5d8+5+/INT/",
-                    "requerimento": "Requer 2º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 10,
-                    "efeito": "Alcance curto, afeta vários seres. Cura 7d8+7 PV.",
-                    "dados": "7d8+7+/INT/",
-                    "requerimento": "Requer 4º círculo."
-                }
-            },
-            {
-                "nome": "Conhecer o Paranormal (HB)",
-                "elementos": [
-                    "conhecimento"
-                ],
-                "circulo": 1,
-                "execucao": "Padrão",
-                "alcance": "Médio",
-                "alvo": "1 ser",
-                "duracao": "Instantânea / Especial",
-                "resistencia": "Nenhuma",
-                "normal": {
-                    "custo": 1,
-                    "efeito": "Diminui em -5 a DT de Ocultismo para identificar criatura. Requer livro com páginas em branco."
-                },
-                "discente": {
-                    "custo": 3,
-                    "efeito": "Durante a cena, recebe +1d6 em testes de Vontade contra a criatura identificada.",
-                    "requerimento": "Requer 2º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 6,
-                    "efeito": "DT diminui em -10. Se falhar no teste, apenas não recebe informação (sem penalidade).",
-                    "requerimento": "Requer 3º círculo."
-                }
-            },
-            {
-                "nome": "Pior Pesadelo (HB)",
-                "elementos": [
-                    "conhecimento"
-                ],
-                "circulo": 1,
-                "execucao": "Padrão",
-                "alcance": "Toque",
-                "alvo": "1 pessoa",
-                "duracao": "Instantânea",
-                "resistencia": "Vontade parcial",
-                "normal": {
-                    "custo": 1,
-                    "efeito": "Manifesta o pior pesadelo na mente do alvo, causando 2d6 de dano mental.",
-                    "dados": "2d6+/INT/"
-                },
-                "discente": {
-                    "custo": 3,
-                    "efeito": "Dano 4d6 e o alvo fica atordoado por 1 turno.",
-                    "dados": "4d6+/INT/",
-                    "requerimento": "Requer 2º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 4,
-                    "efeito": "Dano 8d6 e o alvo fica atordoado por 2 turnos.",
-                    "dados": "8d6+/INT/",
-                    "requerimento": "Requer 3º círculo."
-                }
-            },
-            {
-                "nome": "Voo (HB)",
-                "elementos": [
-                    "conhecimento"
-                ],
-                "circulo": 3,
-                "execucao": "Padrão",
-                "alcance": "Pessoal",
-                "alvo": "Você",
-                "duracao": "Cena",
-                "resistencia": "Nenhuma",
-                "normal": {
-                    "custo": 6,
-                    "efeito": "Cria asas de sigilos que permitem voar livremente até o fim da cena."
-                },
-                "discente": {
-                    "custo": 10,
-                    "efeito": "Muda o alvo para seres escolhidos.",
-                    "requerimento": "Requer 3º círculo."
-                },
-                "verdadeiro": {
-                    "custo": 12,
-                    "efeito": "Muda a duração para a missão inteira.",
-                    "requerimento": "Requer 4º círculo."
-                }
+            "verdadeiro": {
+                "custo": 10,
+                "efeito": "Execução: Padrão, Alcance: Toque, Alvo: 1 ser. O efeito não é dissipado ao atacar.",
+                "requerimento": "Requer 4º círculo e afinidade."
             }
-        ]
+        },
+        {
+            "nome": "Fortalecimento Sensorial",
+            "elementos": [
+                "sangue"
+            ],
+            "circulo": 1,
+            "execucao": "Padrão",
+            "alcance": "Pessoal",
+            "alvo": "Você",
+            "duracao": "Cena",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 1,
+                "efeito": "Recebe +1d20 em testes de Investigação, Luta, Percepção e Pontaria."
+            },
+            "discente": {
+                "custo": 3,
+                "efeito": "Além do normal, inimigos sofrem -1d20 em testes de ataque contra você.",
+                "requerimento": "Requer 2º círculo."
+            }
+        },
+        {
+            "nome": "Inexistir",
+            "elementos": [
+                "conhecimento"
+            ],
+            "circulo": 4,
+            "execucao": "Padrão",
+            "alcance": "Toque",
+            "alvo": "1 ser",
+            "duracao": "Instantânea",
+            "resistencia": "Vontade parcial",
+            "normal": {
+                "custo": 10,
+                "efeito": "Causa 10d12+10 de Conhecimento. Se resistir, sofre 2d12 e fica debilitado. Se cair a 0 PV, é apagado da existência.",
+                "dados": "10d12+10+/INT/"
+            },
+            "discente": {
+                "custo": 15,
+                "efeito": "Dano aumenta para 15d12+15. Se resistir, sofre 3d12.",
+                "dados": "15d12+15+/INT/"
+            },
+            "verdadeiro": {
+                "custo": 20,
+                "efeito": "Dano aumenta para 20d12+20. Se resistir, sofre 4d12.",
+                "dados": "20d12+20+/INT/",
+                "requerimento": "Requer afinidade."
+            }
+        },
+        {
+            "nome": "Lâmina do Medo",
+            "elementos": [
+                "medo"
+            ],
+            "circulo": 4,
+            "execucao": "Padrão",
+            "alcance": "Toque",
+            "alvo": "1 ser",
+            "duracao": "Instantânea",
+            "resistencia": "Fortitude parcial",
+            "normal": {
+                "custo": 10,
+                "efeito": "Se o alvo falhar na resistência, os PV caem a 0 (morrendo). Se passar, sofre 10d8 de Medo (ignora resistências) e fica apavorado.",
+                "dados": "10d8+/INT/"
+            }
+        },
+        {
+            "name": "Localização",
+            "elementos": [
+                "conhecimento"
+            ],
+            "circulo": 2,
+            "execucao": "Padrão",
+            "alcance": "Pessoal",
+            "alvo": "Área: círculo com 90m de raio",
+            "duracao": "Cena",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 3,
+                "efeito": "Indica a direção e distância de uma pessoa ou objeto escolhido dentro do raio."
+            },
+            "discente": {
+                "custo": 6,
+                "efeito": "Alcance: Toque, Alvo: 1 pessoa, Duração: 1 hora. O alvo descobre o caminho mais direto para entrar ou sair de um lugar.",
+                "requerimento": "Requer 3º círculo."
+            },
+            "verdadeiro": {
+                "custo": 10,
+                "efeito": "Aumenta a área de busca para um raio de 1km.",
+                "requerimento": "Requer 4º círculo."
+            }
+        },
+        {
+            "name": "Paradoxo",
+            "elementos": [
+                "morte"
+            ],
+            "circulo": 2,
+            "execucao": "Padrão",
+            "alcance": "Médio",
+            "alvo": "Área: esfera com 6m de raio",
+            "duracao": "Instantânea",
+            "resistencia": "Fortitude reduz à metade",
+            "normal": {
+                "custo": 3,
+                "efeito": "Implosão temporal causando 6d6 de dano de Morte em todos na área.",
+                "dados": "6d6+/INT/"
+            },
+            "discente": {
+                "custo": 6,
+                "efeito": "Cria esfera de 1,5m (Duração: Cena). Causa 4d6 de Morte a quem estiver no espaço. Pode mover a esfera 9m com ação de movimento.",
+                "dados": "4d6+/INT/",
+                "requerimento": "Requer 3º círculo."
+            },
+            "verdadeiro": {
+                "custo": 10,
+                "efeito": "Dano aumenta para 13d6. Alvos reduzidos a 0 PV morrem imediatamente se falharem na Fortitude (viram cinzas).",
+                "dados": "13d6+/INT/",
+                "requerimento": "Requer 4º círculo."
+            }
+        },
+        {
+            "name": "Proteção contra Rituais",
+            "elementos": [
+                "medo"
+            ],
+            "circulo": 2,
+            "execucao": "Padrão",
+            "alcance": "Toque",
+            "alvo": "1 ser",
+            "duracao": "Cena",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 3,
+                "efeito": "Alvo recebe RD Paranormal 5 e +5 em testes de resistência contra rituais e criaturas."
+            },
+            "discente": {
+                "custo": 6,
+                "efeito": "Muda o alvo para até 5 seres tocados.",
+                "requerimento": "Requer 3º círculo."
+            },
+            "verdadeiro": {
+                "custo": 9,
+                "efeito": "Até 5 seres tocados recebem RD Paranormal 10 e +10 em testes de resistência.",
+                "requerimento": "Requer 4º círculo."
+            }
+        },
+        {
+            "name": "Purgatório",
+            "elementos": [
+                "sangue"
+            ],
+            "circulo": 3,
+            "execucao": "Padrão",
+            "alcance": "Curto",
+            "alvo": "Área de 6m de raio",
+            "duracao": "Sustentada",
+            "resistencia": "Fortitude parcial",
+            "normal": {
+                "custo": 6,
+                "efeito": "Poça de sangue que torna inimigos vulneráveis a danos físicos. Se tentar sair da área, sofre 6d6 de Sangue e pode ficar imóvel se falhar na Fortitude.",
+                "dados": "6d6+/INT/"
+            }
+        },
+        {
+            "name": "Salto Fantasma",
+            "elementos": [
+                "energia"
+            ],
+            "circulo": 3,
+            "execucao": "Padrão",
+            "alcance": "Médio",
+            "alvo": "Você",
+            "duracao": "Instantânea",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 6,
+                "efeito": "Teletransporta-se para um local imaginado/visto. Não pode agir pelo resto do turno após saltar."
+            },
+            "discente": {
+                "custo": 8,
+                "efeito": "Execução: Reação. Salta 1,5m, recebendo +10 na Defesa e Reflexos contra um ataque iminente.",
+                "requerimento": "Requer 3º círculo."
+            },
+            "verdadeiro": {
+                "custo": 10,
+                "efeito": "Alcance Longo. Transporta você e até dois seres voluntários tocados.",
+                "requerimento": "Requer 4º círculo."
+            }
+        },
+        {
+            "nome": "Tecer Ilusão",
+            "elementos": [
+                "conhecimento"
+            ],
+            "circulo": 1,
+            "execucao": "Padrão",
+            "alcance": "Médio",
+            "alvo": "Ilusão até 4 cubos de 1,5m",
+            "duracao": "Cena",
+            "resistencia": "Vontade desacredita",
+            "normal": {
+                "custo": 1,
+                "efeito": "Cria imagens ou sons simples. Objetos atravessam a ilusão sem sofrer dano. Dissipa se você sair do alcance."
+            },
+            "discente": {
+                "custo": 3,
+                "efeito": "Duração: Sustentada. Ilusão de imagem, som complexo, odor e tato combinados. Seres precisam de Vontade para atravessar.",
+                "requerimento": "Requer 2º círculo."
+            },
+            "verdadeiro": {
+                "custo": 6,
+                "efeito": "Ilusão de perigo mortal. Alvos que interagem devem fazer Vontade a cada turno ou sofrem 6d6 de Conhecimento.",
+                "dados": "6d6+/INT/",
+                "requerimento": "Requer 3º círculo."
+            }
+        },
+        {
+            "nome": "Tela de Ruído",
+            "elementos": [
+                "energia"
+            ],
+            "circulo": 2,
+            "execucao": "Padrão ou Reação",
+            "alcance": "Pessoal",
+            "alvo": "Você",
+            "duracao": "Cena",
+            "resistencia": "Nenhuma (ou Reflexos no Verdadeiro)",
+            "normal": {
+                "custo": 3,
+                "efeito": "Recebe 30 PV temporários contra danos físicos (Corte, Impacto, Perfuração, Balístico). Como reação: recebe RD 15 contra o dano sofrido."
+            },
+            "discente": {
+                "custo": 6,
+                "efeito": "Aumenta para 60 PV temporários ou RD 30 como reação.",
+                "requerimento": "Requer 3º círculo."
+            },
+            "verdadeiro": {
+                "custo": 10,
+                "efeito": "Alcance: Curto. Cria uma esfera imóvel que impede a passagem de qualquer ser, objeto ou dano. Alvo pode fazer Reflexos para evitar.",
+                "requerimento": "Requer 4º círculo."
+            }
+        },
+        {
+            "nome": "Teletransporte",
+            "elementos": [
+                "energia"
+            ],
+            "circulo": 4,
+            "execucao": "Padrão",
+            "alcance": "Toque",
+            "alvo": "Até 5 seres voluntários",
+            "duracao": "Instantânea",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 10,
+                "efeito": "Transporta alvos a até 1.000km. Requer teste de Ocultismo (DT 25 a 35). Falha por 5 ou mais causa Atordoamento por 1d4 rodadas."
+            },
+            "verdadeiro": {
+                "custo": 15,
+                "efeito": "Pode se teletransportar para qualquer local na Terra."
+            }
+        },
+        {
+            "nome": "Terceiro Olho",
+            "elementos": [
+                "conhecimento"
+            ],
+            "circulo": 1,
+            "execucao": "Padrão",
+            "alcance": "Pessoal",
+            "alvo": "Você",
+            "duracao": "Cena",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 1,
+                "efeito": "Enxerga auras paranormais (Fraca, Moderada, Poderosa). Ação de Movimento descobre se um ser tem poderes ou rituais."
+            },
+            "discente": {
+                "custo": 3,
+                "efeito": "Muda a duração para 1 dia.",
+                "requerimento": "Requer 2º círculo."
+            },
+            "verdadeiro": {
+                "custo": 6,
+                "efeito": "Também enxerga objetos e seres invisíveis (formas translúcidas).",
+                "requerimento": "Requer 3º círculo."
+            }
+        },
+        {
+            "nome": "Velocidade Mortal",
+            "elementos": [
+                "morte"
+            ],
+            "circulo": 2,
+            "execucao": "Padrão",
+            "alcance": "Curto",
+            "alvo": "1 ser",
+            "duracao": "Sustentada",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 3,
+                "efeito": "O alvo recebe uma ação de movimento adicional por turno (não pode ser usada para rituais)."
+            },
+            "discente": {
+                "custo": 6,
+                "efeito": "O alvo recebe uma ação PADRÃO adicional por turno.",
+                "requerimento": "Requer 3º círculo."
+            }
+        },
+        {
+            "nome": "Aurora da Verdade",
+            "elementos": [
+                "conhecimento"
+            ],
+            "circulo": 2,
+            "execucao": "Padrão",
+            "alcance": "Curto",
+            "alvo": "Área: esfera com 3m de raio",
+            "duracao": "Sustentada",
+            "resistencia": "Vontade parcial",
+            "normal": {
+                "custo": 3,
+                "efeito": "Seres na área só podem falar a verdade (Vontade anula). Invisíveis ou camuflados são revelados por sigilos dourados."
+            },
+            "discente": {
+                "custo": 6,
+                "efeito": "Alcance Médio, Área esfera de 9m. O conjurador não é mais afetado pelo efeito.",
+                "requerimento": "Requer 3º círculo."
+            },
+            "verdadeiro": {
+                "custo": 10,
+                "efeito": "Alcance Longo, Duração Cena. Você ouve tudo na área independente da distância.",
+                "requerimento": "Requer 4º círculo e afinidade."
+            }
+        },
+        {
+            "nome": "Pronunciar Sigilo",
+            "elementos": [
+                "conhecimento"
+            ],
+            "circulo": 4,
+            "execucao": "Padrão",
+            "alcance": "Curto",
+            "alvo": "1 ser",
+            "duracao": "Instantânea / Especial",
+            "resistencia": "Vontade parcial",
+            "normal": {
+                "custo": 10,
+                "efeito": "Escolha um efeito: Esquecer (Atordoado 1d4+1 rod), Cegar (Cego) ou Inexistir (Alvo sai da realidade por 1d4+1 rod)."
+            },
+            "discente": {
+                "custo": 15,
+                "efeito": "Muda o alcance para Extremo.",
+                "requerimento": "Requer 4º círculo."
+            },
+            "verdadeiro": {
+                "custo": 20,
+                "efeito": "Muda o alvo para até cinco seres.",
+                "requerimento": "Requer afinidade."
+            }
+        },
+        {
+            "nome": "Reescrever Ferimentos (HB)",
+            "elementos": [
+                "conhecimento"
+            ],
+            "circulo": 1,
+            "execucao": "Padrão",
+            "alcance": "Toque",
+            "alvo": "1 ser",
+            "duracao": "Instantânea",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 1,
+                "efeito": "Reescreve a realidade dos ferimentos, curando 3d8+3 PV.",
+                "dados": "3d8+3+/INT/"
+            },
+            "discente": {
+                "custo": 3,
+                "efeito": "Aumenta a cura para 5d8+5 PV.",
+                "dados": "5d8+5+/INT/",
+                "requerimento": "Requer 2º círculo."
+            },
+            "verdadeiro": {
+                "custo": 10,
+                "efeito": "Alcance curto, afeta vários seres. Cura 7d8+7 PV.",
+                "dados": "7d8+7+/INT/",
+                "requerimento": "Requer 4º círculo."
+            }
+        },
+        {
+            "nome": "Conhecer o Paranormal (HB)",
+            "elementos": [
+                "conhecimento"
+            ],
+            "circulo": 1,
+            "execucao": "Padrão",
+            "alcance": "Médio",
+            "alvo": "1 ser",
+            "duracao": "Instantânea / Especial",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 1,
+                "efeito": "Diminui em -5 a DT de Ocultismo para identificar criatura. Requer livro com páginas em branco."
+            },
+            "discente": {
+                "custo": 3,
+                "efeito": "Durante a cena, recebe +1d6 em testes de Vontade contra a criatura identificada.",
+                "requerimento": "Requer 2º círculo."
+            },
+            "verdadeiro": {
+                "custo": 6,
+                "efeito": "DT diminui em -10. Se falhar no teste, apenas não recebe informação (sem penalidade).",
+                "requerimento": "Requer 3º círculo."
+            }
+        },
+        {
+            "nome": "Pior Pesadelo (HB)",
+            "elementos": [
+                "conhecimento"
+            ],
+            "circulo": 1,
+            "execucao": "Padrão",
+            "alcance": "Toque",
+            "alvo": "1 pessoa",
+            "duracao": "Instantânea",
+            "resistencia": "Vontade parcial",
+            "normal": {
+                "custo": 1,
+                "efeito": "Manifesta o pior pesadelo na mente do alvo, causando 2d6 de dano mental.",
+                "dados": "2d6+/INT/"
+            },
+            "discente": {
+                "custo": 3,
+                "efeito": "Dano 4d6 e o alvo fica atordoado por 1 turno.",
+                "dados": "4d6+/INT/",
+                "requerimento": "Requer 2º círculo."
+            },
+            "verdadeiro": {
+                "custo": 4,
+                "efeito": "Dano 8d6 e o alvo fica atordoado por 2 turnos.",
+                "dados": "8d6+/INT/",
+                "requerimento": "Requer 3º círculo."
+            }
+        },
+        {
+            "nome": "Voo (HB)",
+            "elementos": [
+                "conhecimento"
+            ],
+            "circulo": 3,
+            "execucao": "Padrão",
+            "alcance": "Pessoal",
+            "alvo": "Você",
+            "duracao": "Cena",
+            "resistencia": "Nenhuma",
+            "normal": {
+                "custo": 6,
+                "efeito": "Cria asas de sigilos que permitem voar livremente até o fim da cena."
+            },
+            "discente": {
+                "custo": 10,
+                "efeito": "Muda o alvo para seres escolhidos.",
+                "requerimento": "Requer 3º círculo."
+            },
+            "verdadeiro": {
+                "custo": 12,
+                "efeito": "Muda a duração para a missão inteira.",
+                "requerimento": "Requer 4º círculo."
+            }
+        }
     ],
     "dados": []
 }

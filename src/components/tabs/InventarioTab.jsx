@@ -528,6 +528,25 @@ export default function InventarioTab({ character, onUpdateInventory }) {
             </div>
           </div>
 
+          {/* Badges de Modificações/Maldições */}
+          {item.especiais?.length > 0 && (
+            <div style={{ marginTop: "0.6rem" }}>
+              <strong>Modificações</strong>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.4rem",
+                  flexWrap: "wrap",
+                  marginTop: "0.3rem",
+                }}
+              >
+                {item.especiais.map((e, i) => (
+                  <EspecialBadge key={`esp-${item.nome}-${i}`} especial={e} />
+                ))}
+              </div>
+            </div>
+          )}
+
           <div style={{ marginTop: "0.4rem", fontSize: "0.9rem" }}>
             {item.descricao}
           </div>

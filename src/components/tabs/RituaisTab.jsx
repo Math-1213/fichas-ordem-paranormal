@@ -79,6 +79,7 @@ export default function RitualTab({ character }) {
                 <option value="conhecimento">Conhecimento</option>
                 <option value="energia">Energia</option>
                 <option value="sangue">Sangue</option>
+                <option value="medo">Medo</option>
               </Form.Select>
             </Col>
             <Col xs={6} md={3}>
