@@ -1,4 +1,5 @@
 import Dice from "../models/Dice";
+import { TREINO_BONUS } from "./skills";
 /**
  * @file Mapeamentos de chaves curtas para nomes de propriedades do Personagem.
  * Utilizado pelo motor de rolagens (Dice.js) para traduzir /SIGLA/ em valores reais.

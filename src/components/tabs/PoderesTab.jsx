@@ -162,40 +162,42 @@ export default function PoderesTab({ character }) {
 
         {/* Lista de Cards de Poderes */}
         <Stack gap={3}>
-          {filteredPoderes.map((poder) => (
-            <Card
-              key={poder.id}
-              style={{
-                backgroundColor: "#1e2330",
-                border: "1px solid #2a2f3e",
-              }}
-            >
-              <Card.Body>
-                <div className="d-flex justify-content-between align-items-start">
-                  <strong style={{ fontSize: "1.05rem", color: "#fff" }}>
-                    {poder.titulo}
-                  </strong>
-                </div>
-
-                {poder.tags?.length > 0 && (
-                  <div style={{ margin: "0.4rem 0 0.6rem" }}>
-                    {poder.tags.map((t) => renderTag(t))}
+          {filteredPoderes
+            .sort((a, b) => a.titulo.localeCompare(b.titulo))
+            .map((poder) => (
+              <Card
+                key={poder.id}
+                style={{
+                  backgroundColor: "#1e2330",
+                  border: "1px solid #2a2f3e",
+                }}
+              >
+                <Card.Body>
+                  <div className="d-flex justify-content-between align-items-start">
+                    <strong style={{ fontSize: "1.05rem", color: "#fff" }}>
+                      {poder.titulo}
+                    </strong>
                   </div>
-                )}
 
-                <div
-                  style={{
-                    whiteSpace: "pre-wrap",
-                    fontSize: "0.9rem",
-                    color: "#d0d3e0",
-                    lineHeight: "1.5",
-                  }}
-                >
-                  {poder.descricao}
-                </div>
-              </Card.Body>
-            </Card>
-          ))}
+                  {poder.tags?.length > 0 && (
+                    <div style={{ margin: "0.4rem 0 0.6rem" }}>
+                      {poder.tags.map((t) => renderTag(t))}
+                    </div>
+                  )}
+
+                  <div
+                    style={{
+                      whiteSpace: "pre-wrap",
+                      fontSize: "0.9rem",
+                      color: "#d0d3e0",
+                      lineHeight: "1.5",
+                    }}
+                  >
+                    {poder.descricao}
+                  </div>
+                </Card.Body>
+              </Card>
+            ))}
 
           {/* Estado Vazio */}
           {filteredPoderes.length === 0 && (

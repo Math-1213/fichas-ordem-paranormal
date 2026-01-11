@@ -648,21 +648,27 @@ export default function InventarioTab({ character, onUpdateInventory }) {
 
         <Stack gap={3}>
           <CollapsibleSection title="Armas" count={armas.length}>
-            {armas.map((i) => (
-              <ArmaCard key={i.nome} item={i} />
-            ))}
+            {armas
+              .sort((a, b) => a.nome.localeCompare(b.nome))
+              .map((i) => (
+                <ArmaCard key={i.nome} item={i} />
+              ))}
           </CollapsibleSection>
 
           <CollapsibleSection title="Equipamentos" count={equipamentos.length}>
-            {equipamentos.map((i, idx) => (
-              <EquipamentoCard key={idx} item={i} />
-            ))}
+            {equipamentos
+              .sort((a, b) => a.nome.localeCompare(b.nome))
+              .map((i, idx) => (
+                <EquipamentoCard key={idx} item={i} />
+              ))}
           </CollapsibleSection>
 
           <CollapsibleSection title="Itens e Pistas" count={itens.length}>
-            {itens.map((i, idx) => (
-              <ItemCard key={idx} item={i} />
-            ))}
+            {itens
+              .sort((a, b) => a.nome.localeCompare(b.nome))
+              .map((i, idx) => (
+                <ItemCard key={idx} item={i} />
+              ))}
           </CollapsibleSection>
         </Stack>
       </Card.Body>

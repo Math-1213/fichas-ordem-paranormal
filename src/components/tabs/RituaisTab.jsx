@@ -29,7 +29,7 @@ export default function RitualTab({ character }) {
 
   const rituaisFiltrados = useMemo(() => {
     return rituais.filter((r) => {
-      const matchNome = r.nome.toLowerCase().includes(nome.toLowerCase());
+      const matchNome = r.nome?.toLowerCase().includes(nome.toLowerCase());
       const matchElemento =
         !elemento ||
         r.elementos?.some((e) => e.toLowerCase() === elemento.toLowerCase());
@@ -102,15 +102,17 @@ export default function RitualTab({ character }) {
 
       {/* LISTA DE RITUAIS */}
       <Accordion className="custom-ritual-accordion">
-        {rituaisFiltrados.map((ritual, i) => (
-          <RitualCard
-            key={ritual.nome + i}
-            ritual={ritual}
-            character={character}
-            rolls={rolls}
-            setRolls={setRolls}
-          />
-        ))}
+        {rituaisFiltrados
+          .sort((a, b) => a.nome.localeCompare(b.nome))
+          .map((ritual, i) => (
+            <RitualCard
+              key={ritual.nome + i}
+              ritual={ritual}
+              character={character}
+              rolls={rolls}
+              setRolls={setRolls}
+            />
+          ))}
       </Accordion>
     </Stack>
   );
