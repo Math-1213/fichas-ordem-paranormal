@@ -1,13 +1,98 @@
 from flask import Blueprint, request, jsonify
 from backend.controllers.character_controller import CharacterController
 
+# Definição do Blueprint para organizar as rotas relacionadas a personagens
 character_bp = Blueprint("characters", __name__, url_prefix="/characters")
+
+# Lista de seções permitidas para evitar acessos indevidos a chaves inexistentes
+valid_parts = ["infos", "atributos", "pericias", "status", "poderes", "inventario", "rituais", "dados"]
 
 @character_bp.get("/")
 def list_characters():
+    """
+    Lista todos os personagens com seus dados completos.
+    
+    Returns:
+        JSON: Array de objetos Character completos.
+    """
+    # Note: CharacterController.list() deve retornar todos os personagens
     return jsonify(CharacterController.list())
 
 @character_bp.post("/")
 def create_character():
+    """
+    Cria um novo personagem.
+    
+    Payload (JSON): Dados do personagem seguindo a estrutura da classe Character.
+    Returns:
+        JSON: O personagem criado com seu novo ID.
+        Status: 201 Created.
+    """
     data = request.json
     return jsonify(CharacterController.create(data)), 201
+
+@character_bp.get("/summary")
+def list_summary():
+    """
+    Retorna uma lista simplificada de personagens para exibição em menus.
+    
+    Returns:
+        JSON: Array de objetos contendo apenas {id, nome}.
+    """
+    return jsonify(CharacterController.list_summary())
+
+@character_bp.get("/<id>")
+def get_full_character(id):
+    """
+    Busca um personagem específico pelo ID.
+    
+    Args:
+        id (str): UUID do personagem.
+    Returns:
+        JSON: Dados completos ou mensagem de erro 404.
+    """
+    char = CharacterController.get_by_id(id)
+    if not char:
+        return jsonify({"error": "Personagem não encontrado"}), 404
+    return jsonify(char)
+
+@character_bp.get("/<parte>/<id>")
+def get_character_part(parte, id):
+    """
+    Recupera apenas uma seção específica de um personagem.
+    
+    Args:
+        parte (str): Nome da seção (ex: 'inventario').
+        id (str): UUID do personagem.
+    Returns:
+        JSON: Os dados da seção solicitada.
+    """
+    if parte not in valid_parts:
+        return jsonify({"error": f"Parte '{parte}' inválida"}), 400
+        
+    data = CharacterController.get_part(id, parte)
+    if data is None:
+        return jsonify({"error": "Personagem não encontrado"}), 404
+    return jsonify(data)
+
+@character_bp.patch("/<parte>/<id>")
+def update_character_part(parte, id):
+    """
+    Atualiza parcialmente um personagem, modificando apenas uma seção.
+    
+    Args:
+        parte (str): Nome da seção a ser atualizada.
+        id (str): UUID do personagem.
+    Payload (JSON): Novos dados para aquela seção específica.
+    Returns:
+        JSON: O personagem completo atualizado.
+    """
+    if parte not in valid_parts:
+        return jsonify({"error": f"Parte '{parte}' inválida"}), 400
+
+    new_data = request.json
+    updated = CharacterController.update_part(id, parte, new_data)
+    
+    if not updated:
+        return jsonify({"error": "Personagem não encontrado"}), 404
+    return jsonify(updated)
