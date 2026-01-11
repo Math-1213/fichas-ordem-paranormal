@@ -1,16 +1,71 @@
-# React + Vite
+# 🌀 Ficha Paranormal - Dashboard de RPG
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma aplicação web interativa e de alta performance desenvolvida para jogadores do sistema de RPG **Ordem Paranormal**. Este dashboard permite gerenciar personagens, realizar rolagens de dados complexas e consultar rituais de forma dinâmica.
 
-Currently, two official plugins are available:
+## ✨ Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **🎲 Calculadora de Dados Inteligente**: Suporta expressões complexas (ex: `/FOR/d20 + /LUTA/`).
+- **🔄 Modos de Rolagem**: Alternância entre **Modo Teste** (pega o melhor dado) e **Modo Soma** (soma todos os valores, ideal para dano).
+- **🔮 Grimório de Rituais**: Listagem completa com filtros por elemento (Sangue, Morte, Energia, Conhecimento, Medo) e círculo.
+- **📜 Histórico em Tempo Real**: Registro das últimas 10 rolagens da sessão com detalhes técnicos.
+- **📱 Interface Responsiva**: Design Dark Mode otimizado para desktop e dispositivos móveis usando React-Bootstrap.
 
-## React Compiler
+## 🛠️ Tecnologias Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [React](https://reactjs.org/) - Biblioteca UI.
+- [Vite](https://vitejs.dev/) - Bundler de próxima geração para um desenvolvimento rápido.
+- [React-Bootstrap](https://react-bootstrap.github.io/) - Framework de componentes UI.
+- [Lucide React](https://lucide.dev/) - Conjunto de ícones leves.
+- [JSDoc](https://jsdoc.app/) - Documentação de funções e lógica.
 
-## Expanding the ESLint configuration
+## 🚀 Começando
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Siga as instruções abaixo para rodar o projeto localmente.
+
+### Pré-requisitos
+
+Certifique-se de ter o [Node.js](https://nodejs.org/) instalado (versão 18 ou superior).
+
+### Instalação
+
+1. Clone o repositório:
+   ```bash
+   git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
+   ```
+2. Entre na pasta do projeto:
+
+   ```bash
+   cd nome-do-repositorio
+   ```
+
+3. Instale as dependências:
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+4. Inicie o servidor de desenvolvimento:
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. Abra o navegador no endereço indicado pelo terminal (geralmente http://localhost:5173).
+
+⚙️ Sistema de Rolagem
+O projeto utiliza uma lógica personalizada para traduzir abreviações da ficha:
+
+/FOR/ -> Traduz para o valor do atributo Força do personagem.
+
+/PONT/ -> Traduz para o bônus da perícia Pontaria.
+
+d20 -> Dispara automaticamente a mecânica de "pegar o melhor" se estiver no Modo Teste.
+
+📄 Licença
+Este projeto é para fins de entretenimento e suporte à comunidade de RPG. Sinta-se à vontade para contribuir!
+
+Desenvolvido com ❤️ para a comunidade de Ordem Paranormal.
