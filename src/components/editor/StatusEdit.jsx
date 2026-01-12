@@ -1,176 +1,352 @@
 import { useState, useEffect } from "react";
+import { Card, Row, Col, Form, InputGroup, Stack } from "react-bootstrap";
 import {
-  Card,
-  Row,
-  Col,
-  ProgressBar,
-  Button,
-  Image,
-  Stack,
-  Badge,
-  Form,
-} from "react-bootstrap";
-import { CharacterService } from "../../data/characters_service";
+  Heart,
+  Brain,
+  Zap,
+  Shield,
+  Flame,
+  ShieldAlert,
+  ShieldCheck,
+  Activity,
+} from "lucide-react";
+import { ELEMENT_DATA } from "../../configs/paranormal";
 
-/**
- * Aba de Status e Combate.
- * Gerencia PV, SAN, PE e exibe as defesas calculadas (Passiva, Esquiva, Bloqueio).
- */
-export default function StatusEdit({ character }) {
-  const { status, infos, id } = character;
+export default function StatusEdit({ data, onChange }) {
+  const [status, setStatus] = useState({
+    vidaMax: 0,
+    sanidadeMax: 0,
+    esforcoMax: 0,
+    defesas: { passiva: 0, bonusReflexos: 0, bonusFortitude: 0 },
+    resistencias: {
+      elementos: {
+        Mental: 0,
+        Morte: 0,
+        Conhecimento: 0,
+        Sangue: 0,
+        Energia: 0,
+      },
+      outras: {
+        Dano: 0,
+        Fisica: 0,
+        Balistica: 0,
+        Corte: 0,
+        Impacto: 0,
+        Perfuracao: 0,
+        Eletricidade: 0,
+        Fogo: 0,
+        Frio: 0,
+        Quimica: 0,
+      },
+    },
+    ...data,
+  });
 
-  // Estados locais para controle imediato da UI
-  const [vida, setVida] = useState(status.vida);
-  const [sanidade, setSanidade] = useState(status.sanidade);
-  const [esforco, setEsforco] = useState(status.esforco);
-
-  // Cálculos de Defesa derivados
-  // getFullPericia soma o bônus de treinamento + bônus de itens/poderes
-  const reflexos = character.getFullPericia("reflexos") ?? 0;
-  const fortitude = character.getFullPericia("fortitude") ?? 0;
-
-  const passiva = status.defesas.passiva;
-  const esquiva = passiva + reflexos + (status.defesas.bonusReflexos || 0);
-  const bloqueio = fortitude + (status.defesas.bonusFortitude || 0);
-
-  // Efeito de Debounce: Salva no CharacterService após 1 segundo de inatividade nos inputs
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (
-        vida !== status.vida ||
-        sanidade !== status.sanidade ||
-        esforco !== status.esforco
-      ) {
-        CharacterService.updateStatus(id, { vida, sanidade, esforco });
-      }
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [vida, sanidade, esforco, id, status]);
+    if (data) setStatus((prev) => ({ ...prev, ...data }));
+  }, [data]);
 
-  /**
-   * Componente interno para as barras de progresso interativas
-   */
-  function StatBar({ label, value, max, onChange, color }) {
-    const [inputValue, setInputValue] = useState(String(value));
+  const handleUpdate = (path, value) => {
+    const keys = path.split(".");
+    const newStatus = { ...status };
+    let current = newStatus;
+    for (let i = 0; i < keys.length - 1; i++) {
+      current = current[keys[i]];
+    }
+    current[keys[keys.length - 1]] = value;
 
-    useEffect(() => {
-      setInputValue(String(value));
-    }, [value]);
+    if (path === "vidaMax") newStatus.vida = value;
+    if (path === "sanidadeMax") newStatus.sanidade = value;
+    if (path === "esforcoMax") newStatus.esforco = value;
 
-    const adjust = (delta, e) => {
-      const step = e.shiftKey ? 5 : 1;
-      const next = Math.max(0, Math.min(max, value + delta * step));
-      onChange(next);
-    };
+    setStatus(newStatus);
+    if (onChange) onChange(newStatus);
+  };
 
-    const handleBlur = () => {
-      const num = Number(inputValue);
-      if (!isNaN(num)) {
-        onChange(Math.max(0, Math.min(max, num)));
-      } else {
-        setInputValue(String(value));
-      }
-    };
-
-    return (
-      <div className="mb-3">
-        <div className="d-flex justify-content-between align-items-center mb-1">
-          <strong style={{ fontSize: "0.85rem", color: "#fff" }}>{label}</strong>
-          <div className="d-flex gap-1 align-items-center">
-            <Form.Control
-              size="sm"
-              className="bg-dark text-white border-secondary text-center"
-              style={{ width: "50px", fontSize: "0.8rem", padding: "2px" }}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onBlur={handleBlur}
-            />
-            <span style={{ color: "#9aa0b3", fontSize: "0.8rem" }}>/ {max}</span>
-          </div>
-        </div>
-
-        <Row className="align-items-center g-2">
-          <Col xs="auto">
-            <Button size="sm" variant="outline-danger" onClick={(e) => adjust(-1, e)} style={{ width: "30px" }}>-</Button>
-          </Col>
-          <Col>
-            <ProgressBar 
-              now={(value / max) * 100} 
-              variant={color} 
-              style={{ height: "12px", backgroundColor: "#0f1220" }} 
-            />
-          </Col>
-          <Col xs="auto">
-            <Button size="sm" variant="outline-success" onClick={(e) => adjust(1, e)} style={{ width: "30px" }}>+</Button>
-          </Col>
-        </Row>
-      </div>
-    );
-  }
-
-  // Filtros de Resistência
-  const resistElementos = Object.entries(status.resistencias?.elementos || {}).filter(([, v]) => v > 0);
-  const resistOutras = Object.entries(status.resistencias?.outras || {}).filter(([, v]) => v > 0);
+  const inputStyle = {
+    backgroundColor: "#0d1117",
+    color: "#fff",
+    borderColor: "#2a2f3e",
+  };
+  const labelStyle = {
+    color: "#f8f9fa",
+    fontWeight: "700",
+    letterSpacing: "0.5px",
+  };
 
   return (
-    <Card style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}>
-      <Card.Body>
-        <Row className="g-3">
-          {/* Portrait e Barras */}
-          <Col xs={12} lg={6}>
-            <div className="d-flex gap-3 align-items-start mb-4">
-              {infos.portrait && (
-                <Image
-                  src={infos.portrait}
-                  style={{ width: "100px", height: "100px", objectFit: "cover", border: "2px solid #2a2f3e" }}
-                  rounded
-                />
-              )}
-              <div className="flex-grow-1">
-                <StatBar label="VIDA" value={vida} max={status.vidaMax} onChange={setVida} color="danger" />
-                <StatBar label="SANIDADE" value={sanidade} max={status.sanidadeMax} onChange={setSanidade} color="info" />
-                <StatBar label="ESFORÇO" value={esforco} max={status.esforcoMax} onChange={setEsforco} color="warning" />
-              </div>
-            </div>
-          </Col>
-
-          {/* Defesas */}
-          <Col xs={12} lg={6}>
-            <div className="p-3 rounded" style={{ backgroundColor: "#1e2330", border: "1px solid #2a2f3e" }}>
-              <div className="text-center text-muted fw-bold mb-3" style={{ fontSize: "0.7rem", letterSpacing: "1px" }}>DEFESAS ATUAIS</div>
-              <Row className="text-center">
-                <Col>
-                  <div className="h4 mb-0 fw-bold">{passiva}</div>
-                  <Badge bg="secondary" style={{ fontSize: "0.6rem" }}>PASSIVA</Badge>
+    <div className="pb-4">
+      <Row className="g-3">
+        {/* 1. ATRIBUTOS VITAIS (DESTAQUE MÁXIMO) */}
+        <Col xs={12}>
+          <Card
+            style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}
+          >
+            <Card.Body className="p-4">
+              <Row className="g-4 text-center">
+                <Col md={4}>
+                  <div className="d-flex flex-column align-items-center mb-2">
+                    <Heart
+                      className="text-danger mb-2"
+                      fill="#ff3b3b"
+                      size={32}
+                    />
+                    <span style={labelStyle}>VIDA MÁXIMA</span>
+                  </div>
+                  <Form.Control
+                    type="number"
+                    className="form-control-lg text-center fw-bold text-danger"
+                    style={{
+                      ...inputStyle,
+                      fontSize: "1.8rem",
+                      borderBottom: "3px solid #ff3b3b",
+                    }}
+                    value={status.vidaMax}
+                    onChange={(e) =>
+                      handleUpdate("vidaMax", parseInt(e.target.value) || 0)
+                    }
+                  />
                 </Col>
-                <Col style={{ borderLeft: "1px solid #2a2f3e", borderRight: "1px solid #2a2f3e" }}>
-                  <div className="h4 mb-0 fw-bold text-primary">{esquiva}</div>
-                  <Badge bg="primary" style={{ fontSize: "0.6rem" }}>ESQUIVA</Badge>
+                <Col md={4}>
+                  <div className="d-flex flex-column align-items-center mb-2">
+                    <Brain
+                      className="text-info mb-2"
+                      fill="#3b82f6"
+                      size={32}
+                    />
+                    <span style={labelStyle}>SANIDADE MÁXIMA</span>
+                  </div>
+                  <Form.Control
+                    type="number"
+                    className="form-control-lg text-center fw-bold text-info"
+                    style={{
+                      ...inputStyle,
+                      fontSize: "1.8rem",
+                      borderBottom: "3px solid #3b82f6",
+                    }}
+                    value={status.sanidadeMax}
+                    onChange={(e) =>
+                      handleUpdate("sanidadeMax", parseInt(e.target.value) || 0)
+                    }
+                  />
                 </Col>
-                <Col>
-                  <div className="h4 mb-0 fw-bold text-success">{bloqueio}</div>
-                  <Badge bg="success" style={{ fontSize: "0.6rem" }}>BLOQUEIO</Badge>
+                <Col md={4}>
+                  <div className="d-flex flex-column align-items-center mb-2">
+                    <Zap
+                      className="text-warning mb-2"
+                      fill="#ffee58"
+                      size={32}
+                    />
+                    <span style={labelStyle}>ESFORÇO (PE) MÁX.</span>
+                  </div>
+                  <Form.Control
+                    type="number"
+                    className="form-control-lg text-center fw-bold text-warning"
+                    style={{
+                      ...inputStyle,
+                      fontSize: "1.8rem",
+                      borderBottom: "3px solid #ffee58",
+                    }}
+                    value={status.esforcoMax}
+                    onChange={(e) =>
+                      handleUpdate("esforcoMax", parseInt(e.target.value) || 0)
+                    }
+                  />
                 </Col>
               </Row>
-            </div>
+            </Card.Body>
+          </Card>
+        </Col>
 
-            {/* Resistências */}
-            {(resistElementos.length > 0 || resistOutras.length > 0) && (
-              <div className="mt-3 p-2 rounded" style={{ backgroundColor: "#0b0e14", border: "1px solid #2a2f3e" }}>
-                <div style={{ fontSize: "0.7rem", color: "#9aa0b3" }} className="mb-2 fw-bold">RESISTÊNCIAS</div>
-                <div className="d-flex flex-wrap gap-1">
-                  {resistElementos.map(([k, v]) => (
-                    <Badge key={k} bg="dark" className="border border-info text-info">{k} {v}</Badge>
-                  ))}
-                  {resistOutras.map(([k, v]) => (
-                    <Badge key={k} bg="dark" className="border border-secondary">{k} {v}</Badge>
-                  ))}
-                </div>
-              </div>
-            )}
-          </Col>
-        </Row>
-      </Card.Body>
-    </Card>
+        {/* 2. DEFESAS (SEGUNDA MAIOR ENFASE) */}
+        <Col xs={12}>
+          <Card
+            style={{ backgroundColor: "#1c212b", border: "1px solid #3b82f6" }}
+          >
+            <Card.Header
+              style={{ color: "#fff", fontWeight: "700" }}
+              className="bg-primary bg-opacity-10 border-bottom border-primary py-3"
+            >
+              <ShieldCheck size={20} className="me-2 text-primary" />{" "}
+              CONFIGURAÇÃO DE DEFESAS
+            </Card.Header>
+            <Card.Body className="p-4">
+              <Row className="g-3">
+                <Col md={4}>
+                  <Form.Label className="small text-white-50 fw-bold">
+                    DEFESA PASSIVA
+                  </Form.Label>
+                  <InputGroup>
+                    <InputGroup.Text className="bg-dark border-secondary text-white">
+                      <Shield size={16} />
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="number"
+                      style={{ ...inputStyle, fontSize: "1.2rem" }}
+                      value={status.defesas.passiva}
+                      onChange={(e) =>
+                        handleUpdate(
+                          "defesas.passiva",
+                          parseInt(e.target.value) || 0
+                        )
+                      }
+                    />
+                  </InputGroup>
+                </Col>
+                <Col md={4}>
+                  <Form.Label className="small text-white-50 fw-bold">
+                    BÔNUS ESQUIVA (REFLEXOS)
+                  </Form.Label>
+                  <InputGroup>
+                    <InputGroup.Text className="bg-dark border-secondary text-primary">
+                      <Activity size={16} />
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="number"
+                      style={{ ...inputStyle, fontSize: "1.2rem" }}
+                      value={status.defesas.bonusReflexos}
+                      onChange={(e) =>
+                        handleUpdate(
+                          "defesas.bonusReflexos",
+                          parseInt(e.target.value) || 0
+                        )
+                      }
+                    />
+                  </InputGroup>
+                </Col>
+                <Col md={4}>
+                  <Form.Label className="small text-white-50 fw-bold">
+                    BÔNUS BLOQUEIO (FORTITUDE)
+                  </Form.Label>
+                  <InputGroup>
+                    <InputGroup.Text className="bg-dark border-secondary text-success">
+                      <ShieldAlert size={16} />
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="number"
+                      style={{ ...inputStyle, fontSize: "1.2rem" }}
+                      value={status.defesas.bonusFortitude}
+                      onChange={(e) =>
+                        handleUpdate(
+                          "defesas.bonusFortitude",
+                          parseInt(e.target.value) || 0
+                        )
+                      }
+                    />
+                  </InputGroup>
+                </Col>
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        {/* 3. RESISTÊNCIAS ELEMENTAIS (COM SÍMBOLOS) */}
+        <Col xs={12}>
+          <Card
+            style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}
+          >
+            <Card.Header className="bg-dark border-secondary py-3 text-white fw-bold">
+              <Flame size={18} className="me-2 text-danger" /> RESISTÊNCIAS
+              PARANORMAIS
+            </Card.Header>
+            <Card.Body>
+              <Row className="g-3 justify-content-center">
+                {Object.entries(status.resistencias.elementos)
+                  .sort((a, b) => a[0].localeCompare(b[0]))
+                  .map(([elem, val]) => {
+                    const keyBusca =
+                      elem.toLowerCase() === "mental"
+                        ? "medo"
+                        : elem.toLowerCase();
+                    const elementoInfo = ELEMENT_DATA[keyBusca];
+
+                    return (
+                      <Col xs={6} md={4} lg={2} key={elem}>
+                        <div className="text-center mb-2">
+                          {elementoInfo?.icon ? (
+                            <img
+                              src={elementoInfo.icon}
+                              alt={elem}
+                              style={{
+                                width: "28px",
+                                height: "28px",
+                                objectFit: "contain",
+                              }}
+                            />
+                          ) : (
+                            <div style={{ height: "28px" }} />
+                          )}
+                          <div
+                            className="small mt-1 fw-bold"
+                            style={{ color: elementoInfo?.color || "#adb5bd" }}
+                          >
+                            {elem.toUpperCase()}
+                          </div>
+                        </div>
+                        <Form.Control
+                          type="number"
+                          size="sm"
+                          className="text-center fw-bold"
+                          style={inputStyle}
+                          value={val}
+                          onChange={(e) =>
+                            handleUpdate(
+                              `resistencias.elementos.${elem}`,
+                              parseInt(e.target.value) || 0
+                            )
+                          }
+                        />
+                      </Col>
+                    );
+                  })}
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        {/* 4. OUTRAS RESISTÊNCIAS */}
+        <Col xs={12}>
+          <Card
+            style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}
+          >
+            <Card.Header
+              style={{ color: "#fff", fontWeight: "700" }}
+              className="bg-dark border-secondary py-2 small"
+            >
+              RESISTÊNCIAS GERAIS E FÍSICAS
+            </Card.Header>
+            <Card.Body className="py-2">
+              <Row className="g-2">
+                {Object.entries(status.resistencias.outras).map(
+                  ([res, val]) => (
+                    <Col xs={6} md={3} lg={2} key={res}>
+                      <InputGroup size="sm">
+                        <InputGroup.Text
+                          style={{ width: "85px", fontSize: "0.65rem" }}
+                          className="bg-dark border-secondary text-white-50 fw-bold"
+                        >
+                          {res.toUpperCase()}
+                        </InputGroup.Text>
+                        <Form.Control
+                          type="number"
+                          style={inputStyle}
+                          value={val}
+                          onChange={(e) =>
+                            handleUpdate(
+                              `resistencias.outras.${res}`,
+                              parseInt(e.target.value) || 0
+                            )
+                          }
+                        />
+                      </InputGroup>
+                    </Col>
+                  )
+                )}
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </div>
   );
 }

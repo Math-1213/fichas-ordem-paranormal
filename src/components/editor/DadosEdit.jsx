@@ -1,114 +1,178 @@
-import { useState } from "react";
-import { Card, Row, Col, Form, Button, Stack, Table } from "react-bootstrap";
-import { Save, Plus, Trash2, Dice6, Info } from "lucide-react";
+import { Card, Row, Col, Form, Button, Stack } from "react-bootstrap";
+import { Plus, Trash2, Dices, Info, Type, Sparkles } from "lucide-react";
 
-export default function DadosEdit({ data, onSave }) {
-  // data é character.dados (um array de objetos)
-  const [dados, setDados] = useState(data || []);
+export default function DadosEdit({ data = [], onChange }) {
+  // Garante que 'dados' sempre seja um array para evitar erro de .map
+  const dados = Array.isArray(data) ? data : [];
 
-  const addDado = () => {
-    const novoDado = { nome: "Novo Dado", valor: "1d20", tipo: "teste" };
-    setDados([...dados, novoDado]);
+  const handleUpdate = (newList) => {
+    if (onChange) onChange(newList);
   };
 
-  const removeDado = (index) => {
-    setDados(dados.filter((_, i) => i !== index));
+  const addItem = () => {
+    const newItem = {
+      nome: "",
+      valor: "",
+      tipo: "teste",
+      extra: "",
+    };
+    handleUpdate([...dados, newItem]);
   };
 
-  const updateDado = (index, field, value) => {
-    const novosDados = [...dados];
-    novosDados[index][field] = value;
-    setDados(novosDados);
+  const removeItem = (index) => {
+    const newList = dados.filter((_, i) => i !== index);
+    handleUpdate(newList);
+  };
+
+  const handleChange = (index, field, value) => {
+    const newList = dados.map((item, i) => {
+      if (i === index) return { ...item, [field]: value };
+      return item;
+    });
+    handleUpdate(newList);
+  };
+
+  const inputStyle = {
+    backgroundColor: "#0d1117",
+    color: "#fff",
+    borderColor: "#2a2f3e",
   };
 
   return (
-    <Card style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}>
-      <Card.Header className="bg-dark text-white d-flex justify-content-between align-items-center p-3">
-        <h5 className="mb-0 d-flex align-items-center gap-2">
-          <Dice6 size={20} className="text-danger" /> Configurar Dados da Ficha
-        </h5>
-        <Button variant="outline-success" size="sm" onClick={addDado}>
-          <Plus size={18} /> Adicionar Atalho
-        </Button>
-      </Card.Header>
-
-      <Card.Body>
-        <div className="alert alert-info border-0 bg-info bg-opacity-10 text-info small mb-4 d-flex gap-2">
-          <Info size={20} />
-          <div>
-            Estes dados aparecerão como botões rápidos na sua ficha. <br />
-            Use <b>/FOR/</b>, <b>/AGI/</b> etc, para usar seus atributos, ou expressões normais como <b>2d6 + 4</b>.
+    <div className="pb-4">
+      <Card style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}>
+        <Card.Header className="bg-dark border-secondary py-3 d-flex justify-content-between align-items-center">
+          <div className="text-white fw-bold d-flex align-items-center">
+            <Dices size={20} className="me-2 text-warning" />
+            DADOS E ROLAGENS CUSTOMIZADAS
           </div>
-        </div>
-
-        <Table responsive variant="dark" className="align-middle border-secondary">
-          <thead>
-            <tr className="text-muted small">
-              <th style={{ width: "35%" }}>NOME DO ATALHO</th>
-              <th style={{ width: "35%" }}>FÓRMULA / EXPRESSÃO</th>
-              <th style={{ width: "20%" }}>MODO</th>
-              <th style={{ width: "10%" }}></th>
-            </tr>
-          </thead>
-          <tbody>
-            {dados.map((dado, idx) => (
-              <tr key={idx} style={{ borderBottom: "1px solid #2a2f3e" }}>
-                <td>
-                  <Form.Control
-                    size="sm"
-                    value={dado.nome}
-                    placeholder="Ex: Espada Curta"
-                    onChange={(e) => updateDado(idx, "nome", e.target.value)}
-                    style={{ backgroundColor: "#0d1117", color: "#fff", borderColor: "#2a2f3e" }}
-                  />
-                </td>
-                <td>
-                  <Form.Control
-                    size="sm"
-                    value={dado.valor}
-                    placeholder="Ex: /FOR/d20 + 5"
-                    onChange={(e) => updateDado(idx, "valor", e.target.value)}
-                    style={{ backgroundColor: "#0d1117", color: "#fff", borderColor: "#2a2f3e", fontFamily: "monospace" }}
-                  />
-                </td>
-                <td>
-                  <Form.Select
-                    size="sm"
-                    value={dado.tipo || "teste"}
-                    onChange={(e) => updateDado(idx, "tipo", e.target.value)}
-                    style={{ backgroundColor: "#0d1117", color: "#fff", borderColor: "#2a2f3e" }}
-                  >
-                    <option value="teste">Teste (Pega o Maior)</option>
-                    <option value="soma">Soma (Dano/Cura)</option>
-                  </Form.Select>
-                </td>
-                <td className="text-end">
-                  <Button 
-                    variant="outline-danger" 
-                    size="sm" 
-                    onClick={() => removeDado(idx)}
-                    style={{ border: 'none' }}
-                  >
-                    <Trash2 size={18} />
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-
-        {dados.length === 0 && (
-          <div className="text-center py-4 text-muted">
-            Nenhum atalho configurado. Clique em "Adicionar Atalho" para começar.
-          </div>
-        )}
-
-        <div className="d-grid mt-4">
-          <Button variant="danger" size="lg" className="fw-bold" onClick={() => onSave(dados)}>
-            <Save size={20} className="me-2" /> SALVAR CONFIGURAÇÕES DE DADOS
+          <Button
+            variant="outline-primary"
+            size="sm"
+            onClick={addItem}
+            className="d-flex align-items-center gap-1"
+          >
+            <Plus size={16} /> Adicionar Dado
           </Button>
-        </div>
-      </Card.Body>
-    </Card>
+        </Card.Header>
+
+        <Card.Body className="p-3">
+          <Stack gap={3}>
+            {dados.length === 0 ? (
+              <div className="text-center py-5 border border-dashed border-secondary rounded opacity-50">
+                <Dices size={40} className="text-muted mb-2" />
+                <div className="text-muted small">
+                  Nenhum dado customizado. Clique em adicionar para começar.
+                </div>
+              </div>
+            ) : (
+              dados.map((item, index) => (
+                <Card
+                  key={index}
+                  style={{
+                    backgroundColor: "#0d1117",
+                    border: "1px solid #30363d",
+                  }}
+                  className="p-3"
+                >
+                  <Row className="g-2">
+                    {/* Linha 1: Nome e Tipo */}
+                    <Col md={8}>
+                      <Form.Label className="small text-white-50 fw-bold d-flex align-items-center gap-1">
+                        <Type size={14} /> NOME DO DADO
+                      </Form.Label>
+                      <Form.Control
+                        style={inputStyle}
+                        placeholder="Ex: Ataque Katana"
+                        value={item.nome || ""}
+                        onChange={(e) =>
+                          handleChange(index, "nome", e.target.value)
+                        }
+                      />
+                    </Col>
+                    <Col md={4}>
+                      <Form.Label className="small text-white-50 fw-bold">
+                        MODO
+                      </Form.Label>
+                      <Form.Select
+                        style={inputStyle}
+                        value={item.tipo || "teste"}
+                        onChange={(e) =>
+                          handleChange(index, "tipo", e.target.value)
+                        }
+                      >
+                        <option value="teste">Teste (Pega o Maior)</option>
+                        <option value="soma">Soma (Soma tudo)</option>
+                      </Form.Select>
+                    </Col>
+
+                    {/* Linha 2: Fórmula e Extra */}
+                    <Col md={6}>
+                      <Form.Label className="small text-white-50 fw-bold d-flex align-items-center gap-1">
+                        <Dices size={14} /> FÓRMULA
+                      </Form.Label>
+                      <Form.Control
+                        style={{
+                          ...inputStyle,
+                          fontFamily: "monospace",
+                          color: "#58a6ff",
+                        }}
+                        placeholder="Ex: /FOR/d20 + 5"
+                        value={item.valor || ""}
+                        onChange={(e) =>
+                          handleChange(index, "valor", e.target.value)
+                        }
+                      />
+                    </Col>
+                    <Col md={5}>
+                      <Form.Label className="small text-white-50 fw-bold d-flex align-items-center gap-1">
+                        <Sparkles size={14} className="text-warning" /> INFO
+                        EXTRA / DANO
+                      </Form.Label>
+                      <Form.Control
+                        style={{ ...inputStyle, color: "#9dff9d" }}
+                        placeholder="Ex: 2d10 + 5 Corte"
+                        value={item.extra || ""}
+                        onChange={(e) =>
+                          handleChange(index, "extra", e.target.value)
+                        }
+                      />
+                    </Col>
+
+                    {/* Lixo */}
+                    <Col md={1} className="d-flex align-items-end">
+                      <Button
+                        variant="outline-danger"
+                        size="sm"
+                        onClick={() => removeItem(index)}
+                        className="w-100"
+                        style={{ height: "38px" }}
+                      >
+                        <Trash2 size={18} />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Card>
+              ))
+            )}
+          </Stack>
+        </Card.Body>
+
+        <Card.Footer className="bg-dark border-secondary py-2">
+          <div
+            className="d-flex align-items-center gap-2"
+            style={{ fontSize: "0.75rem" }}
+          >
+            <Info size={14} className="text-info" />
+            <span style={{ color: "#adb5bd" }}>
+              {" "}
+              {/* Cor cinza clara (Bootstrap gray-500) */}
+              Dica: Use <strong>/SIGLA/</strong> para atributos (ex:{" "}
+              <strong>/FOR/</strong>, <strong>/AGI/</strong>).
+            </span>
+          </div>
+        </Card.Footer>
+      </Card>
+    </div>
   );
 }

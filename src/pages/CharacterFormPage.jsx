@@ -53,6 +53,10 @@ export default function CharacterFormPage() {
     }
   }, [id]);
 
+  useEffect(() => {
+    console.log("Personagem: ", character);
+  }, [character]);
+
   /**
    * Atualiza o estado local do personagem sem salvar no banco ainda.
    * Isso permite que o usuário navegue entre abas sem perder o que digitou.
@@ -115,54 +119,54 @@ export default function CharacterFormPage() {
           />
         </Tab>
 
-        {/* <Tab eventKey="atributos" title="Atributos">
+        <Tab eventKey="atributos" title="Atributos">
           <AtributosEdit
             data={character.atributos}
-            onSave={(newData) => savePart("atributos", newData)}
+            onSave={(newData) => handleLocalUpdate("atributos", newData)}
           />
         </Tab>
 
         <Tab eventKey="pericias" title="Pericias">
           <PericiasEdit
-            data={character.atributos}
-            onSave={(newData) => savePart("pericias", newData)}
+            data={character.pericias}
+            onSave={(newData) => handleLocalUpdate("pericias", newData)}
           />
         </Tab>
 
         <Tab eventKey="status" title="Status">
           <StatusEdit
-            data={character.atributos}
-            onSave={(newData) => savePart("status", newData)}
+            data={character.status}
+            onSave={(newData) => handleLocalUpdate("status", newData)}
           />
         </Tab>
 
-        <Tab eventKey="poderes" title="Poderes">
+        {/* <Tab eventKey="poderes" title="Poderes">
           <PoderesEdit
-            data={character.atributos}
-            onSave={(newData) => savePart("pericias", newData)}
+            data={character.poderes}
+            onSave={(newData) => handleLocalUpdate("pericias", newData)}
           />
-        </Tab>
+        </Tab> */}
 
-        <Tab eventKey="inventario" title="Inventario">
+        {/* <Tab eventKey="inventario" title="Inventario">
           <InventarioEdit
-            data={character.atributos}
-            onSave={(newData) => savePart("rituais", newData)}
+            data={character.inventario}
+            onSave={(newData) => handleLocalUpdate("rituais", newData)}
           />
-        </Tab>
+        </Tab> */}
 
-        <Tab eventKey="rituais" title="Rituais">
+        {/* <Tab eventKey="rituais" handleLocalUpdate="Rituais">
           <RitualEdit
-            data={character.atributos}
+            data={character.rituais}
             onSave={(newData) => savePart("rituais", newData)}
           />
-        </Tab>
+        </Tab> */}
 
         <Tab eventKey="dados" title="Dados">
           <DadosEdit
-            data={character.atributos}
-            onSave={(newData) => savePart("dados", newData)}
+            data={character.dados || []}
+            onChange={(newData) => handleLocalUpdate("dados", newData)}
           />
-        </Tab> */}
+        </Tab>
       </Tabs>
       {/* BOTÃO SALVAR FIXO (Rodapé) */}
       <div

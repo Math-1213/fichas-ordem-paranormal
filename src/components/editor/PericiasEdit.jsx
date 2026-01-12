@@ -1,118 +1,251 @@
-import { useState } from "react";
-import { Card, Row, Col, Form, Button, Badge } from "react-bootstrap";
-import { Save, Search, Info } from "lucide-react";
-import {
-  PERICIAS,
-  TREINO_LABELS,
-  TREINO_COLORS,
-} from "../../configs/skills";
+import { useState, useEffect } from "react";
+import { Card, Row, Col, Form, Badge } from "react-bootstrap";
+import { Search, Award } from "lucide-react";
+import { PERICIAS, TREINO_LABELS, TREINO_COLORS } from "../../configs/skills";
 
-export default function PericiasEdit({ data, onSave }) {
-  // 'data' aqui é o objeto character.pericias
+export default function PericiasEdit({ data, onChange }) {
   const [pericias, setPericias] = useState(data || {});
   const [filter, setFilter] = useState("");
 
+  useEffect(() => {
+    if (data) setPericias(data);
+  }, [data]);
+
   const handleUpdate = (nome, field, value) => {
-    setPericias(prev => ({
-      ...prev,
+    const newPericias = {
+      ...pericias,
       [nome]: {
-        ...(prev[nome] || { treino: "destreinado", bonus: 0 }),
-        [field]: value
-      }
-    }));
+        ...(pericias[nome] || {
+          treino: "destreinado",
+          bonus: 0,
+          dadosExtras: 0,
+        }),
+        [field]: value,
+      },
+    };
+    setPericias(newPericias);
+    if (onChange) onChange(newPericias);
   };
 
-  // Filtra as perícias conforme a busca
   const filteredSkills = Object.keys(PERICIAS)
-    .sort((a, b) => a.localeCompare(b))
-    .filter(nome => 
-        PERICIAS[nome].label.toLowerCase().includes(filter.toLowerCase())
+    .sort((a, b) => PERICIAS[a].label.localeCompare(PERICIAS[b].label))
+    .filter((nome) =>
+      PERICIAS[nome].label.toLowerCase().includes(filter.toLowerCase())
     );
+
+  const inputStyle = {
+    backgroundColor: "#0d1117",
+    color: "#fff",
+    borderColor: "#2a2f3e",
+  };
 
   return (
     <Card style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}>
-      <Card.Header className="d-flex justify-content-between align-items-center bg-dark border-secondary p-3">
-        <h5 className="mb-0 text-white">Treinamento de Perícias</h5>
-        <div className="d-flex gap-2">
+      <Card.Header className="bg-dark border-secondary p-3">
+        <Row className="align-items-center">
+          <Col>
+            <h5 className="mb-0 text-white d-flex align-items-center gap-2">
+              <Award size={20} className="text-info" /> Treinamento de Perícias
+            </h5>
+          </Col>
+          <Col xs="auto">
             <div className="position-relative">
-                <Search size={16} className="position-absolute" style={{ left: '10px', top: '10px', color: '#9aa0b3' }} />
-                <Form.Control 
-                    placeholder="Buscar perícia..." 
-                    size="sm"
-                    className="ps-5"
-                    style={{ backgroundColor: "#0d1117", borderColor: "#2a2f3e", color: "#fff", width: "200px" }}
-                    onChange={(e) => setFilter(e.target.value)}
-                />
+              <Search
+                size={16}
+                className="position-absolute"
+                style={{ left: "10px", top: "10px", color: "#9aa0b3" }}
+              />
+              <Form.Control
+                placeholder="Buscar perícia..."
+                size="sm"
+                className="ps-5"
+                style={{ ...inputStyle, width: "200px" }}
+                onChange={(e) => setFilter(e.target.value)}
+              />
             </div>
-            <Button variant="info" size="sm" onClick={() => onSave(pericias)}>
-                <Save size={16} className="me-1" /> Salvar
-            </Button>
-        </div>
+          </Col>
+        </Row>
       </Card.Header>
 
-      <Card.Body style={{ maxHeight: "60vh", overflowY: "auto", padding: "0.75rem" }}>
+      <Card.Body style={{ padding: "1rem" }}>
+        {/* HEADER DA TABELA */}
+        <Row className="mb-2 px-2 text-muted small fw-bold d-none d-md-flex">
+          <Col md={3}>PERÍCIA / ATRIBUTO</Col>
+          <Col md={3}>TREINAMENTO</Col>
+          <Col md={2}>BÔNUS FIXO</Col>
+          <Col md={2}>DADOS EXTRAS</Col>
+          <Col md={2} className="text-end">
+            REGRAS
+          </Col>
+        </Row>
+
         {filteredSkills.map((nome) => {
           const config = PERICIAS[nome];
-          const skillData = pericias[nome] ?? { treino: "destreinado", bonus: 0 };
+          const skillData = pericias[nome] ?? {
+            treino: "destreinado",
+            bonus: 0,
+            dadosExtras: 0,
+          };
 
           return (
-            <Row
+            <div
               key={nome}
-              className="align-items-center mb-2 g-2 p-2 rounded"
-              style={{ backgroundColor: "#1e233044", border: "1px solid #2a2f3e" }}
+              className="mb-2 p-2 rounded"
+              style={{
+                backgroundColor: "#1e233044",
+                border: "1px solid #2a2f3e",
+              }}
             >
-              {/* NOME E INFO */}
-              <Col md={3}>
-                <div className="fw-bold text-white" style={{ fontSize: "0.95rem" }}>{config.label}</div>
-                <div className="text-muted small text-uppercase">{config.atributo.substring(0,3)}</div>
-              </Col>
+              <Row className="align-items-center g-2">
+                {/* NOME E ATRIBUTO */}
+                <Col xs={12} md={3}>
+                  <div
+                    className="fw-bold text-white"
+                    style={{ fontSize: "0.95rem" }}
+                  >
+                    {config.label}
+                  </div>
+                  <div
+                    className="text-muted small text-uppercase"
+                    style={{ fontSize: "0.65rem" }}
+                  >
+                    {config.atributo}
+                  </div>
+                </Col>
 
-              {/* SELETOR DE TREINO */}
-              <Col md={3}>
-                <Form.Select
-                  size="sm"
-                  value={skillData.treino}
-                  onChange={(e) => handleUpdate(nome, "treino", e.target.value)}
-                  style={{ 
-                    backgroundColor: "#0d1117", 
-                    color: "#fff", 
-                    borderColor: TREINO_COLORS[skillData.treino] ? `var(--bs-${TREINO_COLORS[skillData.treino]})` : "#2a2f3e" 
-                  }}
+                {/* SELETOR DE TREINO */}
+                <Col xs={12} md={3}>
+                  <Form.Select
+                    size="sm"
+                    value={skillData.treino}
+                    onChange={(e) =>
+                      handleUpdate(nome, "treino", e.target.value)
+                    }
+                    style={{
+                      ...inputStyle,
+                      borderColor:
+                        skillData.treino !== "destreinado"
+                          ? `var(--bs-${TREINO_COLORS[skillData.treino]})`
+                          : "#2a2f3e",
+                    }}
+                  >
+                    {Object.keys(TREINO_LABELS).map((key) => (
+                      <option key={key} value={key}>
+                        {TREINO_LABELS[key]}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </Col>
+
+                {/* BÔNUS FIXO (+) */}
+                <Col xs={6} md={2}>
+                  <div className="input-group input-group-sm">
+                    <span
+                      className="input-group-text"
+                      style={{
+                        backgroundColor: "#1e2330",
+                        color: "#9aa0b3",
+                        border: "1px solid #2a2f3e",
+                      }}
+                    >
+                      +
+                    </span>
+                    <Form.Control
+                      type="number"
+                      value={skillData.bonus}
+                      onChange={(e) =>
+                        handleUpdate(
+                          nome,
+                          "bonus",
+                          parseInt(e.target.value) || 0
+                        )
+                      }
+                      style={inputStyle}
+                    />
+                  </div>
+                </Col>
+
+                {/* DADOS EXTRAS (D) */}
+                <Col xs={6} md={2}>
+                  <div className="input-group input-group-sm">
+                    <span
+                      className="input-group-text"
+                      style={{
+                        backgroundColor: "#1e2330",
+                        color: "#3b82f6",
+                        border: "1px solid #2a2f3e",
+                      }}
+                    >
+                      D
+                    </span>
+                    <Form.Control
+                      type="number"
+                      placeholder="0"
+                      value={skillData.dadosExtras || 0}
+                      onChange={(e) =>
+                        handleUpdate(
+                          nome,
+                          "dadosExtras",
+                          parseInt(e.target.value) || 0
+                        )
+                      }
+                      style={{
+                        ...inputStyle,
+                        borderColor:
+                          skillData.dadosExtras > 0 ? "#3b82f6" : "#2a2f3e",
+                      }}
+                    />
+                  </div>
+                </Col>
+
+                {/* PROFISSÃO E BADGES COMPLETAS */}
+                <Col
+                  xs={12}
+                  md={2}
+                  className="d-flex align-items-center justify-content-md-end gap-1"
                 >
-                  {Object.keys(TREINO_LABELS).map(key => (
-                    <option key={key} value={key}>{TREINO_LABELS[key]}</option>
-                  ))}
-                </Form.Select>
-              </Col>
-
-              {/* BÔNUS EXTRA */}
-              <Col md={3} className="d-flex align-items-center">
-                <span className="text-muted small me-2">BÔNUS:</span>
-                <Form.Control
-                  type="number"
-                  size="sm"
-                  value={skillData.bonus}
-                  onChange={(e) => handleUpdate(nome, "bonus", parseInt(e.target.value) || 0)}
-                  style={{ backgroundColor: "#0d1117", color: "#fff", borderColor: "#2a2f3e" }}
-                />
-              </Col>
-
-              {/* BADGES DE REGRAS (Visual apenas) */}
-              <Col md={3} className="text-end">
-                {config.somenteTreinada && <Badge bg="danger" className="ms-1" style={{fontSize: '0.6rem'}}>TREINADA</Badge>}
-                {config.kit && <Badge bg="warning" text="dark" className="ms-1" style={{fontSize: '0.6rem'}}>KIT</Badge>}
-                {config.carga && <Badge bg="secondary" className="ms-1" style={{fontSize: '0.6rem'}}>CARGA</Badge>}
-              </Col>
-            </Row>
+                  {nome === "profissao" && (
+                    <Form.Control
+                      size="sm"
+                      placeholder="Tipo..."
+                      value={skillData.type || ""}
+                      onChange={(e) =>
+                        handleUpdate(nome, "type", e.target.value)
+                      }
+                      style={{
+                        ...inputStyle,
+                        width: "90px",
+                        fontSize: "0.75rem",
+                      }}
+                    />
+                  )}
+                  <div className="d-flex gap-1">
+                    {config.somenteTreinada && (
+                      <Badge bg="danger" style={{ fontSize: "0.6rem" }}>
+                        TREINADA
+                      </Badge>
+                    )}
+                    {config.kit && (
+                      <Badge
+                        bg="warning"
+                        text="dark"
+                        style={{ fontSize: "0.6rem" }}
+                      >
+                        KIT
+                      </Badge>
+                    )}
+                    {config.carga && (
+                      <Badge bg="secondary" style={{ fontSize: "0.6rem" }}>
+                        CARGA
+                      </Badge>
+                    )}
+                  </div>
+                </Col>
+              </Row>
+            </div>
           );
         })}
       </Card.Body>
-
-      <Card.Footer className="bg-dark border-secondary p-3 text-center">
-        <Button variant="info" className="w-50 fw-bold" onClick={() => onSave(pericias)}>
-          <Save size={18} className="me-2" /> ATUALIZAR TODAS AS PERÍCIAS
-        </Button>
-      </Card.Footer>
     </Card>
   );
 }
