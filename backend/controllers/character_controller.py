@@ -101,20 +101,46 @@ class CharacterController:
         store.save(character)
         return character.to_json()
 
+
+    @staticmethod
+    def _generate_unique_id(nome: str) -> str:
+        """
+        Gera um ID único baseado no nome: "Miguel Arcanjo" -> "miguel", "miguel1", etc.
+        """
+        # Pega a primeira parte do nome e limpa caracteres especiais/espaços
+        base_id = nome.split()[0].lower()
+        # Remove caracteres que não sejam letras ou números (opcional, mas recomendado)
+        base_id = "".join(filter(str.isalnum, base_id))
+        
+        target_id = base_id
+        counter = 1
+        
+        # Verifica no store se o arquivo já existe
+        while store.exists(target_id):
+            target_id = f"{base_id}{counter}"
+            counter += 1
+            
+        return target_id
+
     @staticmethod
     def create(data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Cria um novo personagem a partir de dados fornecidos e o persiste.
-
-        Args:
-            data (Dict): Dados iniciais do personagem.
-
-        Returns:
-            Dict: O JSON do personagem criado (incluindo o ID gerado automaticamente).
+        Cria um novo personagem com um ID legível e único.
         """
+        # 1. Garante que as listas internas tenham IDs (UUIDs para itens)
         data = CharacterController._ensure_ids(data)
+        
+        # 2. Gera o ID único para o personagem baseado no nome
+        nome_personagem = data.get("infos", {}).get("nome", "novo")
+        char_id = CharacterController._generate_unique_id(nome_personagem)
+        
+        # 3. Define o ID no objeto de dados
+        data["id"] = char_id
+        
+        # 4. Cria a instância e salva
         character = Character.from_json(data)
         store.save(character)
+        
         return character.to_json()
 
     @staticmethod
@@ -149,3 +175,38 @@ class CharacterController:
         character = Character.from_json(data)
         store.save(character)
         return {"success": True, "removed_id": item_id}
+    
+    @staticmethod
+    def update_full(char_id: str, new_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        """
+        Atualiza o personagem completo. 
+        Realiza um merge das seções principais para não perder dados omitidos no payload.
+        """
+        existing_data = store.load(char_id)
+        if not existing_data:
+            return None
+        
+        # Seções que queremos preservar caso não venham no JSON
+        sections = ["infos", "atributos", "pericias", "status", "poderes", "inventario", "rituais", "dados"]
+        
+        for section in sections:
+            if section in new_data:
+                # Se for lista (inventario, rituais...), sobrescreve garantindo IDs
+                if isinstance(new_data[section], list):
+                    # Garantir IDs para itens novos na lista
+                    for item in new_data[section]:
+                        if isinstance(item, dict) and "id" not in item:
+                            item["id"] = str(uuid.uuid4())
+                    existing_data[section] = new_data[section]
+                
+                # Se for dicionário (infos, atributos...), faz merge dos campos internos
+                elif isinstance(new_data[section], dict) and isinstance(existing_data.get(section), dict):
+                    existing_data[section].update(new_data[section])
+                
+                else:
+                    existing_data[section] = new_data[section]
+
+        # Salva usando a lógica da classe Character para validar estrutura
+        character = Character.from_json(existing_data)
+        store.save(character)
+        return character.to_json()

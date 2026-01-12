@@ -8,6 +8,7 @@ import MainNav from "./components/navigation/MainNav";
 import FichasPage from "./pages/Fichas";
 import CharacterFormPage from "./pages/CharacterFormPage";
 import Home from "./pages/Home";
+import CharacterList from "./components/editor/CharacterSelector";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         {/* Rota unificada: Criação e Edição */}
         <Route path="/editor" element={<CharacterFormPage />} />
         <Route path="/editor/:id" element={<CharacterFormPage />} />
+        <Route path="/preEdicao" element={<CharacterList />} />
 
         {/* Redireciona qualquer rota desconhecida para /fichas */}
         <Route path="*" element={<Navigate to="/fichas" />} />

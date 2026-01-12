@@ -147,12 +147,12 @@ export default function CharacterFormPage() {
           />
         </Tab>
 
-        {/* <Tab eventKey="inventario" title="Inventario">
+        <Tab eventKey="inventario" title="Inventario">
           <InventarioEdit
             data={character.inventario}
-            onChange={(newData) => handleLocalUpdate("rituais", newData)}
+            onChange={(newData) => handleLocalUpdate("inventario", newData)}
           />
-        </Tab> */}
+        </Tab>
 
         <Tab eventKey="rituais" title="Rituais">
           <RitualEdit

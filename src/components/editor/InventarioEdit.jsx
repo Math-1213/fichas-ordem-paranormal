@@ -1,203 +1,397 @@
+import React from "react";
 import {
   Card,
-  Stack,
-  Badge,
+  Row,
+  Col,
+  Form,
   Button,
   Accordion,
-  ProgressBar,
-  Alert,
+  Badge,
+  Stack,
 } from "react-bootstrap";
-import { useState } from "react";
-import styled from "styled-components";
-import RollTooltip from "../ui/RollTooltip";
-import { handleRoll, formatExpression } from "../../configs/dice";
+import {
+  Sword,
+  Package,
+  Box,
+  Plus,
+  Trash2,
+  Shield,
+  Zap,
+  Dices,
+} from "lucide-react";
+import ArmaEditorModal from "./ArmaEditorModal";
 
-const RitualCard = styled(Card)`
-  border: 1px solid ${(props) => props.borderColor || "#2a2f3e"};
-  background: linear-gradient(145deg, #1e2330 0%, #161a22 100%);
+export default function InventarioEdit({ data = [], onChange }) {
+  const itens = Array.isArray(data) ? data : [];
+  const [modalShow, setModalShow] = React.useState(false);
+  const [selectedIdx, setSelectedIdx] = React.useState(null);
 
-  .ritual-header {
-    background: rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid #2a2f3e;
-  }
-`;
+  const openEditor = (idx) => {
+    setSelectedIdx(idx);
+    setModalShow(true);
+  };
 
-const ELEMENTOS_CORES = {
-  SANGUE: "#ef4444",
-  MORTE: "#7c3aed",
-  ENERGIA: "#3b82f6",
-  CONHECIMENTO: "#eab308",
-  MEDO: "#9ca3af",
-};
+  const handleUpdate = (newList) => onChange && onChange(newList);
 
-/**
- * Aba de Habilidades e Rituais.
- * Gerencia o uso de recursos (PE) e execução de efeitos.
- */
-export default function HabilidadesTab({ character, onUpdateResources }) {
-  const { habilidades = [], rituais = [] } = character;
-  const peAtual = character.recursos?.pe ?? 0;
+  const saveChanges = (updatedItem) => {
+    const newList = [...itens];
+    newList[selectedIdx] = updatedItem;
+    handleUpdate(newList);
+    setModalShow(false);
+  };
 
-  const [rolls, setRolls] = useState({});
+  const addItem = (tipo) => {
+    const templates = {
+      arma: {
+        tipo: "arma",
+        nome: "Nova Arma",
+        categoria: 0,
+        peso: 1,
+        alcance: "Curto",
+        arma: {
+          tipo: "Corte",
+          critico: "20",
+          ataques: [],
+          danos: [],
+          especiais: [],
+        },
+      },
+      equipamento: {
+        tipo: "equipamento",
+        nome: "Novo Equipamento",
+        categoria: 0,
+        peso: 1,
+        quantidade: 1,
+        efeito: "",
+        especiais: [],
+        dado: "",
+      },
+      item: {
+        tipo: "item",
+        nome: "Novo Objeto",
+        categoria: 0,
+        peso: 0,
+        quantidade: 1,
+      },
+    };
+    handleUpdate([...itens, { id: Date.now(), ...templates[tipo] }]);
+  };
 
-  /**
-   * Tenta subtrair o custo de PE do personagem.
-   */
-  function gastarRecurso(custo) {
-    if (peAtual < custo) {
-      alert("Pontos de Esforço insuficientes!");
-      return false;
-    }
-    onUpdateResources({ ...character.recursos, pe: peAtual - custo });
-    return true;
-  }
+  const handleChange = (index, field, value) => {
+    const newList = [...itens];
+    newList[index] = { ...newList[index], [field]: value };
+    handleUpdate(newList);
+  };
 
-  /**
-   * Card para Habilidades de Classe ou Poderes.
-   */
-  function HabilidadeCard({ hab }) {
-    const key = `hab-${hab.nome}`;
-    return (
-      <Card className="bg-dark border-secondary mb-2">
-        <Card.Body className="p-3">
-          <div className="d-flex justify-content-between align-items-start">
-            <div>
-              <h6 className="mb-0">{hab.nome}</h6>
-              <small className="text-muted">
-                {hab.origem} | Custo: {hab.custo} PE
-              </small>
-            </div>
-            <Button
-              size="sm"
-              variant="outline-primary"
-              disabled={peAtual < hab.custo}
-              onClick={() => gastarRecurso(hab.custo)}
-            >
-              Usar
-            </Button>
-          </div>
-          <p className="mt-2 mb-0" style={{ fontSize: "0.9rem" }}>
-            {hab.descricao}
-          </p>
-        </Card.Body>
-      </Card>
-    );
-  }
-
-  /**
-   * Card estilizado para Rituais.
-   */
-  function RitualItem({ ritual }) {
-    const cor = ELEMENTOS_CORES[ritual.elemento.toUpperCase()] || "#2a2f3e";
-    const keyDano = `rit-dmg-${ritual.nome}`;
-
-    return (
-      <RitualCard borderColor={cor} className="mb-3">
-        <div className="ritual-header p-2 d-flex justify-content-between align-items-center">
-          <strong style={{ color: cor }}>{ritual.nome}</strong>
-          <Badge style={{ backgroundColor: cor }}>
-            {ritual.circulo}º Círculo
-          </Badge>
-        </div>
-        <Card.Body className="p-3">
-          <div
-            className="row g-2 mb-2 text-center"
-            style={{ fontSize: "0.8rem" }}
-          >
-            <div className="col-4 border-end">Execução: {ritual.execucao}</div>
-            <div className="col-4 border-end">Alcance: {ritual.alcance}</div>
-            <div className="col-4">Duração: {ritual.duracao}</div>
-          </div>
-
-          <p style={{ fontSize: "0.85rem" }}>{ritual.descricao}</p>
-
-          <div className="d-flex gap-2 flex-wrap mt-3 pt-2 border-top border-secondary">
-            {/* Botão de Gasto de PE */}
-            <Button
-              size="sm"
-              variant="dark"
-              className="border-secondary"
-              onClick={() => gastarRecurso(ritual.custo)}
-            >
-              Conjurar ({ritual.custo} PE)
-            </Button>
-
-            {/* Rolagem de Dano/Efeito do Ritual */}
-            {ritual.dano && (
-              <RollTooltip
-                rolls={rolls[keyDano]?.rolls ?? []}
-                rollType="soma"
-                bonus={rolls[keyDano]?.bonus ?? 0}
-              >
-                <Button
-                  size="sm"
-                  variant="outline-danger"
-                  onClick={() =>
-                    handleRoll(
-                      keyDano,
-                      ritual.dano,
-                      "soma",
-                      setRolls,
-                      character
-                    )
-                  }
-                >
-                  Dano: {formatExpression(ritual.dano, character)}
-                </Button>
-              </RollTooltip>
-            )}
-          </div>
-        </Card.Body>
-      </RitualCard>
-    );
-  }
+  const inputStyle = {
+    backgroundColor: "#0d1117",
+    color: "#fff",
+    borderColor: "#444d56",
+  };
+  const labelStyle = {
+    color: "#e6edf3",
+    fontWeight: "500",
+    marginBottom: "4px",
+  };
 
   return (
-    <Stack gap={3}>
-      {/* Resumo de PE para referência rápida */}
-      <Card className="bg-dark text-white border-primary">
-        <Card.Body className="p-2">
-          <div className="d-flex justify-content-between mb-1 px-1">
-            <small>Energia Restante (PE)</small>
-            <small>
-              {peAtual} / {character.infos.peMax}
-            </small>
+    <>
+      <style>
+        {`
+          .inventory-card { background-color: #161a22; border: 1px solid #2a2f3e; }
+          .accordion-item { background: transparent !important; border: 1px solid #30363d !important; margin-bottom: 8px; }
+          .accordion-button { background-color: #161a22 !important; color: #ffffff !important; box-shadow: none !important; }
+          .accordion-button:not(.collapsed) { background-color: #1c212b !important; color: #ffffff !important; }
+          .accordion-button::after { filter: invert(1) brightness(2); }
+          .text-label { color: #adb5bd; font-size: 0.85rem; }
+        `}
+      </style>
+
+      <Card className="inventory-card">
+        <Card.Header className="bg-dark d-flex justify-content-between align-items-center py-3">
+          <div className="text-white fw-bold">
+            <Package size={20} className="me-2 text-info" /> INVENTÁRIO
           </div>
-          <ProgressBar
-            now={(peAtual / character.infos.peMax) * 100}
-            variant={peAtual < 5 ? "danger" : "primary"}
-            style={{ height: "8px" }}
-          />
+          <Stack direction="horizontal" gap={2}>
+            <Button
+              variant="outline-primary"
+              size="sm"
+              onClick={() => addItem("arma")}
+            >
+              <Sword size={14} /> +Arma
+            </Button>
+            <Button
+              variant="outline-info"
+              size="sm"
+              onClick={() => addItem("equipamento")}
+            >
+              <Shield size={14} /> +Equip
+            </Button>
+            <Button
+              variant="outline-secondary"
+              size="sm"
+              onClick={() => addItem("item")}
+            >
+              <Box size={14} /> +Outro
+            </Button>
+          </Stack>
+        </Card.Header>
+
+        <Card.Body>
+          <Accordion>
+            {itens.map((item, idx) => (
+              <Accordion.Item eventKey={String(idx)} key={item.id || idx}>
+                <Accordion.Header>
+                  <div className="d-flex align-items-center gap-2 w-100">
+                    {item.tipo === "arma" && (
+                      <Sword size={16} className="text-danger" />
+                    )}
+                    {item.tipo === "equipamento" && (
+                      <Shield size={16} className="text-info" />
+                    )}
+                    {item.tipo === "item" && (
+                      <Box size={16} className="text-muted" />
+                    )}
+
+                    <span className="text-white fw-bold">
+                      {item.nome || "Sem nome"}
+                    </span>
+
+                    <div className="ms-auto d-flex gap-2 pe-3">
+                      <Badge bg="secondary">{item.peso} Esp.</Badge>
+                      <Badge
+                        bg={item.paranormal ? "purple" : "dark"}
+                        style={
+                          item.paranormal ? { backgroundColor: "#6f42c1" } : {}
+                        }
+                      >
+                        Cat {item.categoria}
+                      </Badge>
+                    </div>
+                  </div>
+                </Accordion.Header>
+                <Accordion.Body style={{ backgroundColor: "#0d1117" }}>
+                  <Row className="g-3">
+                    <Col md={6}>
+                      <Form.Label style={labelStyle}>Nome do Objeto</Form.Label>
+                      <Form.Control
+                        size="sm"
+                        style={inputStyle}
+                        value={item.nome}
+                        onChange={(e) =>
+                          handleChange(idx, "nome", e.target.value)
+                        }
+                      />
+                    </Col>
+                    <Col md={2}>
+                      <Form.Label style={labelStyle}>Peso</Form.Label>
+                      <Form.Control
+                        size="sm"
+                        type="number"
+                        style={inputStyle}
+                        value={item.peso}
+                        onChange={(e) =>
+                          handleChange(idx, "peso", parseInt(e.target.value))
+                        }
+                      />
+                    </Col>
+                    <Col md={2}>
+                      <Form.Label style={labelStyle}>Categoria</Form.Label>
+                      <Form.Control
+                        size="sm"
+                        type="number"
+                        style={inputStyle}
+                        value={item.categoria}
+                        onChange={(e) =>
+                          handleChange(
+                            idx,
+                            "categoria",
+                            parseInt(e.target.value)
+                          )
+                        }
+                      />
+                    </Col>
+                    <Col md={2} className="d-flex align-items-end">
+                      <Button
+                        variant="outline-danger"
+                        size="sm"
+                        className="w-100"
+                        onClick={() =>
+                          handleUpdate(itens.filter((_, i) => i !== idx))
+                        }
+                      >
+                        <Trash2 size={14} />
+                      </Button>
+                    </Col>
+
+                    <Col md={12}>
+                      <Form.Label style={labelStyle}>URL da Imagem</Form.Label>
+                      <Form.Control
+                        size="sm"
+                        style={inputStyle}
+                        value={item.imagem || ""}
+                        onChange={(e) =>
+                          handleChange(idx, "imagem", e.target.value)
+                        }
+                        placeholder="https://..."
+                      />
+                    </Col>
+
+                    {/* Campos Específicos de Arma */}
+                    {item.tipo === "arma" && (
+                      <>
+                        <Col md={4}>
+                          <Form.Label style={labelStyle}>Tipo Dano</Form.Label>
+                          <Form.Control
+                            size="sm"
+                            style={inputStyle}
+                            value={item.arma?.tipo}
+                            onChange={(e) =>
+                              handleChange(idx, "arma", {
+                                ...item.arma,
+                                tipo: e.target.value,
+                              })
+                            }
+                          />
+                        </Col>
+                        <Col md={4}>
+                          <Form.Label style={labelStyle}>Alcance</Form.Label>
+                          <Form.Control
+                            size="sm"
+                            style={inputStyle}
+                            value={item.alcance}
+                            onChange={(e) =>
+                              handleChange(idx, "alcance", e.target.value)
+                            }
+                          />
+                        </Col>
+                        <Col md={4}>
+                          <Form.Label style={labelStyle}>Crítico</Form.Label>
+                          <Form.Control
+                            size="sm"
+                            style={inputStyle}
+                            value={item.arma?.critico}
+                            onChange={(e) =>
+                              handleChange(idx, "arma", {
+                                ...item.arma,
+                                critico: e.target.value,
+                              })
+                            }
+                          />
+                        </Col>
+                      </>
+                    )}
+
+                    {/* Campos Específicos de Equipamento/Item */}
+                    {(item.tipo === "equipamento" || item.tipo === "item") && (
+                      <>
+                        <Col md={2}>
+                          <Form.Label style={labelStyle}>Qtd.</Form.Label>
+                          <Form.Control
+                            size="sm"
+                            type="number"
+                            style={inputStyle}
+                            value={item.quantidade}
+                            onChange={(e) =>
+                              handleChange(
+                                idx,
+                                "quantidade",
+                                parseInt(e.target.value)
+                              )
+                            }
+                          />
+                        </Col>
+                        <Col md={item.tipo === "equipamento" ? 5 : 10}>
+                          <Form.Label style={labelStyle}>
+                            Efeito Curto
+                          </Form.Label>
+                          <Form.Control
+                            size="sm"
+                            style={inputStyle}
+                            value={item.efeito || ""}
+                            onChange={(e) =>
+                              handleChange(idx, "efeito", e.target.value)
+                            }
+                          />
+                        </Col>
+                        {item.tipo === "equipamento" && (
+                          <Col md={5}>
+                            <Form.Label style={labelStyle}>
+                              <Dices size={14} /> Dado de Uso
+                            </Form.Label>
+                            <Form.Control
+                              size="sm"
+                              style={inputStyle}
+                              placeholder="Ex: 2d8+2"
+                              value={item.dado || ""}
+                              onChange={(e) =>
+                                handleChange(idx, "dado", e.target.value)
+                              }
+                            />
+                          </Col>
+                        )}
+                      </>
+                    )}
+
+                    <Col md={12}>
+                      <Form.Label style={labelStyle}>
+                        Descrição Completa
+                      </Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        rows={3}
+                        size="sm"
+                        style={inputStyle}
+                        value={item.descricao}
+                        onChange={(e) =>
+                          handleChange(idx, "descricao", e.target.value)
+                        }
+                      />
+                    </Col>
+
+                    {/* Botão de Edição Avançada (Armas e Equipamentos) */}
+                    {(item.tipo === "arma" || item.tipo === "equipamento") && (
+                      <Col md={12}>
+                        <Button
+                          variant="outline-warning"
+                          size="sm"
+                          className="w-100 fw-bold py-2"
+                          onClick={() => openEditor(idx)}
+                        >
+                          <Zap size={14} className="me-2" /> CONFIGURAR
+                          MALDIÇÕES E DETALHES
+                        </Button>
+                      </Col>
+                    )}
+
+                    <Col md={12}>
+                      <Form.Check
+                        type="switch"
+                        label={
+                          <span style={{ color: "#fff" }}>
+                            Este item é Paranormal / Amaldiçoado
+                          </span>
+                        }
+                        checked={item.paranormal}
+                        onChange={(e) =>
+                          handleChange(idx, "paranormal", e.target.checked)
+                        }
+                      />
+                    </Col>
+                  </Row>
+                </Accordion.Body>
+              </Accordion.Item>
+            ))}
+          </Accordion>
         </Card.Body>
       </Card>
 
-      <Accordion defaultActiveKey="0">
-        <Accordion.Item eventKey="0" className="bg-transparent border-0">
-          <Accordion.Header>Habilidades e Poderes</Accordion.Header>
-          <Accordion.Body className="px-0">
-            {habilidades.length > 0 ? (
-              habilidades.map((h, i) => <HabilidadeCard key={i} hab={h} />)
-            ) : (
-              <p className="text-muted text-center">
-                Nenhuma habilidade listada.
-              </p>
-            )}
-          </Accordion.Body>
-        </Accordion.Item>
-
-        <Accordion.Item eventKey="1" className="bg-transparent border-0 mt-2">
-          <Accordion.Header>Grimório de Rituais</Accordion.Header>
-          <Accordion.Body className="px-0">
-            {rituais.length > 0 ? (
-              rituais.map((r, i) => <RitualItem key={i} ritual={r} />)
-            ) : (
-              <p className="text-muted text-center">
-                O personagem não conhece rituais.
-              </p>
-            )}
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
-    </Stack>
+      <ArmaEditorModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        armaData={itens[selectedIdx]}
+        onSave={saveChanges}
+      />
+    </>
   );
 }

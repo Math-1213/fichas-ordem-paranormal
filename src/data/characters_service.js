@@ -45,4 +45,34 @@ export const CharacterService = {
       return false;
     }
   },
+
+  /**
+   * Cria um novo personagem no banco
+   * POST /characters
+   */
+  async create(character) {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(character),
+    });
+
+    if (!response.ok) throw new Error("Erro ao criar personagem");
+    return await response.json(); // Retorna o objeto criado (incluindo o novo ID)
+  },
+
+  /**
+   * Atualiza um personagem existente
+   * PUT /characters/:id
+   */
+  async update(id, character) {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(character),
+    });
+
+    if (!response.ok) throw new Error("Erro ao atualizar personagem");
+    return await response.json();
+  },
 };

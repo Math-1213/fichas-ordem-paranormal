@@ -19,22 +19,6 @@ def list_characters():
     # Note: CharacterController.list() deve retornar todos os personagens
     return jsonify(CharacterController.list())
 
-@character_bp.post("/")
-def create_character():
-    """
-    Cria um novo personagem.
-    
-    Payload (JSON): Dados do personagem seguindo a estrutura da classe Character.
-    Returns:
-        JSON: O personagem criado com seu novo ID.
-        Status: 201 Created.
-    """
-    data = request.json
-    if not data or "infos" not in data or "nome" not in data.get("infos", {}):
-        return jsonify({"error": "O personagem precisa ter ao menos um nome em 'infos'"}), 400
-    
-    return jsonify(CharacterController.create(data)), 201
-
 @character_bp.get("/summary")
 def list_summary():
     """
@@ -133,3 +117,29 @@ def remove_item(lista, id, item_id):
         return jsonify({"error": "Item ou Personagem não encontrado"}), 404
         
     return jsonify(result), 200
+
+@character_bp.put("/<id>")
+def update_character(id):
+    """
+    Atualiza o personagem completo via PUT.
+    """
+    data = request.json
+    if not data:
+        return jsonify({"error": "Dados não fornecidos"}), 400
+        
+    updated = CharacterController.update_full(id, data)
+    if not updated:
+        return jsonify({"error": "Personagem não encontrado"}), 404
+        
+    return jsonify(updated), 200
+
+# Certifique-se que o seu POST existente está chamando o controller corretamente:
+@character_bp.post("/")
+def create_character():
+    data = request.json
+    if not data or "infos" not in data or "nome" not in data.get("infos", {}):
+        return jsonify({"error": "O personagem precisa de um nome em 'infos'"}), 400
+    
+    # O controller.create já chama o _ensure_ids internamente
+    created = CharacterController.create(data)
+    return jsonify(created), 201
