@@ -75,4 +75,19 @@ export const CharacterService = {
     if (!response.ok) throw new Error("Erro ao atualizar personagem");
     return await response.json();
   },
+
+  async updateInventory(characterId, inventario) {
+    const response = await fetch(`${API_URL}/inventario/${characterId}`, {
+      method: "PATCH", 
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(inventario),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Erro ao atualizar inventário");
+    }
+    
+    return await response.json();
+}
 };

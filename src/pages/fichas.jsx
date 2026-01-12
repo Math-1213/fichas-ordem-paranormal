@@ -33,12 +33,22 @@ function FichasPage() {
     }
   }
 
-  function updateCharacterInventory(newItemList) {
+  async function updateCharacterInventory(newItemList) {
+    // 1. Atualização instantânea na tela (UI)
     const updatedChar = new Character({
       ...character,
       inventario: newItemList,
     });
     setCharacter(updatedChar);
+
+    // 2. Sincronização com o Back via rota PATCH /characters/inventario/<id>
+    try {
+      await CharacterService.updateInventory(character.id, newItemList);
+      console.log("Inventário salvo na Ordem.");
+    } catch (err) {
+      console.error("Falha na sincronização:", err);
+      // Opcional: Aqui você poderia dar um alerta ao usuário
+    }
   }
 
   if (loading)
