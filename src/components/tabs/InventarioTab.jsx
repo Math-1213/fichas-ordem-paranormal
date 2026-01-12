@@ -222,15 +222,18 @@ export default function InventarioTab({ character, onUpdateInventory }) {
    * Mapeia o inventário atual e gera uma nova lista imutável. Garante que a quantidade
    * nunca seja inferior a 0. Ao final, chama `onUpdateInventory` para persistir os dados.
    */
-  function updateQuantity(itemName, delta) {
+  function updateQuantity(itemId, delta) {
+    // 1. Criamos um novo array mapeando o anterior
     const novoInventario = character.inventario.map((item) => {
-      if (item.nome === itemName) {
+      // 2. Comparamos pelo ID único (mais seguro que o nome)
+      if (item.id === itemId) {
         const novaQtd = Math.max(0, (item.quantidade ?? 1) + delta);
         return { ...item, quantidade: novaQtd };
       }
       return item;
     });
 
+    // 3. Disparamos a atualização para o componente pai salvar no backend/estado
     onUpdateInventory(novoInventario);
   }
 
@@ -260,7 +263,7 @@ export default function InventarioTab({ character, onUpdateInventory }) {
           size="sm"
           className="p-0 text-decoration-none shadow-none"
           style={{ color: "#ef4444", fontWeight: "bold", width: "20px" }}
-          onClick={() => updateQuantity(item.nome, -1)}
+          onClick={() => updateQuantity(item.id, -1)}
         >
           -
         </Button>
@@ -270,16 +273,10 @@ export default function InventarioTab({ character, onUpdateInventory }) {
           size="sm"
           value={item.quantidade ?? 1}
           onChange={(e) => {
-            // Remove qualquer coisa que não seja número
             const val = e.target.value.replace(/\D/g, "");
-            // Se o campo estiver vazio, mandamos 0 ou 1,
-            // ou tratamos para não quebrar a lógica
             const num = val === "" ? 0 : parseInt(val);
-
-            // Calculamos o delta para a função updateQuantity
-            // delta = novo valor - valor atual
             const delta = num - (item.quantidade ?? 1);
-            updateQuantity(item.nome, delta);
+            updateQuantity(item.id, delta);
           }}
           style={{
             width: "35px",
@@ -299,7 +296,7 @@ export default function InventarioTab({ character, onUpdateInventory }) {
           size="sm"
           className="p-0 text-decoration-none shadow-none"
           style={{ color: "#22c55e", fontWeight: "bold", width: "20px" }}
-          onClick={() => updateQuantity(item.nome, 1)}
+          onClick={() => updateQuantity(item.id, 1)}
         >
           +
         </Button>
@@ -333,13 +330,17 @@ export default function InventarioTab({ character, onUpdateInventory }) {
           <div style={{ display: "flex", gap: "1rem", alignItems: "start" }}>
             {/* Lado Esquerdo: Conteúdo */}
             <div style={{ flex: 1 }}>
-              <div className="d-flex justify-content-between">
+              <div className="d-flex justify-content-between align-items-start">
                 <strong>{item.nome}</strong>
-                <div>
-                  <Badge bg="warning" className="me-1">
-                    {arma.tipo}
-                  </Badge>
-                  {item.paranormal && <Badge bg="danger">Paranormal</Badge>}
+                <div className="d-flex align-items-center gap-2">
+                  <div className="d-flex flex-column align-items-end">
+                    <div className="d-flex gap-1 mb-1">
+                      <Badge bg="warning">{arma.tipo}</Badge>
+                      {item.paranormal && <Badge bg="danger">Paranormal</Badge>}
+                    </div>
+                    {/* ADICIONE O CONTROLE AQUI TAMBÉM */}
+                    <QtdControl item={item} />
+                  </div>
                 </div>
               </div>
 
@@ -668,6 +669,7 @@ export default function InventarioTab({ character, onUpdateInventory }) {
 
   return (
     <Card style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}>
+      {console.log(inventario)}
       <Card.Header
         style={{
           backgroundColor: "#1e2330",

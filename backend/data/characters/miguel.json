@@ -419,12 +419,12 @@
       },
       "categoria": 4,
       "descricao": "Uma katana de lâmina impecável e equilíbrio perfeito. Forjada com um metal que parece pulsar levemente ao toque, ela foi um presente que Miguel recebeu de seu pai em seu 14º aniversário.",
+      "id": "77bcb786-b75a-4d16-81eb-016d50bae1f9",
       "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734281336127692/Lifecounter.png?ex=69645afd&is=6963097d&hm=f75044a0e322f2ff728472ad2e59177e35e1095781a9927f7e65c75d597ab1ab&=&format=webp&quality=lossless&width=733&height=733",
       "nome": "Life Counter",
       "paranormal": true,
       "peso": 2,
-      "tipo": "arma",
-      "id": "77bcb786-b75a-4d16-81eb-016d50bae1f9"
+      "tipo": "arma"
     },
     {
       "alcance": "Curto",
@@ -483,12 +483,12 @@
       },
       "categoria": 4,
       "descricao": "Uma lâmina curta e robusta, desenhada para a eficiência letal em espaços fechados. Embora se assemelhe a uma faca militar, seu peso e fio revelam uma natureza mais sombria. É o par silencioso da Life Counter; onde uma preserva, a outra encerra.",
+      "id": "83f67c91-a4cf-43b1-90be-b8eb31a7a731",
       "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734281831317504/Gemini_Generated_Image_hbwot8hbwot8hbwo.png?ex=69645afd&is=6963097d&hm=116ba46a1a5c2a7bc8e9406f611117c68247b700412af7477b55571d5162a47c&=&format=webp&quality=lossless&width=733&height=733",
       "nome": "Death Counter",
       "paranormal": true,
       "peso": 1,
-      "tipo": "arma",
-      "id": "83f67c91-a4cf-43b1-90be-b8eb31a7a731"
+      "tipo": "arma"
     },
     {
       "alcance": "Longo",
@@ -549,106 +549,106 @@
       },
       "categoria": 4,
       "descricao": "Uma relíquia de família que passou por gerações dos Doyle. O cano da Scarlet ostenta gravuras desgastadas pelo tempo, e o metal frio parece ter desenvolvido uma consciência faminta.",
+      "id": "db1b8707-f37f-4044-9818-725d6d98960f",
       "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734282477113465/Gemini_Generated_Image_b1i5ajb1i5ajb1i5.png?ex=69645afd&is=6963097d&hm=840e32b561709dcdae13bbb04d1b25712e3c7f86d6786d5686f8c888abe91779&=&format=webp&quality=lossless&width=733&height=733",
       "nome": "Scarlet",
       "paranormal": true,
       "peso": 1,
-      "tipo": "arma",
-      "id": "db1b8707-f37f-4044-9818-725d6d98960f"
+      "tipo": "arma"
     },
     {
       "categoria": 0,
       "descricao": "Uma pasta usada para guardar documentos de um caso",
       "efeito": "Nenhum pratico. Serve apenas para organizar as coisas encontradas em missões",
+      "id": "aa0c6ec0-7914-42f5-9fc7-fe6f7ef69d7d",
       "nome": "Pasta de Documentos",
       "paranormal": false,
       "peso": 0,
       "quantidade": 1,
-      "tipo": "item",
-      "id": "aa0c6ec0-7914-42f5-9fc7-fe6f7ef69d7d"
+      "tipo": "item"
     },
     {
       "categoria": 1,
       "dado": "2d8 + 2 + /INT/",
       "descricao": " Um spray contendo um remédio com potente efeito cicatrizante. Você pode gastar uma ação padrão e este item para curar 2d8+2 PV em você ou em um ser adjacente.",
       "efeito": "Permite curar 2d8 + 2 de vida",
+      "id": "1897a339-7fe4-4779-873b-7e7629b45212",
       "nome": "Cicatrizante",
       "paranormal": false,
       "peso": 1,
       "quantidade": 2,
-      "tipo": "equipamento",
-      "id": "1897a339-7fe4-4779-873b-7e7629b45212"
+      "tipo": "equipamento"
     },
     {
       "categoria": 2,
       "descricao": "Um aro metálico que gela o dedo de quem o usa. O ar ao redor do anel parece distorcer-se em sombras tênues, sussurrando segredos sobre como dobrar a realidade com menos esforço. Ele facilita a manifestação do paranormal, mas o custo mental é uma inquietação constante.",
       "efeito": "Reduz o custo de qualquer habilidade em -2 PE.",
+      "id": "eaeafd81-0848-4df0-8add-c0083b6fc28a",
       "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734283265511629/Gemini_Generated_Image_cjx740cjx740cjx7.png?ex=69645afd&is=6963097d&hm=822f1c6ea2701c2c3025958a8eb07cb01518eef5e48bdd7ce4118f82fcfc5766&=&format=webp&quality=lossless&width=733&height=733",
       "nome": "Anel do Medo",
       "paranormal": true,
       "peso": 0,
       "quantidade": 1,
-      "tipo": "equipamento",
-      "id": "eaeafd81-0848-4df0-8add-c0083b6fc28a"
+      "tipo": "equipamento"
     },
     {
       "categoria": 0,
       "descricao": "Um bloco de notas simples para registros rápidos.",
       "efeito": "Nenhum prático.",
+      "id": "54067cf4-cf7d-40cd-b61b-75c2a524d74b",
       "nome": "Caderno de Anotações",
       "paranormal": false,
       "peso": 0,
       "quantidade": 1,
-      "tipo": "item",
-      "id": "54067cf4-cf7d-40cd-b61b-75c2a524d74b"
+      "tipo": "item"
     },
     {
       "categoria": 1,
       "descricao": "Um tomo encadernado em couro gasto, preenchido com anotações frenéticas, diagramas ocultos e esboços de criaturas que não deveriam existir. Folhear suas páginas é mergulhar na loucura de quem veio antes, garantindo uma compreensão perigosa sobre os mistérios do Medo.",
       "efeito": "+1d20 em testes de Ocultismo.",
+      "id": "0238d473-2284-4f63-a380-bc9421f2e3ef",
       "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734283659903026/Gemini_Generated_Image_mhesjnmhesjnmhes.png?ex=69645afd&is=6963097d&hm=8d6f0a87de3f45f791defe970b5cc6565d501c8f2c996046241bd70db7a2dc6c&=&format=webp&quality=lossless&width=874&height=733",
       "nome": "Bestiário/Grimório",
       "paranormal": true,
       "peso": 1,
       "quantidade": 1,
-      "tipo": "equipamento",
-      "id": "0238d473-2284-4f63-a380-bc9421f2e3ef"
+      "tipo": "equipamento"
     },
     {
       "categoria": 2,
       "descricao": "Um smartphone topo de linha, mas cujos componentes internos foram substituídos por fiação de ouro e cobre gravada com selos. A bateria nunca acaba, desde que o usuário esteja disposto a ceder um pouco de sua própria energia vital para alimentar os circuitos transcendentais.",
       "efeito": "+1d20 em Tecnologia, Atualidade e Ciência. Lanterna Tática inclusa.",
+      "id": "fdca96c0-d86b-49a4-a90d-adf4b50c303f",
       "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734284196778037/Gemini_Generated_Image_ubkdgsubkdgsubkd.png?ex=69645afd&is=6963097d&hm=6b733cc0605530021621f929a22190e820f5a9c5665146b04d93f21dad30dc2a&=&format=webp&quality=lossless&width=733&height=733",
       "nome": "Celular 'Paranormal'",
       "paranormal": true,
       "peso": 1,
       "quantidade": 1,
-      "tipo": "equipamento",
-      "id": "fdca96c0-d86b-49a4-a90d-adf4b50c303f"
+      "tipo": "equipamento"
     },
     {
       "categoria": 1,
       "descricao": "Um deck de alta resistência modificado com um motor que emite um zumbido sutil em uma frequência inaudível. Ele ignora o atrito comum e parece deslizar sobre o asfalto como se estivesse sendo empurrado por mãos invisíveis, permitindo deslocamentos rápidos em perseguições urbanas.",
       "efeito": "Aumenta o deslocamento em +9.",
+      "id": "bd2a0970-8383-460e-bfdf-a9b96d2a01d7",
       "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734284683448454/Gemini_Generated_Image_86f50986f50986f5.png?ex=69645afe&is=6963097e&hm=42ad72bb5daaa854a7c92215e4593871cf1c9615aba7db6287aae58735712843&=&format=webp&quality=lossless&width=733&height=733",
       "nome": "Skate Elétrico",
       "paranormal": true,
       "peso": 1,
       "quantidade": 1,
-      "tipo": "equipamento",
-      "id": "bd2a0970-8383-460e-bfdf-a9b96d2a01d7"
+      "tipo": "equipamento"
     },
     {
       "categoria": 1,
       "descricao": "Uma bolsa de tiracolo prática, com compartimentos internos que parecem sempre ter espaço para 'só mais uma coisa'. Resistente ao tempo e ao clima, é a companheira ideal para exploradores de ruínas e cenas de crime.",
       "efeito": "Aumenta a capacidade de carga em +2 espaços.",
+      "id": "f35a01fc-145f-4fb9-9316-aff5cba1d41e",
       "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734285157273835/Gemini_Generated_Image_wio59twio59twio5.png?ex=69645afe&is=6963097e&hm=b01f07f0c6ff1aa118ab4af848f9713104ee3756e53d32afdd13a2696bfe8483&=&format=webp&quality=lossless&width=733&height=733",
       "nome": "Bolsa de Couro",
       "paranormal": false,
       "peso": 0,
       "quantidade": 1,
-      "tipo": "equipamento",
-      "id": "f35a01fc-145f-4fb9-9316-aff5cba1d41e"
+      "tipo": "equipamento"
     },
     {
       "categoria": 4,
@@ -666,24 +666,24 @@
           "paranormal": true
         }
       ],
+      "id": "9ed98855-26f4-44e0-8c4a-5bd63b511e36",
       "imagem": "https://media.discordapp.net/attachments/768811773393502238/1459734285840941140/Gemini_Generated_Image_a161vza161vza161.png?ex=69645afe&is=6963097e&hm=e25c0f9d7f02985c725f46fda50096039c9b4e467c0046c565c1b5f63ac0607f&=&format=webp&quality=lossless&width=733&height=733",
       "nome": "Casaco (Proteção Leve Reforçada)",
       "paranormal": true,
       "peso": 3,
       "quantidade": 1,
-      "tipo": "equipamento",
-      "id": "9ed98855-26f4-44e0-8c4a-5bd63b511e36"
+      "tipo": "equipamento"
     },
     {
       "categoria": 1,
       "descricao": "Um conjunto de cosméticos e próteses que, sob a luz certa, revelam selos de Conhecimento gravados nos frascos. Ao aplicá-los, a identidade do usuário parece se misturar à realidade, tornando mentiras visualmente indiscutíveis.",
       "efeito": "+5 em testes de Enganação.",
+      "id": "380efb21-ee57-4e6e-83da-962aac2bb6c7",
       "nome": "Kit de Disfarce Marcado",
       "paranormal": true,
       "peso": 1,
       "quantidade": 1,
-      "tipo": "equipamento",
-      "id": "380efb21-ee57-4e6e-83da-962aac2bb6c7"
+      "tipo": "equipamento"
     }
   ],
   "rituais": [
