@@ -19,6 +19,7 @@ export default class Character {
   /**
    * Cria uma instância de personagem.
    * @param {Object} data - Dados brutos do JSON
+   * @param {Object} data.id - Nome do arquivo no back e chave unica de identificação
    * @param {Object} data.infos - Informações gerais (nome, classe, trilha, deslocamento, carga)
    * @param {Object.<string, number>} data.atributos - Mapa de atributos (ex: { forca: 2, agilidade: 3 })
    * @param {Object.<string, Pericia>} data.pericias - Mapa de perícias com treino e bônus
@@ -29,6 +30,7 @@ export default class Character {
    * @param {Array} data.dados - Configurações de dados customizados
    */
   constructor(data) {
+    this.id = data.id;
     this.infos = data.infos;
     this.atributos = data.atributos;
     this.pericias = data.pericias;

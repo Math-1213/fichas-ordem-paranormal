@@ -153,6 +153,9 @@
         }
     },
     "status": {
+        "vidaMax": 110,
+        "sanidadeMax": 115,
+        "esforcoMax": 160,
         "vida": 110,
         "sanidade": 115,
         "esforco": 160,

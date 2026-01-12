@@ -12,10 +12,6 @@ export default function InfosTab({ character }) {
   const { infos } = character;
   const { narrativa } = infos;
 
-  useEffect(() => {
-    console.log(infos);
-  }, []);
-
   const labelStyle = {
     color: "#9aa0b3",
     fontSize: "0.85rem",

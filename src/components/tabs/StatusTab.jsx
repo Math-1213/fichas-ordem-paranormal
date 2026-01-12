@@ -10,6 +10,7 @@ import {
   Badge,
   Form,
 } from "react-bootstrap";
+import { CharacterService } from "../../data/characters_service";
 
 /**
  * Aba de Status e Combate.
@@ -19,7 +20,7 @@ import {
  * @param {Character} props.character - Instância do personagem para cálculo de perícias e resistências.
  */
 export default function StatusTab({ character }) {
-  const { status, infos } = character;
+  const { status, infos, id } = character;
 
   // Estados locais para controle imediato da UI antes de uma persistência global
   const [vida, setVida] = useState(status.vida);
@@ -33,6 +34,20 @@ export default function StatusTab({ character }) {
   const passiva = status.defesas.passiva;
   const esquiva = passiva + reflexos + status.defesas.bonusReflexos;
   const bloqueio = fortitude + status.defesas.bonusFortitude;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Só salva se houver alguma diferença real do que veio do character
+      if (
+        vida !== status.vida ||
+        sanidade !== status.sanidade ||
+        esforco !== status.esforco
+      ) {
+        CharacterService.updateStatus(id, { vida, sanidade, esforco });
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [vida, sanidade, esforco, id]);
 
   /**
    * Componente interno para renderizar barras de recursos com controles de ajuste.
@@ -179,21 +194,21 @@ export default function StatusTab({ character }) {
               <StatBar
                 label="Vida (PV)"
                 value={vida}
-                max={status.vida}
+                max={status.vidaMax}
                 onChange={setVida}
                 color="danger"
               />
               <StatBar
-                label="Sanidade (PS)"
+                label="Sanidade (SAN)"
                 value={sanidade}
-                max={status.sanidade}
+                max={status.sanidadeMax}
                 onChange={setSanidade}
                 color="info"
               />
               <StatBar
                 label="Esforço (PE)"
                 value={esforco}
-                max={status.esforco}
+                max={status.esforcoMax}
                 onChange={setEsforco}
                 color="warning"
               />
