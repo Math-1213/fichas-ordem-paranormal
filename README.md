@@ -12,11 +12,16 @@ Uma aplicação web interativa e de alta performance desenvolvida para jogadores
 
 ## 🛠️ Tecnologias Utilizadas
 
+### Frontend
 - [React](https://reactjs.org/) - Biblioteca UI.
 - [Vite](https://vitejs.dev/) - Bundler de próxima geração para um desenvolvimento rápido.
 - [React-Bootstrap](https://react-bootstrap.github.io/) - Framework de componentes UI.
 - [Lucide React](https://lucide.dev/) - Conjunto de ícones leves.
 - [JSDoc](https://jsdoc.app/) - Documentação de funções e lógica.
+
+### Backend
+- [Python + Flask]: API RESTful para gerenciamento das fichas.
+- [JSON Database]: Persistência de dados flexível em arquivos localizados na pasta `/data`.
 
 ## 🚀 Começando
 
@@ -28,6 +33,7 @@ Certifique-se de ter o [Node.js](https://nodejs.org/) instalado (versão 18 ou s
 
 ### Instalação
 
+#### Frontend
 1. Clone o repositório:
    ```bash
    git clone [https://github.com/Math-1213/fichas-ordem-paranormal.git](https://github.com/Math-1213/fichas-ordem-paranormal.git)
@@ -55,6 +61,22 @@ Certifique-se de ter o [Node.js](https://nodejs.org/) instalado (versão 18 ou s
    ```
 
 5. Abra o navegador no endereço indicado pelo terminal (geralmente http://localhost:5173).
+
+#### Backend
+
+Para rodar o servidor de dados:
+
+1. Certifique-se de ter o Python 3.10+ instalado.
+2. Instale as dependências:
+   ```bash
+   pip install flask flask-cors
+   ```
+Inicie o servidor:
+   ```bash
+   python App.py
+   ```
+O servidor rodará por padrão em http://127.0.0.1:5001.
+
 
 ⚙️ Sistema de Rolagem
 O projeto utiliza uma lógica personalizada para traduzir abreviações da ficha:
