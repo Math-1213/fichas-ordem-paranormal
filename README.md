@@ -20,8 +20,8 @@ Uma aplicação web interativa e de alta performance desenvolvida para jogadores
 - [JSDoc](https://jsdoc.app/) - Documentação de funções e lógica.
 
 ### Backend
-- [Python + Flask]: API RESTful para gerenciamento das fichas.
-- [JSON Database]: Persistência de dados flexível em arquivos localizados na pasta `/data`.
+- [Python + Flask](https://www.python.org): API RESTful para gerenciamento das fichas.
+- **JSON Database**: Persistência de dados flexível em arquivos localizados na pasta `/data`.
 
 ## 🚀 Começando
 
@@ -71,7 +71,7 @@ Para rodar o servidor de dados:
    ```bash
    pip install flask flask-cors
    ```
-Inicie o servidor:
+3. Inicie o servidor:
    ```bash
    python App.py
    ```
@@ -79,6 +79,7 @@ O servidor rodará por padrão em http://127.0.0.1:5001.
 
 
 ⚙️ Sistema de Rolagem
+
 O projeto utiliza uma lógica personalizada para traduzir abreviações da ficha:
 
 /FOR/ -> Traduz para o valor do atributo Força do personagem.
