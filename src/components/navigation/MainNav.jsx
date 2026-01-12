@@ -1,8 +1,9 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { Home, Users, FileEdit } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import AtmospherePlayer from "../ui/AtmospherePlayer";
 
-export default function MainNav() {
+export default function MainNav({ currentTrackUrl }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -48,7 +49,12 @@ export default function MainNav() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto gap-2">
+          <Nav className="ms-auto gap-2 align-items-center">
+            {currentTrackUrl && (
+              <div className="me-lg-3">
+                <AtmospherePlayer currentTrackUrl={currentTrackUrl} />
+              </div>
+            )}
             {/* Botão Home */}
             <Nav.Link
               onClick={() => navigate("/")}

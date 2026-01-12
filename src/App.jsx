@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,9 +12,36 @@ import Home from "./pages/Home";
 import CharacterList from "./components/editor/CharacterSelector";
 
 function App() {
+  const [currentTrack, setCurrentTrack] = useState(null);
+
+  useEffect(() => {
+    const fetchMusic = async () => {
+      try {
+        const res = await fetch("http://localhost:5001/music");
+
+        if (!res.ok) throw new Error("Erro na rede");
+
+        const data = await res.json();
+
+        if (data.url !== currentTrack) {
+          console.log("Nova trilha detectada:", data.url);
+          setCurrentTrack(data.url);
+        }
+      } catch (err) {
+        console.warn("Servidor de música offline ou erro de conexão.");
+      }
+    };
+
+    fetchMusic();
+
+    const interval = setInterval(fetchMusic, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentTrack]);
+
   return (
     <Router>
-      <MainNav />
+      <MainNav currentTrackUrl={currentTrack} />
       <Routes>
         {/* Rota principal das fichas */}
         <Route path="/" element={<Home />} />

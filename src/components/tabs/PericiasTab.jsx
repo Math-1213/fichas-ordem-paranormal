@@ -30,15 +30,22 @@ export default function PericiasTab({ character }) {
    * Lógica: Quantidade de dados = Atributo Base. Bônus Final = Treino + Bônus de Item.
    * * @param {string} nome - ID da perícia (ex: "luta", "ocultismo").
    */
-  function handleRoll(nome) {
+  function handleRoll(nome, useBonusDice = false) {
     const config = PERICIAS[nome];
-    const data = pericias[nome] ?? { treino: "destreinado", bonus: 0 };
+    const data = pericias[nome] ?? {
+      treino: "destreinado",
+      bonus: 0,
+      dadosExtras: 0,
+    };
 
     // Valor fixo somado ao dado (Ex: Treinado +5, Especialista +10)
     const treinoBonus = TREINO_BONUS[data.treino] ?? 0;
+    const dadosExtras = data.dadosExtras ?? 0;
 
     // Busca o valor do atributo vinculado (Ex: Luta usa FORÇA)
-    const atributoValor = character.getAtributo(config.atributo);
+    let atributoValor = character.getAtributo(config.atributo);
+
+    if (useBonusDice) atributoValor += dadosExtras;
 
     const roll = Dice.roll(
       "d20",
@@ -105,6 +112,7 @@ export default function PericiasTab({ character }) {
               const data = pericias[nome] ?? {
                 treino: "destreinado",
                 bonus: 0,
+                dadosExtras,
               };
 
               const treinoBonus = TREINO_BONUS[data.treino] ?? 0;
@@ -121,6 +129,10 @@ export default function PericiasTab({ character }) {
                 >
                   <Row
                     onClick={() => handleRoll(nome)}
+                    onContextMenu={(e) => {
+                      e.preventDefault(); // Impede o menu do Windows/Chrome de abrir
+                      handleRoll(nome, true);
+                    }}
                     className="align-items-center"
                     style={{
                       padding: "0.5rem",
@@ -195,9 +207,27 @@ export default function PericiasTab({ character }) {
                     {/* Bônus Numérico Adicional (Itens/Poderes) */}
                     <Col
                       md={2}
-                      style={{ color: "#9aa0b3", fontSize: "0.85rem" }}
+                      className="d-flex align-items-center" // Alinhado à direita para encontrar o valor total
+                      style={{ fontSize: "0.9rem", gap: "4px" }} // Gap cria um espacinho entre o dado e o bônus
                     >
-                      Extra: {data.bonus >= 0 ? `+${data.bonus}` : data.bonus}
+                      {/* Renderiza o Dado Extra */}
+                      {data.dadosExtras && data.dadosExtras !== "" && (
+                        <span
+                          style={{
+                            color: "#a855f7",
+                            fontWeight: "500",
+                          }}
+                        >
+                          +{data.dadosExtras}d20
+                        </span>
+                      )}
+
+                      {/* Renderiza o Bônus Fixo */}
+                      {data.bonus !== 0 && (
+                        <span style={{ color: "#22c55e", fontWeight: "600" }}>
+                          {data.bonus > 0 ? `+${data.bonus}` : data.bonus}
+                        </span>
+                      )}
                     </Col>
 
                     {/* Bônus Total (Soma de Treino + Extra) */}
