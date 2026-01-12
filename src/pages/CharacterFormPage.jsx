@@ -140,26 +140,26 @@ export default function CharacterFormPage() {
           />
         </Tab>
 
-        {/* <Tab eventKey="poderes" title="Poderes">
+        <Tab eventKey="poderes" title="Poderes">
           <PoderesEdit
-            data={character.poderes}
-            onSave={(newData) => handleLocalUpdate("pericias", newData)}
+            data={character.poderes || []}
+            onChange={(newData) => handleLocalUpdate("poderes", newData)}
           />
-        </Tab> */}
+        </Tab>
 
         {/* <Tab eventKey="inventario" title="Inventario">
           <InventarioEdit
             data={character.inventario}
-            onSave={(newData) => handleLocalUpdate("rituais", newData)}
+            onChange={(newData) => handleLocalUpdate("rituais", newData)}
           />
         </Tab> */}
 
-        {/* <Tab eventKey="rituais" handleLocalUpdate="Rituais">
+        <Tab eventKey="rituais" title="Rituais">
           <RitualEdit
-            data={character.rituais}
-            onSave={(newData) => savePart("rituais", newData)}
+            data={character.rituais || []}
+            onChange={(newData) => handleLocalUpdate("rituais", newData)}
           />
-        </Tab> */}
+        </Tab>
 
         <Tab eventKey="dados" title="Dados">
           <DadosEdit

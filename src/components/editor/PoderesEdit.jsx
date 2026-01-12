@@ -1,144 +1,176 @@
-import { useMemo, useState } from "react";
-import { Card, Stack, Badge, Form, Button } from "react-bootstrap";
-import styled from "styled-components";
-import RollTooltip from "../ui/RollTooltip";
-import { handleRoll, formatExpression } from "../../configs/dice";
+import { Card, Row, Col, Form, Button, Stack, Badge } from "react-bootstrap";
+import { Plus, Trash2, Shield, Tag, AlignLeft } from "lucide-react";
 
-/**
- * Cores temáticas para cada elemento do Outro Lado.
- */
-const ELEMENTO_COLORS = {
-  SANGUE: "#ef4444",
-  MORTE: "#7c3aed",
-  ENERGIA: "#3b82f6",
-  CONHECIMENTO: "#eab308",
-  MEDO: "#9ca3af",
+const TAG_STYLES = {
+  origem: { bg: "secondary", label: "Origem" },
+  classe: { bg: "primary", label: "Classe" },
+  trilha: { bg: "info", label: "Trilha" },
+  transcender: { bg: "danger", label: "Transcender" },
+  outros: { bg: "dark", label: "Outros" },
+  combate: { bg: "danger", label: "Combate" },
+  investigacao: { bg: "warning", label: "Investigação" },
+  social: { bg: "success", label: "Social" },
+  exploracao: { bg: "info", label: "Exploração" },
+  ritual: { bg: "primary", label: "Ritual" },
+  suporte: { bg: "secondary", label: "Suporte" },
+  passivo: { bg: "dark", label: "Passivo" },
+  reacao: { bg: "success", label: "Reação" },
 };
 
-const RitualCard = styled(Card)`
-  border-left: 4px solid ${(props) => props.color || "#2a2f3e"} !important;
-  background-color: #1e2330;
-  border: 1px solid #2a2f3e;
-  transition: transform 0.2s ease;
+export default function PoderesEdit({ data = [], onChange }) {
+  const poderes = Array.isArray(data) ? data : [];
 
-  &:hover {
-    border-color: ${(props) => props.color || "#2a2f3e"};
-  }
-`;
+  const handleUpdate = (newList) => {
+    if (onChange) onChange(newList);
+  };
 
-/**
- * Aba de Rituais.
- * Organiza rituais por círculo e permite rolagens de dano/cura.
- */
-export default function RituaisTab({ character }) {
-  const [rolls, setRolls] = useState({});
-  const rituais = character.rituais ?? [];
+  const addItem = () => {
+    const newItem = {
+      id: Date.now(),
+      titulo: "",
+      descricao: "",
+      tags: [],
+    };
+    handleUpdate([...poderes, newItem]);
+  };
 
-  // Agrupa rituais por Círculo (1, 2, 3, 4)
-  const circulos = useMemo(() => {
-    const groups = {};
-    rituais.forEach((rit) => {
-      const c = rit.circulo || 1;
-      if (!groups[c]) groups[c] = [];
-      groups[c].push(rit);
+  const removeItem = (index) => {
+    const newList = poderes.filter((_, i) => i !== index);
+    handleUpdate(newList);
+  };
+
+  const handleChange = (index, field, value) => {
+    const newList = poderes.map((item, i) => {
+      if (i === index) return { ...item, [field]: value };
+      return item;
     });
-    return Object.entries(groups).sort(([a], [b]) => a - b);
-  }, [rituais]);
+    handleUpdate(newList);
+  };
 
-  function RitualItem({ rit }) {
-    const color = ELEMENTO_COLORS[rit.elemento?.toUpperCase()] || "#9aa0b3";
-    const keyDano = `rit-dano-${rit.nome}`;
+  const toggleTag = (index, tag) => {
+    const currentTags = poderes[index].tags || [];
+    const newTags = currentTags.includes(tag)
+      ? currentTags.filter((t) => t !== tag)
+      : [...currentTags, tag];
+    handleChange(index, "tags", newTags);
+  };
 
-    return (
-      <RitualCard color={color} className="mb-3">
-        <Card.Body>
-          <div className="d-flex justify-content-between align-items-start">
-            <div>
-              <div className="d-flex align-items-center gap-2 mb-1">
-                <strong style={{ fontSize: "1.1rem", color: "#fff" }}>{rit.nome}</strong>
-                <Badge style={{ backgroundColor: color, fontSize: "0.65rem" }}>
-                  {rit.elemento}
-                </Badge>
-              </div>
-              <div style={{ fontSize: "0.75rem", color: "#9aa0b3" }} className="mb-2">
-                {rit.execucao} • {rit.alcance} • {rit.duracao} • Res: {rit.resistencia || "N/A"}
-              </div>
-            </div>
-            <div className="text-end">
-              <div style={{ fontSize: "0.85rem", fontWeight: "bold", color: "#8b5cf6" }}>
-                {rit.custo} PE
-              </div>
-            </div>
-          </div>
-
-          <div style={{ fontSize: "0.9rem", color: "#d0d3e0", marginBottom: "1rem" }}>
-            {rit.descricao}
-          </div>
-
-          {/* Ações do Ritual */}
-          {(rit.dano || rit.efeito_dados) && (
-            <div className="d-flex gap-2 pt-2" style={{ borderTop: "1px solid #2a2f3e" }}>
-              <RollTooltip
-                rolls={rolls[keyDano]?.rolls ?? []}
-                rollType="soma"
-                bonus={rolls[keyDano]?.bonus ?? 0}
-              >
-                <Button
-                  size="sm"
-                  variant="outline-light"
-                  style={{ borderColor: color, color: "#fff" }}
-                  onClick={() =>
-                    handleRoll(
-                      keyDano,
-                      rit.dano || rit.efeito_dados,
-                      "soma",
-                      setRolls,
-                      character
-                    )
-                  }
-                >
-                  Rolar: {formatExpression(rit.dano || rit.efeito_dados, character)}
-                </Button>
-              </RollTooltip>
-            </div>
-          )}
-        </Card.Body>
-      </RitualCard>
-    );
-  }
+  const inputStyle = {
+    backgroundColor: "#0d1117",
+    color: "#fff",
+    borderColor: "#2a2f3e",
+  };
 
   return (
-    <Card style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}>
-      <Card.Header style={{ backgroundColor: "#1e2330", color: "#fff", fontWeight: 600 }}>
-        Grimório Paranormal
-      </Card.Header>
-      <Card.Body>
-        {rituais.length === 0 ? (
-          <div className="text-center py-4 text-muted">Este personagem não possui rituais.</div>
-        ) : (
-          circulos.map(([circulo, lista]) => (
-            <div key={circulo} className="mb-4">
-              <div
-                style={{
-                  fontSize: "0.8rem",
-                  color: "#9aa0b3",
-                  letterSpacing: "1px",
-                  marginBottom: "0.75rem",
-                  borderBottom: "1px solid #2a2f3e",
-                  paddingBottom: "0.25rem",
-                }}
-              >
-                {circulo}º CÍRCULO
+    <div className="pb-4">
+      <Card style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}>
+        <Card.Header className="bg-dark border-secondary py-3 d-flex justify-content-between align-items-center">
+          <div className="text-white fw-bold d-flex align-items-center">
+            <Shield size={20} className="me-2 text-info" />
+            PODERES E HABILIDADES
+          </div>
+          <Button variant="outline-primary" size="sm" onClick={addItem}>
+            <Plus size={16} /> Adicionar Poder
+          </Button>
+        </Card.Header>
+
+        <Card.Body className="p-3">
+          <Stack gap={3}>
+            {poderes.length === 0 ? (
+              <div className="text-center py-5 text-muted small border border-dashed border-secondary rounded">
+                Nenhum poder registrado.
               </div>
-              {lista
-                .sort((a, b) => a.nome.localeCompare(b.nome))
-                .map((rit, idx) => (
-                  <RitualItem key={idx} rit={rit} />
-                ))}
-            </div>
-          ))
-        )}
-      </Card.Body>
-    </Card>
+            ) : (
+              poderes.map((item, index) => (
+                <Card
+                  key={item.id || index}
+                  style={{
+                    backgroundColor: "#0d1117",
+                    border: "1px solid #30363d",
+                  }}
+                  className="p-3"
+                >
+                  <Row className="g-3">
+                    <Col md={11}>
+                      {/* Título */}
+                      <Form.Group className="mb-2">
+                        <Form.Label className="small text-white-50 fw-bold">
+                          TÍTULO DO PODER
+                        </Form.Label>
+                        <Form.Control
+                          style={inputStyle}
+                          value={item.titulo}
+                          onChange={(e) =>
+                            handleChange(index, "titulo", e.target.value)
+                          }
+                          placeholder="Ex: Transcender"
+                        />
+                      </Form.Group>
+
+                      {/* Descrição */}
+                      <Form.Group className="mb-3">
+                        <Form.Label className="small text-white-50 fw-bold d-flex align-items-center gap-1">
+                          <AlignLeft size={14} /> DESCRIÇÃO
+                        </Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          rows={3}
+                          style={inputStyle}
+                          value={item.descricao}
+                          onChange={(e) =>
+                            handleChange(index, "descricao", e.target.value)
+                          }
+                          placeholder="O que este poder faz?"
+                        />
+                      </Form.Group>
+
+                      {/* Tags */}
+                      <div className="d-flex flex-wrap gap-1 mt-2">
+                        <span className="small text-white-50 me-2 d-flex align-items-center">
+                          <Tag size={12} className="me-1" /> Tags:
+                        </span>
+                        {Object.keys(TAG_STYLES).map((tagKey) => {
+                          const isSelected = item.tags?.includes(tagKey);
+                          const style = TAG_STYLES[tagKey];
+                          return (
+                            <Badge
+                              key={tagKey}
+                              bg={isSelected ? style.bg : "outline-secondary"}
+                              className="cursor-pointer"
+                              style={{
+                                cursor: "pointer",
+                                opacity: isSelected ? 1 : 0.3,
+                                border: isSelected ? "none" : "1px solid #444",
+                              }}
+                              onClick={() => toggleTag(index, tagKey)}
+                            >
+                              {style.label}
+                            </Badge>
+                          );
+                        })}
+                      </div>
+                    </Col>
+
+                    {/* Botão Remover */}
+                    <Col
+                      md={1}
+                      className="d-flex align-items-start justify-content-end"
+                    >
+                      <Button
+                        variant="outline-danger"
+                        size="sm"
+                        onClick={() => removeItem(index)}
+                      >
+                        <Trash2 size={18} />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Card>
+              ))
+            )}
+          </Stack>
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
