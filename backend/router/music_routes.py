@@ -1,5 +1,7 @@
-from flask import Blueprint, request, jsonify, send_from_directory
+from flask import Blueprint, request, jsonify, send_from_directory, Response
 from backend.controllers.music_controller import MusicController
+import json
+import time
 
 music_bp = Blueprint("music", __name__, url_prefix="/music")
 
@@ -21,3 +23,17 @@ def list_files():
 def stream_file(filename):
     """Serve o arquivo físico da pasta backend/data/musics"""
     return send_from_directory(MusicController.MUSIC_DIR, filename)
+
+@music_bp.get("/stream-events")
+def stream_events():
+    def event_generator():
+        last_url = None
+        while True:
+            current = MusicController.get_current()
+            # Só envia mensagem se o estado mudou (trocou música ou parou)
+            if current["url"] != last_url:
+                last_url = current["url"]
+                yield f"data: {json.dumps(current)}\n\n"
+            time.sleep(1) # Checa a cada 1 segundo no servidor
+            
+    return Response(event_generator(), mimetype="text/event-stream")

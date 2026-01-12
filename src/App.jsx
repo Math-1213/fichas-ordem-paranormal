@@ -15,29 +15,23 @@ function App() {
   const [currentTrack, setCurrentTrack] = useState(null);
 
   useEffect(() => {
-    const fetchMusic = async () => {
-      try {
-        const res = await fetch("http://localhost:5001/music");
+  const eventSource = new EventSource("http://localhost:5001/music/stream-events");
 
-        if (!res.ok) throw new Error("Erro na rede");
+  eventSource.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    console.log("Evento de música recebido:", data);
+    
+    // Se a URL for null ou vazia, o estado atualiza e o componente para a música
+    setCurrentTrack(data.url); 
+  };
 
-        const data = await res.json();
+  eventSource.onerror = () => {
+    console.error("Erro na conexão de eventos. Tentando reconectar...");
+    eventSource.close();
+  };
 
-        if (data.url !== currentTrack) {
-          console.log("Nova trilha detectada:", data.url);
-          setCurrentTrack(data.url);
-        }
-      } catch (err) {
-        console.warn("Servidor de música offline ou erro de conexão.");
-      }
-    };
-
-    fetchMusic();
-
-    const interval = setInterval(fetchMusic, 5000);
-
-    return () => clearInterval(interval);
-  }, [currentTrack]);
+  return () => eventSource.close();
+}, []);
 
   return (
     <Router>

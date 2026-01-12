@@ -10,19 +10,37 @@ const AtmospherePlayer = ({ currentTrackUrl }) => {
 
   useEffect(() => {
     const audio = audioRef.current;
-    audio.loop = true;
+
+    // 1. SEMPRE para o áudio anterior antes de qualquer coisa
+    audio.pause();
+
     if (!currentTrackUrl) {
-      audio.pause();
+      audio.src = ""; // Limpa a fonte
       setIsPlaying(false);
       return;
     }
+
+    // 2. Só agora define a nova música
     audio.src = currentTrackUrl;
+    audio.loop = true;
+
     audio
       .play()
       .then(() => setIsPlaying(true))
-      .catch(() => setIsPlaying(false));
+      .catch((err) => {
+        console.warn("Autoplay bloqueado: aguardando interação.");
+        setIsPlaying(false);
+      });
+
+    // Cleanup: Se o componente for destruído, mata o som
+    return () => {
+      audio.pause();
+      audio.src = "";
+    };
   }, [currentTrackUrl]);
 
+  if (!currentTrackUrl) return null;
+  
   useEffect(() => {
     audioRef.current.volume = isMuted ? 0 : volume;
   }, [volume, isMuted]);
