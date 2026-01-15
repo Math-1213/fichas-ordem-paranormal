@@ -14,6 +14,7 @@ def create_app() -> Flask:
         Flask: O objeto da aplicação configurado com os Blueprints.
     """
     app = Flask(__name__)
+    app.url_map.strict_slashes = False
     CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
     # Registro de rotas através de Blueprints
