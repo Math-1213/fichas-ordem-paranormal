@@ -1,4 +1,5 @@
 # 🌀 Ficha Paranormal - Dashboard de RPG
+[📖 Ver Notas de Atualização (Changelog)](./CHANGELOG.md) | [🚀 Guia de Instalação](#)
 
 Uma aplicação web interativa e de alta performance desenvolvida para jogadores do sistema de RPG **Ordem Paranormal**. Este dashboard permite gerenciar personagens, realizar rolagens de dados complexas e consultar rituais de forma dinâmica.
 
