@@ -30,3 +30,4 @@ dist-ssr
 src/data
 backend/data/
 backend/__pycache__/
+environment.json

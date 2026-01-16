@@ -65,9 +65,8 @@ Melhorias visuais e de usabilidade.
 - Salvar criação  
 - Descrições na criação  
 - Status gerais sempre visíveis  
-- Botão de update  
-- Unificar URLs em arquivo único  
-- Trocar Local VPN por LocalTunnel  
+- Unificar URLs em arquivo único [Concluido:1.1.2]  
+- Trocar Local VPN por LocalTunnel [Concluido:1.1.2] 
 
 ### Fase 2 – Lógica e Regras
 - Rever uso de habilidades  

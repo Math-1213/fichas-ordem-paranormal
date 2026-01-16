@@ -1,3 +1,0 @@
-- Dados Custom
-- Inventario [Armas, Equipamentos, Outros]
-- Rituais
