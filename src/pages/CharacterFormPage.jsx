@@ -34,6 +34,8 @@ export default function CharacterFormPage() {
           jogador: "",
           ocupacao: "",
           portrait: "",
+          nivel: 1,
+          deslocamento: 9,
         },
         atributos: { for: 1, agi: 1, int: 1, vig: 1, pre: 1 },
         status: {
@@ -54,7 +56,7 @@ export default function CharacterFormPage() {
   }, [id]);
 
   useEffect(() => {
-    console.log("Personagem: ", character);
+    console.log("Personagem: ", character); // TODO - Remover
   }, [character]);
 
   /**

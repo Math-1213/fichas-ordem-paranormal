@@ -71,6 +71,7 @@ Melhorias visuais e de usabilidade.
 ### Fase 2 – Lógica e Regras
 - Rever uso de habilidades  
 - Cálculo automático  
+- Botão de LevelUp
 - Badges de status e condições  
 
 ### Fase 3 – Funcionalidades de Sessão
@@ -80,4 +81,5 @@ Melhorias visuais e de usabilidade.
 
 ### Fase 4 – Refinamento
 - Melhorar estilização  
+- Correções Na Musica
 - Exportar ficha para PDF  

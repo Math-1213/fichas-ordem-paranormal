@@ -2,6 +2,12 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
+## [1.1.3] 
+- Correção no input da nacionalidade
+- Criação do arquivo de regras - Esse arquivo ajuda a padronizar os nomes pelo sistema
+- Implementação das regras na criação de personagem
+- Melhoria na UX/UI das infos
+
 ## [1.1.2] - 2026-01-15
 ### Adicionado
 - Script de inicialização automática (`run.bat`).
