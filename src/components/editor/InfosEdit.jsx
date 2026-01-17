@@ -22,7 +22,7 @@ import {
   Edit3,
 } from "lucide-react";
 import InfoTooltip from "../ui/InfoTooltip";
-import { classes, trails, origins, patent } from "../../models/Rules";
+import { classes, trails, origins, patent, statusParams } from "../../models/Rules";
 import { PERICIAS } from "../../configs/skills";
 import { ELEMENTS, ELEMENT_DATA } from "../../configs/paranormal";
 
@@ -45,6 +45,25 @@ export default function InfosEdit({
     power: { name: "", description: "" },
   });
 
+  const normalizeSkill = (str) =>
+    str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+
+  const nextLevel = {
+    destreinado: "treinado",
+    treinado: "veterano",
+    veterano: "expert",
+    expert: "expert",
+  };
+  const prevLevel = {
+    expert: "veterano",
+    veterano: "treinado",
+    treinado: "destreinado",
+    destreinado: "destreinado",
+  };
+
   // Sincroniza o estado local se o dado vindo do pai mudar (ex: carregamento do banco)
   useEffect(() => {
     if (data) setInfos(data);
@@ -58,18 +77,89 @@ export default function InfosEdit({
       return;
     }
 
-    // Criamos o novo estado de uma vez só, garantindo a integridade
-    const newInfos = {
-      ...infos,
+    // 1. Preparamos os estados baseados no que já temos
+    let newPowers = [...(powers || [])];
+    let newSkills = JSON.parse(JSON.stringify(skills || {}));
+    let newInfos = { ...infos };
+
+    // A. Reverter origem anterior (se houver)
+    if (infos.origemPericias) {
+      infos.origemPericias.forEach((skillKey) => {
+        if (newSkills[skillKey]) {
+          newSkills[skillKey].treino =
+            prevLevel[newSkills[skillKey].treino] || "destreinado";
+          if (skillKey === "profissao") newSkills[skillKey].type = "";
+        }
+      });
+    }
+
+    // B. Aplicar a Nova Origem Customizada
+    // Limpar poderes de origem automáticos anteriores
+    newPowers = newPowers.filter(
+      (p) => !(p.tags?.includes("origem") && p.isAuto),
+    );
+
+    // Adicionar novo poder da custom
+    if (data.power) {
+      const lastId =
+        newPowers.length > 0 ? Math.max(...newPowers.map((p) => p.id || 0)) : 0;
+      newPowers.push({
+        id: lastId + 1,
+        titulo: data.power.name,
+        descricao: data.power.description,
+        tags: [...(data.power.tags || []), "origem"],
+        isAuto: true,
+      });
+    }
+
+    // C. Aplicar Perícias da Custom
+    const actualSkillsKeysApplied = [];
+    let currentWarnings = [];
+
+    (data.skills || []).forEach((skillString) => {
+      if (!skillString) return;
+
+      let skillName = skillString;
+      let professionType = "";
+
+      if (
+        skillString.toLowerCase().includes("profissao") ||
+        skillString.toLowerCase().includes("profissão")
+      ) {
+        const match = skillString.match(/\(([^)]+)\)/);
+        professionType = match ? match[1] : "";
+        skillName = "profissao";
+      }
+
+      const skillKey = normalizeSkill(skillName);
+
+      if (newSkills[skillKey]) {
+        newSkills[skillKey].treino =
+          nextLevel[newSkills[skillKey].treino] || "treinado";
+        if (skillKey === "profissao" && professionType)
+          newSkills[skillKey].type = professionType;
+        actualSkillsKeysApplied.push(skillKey);
+      } else {
+        // Se for um texto genérico , gera o aviso
+        currentWarnings.push({
+          text: `⚠️ Perícia "${skillString}" não automatizada.`,
+          type: "warning",
+        });
+      }
+    });
+
+    // 2. Finalizar o objeto newInfos
+    newInfos = {
+      ...newInfos,
       origem: data.name,
-      origemDetalhes: data, // Detalhes completos (descrição, perícias, poder)
+      origemDetalhes: data,
+      origemPericias: actualSkillsKeysApplied, // Crucial para a próxima reversão!
     };
 
-    // Atualiza o estado local
+    // 3. Atualizar tudo
     setInfos(newInfos);
-
-    // Notifica o componente pai uma única vez com o objeto completo
-    onChange(newInfos);
+    setWarnings(currentWarnings);
+    onChangeAll({ poderes: newPowers, infos: newInfos, pericias: newSkills });
 
     setShowOriginModal(false);
   };
@@ -106,36 +196,70 @@ export default function InfosEdit({
     // --- LOGICA DE COLATERAIS (AUTO-FILL) ---
     // A. Ao mudar Classe
     if (path === "classe") {
-      newInfos.trilha = ""; // Limpa a trilha anterior
+      newInfos.trilha = "";
 
-      // 1. Encontrar os dados da classe selecionada no arquivo Rules
-      const classeSelecionada = classes.find((c) => c.name === value);
-      if (classeSelecionada && classeSelecionada.powers) {
+      // 1. REVERTER PERÍCIAS DA CLASSE ANTERIOR
+      if (infos.classePericias) {
+        infos.classePericias.forEach((skillKey) => {
+          if (newSkills[skillKey]) {
+            newSkills[skillKey].treino =
+              prevLevel[newSkills[skillKey].treino] || "destreinado";
+          }
+        });
+      }
+
+      // 2. APLICAR PODERES DA CLASSE (Sua lógica existente)
+      const classeDadosRules = classes.find((c) => c.name === value);
+      if (classeDadosRules && classeDadosRules.powers) {
         newPowers = newPowers.filter(
           (p) => !(p.tags?.includes("classe") && p.isAuto),
         );
-
-        // 2. Pegamos o último ID para manter o incremental
         let lastId =
           newPowers.length > 0
             ? Math.max(...newPowers.map((p) => p.id || 0))
             : 0;
 
-        // 4. Mapeamos os poderes da classe para o seu formato final
-        const classPowers = classeSelecionada.powers.map((p) => {
+        const classPowers = classeDadosRules.powers.map((p) => {
           lastId++;
           return {
             id: lastId,
             titulo: p.name,
             descricao: p.description,
-            tags: [...(p.tags || [])],
+            tags: [...(p.tags || []), "classe"],
             isAuto: true,
           };
         });
-
-        // 5. Adicionamos os novos poderes à lista
         newPowers = [...newPowers, ...classPowers];
       }
+
+      // 3. APLICAR PERÍCIAS PADRÃO (Baseado no statusParams)
+      const params = statusParams[value];
+      const appliedKeys = [];
+      let classWarnings = [];
+
+      if (params && params.pericias && params.pericias.default) {
+        params.pericias.default.forEach((skillString) => {
+          // Caso A: Escolha Condicional ("Luta || Pontaria")
+          if (skillString.includes("||")) {
+            classWarnings.push({
+              text: `⚔️ Escolha de Classe: Você deve escolher entre as perícias [${skillString}] para treinar.`,
+              type: "info",
+            });
+          }
+          // Caso B: Perícia Fixa ("Ocultismo")
+          else {
+            const skillKey = normalizeSkill(skillString.trim());
+            if (newSkills[skillKey]) {
+              newSkills[skillKey].treino =
+                nextLevel[newSkills[skillKey].treino] || "treinado";
+              appliedKeys.push(skillKey);
+            }
+          }
+        });
+      }
+
+      newInfos.classePericias = appliedKeys;
+      setWarnings(classWarnings);
     }
 
     if (path === "nivel" || path === "trilha") {
@@ -199,28 +323,6 @@ export default function InfosEdit({
 
     // --- LÓGICA DE ORIGEM (Poder + Perícias) ---
     if (path === "origem") {
-      const normalizeSkill = (str) =>
-        str
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .toLowerCase();
-
-      // Mapeamento para subir de nível
-      const nextLevel = {
-        destreinado: "treinado",
-        treinado: "veterano",
-        veterano: "expert",
-        expert: "expert",
-      };
-
-      // Mapeamento para descer de nível (reversão)
-      const prevLevel = {
-        expert: "veterano",
-        veterano: "treinado",
-        treinado: "destreinado",
-        destreinado: "destreinado",
-      };
-
       const origemSelecionada = origins.find((o) => o.name === value);
       let currentWarnings = [];
 

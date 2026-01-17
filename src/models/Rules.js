@@ -99,9 +99,9 @@ export const statusParams = {
       calc: "3+/PRE/+(/LEVEL/-1)*(3+/PRE/)",
     },
     pericias: {
-      base: "7 + Intelecto",
+      base: "9 + Intelecto",
       default: [],
-      calc: "7+/INT/",
+      calc: "9+/INT/",
     },
   },
   Ocultista: {

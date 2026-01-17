@@ -130,11 +130,37 @@ export default function RituaisEdit({ data = [], onChange }) {
                   </div>
                 </Accordion.Header>
                 <Accordion.Body
-                  style={{ backgroundColor: "#0d1117", color: "#fff" }}
+                  style={{
+                    backgroundColor: "#0d1117",
+                    color: "#fff",
+                    position: "relative", // Necessário para o botão absoluto se posicionar aqui
+                    paddingTop: "2.5rem", // Espaço extra no topo para o botão não sobrepor o primeiro input
+                  }}
                 >
+                  {/* BOTÃO REMOVER POSICIONADO NO CANTO SUPERIOR */}
+                  <Button
+                    variant="outline-danger"
+                    size="sm"
+                    onClick={() =>
+                      handleUpdate(rituais.filter((_, i) => i !== idx))
+                    }
+                    style={{
+                      position: "absolute",
+                      top: "10px",
+                      right: "10px",
+                      padding: "4px 8px",
+                      fontSize: "0.75rem",
+                      zIndex: 10,
+                    }}
+                  >
+                    <Trash2 size={14} className="me-1" /> Remover Ritual
+                  </Button>
+
                   <Row className="g-3">
-                    <Col md={6}>
-                      <Form.Label className="small text-muted">
+                    <Col md={12}>
+                      {" "}
+                      {/* Aumentado para 12 para ocupar a linha toda já que o botão saiu do lado */}
+                      <Form.Label className="small text-secondary">
                         Nome do Ritual
                       </Form.Label>
                       <Form.Control
@@ -146,8 +172,9 @@ export default function RituaisEdit({ data = [], onChange }) {
                         }
                       />
                     </Col>
+
                     <Col md={12}>
-                      <Form.Label className="small text-muted d-block">
+                      <Form.Label className="small text-secondary d-block">
                         Elementos do Ritual
                       </Form.Label>
                       <Stack
@@ -188,8 +215,9 @@ export default function RituaisEdit({ data = [], onChange }) {
                         })}
                       </Stack>
                     </Col>
+
                     <Col md={3}>
-                      <Form.Label className="small text-muted">
+                      <Form.Label className="small text-secondary">
                         Círculo
                       </Form.Label>
                       <Form.Select
@@ -207,22 +235,10 @@ export default function RituaisEdit({ data = [], onChange }) {
                         ))}
                       </Form.Select>
                     </Col>
-                    <Col md={3} className="d-flex align-items-end">
-                      <Button
-                        variant="outline-danger"
-                        className="w-100"
-                        size="sm"
-                        onClick={() =>
-                          handleUpdate(rituais.filter((_, i) => i !== idx))
-                        }
-                      >
-                        <Trash2 size={14} /> Remover
-                      </Button>
-                    </Col>
 
                     {/* Detalhes Técnicos */}
                     <Col md={3}>
-                      <label className="small text-muted">Execução</label>
+                      <label className="small text-secondary">Execução</label>
                       <Form.Control
                         size="sm"
                         style={inputStyle}
@@ -233,7 +249,7 @@ export default function RituaisEdit({ data = [], onChange }) {
                       />
                     </Col>
                     <Col md={3}>
-                      <label className="small text-muted">Alcance</label>
+                      <label className="small text-secondary">Alcance</label>
                       <Form.Control
                         size="sm"
                         style={inputStyle}
@@ -244,7 +260,7 @@ export default function RituaisEdit({ data = [], onChange }) {
                       />
                     </Col>
                     <Col md={3}>
-                      <label className="small text-muted">Duração</label>
+                      <label className="small text-secondary">Duração</label>
                       <Form.Control
                         size="sm"
                         style={inputStyle}
@@ -255,7 +271,7 @@ export default function RituaisEdit({ data = [], onChange }) {
                       />
                     </Col>
                     <Col md={3}>
-                      <label className="small text-muted">Resistência</label>
+                      <label className="small text-secondary">Resistência</label>
                       <Form.Control
                         size="sm"
                         style={inputStyle}
@@ -295,7 +311,7 @@ export default function RituaisEdit({ data = [], onChange }) {
                               idx,
                               "normal",
                               "efeito",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />
@@ -309,7 +325,7 @@ export default function RituaisEdit({ data = [], onChange }) {
                               idx,
                               "normal",
                               "dados",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />
@@ -336,7 +352,7 @@ export default function RituaisEdit({ data = [], onChange }) {
                               idx,
                               "discente",
                               "efeito",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />
@@ -352,7 +368,7 @@ export default function RituaisEdit({ data = [], onChange }) {
                                   idx,
                                   "discente",
                                   "custo",
-                                  e.target.value
+                                  e.target.value,
                                 )
                               }
                             />
@@ -368,7 +384,7 @@ export default function RituaisEdit({ data = [], onChange }) {
                                   idx,
                                   "discente",
                                   "dados",
-                                  e.target.value
+                                  e.target.value,
                                 )
                               }
                             />
@@ -397,7 +413,7 @@ export default function RituaisEdit({ data = [], onChange }) {
                               idx,
                               "verdadeiro",
                               "efeito",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />
@@ -413,7 +429,7 @@ export default function RituaisEdit({ data = [], onChange }) {
                                   idx,
                                   "verdadeiro",
                                   "custo",
-                                  e.target.value
+                                  e.target.value,
                                 )
                               }
                             />
@@ -429,7 +445,7 @@ export default function RituaisEdit({ data = [], onChange }) {
                                   idx,
                                   "verdadeiro",
                                   "dados",
-                                  e.target.value
+                                  e.target.value,
                                 )
                               }
                             />
