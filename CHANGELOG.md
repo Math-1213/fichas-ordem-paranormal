@@ -2,7 +2,7 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
-## [1.2.0] - 2026-01-XX
+## [1.2.0] - 2026-01-17
 
 ### Corrigido
 
