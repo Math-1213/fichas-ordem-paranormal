@@ -21,8 +21,6 @@ Aprimoramentos ligados às regras, lógica interna e infraestrutura.
 | Rever uso de habilidades | Ajustar lógica, impacto e apresentação | Alta | Médio |
 | Cálculo automático | Vida, sanidade, esforço e outros valores derivados | Alta | Alto |
 | Botão de update | Atualizar ficha sem recriação completa | Alta | Baixo |
-| Unificar URL em arquivo único | Centralizar URLs/configurações de API | Alta | Baixo |
-| Trocar VPN para LocalTunnel | Melhor suporte a backend e conexões externas | Alta | Médio |
 
 ---
 
@@ -61,12 +59,10 @@ Melhorias visuais e de usabilidade.
 ## 🗺️ Roadmap Sugerido
 
 ### Fase 1 – Estabilidade e Infraestrutura
-- Nacionalidade editável  
-- Salvar criação  
-- Descrições na criação  
-- Status gerais sempre visíveis  
-- Unificar URLs em arquivo único [Concluido:1.1.2]  
-- Trocar Local VPN por LocalTunnel [Concluido:1.1.2] 
+- Nacionalidade editável [Concluido:1.2.0]  
+- Salvar criação [Concluido:1.2.0]  
+- Descrições na criação 
+- Status gerais sempre visíveis
 
 ### Fase 2 – Lógica e Regras
 - Rever uso de habilidades  
@@ -75,9 +71,9 @@ Melhorias visuais e de usabilidade.
 - Badges de status e condições  
 
 ### Fase 3 – Funcionalidades de Sessão
+- Painel do mestre  
 - Controle de iniciativa  
 - Caderneta do personagem  
-- Painel do mestre  
 
 ### Fase 4 – Refinamento
 - Melhorar estilização  

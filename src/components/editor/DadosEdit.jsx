@@ -60,8 +60,8 @@ export default function DadosEdit({ data = [], onChange }) {
           <Stack gap={3}>
             {dados.length === 0 ? (
               <div className="text-center py-5 border border-dashed border-secondary rounded opacity-50">
-                <Dices size={40} className="text-muted mb-2" />
-                <div className="text-muted small">
+                <Dices size={40} className="text-secondary mb-2" />
+                <div className="text-secondary small">
                   Nenhum dado customizado. Clique em adicionar para começar.
                 </div>
               </div>

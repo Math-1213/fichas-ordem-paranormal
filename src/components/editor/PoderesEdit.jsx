@@ -77,7 +77,7 @@ export default function PoderesEdit({ data = [], onChange }) {
         <Card.Body className="p-3">
           <Stack gap={3}>
             {poderes.length === 0 ? (
-              <div className="text-center py-5 text-muted small border border-dashed border-secondary rounded">
+              <div className="text-center py-5 text-secondary small border border-dashed border-secondary rounded">
                 Nenhum poder registrado.
               </div>
             ) : (

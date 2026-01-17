@@ -69,7 +69,7 @@ export default function PericiasEdit({ data, onChange }) {
 
       <Card.Body style={{ padding: "1rem" }}>
         {/* HEADER DA TABELA */}
-        <Row className="mb-2 px-2 text-muted small fw-bold d-none d-md-flex">
+        <Row className="mb-2 px-2 text-info small fw-bold d-none d-md-flex">
           <Col md={3}>PERÍCIA / ATRIBUTO</Col>
           <Col md={3}>TREINAMENTO</Col>
           <Col md={2}>BÔNUS FIXO</Col>
@@ -106,8 +106,8 @@ export default function PericiasEdit({ data, onChange }) {
                     {config.label}
                   </div>
                   <div
-                    className="text-muted small text-uppercase"
-                    style={{ fontSize: "0.65rem" }}
+                    className="small text-uppercase"
+                    style={{ fontSize: "0.65rem", color: "gray" }}
                   >
                     {config.atributo}
                   </div>

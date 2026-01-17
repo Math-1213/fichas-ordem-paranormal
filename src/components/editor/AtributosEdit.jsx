@@ -8,7 +8,11 @@ import { Shield, Zap, Brain, Eye, Heart } from "lucide-react";
 const ATTR_CONFIG = {
   forca: { label: "Força", icon: <Shield size={20} />, color: "#ff3b3b" },
   agilidade: { label: "Agilidade", icon: <Zap size={20} />, color: "#ffee58" },
-  intelecto: { label: "Intelecto", icon: <Brain size={20} />, color: "#3b82f6" },
+  intelecto: {
+    label: "Intelecto",
+    icon: <Brain size={20} />,
+    color: "#3b82f6",
+  },
   presenca: { label: "Presença", icon: <Eye size={20} />, color: "#a855f7" },
   vigor: { label: "Vigor", icon: <Heart size={20} />, color: "#22c55e" },
 };
@@ -21,13 +25,13 @@ export default function AtributosEdit({ data, onChange }) {
     intelecto: 0,
     presenca: 0,
     vigor: 0,
-    ...data // Sobrescreve se houver dados persistidos
+    ...data, // Sobrescreve se houver dados persistidos
   });
 
   // Sincroniza se o objeto data mudar externamente
   useEffect(() => {
     if (data) {
-      setAtributos(prev => ({ ...prev, ...data }));
+      setAtributos((prev) => ({ ...prev, ...data }));
     }
   }, [data]);
 
@@ -37,7 +41,7 @@ export default function AtributosEdit({ data, onChange }) {
       ...atributos,
       [nome]: newVal,
     };
-    
+
     setAtributos(newAtributos);
     // Notifica o pai para que o estado global do personagem seja atualizado
     if (onChange) onChange(newAtributos);
@@ -59,7 +63,7 @@ export default function AtributosEdit({ data, onChange }) {
             borderBottom: "1px solid #2a2f3e",
             fontWeight: 600,
             color: "#fff",
-            textAlign: "center"
+            textAlign: "center",
           }}
         >
           Definir Atributos Base
@@ -81,8 +85,14 @@ export default function AtributosEdit({ data, onChange }) {
               <Col xs="auto" className="pe-3">
                 <div style={{ color: config.color }}>{config.icon}</div>
               </Col>
-              
-              <Col style={{ color: "#e6e6e6", fontSize: "0.95rem", fontWeight: 600 }}>
+
+              <Col
+                style={{
+                  color: "#e6e6e6",
+                  fontSize: "0.95rem",
+                  fontWeight: 600,
+                }}
+              >
                 {config.label}
               </Col>
 
@@ -90,7 +100,12 @@ export default function AtributosEdit({ data, onChange }) {
                 <Button
                   variant="outline-danger"
                   size="sm"
-                  style={{ width: "32px", height: "32px", padding: 0, borderOpacity: 0.5 }}
+                  style={{
+                    width: "32px",
+                    height: "32px",
+                    padding: 0,
+                    borderOpacity: 0.5,
+                  }}
                   onClick={() => handleAdjust(key, -1)}
                 >
                   -
@@ -103,7 +118,7 @@ export default function AtributosEdit({ data, onChange }) {
                     fontSize: "1.2rem",
                     minWidth: "30px",
                     textAlign: "center",
-                    textShadow: `0 0 10px ${config.color}44`
+                    textShadow: `0 0 10px ${config.color}44`,
                   }}
                 >
                   {atributos[key] || 0}
@@ -120,8 +135,11 @@ export default function AtributosEdit({ data, onChange }) {
               </Col>
             </Row>
           ))}
-          
-          <div className="text-center mt-3 small text-muted">
+
+          <div
+            className="text-center mt-3 small"
+            style={{ color: "gray" }}
+          >
             Estes valores definem a base para todos os seus testes.
           </div>
         </Card.Body>

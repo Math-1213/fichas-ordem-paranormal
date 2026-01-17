@@ -37,7 +37,13 @@ export default function CharacterFormPage() {
           nivel: 1,
           deslocamento: 9,
         },
-        atributos: { for: 1, agi: 1, int: 1, vig: 1, pre: 1 },
+        atributos: {
+          forca: 1,
+          agilidade: 1,
+          intelecto: 1,
+          presenca: 1,
+          vigor: 1,
+        },
         status: {
           vida: 10,
           vidaMax: 10,
