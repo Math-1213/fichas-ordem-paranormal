@@ -101,3 +101,15 @@ class FileStore:
             self.locks.pop(id, None)
             return True
         return False
+
+    def exists(self, id: str) -> bool:
+        """
+        Verifica se o arquivo de um personagem já existe no disco.
+
+        Args:
+            id (str): ID/Nome do arquivo a verificar.
+
+        Returns:
+            bool: True se o arquivo existir, False caso contrário.
+        """
+        return self._file(id).exists()
