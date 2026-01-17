@@ -1,20 +1,63 @@
 import { useState, useEffect } from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
 import { Shield, Zap, Brain, Eye, Heart } from "lucide-react";
+import InfoTooltip from "../ui/InfoTooltip";
 
 /**
  * Mapeamento de estilo e ícones para cada atributo.
  */
 const ATTR_CONFIG = {
-  forca: { label: "Força", icon: <Shield size={20} />, color: "#ff3b3b" },
-  agilidade: { label: "Agilidade", icon: <Zap size={20} />, color: "#ffee58" },
+  forca: {
+    label: "Força",
+    icon: <Shield size={20} />,
+    color: "#ff3b3b",
+    description: `**FORÇA**
+Determina sua potência muscular e habilidade atlética.
+
+- **Perícias**: Atributo-base de #**Atletismo**#ff3b3b e #**Luta**#ff3b3b.
+- **Combate**: Aplicada em rolagens de dano corpo a corpo e armas de arremesso.
+- **Carga**: Define sua capacidade de carregar itens.`,
+  },
+  agilidade: {
+    label: "Agilidade",
+    icon: <Zap size={20} />,
+    color: "#ffee58",
+    description: `**AGILIDADE**
+Define sua coordenação motora, velocidade de reação e destreza manual.
+
+- **Perícias**: Base para #**Acrobacia**#ffee58, #**Furtividade**#ffee58, #**Iniciativa**#ffee58, #**Crime**#ffee58, #**Pilotagem**#ffee58, #**Pontaria**#ffee58 e #**Reflexos**#ffee58.`,
+  },
   intelecto: {
     label: "Intelecto",
     icon: <Brain size={20} />,
     color: "#3b82f6",
+    description: `**INTELECTO**
+Mede seu raciocínio, memória e educação geral.
+
+- **Perícias**: #**Atualidades**#3b82f6, #**Ciências**#3b82f6, #**Investigação**#3b82f6, #**Medicina**#3b82f6, #**Ocultismo**#3b82f6, #**Tática**#3b82f6 e #**Tecnologia**#3b82f6.
+- **Bônus**: Você recebe perícias treinadas adicionais igual ao seu Intelecto.
+- **Rituais**: Define o número de rituais que você pode aprender.`,
   },
-  presenca: { label: "Presença", icon: <Eye size={20} />, color: "#a855f7" },
-  vigor: { label: "Vigor", icon: <Heart size={20} />, color: "#22c55e" },
+  presenca: {
+    label: "Presença",
+    icon: <Eye size={20} />,
+    color: "#a855f7",
+    description: `**PRESENÇA**
+Sua força de vontade, observação e habilidades sociais.
+
+- **Perícias**: #**Diplomacia**#a855f7, #**Enganação**#a855f7, #**Intimidação**#a855f7, #**Intuição**#a855f7, #**Percepção**#a855f7, #**Religião**#a855f7 e #**Vontade**#a855f7.
+- **Esforço**: Concede **PE** adicionais por nível (aumento retroativo).`,
+  },
+  vigor: {
+    label: "Vigor",
+    icon: <Heart size={20} />,
+    color: "#22c55e",
+    description: `**VIGOR**
+Determina sua saúde e resistência física.
+
+- **Perícias**: Atributo-base de #**Fortitude**#22c55e.
+- **Vida**: Concede **PV** adicionais por nível (aumento retroativo).`,
+  },
 };
 
 export default function AtributosEdit({ data, onChange }) {
@@ -91,21 +134,24 @@ export default function AtributosEdit({ data, onChange }) {
                   color: "#e6e6e6",
                   fontSize: "0.95rem",
                   fontWeight: 600,
+                  display: "flex",
+                  alignItems: "center", // Alinha o texto e o ícone de info
                 }}
               >
                 {config.label}
+                {/* O TOOLTIP ENTRA AQUI */}
+                <InfoTooltip
+                  content={config.description}
+                  placement="right"
+                  iconColor={config.color}
+                />
               </Col>
 
               <Col xs="auto" className="d-flex align-items-center gap-2">
                 <Button
                   variant="outline-danger"
                   size="sm"
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                    padding: 0,
-                    borderOpacity: 0.5,
-                  }}
+                  style={{ width: "32px", height: "32px", padding: 0 }}
                   onClick={() => handleAdjust(key, -1)}
                 >
                   -
@@ -135,13 +181,6 @@ export default function AtributosEdit({ data, onChange }) {
               </Col>
             </Row>
           ))}
-
-          <div
-            className="text-center mt-3 small"
-            style={{ color: "gray" }}
-          >
-            Estes valores definem a base para todos os seus testes.
-          </div>
         </Card.Body>
       </Card>
     </div>

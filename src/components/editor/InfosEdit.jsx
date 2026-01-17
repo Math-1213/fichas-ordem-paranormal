@@ -21,6 +21,7 @@ import {
   FileJson,
   Edit3,
 } from "lucide-react";
+import InfoTooltip from "../ui/InfoTooltip";
 import { classes, trails, origins, patent } from "../../models/Rules";
 import { PERICIAS } from "../../configs/skills";
 import { ELEMENTS, ELEMENT_DATA } from "../../configs/paranormal";
@@ -351,7 +352,22 @@ export default function InfosEdit({ data, onChange }) {
           {/* ORIGEM E CARREIRA */}
           <Row style={sectionStyle}>
             <Col md={3}>
-              <Form.Label style={labelStyle}>Classe</Form.Label>
+              <Form.Label
+                style={labelStyle}
+                className="d-flex align-items-center"
+              >
+                Classe{" "}
+                <InfoTooltip
+                  content={`
+                  **Classe**
+                  Representa seu treinamento e papel no grupo. Existem três arquétipos principais:
+
+                  - #**Combatente**#ff1744: A linha de frente. Especialista em combate, durão e perigoso.
+                  - #**Especialista**#0dcaf0: O mestre das perícias. Focado em resolver problemas com inteligência e lábia.
+                  - #**Ocultista**#9D00FF: O mestre do paranormal. Manipula rituais e mistérios, mas paga um preço alto.
+                  `}
+                />
+              </Form.Label>
               <Form.Select
                 value={infos.classe || ""}
                 onChange={(e) => handleChange("classe", e.target.value)}
@@ -367,7 +383,21 @@ export default function InfosEdit({ data, onChange }) {
             </Col>
 
             <Col md={3}>
-              <Form.Label style={labelStyle}>Trilha</Form.Label>
+              <Form.Label
+                style={labelStyle}
+                className="d-flex align-items-center"
+              >
+                Trilha{" "}
+                <InfoTooltip
+                  content={`
+                **Trilha**
+                Habilidades especializadas dentro da sua classe.
+
+                - Você escolhe sua Trilha ao atingir **Nível 2**.
+                - Conforme você sobe de nível, recebe novos poderes exclusivos da sua especialização escolhida.  
+                `}
+                />
+              </Form.Label>
               <Form.Select
                 value={infos.trilha || ""}
                 onChange={(e) => handleChange("trilha", e.target.value)}
@@ -390,7 +420,21 @@ export default function InfosEdit({ data, onChange }) {
               </Form.Select>
             </Col>
             <Col md={3}>
-              <Form.Label style={labelStyle}>Origem</Form.Label>
+              <Form.Label
+                style={labelStyle}
+                className="d-flex align-items-center"
+              >
+                Origem{" "}
+                <InfoTooltip
+                  content={`
+                **Origem**
+                O que você fazia antes do Paranormal. Define sua vida pregressa e como ela influencia sua carreira.
+
+                - Concede duas **Perícias Treinadas** específicas.
+                - Concede um **Poder de Origem** único (ex: bônus em itens, contatos ou habilidades especiais).  
+                `}
+                />
+              </Form.Label>
               <InputGroup>
                 <Form.Select
                   value={infos.origem || ""}
@@ -421,7 +465,22 @@ export default function InfosEdit({ data, onChange }) {
               </InputGroup>
             </Col>
             <Col md={3}>
-              <Form.Label style={labelStyle}>Patente</Form.Label>
+              <Form.Label
+                style={labelStyle}
+                className="d-flex align-items-center"
+              >
+                Patente{" "}
+                <InfoTooltip
+                  content={`
+                **Patente**
+                Sua posição hierárquica na Ordem (Recruta, Operador, Agente Especial, etc.).
+
+                - **Recursos**: Define quantos itens de cada categoria você pode levar por missão.
+                - **Crédito**: Determina seu limite para gastos gerais e prestígio na organização.
+                - **Promoção**: Aumenta conforme você acumula **Pontos de Prestígio (PP)** em missões.  
+                `}
+                />
+              </Form.Label>
               <Form.Select
                 value={infos.patente || ""}
                 onChange={(e) => {
@@ -445,7 +504,24 @@ export default function InfosEdit({ data, onChange }) {
           {/* MECÂNICAS ORDEM */}
           <Row style={sectionStyle}>
             <Col md={2} xs={6}>
-              <Form.Label style={labelStyle}>NEX (%)</Form.Label>
+              <Form.Label
+                style={labelStyle}
+                className="d-flex align-items-center"
+              >
+                NEX (%){" "}
+                <InfoTooltip
+                  content={`
+                **NEX (Exposição Paranormal)**
+                Mede o quanto da sua humanidade foi substituída pelo Paranormal.
+
+                - **Conexão**: Quanto maior o NEX, mais rituais e poderes você pode manifestar.
+                - **Preço**: A exposição altera sua mente e aparência, muitas vezes de forma debilitante.
+                - **Afinidade**: Ao atingir **NEX 50%**, a exposição é tão alta que você se conecta permanentemente a um Elemento.
+                - **Limite**: Personagens com NEX muito alto correm o risco de perder totalmente o vínculo com a Realidade.
+                `}
+                  placement="top"
+                />
+              </Form.Label>
               <Form.Control
                 type="number"
                 value={infos.nex || 0}
@@ -456,7 +532,23 @@ export default function InfosEdit({ data, onChange }) {
               />
             </Col>
             <Col md={2} xs={6}>
-              <Form.Label style={labelStyle}>Nível</Form.Label>
+              <Form.Label
+                style={labelStyle}
+                className="d-flex align-items-center"
+              >
+                Nível{" "}
+                <InfoTooltip
+                  content={`
+                **Nível de Experiência**
+                Representa seu treinamento técnico, saber acadêmico e capacidades físicas mundanas.
+
+                - **Escala**: Cada **1 Nível** equivale a **5% de NEX**.
+                - **Mecânica**: Substitui o NEX como pré-requisito para habilidades de classe e benefícios de Origem.
+                - **Exemplo**: Se uma habilidade exige NEX 35%, agora ela exige **Nível 7**.
+                - **Progressão**: Você sobe de nível ao concluir missões e treinar suas capacidades na Realidade.
+                `}
+                />
+              </Form.Label>
               <Form.Control
                 type="number"
                 value={infos.nivel || 0}
@@ -467,7 +559,22 @@ export default function InfosEdit({ data, onChange }) {
               />
             </Col>
             <Col md={2} xs={6}>
-              <Form.Label style={labelStyle}>PE / Rodada</Form.Label>
+              <Form.Label
+                style={labelStyle}
+                className="d-flex align-items-center"
+              >
+                PE / Rodada{" "}
+                <InfoTooltip
+                  content={`
+                **Limite de PE por Rodada**
+                O máximo de Pontos de Esforço que você pode gastar em um único turno.
+
+                - **Cálculo**: Atualmente igual ao seu **Nível** (equivalente a 1 PE a cada 5% de NEX).
+                - **Flexibilidade**: Você sempre pode usar pelo menos uma habilidade em seu custo mínimo, mesmo que ultrapasse o limite.
+                - **Combos**: Você pode somar várias habilidades, desde que o total não ultrapasse este valor.
+                `}
+                />
+              </Form.Label>
               <Form.Control
                 type="number"
                 value={infos.peRodada || 0}
@@ -478,7 +585,21 @@ export default function InfosEdit({ data, onChange }) {
               />
             </Col>
             <Col md={2} xs={6}>
-              <Form.Label style={labelStyle}>DT Ritual</Form.Label>
+              <Form.Label
+                style={labelStyle}
+                className="d-flex align-items-center"
+              >
+                DT Ritual{" "}
+                <InfoTooltip
+                  content={`
+                **DT Ritual (Dificuldade)**
+                O quão difícil é para um alvo resistir aos seus efeitos paranormais.
+
+                - **Cálculo**: 10 + #**Limite de PE**#0dcaf0 + #**Presença**#ffea00.
+                - **Resistência**: O alvo deve rolar um dado e igualar ou superar este valor para reduzir ou anular o efeito do ritual.  
+                `}
+                />
+              </Form.Label>
               <Form.Control
                 type="number"
                 value={infos.dtRitual || 0}
@@ -489,7 +610,26 @@ export default function InfosEdit({ data, onChange }) {
               />
             </Col>
             <Col md={3}>
-              <Form.Label style={labelStyle}>Afinidade</Form.Label>
+              <Form.Label
+                className="d-flex align-items-center"
+                style={labelStyle}
+              >
+                Afinidade{" "}
+                <InfoTooltip
+                  content={`
+                    **AFINIDADE (NEX 50%)**
+                    Ao atingir 50%, você se conecta a uma entidade. Isso permite conjurar rituais sem componentes e aprender rituais exclusivos.
+
+                    **Escolha seu Elemento:**
+                    - #**Sangue**#ff1744: Instinto e Fome. Causa hipertrofia, sentidos aguçados e instabilidade emocional.
+                    - #**Morte**#757575: Tempo e Entropia. Resulta em apatia, pele acinzentada e envelhecimento precoce.
+                    - #**Conhecimento**#ffea00: Lógica e Verdade. Traz personalidade estratégica, inscrições na pele e aura dourada.
+                    - #**Energia**#9D00FF: Caos e Mudança. Gera hiperatividade, olhos multicoloridos e tiques incontroláveis.
+                    - #**Medo**#ffffff: O Infinito e o Paranormal em sua forma mais pura.
+
+                    **Nota**: Uma vez escolhida, a afinidade não pode ser alterada.`}
+                />
+              </Form.Label>
               <InputGroup>
                 {/* Mostra o símbolo do elemento antes do Select se houver um selecionado */}
                 {infos.afinidade && infos.afinidade !== "Nenhum" && (
@@ -540,7 +680,22 @@ export default function InfosEdit({ data, onChange }) {
           {/* LOGÍSTICA E PORTRAIT */}
           <Row style={sectionStyle}>
             <Col md={2}>
-              <Form.Label style={labelStyle}>Carga Max</Form.Label>
+              <Form.Label
+                style={labelStyle}
+                className="d-flex align-items-center"
+              >
+                Carga Max{" "}
+                <InfoTooltip
+                  content={`
+                  **Carga Máxima**
+                  Capacidade de carregar equipamentos (em espaços).
+
+                  - **Cálculo**: 5 espaços por cada ponto de #**Força**#ff1744. (Mínimo de 2 se Força for 0).
+                  - **Sobrecarregado**: Se passar do limite, sofre **-5 em Defesa**, penalidade em perícias e **-3m de Deslocamento**.
+                  - **Limite Absoluto**: Você não pode carregar mais que o dobro da sua carga máxima.
+                  `}
+                />
+              </Form.Label>
               <Form.Control
                 type="number"
                 value={infos.carga || 0}
@@ -551,7 +706,19 @@ export default function InfosEdit({ data, onChange }) {
               />
             </Col>
             <Col md={2}>
-              <Form.Label style={labelStyle}>Deslocamento</Form.Label>
+              <Form.Label
+                style={labelStyle}
+                className="d-flex align-items-center"
+              >
+                Deslocamento{" "}
+                <InfoTooltip
+                  content={`**Deslocamento**
+                    Sua velocidade em combate.
+
+                    - **Padrão**: 9 metros por ação de movimento (6 quadrados).
+                    - **Terreno**: Algumas condições ou habilidades podem aumentar ou reduzir essa distância.`}
+                />
+              </Form.Label>
               <Form.Control
                 type="number"
                 value={infos.deslocamento || 0}

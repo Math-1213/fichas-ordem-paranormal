@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { Card, Row, Col, Form, InputGroup, Stack } from "react-bootstrap";
+import {
+  Card,
+  Row,
+  Col,
+  Form,
+  InputGroup,
+  Stack,
+  Button,
+} from "react-bootstrap";
 import {
   Heart,
   Brain,
@@ -9,10 +17,13 @@ import {
   ShieldAlert,
   ShieldCheck,
   Activity,
+  Wand2,
 } from "lucide-react";
 import { ELEMENT_DATA } from "../../configs/paranormal";
+import { statusParams, calculateStatus } from "../../models/Rules";
+import InfoTooltip from "../ui/InfoTooltip";
 
-export default function StatusEdit({ data, onChange }) {
+export default function StatusEdit({ data, onChange, character }) {
   const [status, setStatus] = useState({
     vidaMax: 0,
     sanidadeMax: 0,
@@ -63,6 +74,49 @@ export default function StatusEdit({ data, onChange }) {
     if (onChange) onChange(newStatus);
   };
 
+  const autoCalculate = () => {
+    if (!character?.classe || !character?.atributos) {
+      alert("Selecione a classe e defina os atributos primeiro!");
+      return;
+    }
+
+    const params = statusParams[character.classe];
+    if (!params) return;
+
+    const newVida = calculateStatus(
+      params.vida.calc,
+      character.atributos,
+      character.nivel
+    );
+    const newSan = calculateStatus(
+      params.sanidade.calc,
+      character.atributos,
+      character.nivel
+    );
+    const newPe = calculateStatus(
+      params.esforco.calc,
+      character.atributos,
+      character.nivel
+    );
+
+    const updated = {
+      ...status,
+      vidaMax: newVida,
+      vida: newVida,
+      sanidadeMax: newSan,
+      sanidade: newSan,
+      esforcoMax: newPe,
+      esforco: newPe,
+      defesas: {
+        ...status.defesas,
+        passiva: 10 + (character?.atributos?.agilidade || 0),
+      },
+    };
+
+    setStatus(updated);
+    if (onChange) onChange(updated);
+  };
+
   const inputStyle = {
     backgroundColor: "#0d1117",
     color: "#fff",
@@ -76,8 +130,20 @@ export default function StatusEdit({ data, onChange }) {
 
   return (
     <div className="pb-4">
+      {/* BOTÃO DE CÁLCULO MÁGICO */}
+      <div className="d-flex justify-content-end mb-3">
+        <Button
+          variant="outline-info"
+          size="sm"
+          onClick={autoCalculate}
+          className="d-flex align-items-center gap-2"
+        >
+          <Wand2 size={16} /> Calcular por Classe e Nível
+        </Button>
+      </div>
+
       <Row className="g-3">
-        {/* 1. ATRIBUTOS VITAIS (DESTAQUE MÁXIMO) */}
+        {/* 1. ATRIBUTOS VITAIS */}
         <Col xs={12}>
           <Card
             style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}
@@ -85,14 +151,22 @@ export default function StatusEdit({ data, onChange }) {
             <Card.Body className="p-4">
               <Row className="g-4 text-center">
                 <Col md={4}>
-                  <div className="d-flex flex-column align-items-center mb-2">
-                    <Heart
-                      className="text-danger mb-2"
-                      fill="#ff3b3b"
-                      size={32}
-                    />
-                    <span style={labelStyle}>VIDA MÁXIMA</span>
-                  </div>
+                  <InfoTooltip
+                    title="Vida (PV)"
+                    content="Sua saúde física. Quando chega a 0, você fica Morrendo."
+                  >
+                    <div
+                      className="d-flex flex-column align-items-center mb-2"
+                      style={{ cursor: "help" }}
+                    >
+                      <Heart
+                        className="text-danger mb-2"
+                        fill="#ff3b3b"
+                        size={32}
+                      />
+                      <span style={labelStyle}>VIDA MÁXIMA</span>
+                    </div>
+                  </InfoTooltip>
                   <Form.Control
                     type="number"
                     className="form-control-lg text-center fw-bold text-danger"
@@ -107,15 +181,24 @@ export default function StatusEdit({ data, onChange }) {
                     }
                   />
                 </Col>
+
                 <Col md={4}>
-                  <div className="d-flex flex-column align-items-center mb-2">
-                    <Brain
-                      className="text-info mb-2"
-                      fill="#3b82f6"
-                      size={32}
-                    />
-                    <span style={labelStyle}>SANIDADE MÁXIMA</span>
-                  </div>
+                  <InfoTooltip
+                    title="Sanidade (SAN)"
+                    content="Sua saúde mental. Quando chega a 0, você enlouquece."
+                  >
+                    <div
+                      className="d-flex flex-column align-items-center mb-2"
+                      style={{ cursor: "help" }}
+                    >
+                      <Brain
+                        className="text-info mb-2"
+                        fill="#3b82f6"
+                        size={32}
+                      />
+                      <span style={labelStyle}>SANIDADE MÁXIMA</span>
+                    </div>
+                  </InfoTooltip>
                   <Form.Control
                     type="number"
                     className="form-control-lg text-center fw-bold text-info"
@@ -130,15 +213,24 @@ export default function StatusEdit({ data, onChange }) {
                     }
                   />
                 </Col>
+
                 <Col md={4}>
-                  <div className="d-flex flex-column align-items-center mb-2">
-                    <Zap
-                      className="text-warning mb-2"
-                      fill="#ffee58"
-                      size={32}
-                    />
-                    <span style={labelStyle}>ESFORÇO (PE) MÁX.</span>
-                  </div>
+                  <InfoTooltip
+                    title="Pontos de Esforço (PE)"
+                    content="Usados para rituais e habilidades especiais."
+                  >
+                    <div
+                      className="d-flex flex-column align-items-center mb-2"
+                      style={{ cursor: "help" }}
+                    >
+                      <Zap
+                        className="text-warning mb-2"
+                        fill="#ffee58"
+                        size={32}
+                      />
+                      <span style={labelStyle}>ESFORÇO (PE) MÁX.</span>
+                    </div>
+                  </InfoTooltip>
                   <Form.Control
                     type="number"
                     className="form-control-lg text-center fw-bold text-warning"
@@ -158,17 +250,20 @@ export default function StatusEdit({ data, onChange }) {
           </Card>
         </Col>
 
-        {/* 2. DEFESAS (SEGUNDA MAIOR ENFASE) */}
+        {/* 2. DEFESAS */}
         <Col xs={12}>
           <Card
             style={{ backgroundColor: "#1c212b", border: "1px solid #3b82f6" }}
           >
-            <Card.Header
-              style={{ color: "#fff", fontWeight: "700" }}
-              className="bg-primary bg-opacity-10 border-bottom border-primary py-3"
-            >
-              <ShieldCheck size={20} className="me-2 text-primary" />{" "}
-              CONFIGURAÇÃO DE DEFESAS
+            <Card.Header className="bg-primary bg-opacity-10 border-bottom border-primary py-3 d-flex justify-content-between">
+              <div className="text-white fw-bold">
+                <ShieldCheck size={20} className="me-2 text-primary" />{" "}
+                CONFIGURAÇÃO DE DEFESAS
+              </div>
+              <InfoTooltip
+                title="Defesas"
+                content={`**Passiva:** 10 + Agilidade + Equipamento. \n   #A calculadora desconsidera Equipamento!#DC143C  \n**Esquiva:** Reação que soma Reflexos. \n**Bloqueio:** Reação que soma Fortitude à Resistência a Dano.`}
+              />
             </Card.Header>
             <Card.Body className="p-4">
               <Row className="g-3">
@@ -240,14 +335,20 @@ export default function StatusEdit({ data, onChange }) {
           </Card>
         </Col>
 
-        {/* 3. RESISTÊNCIAS ELEMENTAIS (COM SÍMBOLOS) */}
+        {/* 3. RESISTÊNCIAS ELEMENTAIS */}
         <Col xs={12}>
           <Card
             style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}
           >
-            <Card.Header className="bg-dark border-secondary py-3 text-white fw-bold">
-              <Flame size={18} className="me-2 text-danger" /> RESISTÊNCIAS
-              PARANORMAIS
+            <Card.Header className="bg-dark border-secondary py-3 text-white fw-bold d-flex justify-content-between">
+              <div>
+                <Flame size={18} className="me-2 text-danger" /> RESISTÊNCIAS
+                PARANORMAIS
+              </div>
+              <InfoTooltip
+                title="Resistências"
+                content="Valor subtraído do dano recebido daquele tipo específico."
+              />
             </Card.Header>
             <Card.Body>
               <Row className="g-3 justify-content-center">
@@ -259,11 +360,10 @@ export default function StatusEdit({ data, onChange }) {
                         ? "medo"
                         : elem.toLowerCase();
                     const elementoInfo = ELEMENT_DATA[keyBusca];
-
                     return (
                       <Col xs={6} md={4} lg={2} key={elem}>
                         <div className="text-center mb-2">
-                          {elementoInfo?.icon ? (
+                          {elementoInfo?.icon && (
                             <img
                               src={elementoInfo.icon}
                               alt={elem}
@@ -273,8 +373,6 @@ export default function StatusEdit({ data, onChange }) {
                                 objectFit: "contain",
                               }}
                             />
-                          ) : (
-                            <div style={{ height: "28px" }} />
                           )}
                           <div
                             className="small mt-1 fw-bold"
@@ -304,15 +402,12 @@ export default function StatusEdit({ data, onChange }) {
           </Card>
         </Col>
 
-        {/* 4. OUTRAS RESISTÊNCIAS */}
+        {/* 4. OUTRAS RESISTÊNCIAS (Resumido para o exemplo) */}
         <Col xs={12}>
           <Card
             style={{ backgroundColor: "#161a22", border: "1px solid #2a2f3e" }}
           >
-            <Card.Header
-              style={{ color: "#fff", fontWeight: "700" }}
-              className="bg-dark border-secondary py-2 small"
-            >
+            <Card.Header className="bg-dark border-secondary py-2 small text-white fw-bold">
               RESISTÊNCIAS GERAIS E FÍSICAS
             </Card.Header>
             <Card.Body className="py-2">

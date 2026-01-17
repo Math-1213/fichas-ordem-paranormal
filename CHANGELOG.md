@@ -2,12 +2,20 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
-## [1.2.0] 
-- Correção no input da nacionalidade
-- Criação do arquivo de regras - Esse arquivo ajuda a padronizar os nomes pelo sistema
-- Implementação das regras na criação de personagem
-- Melhoria na UX/UI das infos
-- Correção - Não salvar personagme novo
+## [1.2.0] - 2026-01-XX
+### Corrigido
+- Correção no input de nacionalidade.
+- Correção de falha que impedia o salvamento de novos personagens.
+
+### Adicionado
+- Criação do arquivo de regras para padronização de nomenclaturas no sistema.
+- Implementação das regras na criação de personagens.
+- Implementação de informações adicionais nas seções de Infos, Atributos, Perícias e Status.
+- Aplicação de calculadoras automáticas para Vida, Sanidade e Esforço.
+- Implementação da calculadora básica de Defesa.
+
+### Alterado
+- Melhoria na experiência de uso (UX/UI) das informações exibidas ao usuário.
 
 ## [1.1.2] - 2026-01-15
 ### Adicionado

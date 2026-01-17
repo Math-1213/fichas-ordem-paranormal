@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, Row, Col, Form, Badge } from "react-bootstrap";
 import { Search, Award } from "lucide-react";
 import { PERICIAS, TREINO_LABELS, TREINO_COLORS } from "../../configs/skills";
+import InfoTooltip from "../ui/InfoTooltip";
 
 export default function PericiasEdit({ data, onChange }) {
   const [pericias, setPericias] = useState(data || {});
@@ -199,27 +200,29 @@ export default function PericiasEdit({ data, onChange }) {
                 </Col>
 
                 {/* PROFISSÃO E BADGES COMPLETAS */}
+                {/* PROFISSÃO, BADGES E INFO */}
                 <Col
                   xs={12}
                   md={2}
-                  className="d-flex align-items-center justify-content-md-end gap-1"
+                  className="d-flex align-items-center justify-content-md-end gap-2"
                 >
                   {nome === "profissao" && (
                     <Form.Control
                       size="sm"
-                      placeholder="Tipo..."
+                      placeholder="Ex: Advogado"
                       value={skillData.type || ""}
                       onChange={(e) =>
                         handleUpdate(nome, "type", e.target.value)
                       }
                       style={{
                         ...inputStyle,
-                        width: "90px",
+                        width: "100px",
                         fontSize: "0.75rem",
                       }}
                     />
                   )}
-                  <div className="d-flex gap-1">
+
+                  <div className="d-flex gap-1 align-items-center">
                     {config.somenteTreinada && (
                       <Badge bg="danger" style={{ fontSize: "0.6rem" }}>
                         TREINADA
@@ -234,11 +237,17 @@ export default function PericiasEdit({ data, onChange }) {
                         KIT
                       </Badge>
                     )}
-                    {config.carga && (
-                      <Badge bg="secondary" style={{ fontSize: "0.6rem" }}>
-                        CARGA
-                      </Badge>
-                    )}
+
+                    {/* Ícone de Informação com o Tooltip das Regras */}
+                    <InfoTooltip
+                      title={config.label}
+                      content={config.description}
+                      placement="left"
+                    >
+                      <div style={{ cursor: "help", color: "#9aa0b3" }}>
+                        <Award size={16} />
+                      </div>
+                    </InfoTooltip>
                   </div>
                 </Col>
               </Row>

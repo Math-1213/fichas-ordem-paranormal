@@ -1393,7 +1393,7 @@ export const patent = [
 
 export const calculateStatus = (formula, attributes, level) => {
   let finalFormula = formula
-    .replace(/LEVEL/g, level)
+    .replace(/\/LEVEL\//g, level)
     .replace(/\/VIG\//g, attributes.vigor)
     .replace(/\/PRE\//g, attributes.presenca)
     .replace(/\/INT\//g, attributes.intelecto)

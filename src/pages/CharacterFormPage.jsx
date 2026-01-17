@@ -130,21 +130,22 @@ export default function CharacterFormPage() {
         <Tab eventKey="atributos" title="Atributos">
           <AtributosEdit
             data={character.atributos}
-            onSave={(newData) => handleLocalUpdate("atributos", newData)}
+            onChange={(newData) => handleLocalUpdate("atributos", newData)}
           />
         </Tab>
 
         <Tab eventKey="pericias" title="Pericias">
           <PericiasEdit
             data={character.pericias}
-            onSave={(newData) => handleLocalUpdate("pericias", newData)}
+            onChange={(newData) => handleLocalUpdate("pericias", newData)}
           />
         </Tab>
 
         <Tab eventKey="status" title="Status">
           <StatusEdit
             data={character.status}
-            onSave={(newData) => handleLocalUpdate("status", newData)}
+            character={{...character.infos, atributos: character.atributos}}
+            onChange={(newData) => handleLocalUpdate("status", newData)}
           />
         </Tab>
 
