@@ -3,14 +3,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Container, Tabs, Tab, Spinner, Button, Card } from "react-bootstrap";
 import { ChevronLeft, Save } from "lucide-react";
 import { CharacterService } from "../data/characters_service";
+import { baseCharacter } from "./baseCharacter";
 
 import InfosEdit from "../components/editor/InfosEdit";
 import AtributosEdit from "../components/editor/AtributosEdit";
 import PericiasEdit from "../components/editor/PericiasEdit";
 import StatusEdit from "../components/editor/StatusEdit";
-
 import PoderesEdit from "../components/editor/PoderesEdit";
-
 import InventarioEdit from "../components/editor/InventarioEdit";
 import RitualEdit from "../components/editor/RituaisEdit";
 import DadosEdit from "../components/editor/DadosEdit";
@@ -28,35 +27,7 @@ export default function CharacterFormPage() {
         .then((res) => setCharacter(res.data))
         .finally(() => setLoading(false));
     } else {
-      setCharacter({
-        infos: {
-          nome: "Novo Investigador",
-          jogador: "",
-          ocupacao: "",
-          portrait: "",
-          nivel: 1,
-          deslocamento: 9,
-        },
-        atributos: {
-          forca: 1,
-          agilidade: 1,
-          intelecto: 1,
-          presenca: 1,
-          vigor: 1,
-        },
-        status: {
-          vida: 10,
-          vidaMax: 10,
-          sanidade: 10,
-          sanidadeMax: 10,
-          esforco: 1,
-          esforcoMax: 1,
-        },
-        pericias: {},
-        inventario: [],
-        poderes: [],
-        rituais: [],
-      });
+      setCharacter(baseCharacter);
       setLoading(false);
     }
   }, [id]);
@@ -73,6 +44,18 @@ export default function CharacterFormPage() {
     setCharacter((prev) => ({
       ...prev,
       [partName]: newData,
+    }));
+  };
+
+  /**
+   * Atualiza o estado local do personagem sem salvar no banco ainda.
+   * Isso permite que o usuário navegue entre abas sem perder o que digitou.
+   * Salva todas as informações de uma vez
+   */
+  const handleLocalUpdateAll = (newData) => {
+    setCharacter((prev) => ({
+      ...prev,
+      ...newData,
     }));
   };
 
@@ -123,7 +106,10 @@ export default function CharacterFormPage() {
         <Tab eventKey="infos" title="Identidade">
           <InfosEdit
             data={character.infos}
+            powers={character.poderes}
+            skills={character.pericias}
             onChange={(newData) => handleLocalUpdate("infos", newData)}
+            onChangeAll={(newData) => handleLocalUpdateAll(newData)}
           />
         </Tab>
 
@@ -144,7 +130,7 @@ export default function CharacterFormPage() {
         <Tab eventKey="status" title="Status">
           <StatusEdit
             data={character.status}
-            character={{...character.infos, atributos: character.atributos}}
+            character={{ ...character.infos, atributos: character.atributos }}
             onChange={(newData) => handleLocalUpdate("status", newData)}
           />
         </Tab>

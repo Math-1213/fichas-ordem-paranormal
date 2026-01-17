@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Card, Row, Col, Form, Button, Stack, Badge } from "react-bootstrap";
 import { Plus, Trash2, Shield, Tag, AlignLeft } from "lucide-react";
 
@@ -18,7 +19,14 @@ const TAG_STYLES = {
 };
 
 export default function PoderesEdit({ data = [], onChange }) {
-  const poderes = Array.isArray(data) ? data : [];
+  const [poderes, setPoderes] = useState(Array.isArray(data) ? data : []);
+  // const poderes = Array.isArray(data) ? data : [];
+
+  useEffect(() => {
+  // Sincroniza o estado local com os dados que vêm do pai
+  // Se o pai mudou (porque a classe injetou poderes), o state local reseta para o novo valor
+  setPoderes(Array.isArray(data) ? data : []);
+}, [data]);
 
   const handleUpdate = (newList) => {
     if (onChange) onChange(newList);

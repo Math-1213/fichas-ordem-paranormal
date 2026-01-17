@@ -61,12 +61,12 @@ Melhorias visuais e de usabilidade.
 ### Fase 1 – Estabilidade e Infraestrutura
 - Nacionalidade editável [Concluido:1.2.0]  
 - Salvar criação [Concluido:1.2.0]  
-- Descrições na criação [Andamento:1.2.0]
+- Descrições na criação [Concluido:1.2.0]
 - Status gerais sempre visíveis
 
 ### Fase 2 – Lógica e Regras
 - Rever uso de habilidades  
-- Cálculo automático [Andamento:1.2.0]
+- Cálculo automático [Concluido:1.2.0]
 - Botão de LevelUp
 - Badges de status e condições  
 

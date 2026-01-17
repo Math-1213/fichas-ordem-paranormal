@@ -26,11 +26,18 @@ import { classes, trails, origins, patent } from "../../models/Rules";
 import { PERICIAS } from "../../configs/skills";
 import { ELEMENTS, ELEMENT_DATA } from "../../configs/paranormal";
 
-export default function InfosEdit({ data, onChange }) {
+export default function InfosEdit({
+  data,
+  onChange,
+  powers,
+  skills,
+  onChangeAll,
+}) {
   // Estado local para o formulário
   const [infos, setInfos] = useState(data || {});
   const [showOriginModal, setShowOriginModal] = useState(false);
   const [jsonInput, setJsonInput] = useState("");
+  const [warnings, setWarnings] = useState([]);
   const [customOrigin, setCustomOrigin] = useState({
     name: "",
     description: "",
@@ -83,7 +90,9 @@ export default function InfosEdit({ data, onChange }) {
   // Handler que atualiza localmente e notifica o pai
   const handleChange = (path, value) => {
     const keys = path.split(".");
-    let newInfos;
+    let newInfos = { ...infos };
+    let newPowers = [...(powers || [])];
+    let newSkills = { ...skills };
 
     if (keys.length > 1) {
       newInfos = {
@@ -94,13 +103,229 @@ export default function InfosEdit({ data, onChange }) {
       newInfos = { ...infos, [path]: value };
     }
 
-    // Lógica adicional: Se mudar a classe, reseta a trilha para evitar incompatibilidade
+    // --- LOGICA DE COLATERAIS (AUTO-FILL) ---
+    // A. Ao mudar Classe
     if (path === "classe") {
-      newInfos.trilha = "";
+      newInfos.trilha = ""; // Limpa a trilha anterior
+
+      // 1. Encontrar os dados da classe selecionada no arquivo Rules
+      const classeSelecionada = classes.find((c) => c.name === value);
+      if (classeSelecionada && classeSelecionada.powers) {
+        newPowers = newPowers.filter(
+          (p) => !(p.tags?.includes("classe") && p.isAuto),
+        );
+
+        // 2. Pegamos o último ID para manter o incremental
+        let lastId =
+          newPowers.length > 0
+            ? Math.max(...newPowers.map((p) => p.id || 0))
+            : 0;
+
+        // 4. Mapeamos os poderes da classe para o seu formato final
+        const classPowers = classeSelecionada.powers.map((p) => {
+          lastId++;
+          return {
+            id: lastId,
+            titulo: p.name,
+            descricao: p.description,
+            tags: [...(p.tags || [])],
+            isAuto: true,
+          };
+        });
+
+        // 5. Adicionamos os novos poderes à lista
+        newPowers = [...newPowers, ...classPowers];
+      }
+    }
+
+    if (path === "nivel" || path === "trilha") {
+      const nivelAtual = path === "nivel" ? parseInt(value) : infos.nivel || 1;
+      const trilhaNome = path === "trilha" ? value : infos.trilha;
+      const classeNome = infos.classe;
+
+      // 1. Limpar poderes de trilha automáticos antigos
+      newPowers = newPowers.filter(
+        (p) => !(p.tags?.includes("trilha") && p.isAuto),
+      );
+
+      // 2. Localizar a trilha nos dados (procurando na classe correta)
+      const listaTrilhasDaClasse = trails[classeNome] || [];
+      const trilhaDados = listaTrilhasDaClasse.find(
+        (t) => t.name === trilhaNome,
+      );
+
+      if (trilhaDados) {
+        let lastId =
+          newPowers.length > 0
+            ? Math.max(...newPowers.map((p) => p.id || 0))
+            : 0;
+
+        // 3. Definir quais poderes injetar baseado no Nível
+        const novosPoderesTrilha = [];
+
+        if (classeNome === "Mundano") {
+          // Lógica de Estágios (Mundano)
+          if (nivelAtual >= 2 && trilhaDados.stages?.stage2)
+            novosPoderesTrilha.push(trilhaDados.stages.stage2);
+          if (nivelAtual >= 4 && trilhaDados.stages?.stage4)
+            novosPoderesTrilha.push(trilhaDados.stages.stage4);
+        } else {
+          // Lógica de NEX (Classes Padrão) traduzida para Nível
+          if (nivelAtual >= 2 && trilhaDados.powers?.nex10)
+            novosPoderesTrilha.push(trilhaDados.powers.nex10);
+          if (nivelAtual >= 8 && trilhaDados.powers?.nex40)
+            novosPoderesTrilha.push(trilhaDados.powers.nex40);
+          if (nivelAtual >= 13 && trilhaDados.powers?.nex65)
+            novosPoderesTrilha.push(trilhaDados.powers.nex65);
+          if (nivelAtual >= 20 && trilhaDados.powers?.nex99)
+            novosPoderesTrilha.push(trilhaDados.powers.nex99);
+        }
+
+        // 4. Formatar e Adicionar os poderes validados
+        const powersFormatted = novosPoderesTrilha.map((p) => {
+          lastId++;
+          return {
+            id: lastId,
+            titulo: p.title,
+            descricao: p.description,
+            tags: [...(p.tags || []), "trilha"],
+            isAuto: true,
+          };
+        });
+
+        newPowers = [...newPowers, ...powersFormatted];
+      }
+    }
+
+    // --- LÓGICA DE ORIGEM (Poder + Perícias) ---
+    if (path === "origem") {
+      const normalizeSkill = (str) =>
+        str
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase();
+
+      // Mapeamento para subir de nível
+      const nextLevel = {
+        destreinado: "treinado",
+        treinado: "veterano",
+        veterano: "expert",
+        expert: "expert",
+      };
+
+      // Mapeamento para descer de nível (reversão)
+      const prevLevel = {
+        expert: "veterano",
+        veterano: "treinado",
+        treinado: "destreinado",
+        destreinado: "destreinado",
+      };
+
+      const origemSelecionada = origins.find((o) => o.name === value);
+      let currentWarnings = [];
+
+      // 1. REVERTER ORIGEM ANTERIOR
+      if (infos.origemPericias) {
+        infos.origemPericias.forEach((skillKey) => {
+          if (newSkills[skillKey]) {
+            // Volta um nível de treino
+            newSkills[skillKey].treino =
+              prevLevel[newSkills[skillKey].treino] || "destreinado";
+
+            // Se for profissão, limpa o type ao reverter
+            if (skillKey === "profissao") {
+              newSkills[skillKey].type = "";
+            }
+          }
+        });
+      }
+
+      if (origemSelecionada) {
+        // A. Atualizar Poderes (Mantido)
+        newPowers = newPowers.filter(
+          (p) => !(p.tags?.includes("origem") && p.isAuto),
+        );
+        if (origemSelecionada.power) {
+          const lastId =
+            newPowers.length > 0
+              ? Math.max(...newPowers.map((p) => p.id || 0))
+              : 0;
+          newPowers.push({
+            id: lastId + 1,
+            titulo: origemSelecionada.power.name,
+            descricao: origemSelecionada.power.description,
+            tags: [...(origemSelecionada.power.tags || []), "origem"],
+            isAuto: true,
+          });
+        }
+
+        // B. Atualizar Perícias
+        const rawSkills = origemSelecionada.skills || [];
+        const actualSkillsKeysApplied = [];
+
+        if (origemSelecionada.name === "Amnésico") {
+          currentWarnings.push({
+            text: "🔍 Amnésico: As 2 perícias treinadas devem ser escolhidas pelo Mestre conforme o seu passado oculto.",
+            type: "info", // Azul claro/Ciano
+          });
+        } else if (origemSelecionada.name === "Profetizado") {
+          currentWarnings.push({
+            text: "🔮 Profetizado: Escolha uma perícia adicional que tenha relação com a sua premonição.",
+            type: "purple", // Cor customizada ou primary
+          });
+        }
+
+        rawSkills.forEach((skillString) => {
+          // Lógica para extrair Profissão (Exemplo: "Profissão (Cozinheiro)")
+          let skillName = skillString;
+          let professionType = "";
+
+          if (
+            skillString.includes("Profissão") ||
+            skillString.includes("Profissao")
+          ) {
+            const match = skillString.match(/\(([^)]+)\)/);
+            professionType = match ? match[1] : "";
+            skillName = "profissao";
+          }
+
+          const skillKey = normalizeSkill(skillName);
+
+          if (newSkills[skillKey]) {
+            // Sobe um nível de treino
+            newSkills[skillKey].treino =
+              nextLevel[newSkills[skillKey].treino] || "treinado";
+
+            // Se for profissão, injeta o texto capturado entre parênteses
+            if (skillKey === "profissao" && professionType) {
+              newSkills[skillKey].type = professionType;
+            }
+
+            actualSkillsKeysApplied.push(skillKey);
+          } else {
+            console.warn(
+              `Perícia "${skillKey}" não mapeada no objeto inicial.`,
+            );
+            if (
+              origemSelecionada.name !== "Amnésico" &&
+              !skillString.includes("Escolha relacionada")
+            ) {
+              currentWarnings.push({
+                text: `⚠️ Perícia não automatizada: "${skillString}". Adicione manualmente na aba de Perícias.`,
+                type: "warning",
+              });
+            }
+          }
+        });
+
+        // C. Salva para reversão
+        newInfos.origemPericias = actualSkillsKeysApplied;
+      }
+      setWarnings(currentWarnings);
     }
 
     setInfos(newInfos);
-    onChange(newInfos);
+    onChangeAll({ poderes: newPowers, infos: newInfos, pericias: newSkills });
   };
 
   const sectionStyle = {
@@ -300,6 +525,48 @@ export default function InfosEdit({ data, onChange }) {
         </Card.Header>
 
         <Card.Body>
+          {/* ÁREA DE AVISOS DE ORIGEM */}
+          {warnings.length > 0 && (
+            <div className="mb-4">
+              {warnings.map((w, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    backgroundColor:
+                      w.type === "info"
+                        ? "#0ea5e922"
+                        : w.type === "purple"
+                          ? "#8b5cf622"
+                          : "#f59e0b22",
+                    borderLeft: `4px solid ${
+                      w.type === "info"
+                        ? "#0ea5e9"
+                        : w.type === "purple"
+                          ? "#8b5cf6"
+                          : "#f59e0b"
+                    }`,
+                    color:
+                      w.type === "info"
+                        ? "#7dd3fc"
+                        : w.type === "purple"
+                          ? "#c4b5fd"
+                          : "#fcd34d",
+                    padding: "12px 16px",
+                    borderRadius: "4px",
+                    fontSize: "0.85rem",
+                    marginBottom: "8px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                  }}
+                >
+                  <Ghost size={18} />
+                  <span>{w.text}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* IDENTIFICAÇÃO BÁSICA */}
           <Row style={sectionStyle}>
             <Col md={4}>
@@ -412,11 +679,13 @@ export default function InfosEdit({ data, onChange }) {
                 )}
 
                 {infos.classe &&
-                  trails[infos.classe]?.map((t) => (
-                    <option key={t.name} value={t.name}>
-                      {t.name}
-                    </option>
-                  ))}
+                  trails[infos.classe]
+                    ?.sort((a, b) => a.name.localeCompare(b.name))
+                    .map((t) => (
+                      <option key={t.name} value={t.name}>
+                        {t.name}
+                      </option>
+                    ))}
               </Form.Select>
             </Col>
             <Col md={3}>
@@ -442,11 +711,13 @@ export default function InfosEdit({ data, onChange }) {
                   style={inputStyle}
                 >
                   <option value="">Selecione...</option>
-                  {origins.map((ori) => (
-                    <option key={ori.name} value={ori.name}>
-                      {ori.name}
-                    </option>
-                  ))}
+                  {origins
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .map((ori) => (
+                      <option key={ori.name} value={ori.name}>
+                        {ori.name}
+                      </option>
+                    ))}
                   {/* Exibe a origem customizada se ela não estiver na lista padrão */}
                   {infos.origem &&
                     !origins.some((o) => o.name === infos.origem) && (
@@ -485,7 +756,7 @@ export default function InfosEdit({ data, onChange }) {
                 value={infos.patente || ""}
                 onChange={(e) => {
                   const selectedPatent = patent.find(
-                    (p) => p.name === e.target.value
+                    (p) => p.name === e.target.value,
                   );
                   handleChange("patente", e.target.value);
                 }}
