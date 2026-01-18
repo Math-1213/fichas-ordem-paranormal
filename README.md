@@ -92,3 +92,15 @@ d20 -> Dispara automaticamente a mecânica de "pegar o melhor" se estiver no Mod
 Este projeto é para fins de entretenimento e suporte à comunidade de RPG. Sinta-se à vontade para contribuir!
 
 Desenvolvido com ❤️ para a comunidade de Ordem Paranormal.
+
+## Créditos e Direitos
+
+Este projeto é um **fan project**, criado sem fins comerciais.
+
+O sistema de RPG, parte das imagens e a marca **Ordem Paranormal** pertencem a **Cellbit** e à **Jambo Editora**.  
+Todos os direitos sobre o universo, regras e conceitos originais são reservados aos seus criadores.
+
+Algumas imagens e a ideia base da ficha foram inspiradas no site **Fichas OP**  
+👉 https://fichasop.com
+
+Este projeto não possui qualquer afiliação oficial com a Jambo Editora, Cellbit ou com o site Fichas OP.
