@@ -32,10 +32,6 @@ export default function CharacterFormPage() {
     }
   }, [id]);
 
-  useEffect(() => {
-    console.log("Personagem: ", character); // TODO - Remover
-  }, [character]);
-
   /**
    * Atualiza o estado local do personagem sem salvar no banco ainda.
    * Isso permite que o usuário navegue entre abas sem perder o que digitou.

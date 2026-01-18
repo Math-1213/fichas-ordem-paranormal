@@ -1,5 +1,5 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
-import { Home, Users, FileEdit } from "lucide-react";
+import { Home, Users, FileEdit, Settings2, ShieldAlert } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import AtmospherePlayer from "../ui/AtmospherePlayer";
 
@@ -7,93 +7,158 @@ export default function MainNav({ currentTrackUrl }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Função auxiliar para ver se o botão está ativo
   const isActive = (path) => location.pathname === path;
 
-  const linkStyle = {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    fontWeight: 500,
-    fontSize: "0.9rem",
-    transition: "all 0.2s ease",
-    padding: "8px 16px",
-    borderRadius: "6px",
-  };
-
   return (
-    <Navbar
-      bg="dark"
-      variant="dark"
-      expand="lg"
-      style={{
-        borderBottom: "1px solid #2a2f3e",
-        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.3)",
-        backgroundColor: "#0d1117 !important",
-      }}
-    >
-      <Container>
-        {/* Logo */}
-        <Navbar.Brand
-          onClick={() => navigate("/")}
-          style={{
-            fontWeight: 700,
-            letterSpacing: "1px",
-            fontSize: "1.1rem",
-            cursor: "pointer",
-          }}
-        >
-          ORDEM <span style={{ color: "#ef4444" }}>PARANORMAL</span>
-        </Navbar.Brand>
+    <>
+      <style>
+        {`
+          .navbar-custom {
+            background: linear-gradient(to bottom, #0d1117 0%, #05070a 100%) !important;
+            border-bottom: 2px solid #1f242d;
+            padding: 0.75rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+          }
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          .nav-link-custom {
+            color: #9aa0b3 !important;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 8px 15px !important;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+          }
 
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto gap-2 align-items-center">
-            {currentTrackUrl && (
-              <div className="me-lg-3">
-                <AtmospherePlayer currentTrackUrl={currentTrackUrl} />
-              </div>
-            )}
-            {/* Botão Home */}
-            <Nav.Link
-              onClick={() => navigate("/")}
+          .nav-link-custom:hover {
+            color: #fff !important;
+            background: rgba(255, 255, 255, 0.05);
+          }
+
+          .nav-link-custom.active-home {
+            color: #fff !important;
+            border-bottom: 2px solid #fff;
+            border-radius: 0;
+          }
+
+          .nav-link-custom.active-fichas {
+            color: #4da6ff !important;
+            background: rgba(77, 166, 255, 0.1);
+            border: 1px solid rgba(77, 166, 255, 0.2);
+          }
+
+          .nav-link-custom.active-edit {
+            color: #ffca28 !important;
+            background: rgba(255, 202, 40, 0.1);
+            border: 1px solid rgba(255, 202, 40, 0.2);
+          }
+
+          .brand-logo {
+            font-family: 'Special Elite', Courier, serif; /* Ou uma fonte impactante que você tenha */
+            font-weight: 800;
+            font-size: 1.3rem;
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+          }
+
+          .btn-novo-agente {
+            background: linear-gradient(45deg, #8b0000, #ef4444) !important;
+            border: none !important;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+            transition: all 0.3s ease !important;
+          }
+
+          .btn-novo-agente:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(239, 68, 68, 0.5);
+            filter: brightness(1.2);
+          }
+        `}
+      </style>
+
+      <Navbar variant="dark" expand="lg" className="navbar-custom" sticky="top">
+        <Container>
+          <Navbar.Brand
+            onClick={() => navigate("/")}
+            className="d-flex align-items-center gap-3"
+            style={{ cursor: "pointer", padding: "5px 0" }}
+          >
+            {/* IMAGEM 1: SÍMBOLO MAIOR */}
+            <img
+              src="/Sprites/Simbolo_Maior.png"
+              alt="Ordem"
               style={{
-                ...linkStyle,
-                color: isActive("/") ? "#fff" : "#9aa0b3",
-                backgroundColor: isActive("/") ? "#1c212b" : "transparent",
+                height: "55px",
+                width: "auto",
+                filter: "drop-shadow(0 0 10px rgba(255,255,255,0.3))",
+                transition: "all 0.3s ease",
               }}
-            >
-              <Home size={18} /> Início
-            </Nav.Link>
+              className="brand-img"
+            />
 
-            {/* Botão Ver Fichas */}
-            <Nav.Link
-              onClick={() => navigate("/fichas")}
+            {/* IMAGEM 2: OP LOGO */}
+            <img
+              src="/Sprites/op-logo.png"
+              alt="Paranormal"
               style={{
-                ...linkStyle,
-                color: isActive("/fichas") ? "#fff" : "#9aa0b3",
-                backgroundColor: isActive("/fichas")
-                  ? "#1c212b"
-                  : "transparent",
+                height: "45px",
+                width: "auto",
+                filter: "drop-shadow(0 0 12px rgba(239, 68, 68, 0.5))",
+                transition: "all 0.3s ease",
               }}
-            >
-              <Users size={18} /> Personagens
-            </Nav.Link>
+              className="brand-img"
+            />
+          </Navbar.Brand>
 
-            {/* Botão Editor (Criar Novo) */}
-            <Button
-              variant={isActive("/editor") ? "danger" : "outline-danger"}
-              size="sm"
-              className="ms-lg-2 d-flex align-items-center gap-2"
-              onClick={() => navigate("/editor")}
-              style={{ fontWeight: 600, padding: "6px 16px" }}
-            >
-              <FileEdit size={16} /> NOVO AGENTE
-            </Button>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            className="border-0 shadow-none"
+          />
+
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto gap-2 align-items-center">
+              {currentTrackUrl && (
+                <div className="me-lg-3 py-2">
+                  <AtmospherePlayer currentTrackUrl={currentTrackUrl} />
+                </div>
+              )}
+
+              <Nav.Link
+                onClick={() => navigate("/")}
+                className={`nav-link-custom ${isActive("/") ? "active-home" : ""}`}
+              >
+                <Home size={16} /> Início
+              </Nav.Link>
+
+              <Nav.Link
+                onClick={() => navigate("/fichas")}
+                className={`nav-link-custom ${isActive("/fichas") ? "active-fichas" : ""}`}
+              >
+                <Users size={16} /> Agentes
+              </Nav.Link>
+
+              <Nav.Link
+                onClick={() => navigate("/preEdicao")}
+                className={`nav-link-custom ${isActive("/preEdicao") ? "active-edit" : ""}`}
+              >
+                <Settings2 size={16} /> Modificar
+              </Nav.Link>
+
+              <Button
+                className="btn-novo-agente ms-lg-3 d-flex align-items-center gap-2"
+                onClick={() => navigate("/editor")}
+              >
+                <FileEdit size={16} />
+                <span style={{ fontWeight: 800 }}>RECRUTAR</span>
+              </Button>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
   );
 }

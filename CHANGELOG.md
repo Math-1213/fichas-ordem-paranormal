@@ -14,6 +14,8 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 ### Alterado
 
 - Melhoria na experiência de uso (UX/UI) das informações exibidas ao usuário.
+- Nova versão da Pagina de Atributos
+- Melhorias na NavBar
 
 ## [1.2.0] - 2026-01-17
 
