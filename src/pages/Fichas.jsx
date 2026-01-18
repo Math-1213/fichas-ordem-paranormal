@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container, Form, Tabs, Tab, Spinner } from "react-bootstrap";
+import { Container, Form, Tabs, Tab, Spinner, Row, Col } from "react-bootstrap";
 import Character from "../models/Character";
 import { CharacterService } from "../data/characters_service";
 
@@ -12,6 +12,9 @@ import PoderesTab from "../components/tabs/PoderesTab";
 import InventarioTab from "../components/tabs/InventarioTab";
 import RitualTab from "../components/tabs/RituaisTab";
 import DadosTab from "../components/tabs/DadosTab";
+
+import CharacterCard from "../components/characterBasicInfo/characterCard";
+import CharacterHUD from "../components/characterBasicInfo/CharacterHUD";
 
 function FichasPage() {
   const [summary, setSummary] = useState([]);
@@ -59,28 +62,20 @@ function FichasPage() {
     );
 
   return (
-    <>
+    <div>
+      {character && <CharacterHUD char={character} />}
       <Container className="mt-4">
-        <Form.Select
-          className="mb-4"
-          defaultValue=""
-          onChange={(e) => handleSelect(e.target.value)}
-        >
-          <option value="" disabled>
-            Selecione uma ficha
-          </option>
-
-          {summary.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.nome}
-            </option>
-          ))}
-        </Form.Select>
-
         {!character && (
-          <div className="text-muted text-center mt-5">
-            Selecione uma ficha para iniciar a investigação
-          </div>
+          <>
+            <h4 className="text-light mb-4">Seus Agentes</h4>
+            <Row className="g-4 justify-content-center">
+              {summary.map((c) => (
+                <Col key={c.id} xs={4} md={4} lg={4}>
+                  <CharacterCard char={c} onSelect={handleSelect} />
+                </Col>
+              ))}
+            </Row>
+          </>
         )}
 
         {character && (
@@ -122,7 +117,7 @@ function FichasPage() {
           </Tabs>
         )}
       </Container>
-    </>
+    </div>
   );
 }
 

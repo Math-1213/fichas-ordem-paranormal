@@ -1,6 +1,18 @@
 # Changelog - Ordem Paranormal Ficha
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
+## [1.3.0] - 2026-01-xx
+
+### Corrigido
+
+### Adicionado
+
+- Novo Seletor de Personagens
+- Hud do Personagme na ficha
+
+### Alterado
+
+- Melhoria na experiência de uso (UX/UI) das informações exibidas ao usuário.
 
 ## [1.2.0] - 2026-01-17
 

@@ -28,16 +28,31 @@ class CharacterController:
         return data
     
     @staticmethod
-    def list_summary() -> List[Dict[str, str]]:
+    def list_summary() -> List[Dict[str, any]]:
         """
-        Gera uma lista otimizada com informações básicas de todos os personagens.
-        Ideal para preencher listas de seleção no frontend sem carregar dados pesados.
-
-        Returns:
-            List[Dict]: Lista de dicionários contendo apenas 'id' e 'nome'.
+        Retorna um resumo detalhado para os Cards de seleção.
         """
         chars = store.list()
-        return [{"id": c.id, "nome": c.infos.get("nome", "Sem Nome")} for c in chars]
+        return [{
+            "id": c.id,
+            "nome": c.infos.get("nome", "Sem Nome"),
+            "classe": c.infos.get("classe", "Mundano"),
+            "trilha": c.infos.get("trilha", "Sem Trilha"),
+            "nivel": c.infos.get("nivel", 0),
+            "nex": c.infos.get("nex", 0),
+            "patente": c.infos.get("patente", "Recruta"),
+            "origem": c.infos.get("origem", "Desconhecida"),
+            "idade": c.infos.get("idade", "??"),
+            "nacionalidade": c.infos.get("nacionalidade", "Brasileira"),
+            "portrait": c.infos.get("portrait", ""),
+            "afinidade": c.infos.get("afinidade", "Nenhum"),
+            "vida": c.status.get("vida", 0),
+            "vidaMax": c.status.get("vidaMax", 0),
+            "sanidade": c.status.get("sanidade", 0),
+            "sanidadeMax": c.status.get("sanidadeMax", 0),
+            "esforco": c.status.get("esforco", 0),
+            "esforcoMax": c.status.get("esforcoMax", 0)
+        } for c in chars]
 
     @staticmethod
     def get_by_id(char_id: str) -> Optional[Dict[str, Any]]:

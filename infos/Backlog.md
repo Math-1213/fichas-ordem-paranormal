@@ -5,11 +5,8 @@ Itens que afetam diretamente o funcionamento e a experiência básica do usuári
 
 | Item | Descrição | Prioridade | Esforço |
 |------|----------|------------|---------|
-| Nacionalidade não editável | Campo não permite escrita/edição | Alta | Baixo |
 | Adicionar descrições na criação | Fornecer contexto para escolhas durante a criação | Alta | Médio |
-| Salvar criação | Garantir persistência da ficha criada | Alta | Médio |
 | Música não se propagando via Local VPN | Sincronização de música não funciona entre redes | Alta | Médio |
-| Backend não suportado pela Local VPN atual | Limitação da solução atual de VPN | Alta | Médio |
 
 ---
 
@@ -19,7 +16,6 @@ Aprimoramentos ligados às regras, lógica interna e infraestrutura.
 | Item | Descrição | Prioridade | Esforço |
 |------|----------|------------|---------|
 | Rever uso de habilidades | Ajustar lógica, impacto e apresentação | Alta | Médio |
-| Cálculo automático | Vida, sanidade, esforço e outros valores derivados | Alta | Alto |
 | Botão de update | Atualizar ficha sem recriação completa | Alta | Baixo |
 
 ---
@@ -59,14 +55,10 @@ Melhorias visuais e de usabilidade.
 ## 🗺️ Roadmap Sugerido
 
 ### Fase 1 – Estabilidade e Infraestrutura
-- Nacionalidade editável [Concluido:1.2.0]  
-- Salvar criação [Concluido:1.2.0]  
-- Descrições na criação [Concluido:1.2.0]
-- Status gerais sempre visíveis
+- Status gerais sempre visíveis [Concluido:1.3.0]
 
 ### Fase 2 – Lógica e Regras
-- Rever uso de habilidades  
-- Cálculo automático [Concluido:1.2.0]
+- Rever uso de habilidades [Cancelado] **A função de Dados Customizados É o Substituto**
 - Botão de LevelUp
 - Badges de status e condições  
 
