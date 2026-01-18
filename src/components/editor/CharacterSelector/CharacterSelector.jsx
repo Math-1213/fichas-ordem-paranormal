@@ -110,11 +110,27 @@ export default function CharacterList() {
                       </div>
                     </div>
 
-                    <div className="nex-container">
-                      <span className="text-warning tiny-label fw-bold">
-                        NEX {char.nex || 5}%
-                      </span>
-                      <div className="glow-bar">
+                    <div className="nex-container w-100">
+                      {/* Header com as informações de texto */}
+                      <div className="d-flex justify-content-between mb-1">
+                        <span className="text-warning tiny-label fw-bold">
+                          NEX {char.nex || 0}%
+                        </span>
+                        <span className="text-success tiny-label fw-bold">
+                          NÍVEL {char.nivel || 1}
+                        </span>
+                      </div>
+
+                      {/* Barra de Progresso (Glow Bar) */}
+                      <div
+                        className="glow-bar"
+                        style={{
+                          height: "6px",
+                          background: "#1a1a1a",
+                          borderRadius: "3px",
+                          overflow: "hidden",
+                        }}
+                      >
                         <div
                           className="glow-fill"
                           style={{ width: `${char.nex || 5}%` }}
