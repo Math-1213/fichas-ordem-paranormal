@@ -27,7 +27,7 @@ dist-ssr
 *.sw?
 
 # Dados locais / gerados
-src/data
+src/data/miguel.json
 backend/data/
 backend/__pycache__/
 environment.json

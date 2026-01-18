@@ -66,7 +66,7 @@ Melhorias visuais e de usabilidade.
 ### Fase 2 – Lógica e Regras
 
 - Rever uso de habilidades [Cancelado] **A função de Dados Customizados É o Substituto**
-- Botão de LevelUp
+- Botão de LevelUp [Cancelado] **Ficaria mais complexo ter um botão para subir de nivel, do que ir manualmente subir**
 - Badges de status e condições [Concluido:1.3.0]
 
 ### Fase 3 – Funcionalidades de Sessão
