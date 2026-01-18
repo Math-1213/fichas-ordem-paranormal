@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Button,
-  Spinner,
-  Badge,
-  ProgressBar,
-} from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { Users, UserPlus, ArrowRight, Zap, Target } from "lucide-react";
-import { CharacterService } from "../../data/characters_service";
+import { UserPlus, ArrowRight, Zap, Target } from "lucide-react";
+import { CharacterService } from "../../../data/characters_service";
+import LevelUpModal from "./LevelUpModal";
 
 export default function CharacterList() {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showLevelUp, setShowLevelUp] = useState(false);
+  const [selectedChar, setSelectedChar] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,9 +27,10 @@ export default function CharacterList() {
     loadChars();
   }, []);
 
-  const handleLevelUpClick = (e, charId) => {
+  const handleLevelUpClick = (e, char) => {
     e.stopPropagation();
-    console.log("Iniciando Protocolo de Ascensão para:", charId);
+    setSelectedChar(char);
+    setShowLevelUp(true);
   };
 
   if (loading) {
@@ -47,7 +42,7 @@ export default function CharacterList() {
         <div className="scanner-line"></div>
         <Spinner animation="grow" variant="danger" />
         <p className="text-danger mt-3 fw-bold tracking-widest">
-          AUTENTICANDO ACESSO...
+          CONECTANDO À C.R.I.S...
         </p>
       </Container>
     );
@@ -79,18 +74,19 @@ export default function CharacterList() {
               className="agente-card bg-black text-white border-secondary"
               onClick={() => navigate(`/editor/${char.id}`)}
             >
-              {/* Botão Level Up Minimalista e Flutuante */}
+              {/* Botão Level Up Expandível no Canto Superior DIREITO */}
               <button
                 className="btn-levelup-float"
                 onClick={(e) => handleLevelUpClick(e, char.id)}
-                title="Subir NEX"
               >
-                <Zap size={16} fill="#ffc107" />
+                <div className="icon-container">
+                  <Zap size={16} fill="#ffc107" className="icon-zap" />
+                </div>
+                <span className="label-rank">Subir de Rank</span>
               </button>
 
               <Card.Body className="p-0 position-relative">
                 <div className="d-flex">
-                  {/* Portrait Lateral (Estilo Ficha de RPG) */}
                   <div className="portrait-aside border-end border-secondary">
                     {char.portrait ? (
                       <img src={char.portrait} alt={char.nome} />
@@ -115,9 +111,9 @@ export default function CharacterList() {
                     </div>
 
                     <div className="nex-container">
-                        <span className="text-warning tiny-label fw-bold">
-                          NEX {char.nex || 5}%
-                        </span>
+                      <span className="text-warning tiny-label fw-bold">
+                        NEX {char.nex || 5}%
+                      </span>
                       <div className="glow-bar">
                         <div
                           className="glow-fill"
@@ -139,25 +135,32 @@ export default function CharacterList() {
         ))}
       </Row>
 
+      <LevelUpModal
+        show={showLevelUp}
+        onHide={() => setShowLevelUp(false)}
+        charId={selectedChar}
+      />
+
       <style>
         {`
           @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap');
 
           :root {
-            --ordo-gray: #1a1a1a;
             --ordo-red: #ff4444;
             --nex-gold: #ffc107;
           }
 
-          body { font-family: 'JetBrains Mono', monospace; }
+          body { 
+            font-family: 'JetBrains Mono', monospace; 
+            background-color: #0a0a0a;
+          }
 
-          /* Card de Agente Estilo Dossiê */
           .agente-card {
             border: 1px solid #333 !important;
             border-radius: 0 !important;
             overflow: hidden;
             transition: all 0.3s ease;
-            min-height: 140px;
+            position: relative;
           }
 
           .agente-card:hover {
@@ -170,7 +173,7 @@ export default function CharacterList() {
           .portrait-aside {
             width: 100px;
             height: 140px;
-            background: #0a0a0a;
+            background: #000;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -181,92 +184,137 @@ export default function CharacterList() {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: top;
-            filter: grayscale(1) contrast(1.2) brightness(0.8);
-            transition: 0.3s;
+            object-position: top; /* Foco no topo da imagem */
+            filter: grayscale(1) brightness(0.7);
+            transition: 0.3s ease;
           }
 
           .agente-card:hover .portrait-aside img {
-            filter: grayscale(0.2) contrast(1.1);
+            filter: grayscale(0.2) brightness(1);
+            transform: scale(1.05); 
           }
 
-          /* Botão Level Up Flutuante */
+          /* Botão Expandível (Direita) */
           .btn-levelup-float {
             position: absolute;
             top: -1px;
             right: -1px;
+            display: flex;
+            align-items: center;
             background: #222;
-            border: 1px solid #444;
+            border: none;
+            border-left: 1px solid #444;
+            border-bottom: 1px solid #444;
             color: var(--nex-gold);
             padding: 8px;
-            z-index: 10;
-            transition: 0.2s;
+            z-index: 20;
             cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            width: 35px;
+            height: 35px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-bottom-left-radius: 4px;
           }
 
           .btn-levelup-float:hover {
+            width: 160px;
             background: var(--nex-gold);
             color: black;
           }
 
-          /* Tipografia */
-          .agent-name {
-            font-weight: 800;
-            font-size: 1.1rem;
-            letter-spacing: -0.5px;
-            color: #eee;
+          .icon-container {
+            min-width: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
 
+          .label-rank {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            opacity: 0;
+            margin-left: 10px;
+            transition: opacity 0.2s;
+          }
+
+          .btn-levelup-float:hover .label-rank {
+            opacity: 1;
+          }
+
+          .btn-levelup-float:hover .icon-zap {
+            fill: black !important;
+          }
+
+          /* Estilos de Texto e Progressão */
+          .agent-name { font-weight: 800; font-size: 1.1rem; color: #eee; text-transform: uppercase; }
           .tiny-label { font-size: 0.65rem; letter-spacing: 1px; }
           .extra-small { font-size: 0.75rem; }
 
-          /* Barra de NEX Customizada */
           .nex-container { margin-top: 10px; }
           .glow-bar {
-            height: 4px;
-            background: #111;
-            width: 100%;
-            position: relative;
-            border-radius: 2px;
+            height: 6px; background: #111; width: 100%;
+            position: relative; border-radius: 2px; overflow: hidden;
           }
 
           .glow-fill {
             height: 100%;
             background: var(--nex-gold);
-            box-shadow: 0 0 12px var(--nex-gold);
+            box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
             position: relative;
-            transition: width 1s ease-in-out;
+            overflow: hidden; /* Garante que o brilho não saia do preenchimento */
           }
 
-          /* Overlay de acesso ao fundo */
+          .glow-fill::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            /* Brilho muito mais suave (0.2 de opacidade) */
+            background: linear-gradient(
+              90deg, 
+              transparent, 
+              rgba(255, 255, 255, 0.2), 
+              transparent
+            );
+            animation: shine 3s infinite;
+          }
+
+          @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+          }
+
           .card-access-overlay {
-            background: #000;
-            font-size: 0.6rem;
+            background: #151515; 
+            font-size: 0.65rem;
             text-align: center;
-            padding: 4px;
-            opacity: 0.5;
-            transition: 0.3s;
+            padding: 6px;
+            border-top: 1px solid #222; 
+            color: #888;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            opacity: 1;
           }
 
           .agente-card:hover .card-access-overlay {
-            background: var(--ordo-red);
-            opacity: 1;
+            background: var(--ordo-red); 
             color: white;
+            border-top-color: var(--ordo-red);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
           }
 
-          /* Animação de Loading */
           .scanner-line {
-            position: absolute;
-            top: 0; width: 100%; height: 2px;
-            background: var(--ordo-red);
-            box-shadow: 0 0 15px var(--ordo-red);
-            animation: scan 2s linear infinite;
+            position: absolute; top: 0; width: 100%; height: 2px;
+            background: var(--ordo-red); animation: scan 2s linear infinite; z-index: 100;
           }
 
-          @keyframes scan {
-            0% { top: 0; }
-            100% { top: 100vh; }
-          }
+          @keyframes scan { 0% { top: 0; } 100% { top: 100vh; } }
         `}
       </style>
     </Container>

@@ -144,4 +144,5 @@ export const baseCharacter = {
   inventario: [],
   poderes: [],
   rituais: [],
+  dados: []
 };

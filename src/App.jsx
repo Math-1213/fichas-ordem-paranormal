@@ -9,7 +9,7 @@ import MainNav from "./components/navigation/MainNav";
 import FichasPage from "./pages/Fichas";
 import CharacterFormPage from "./pages/CharacterFormPage";
 import Home from "./pages/Home";
-import CharacterList from "./components/editor/CharacterSelector";
+import CharacterList from "./components/editor/CharacterSelector/CharacterSelector";
 
 function App() {
   const [currentTrack, setCurrentTrack] = useState(null);
