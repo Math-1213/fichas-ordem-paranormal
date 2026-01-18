@@ -6,6 +6,9 @@ import {
   ProgressBar,
   Collapse,
   Button,
+  Badge,
+  Modal,
+  Form,
 } from "react-bootstrap";
 import {
   Heart,
@@ -15,12 +18,19 @@ import {
   ChevronUp,
   ChevronDown,
   ShieldAlert,
+  Info,
+  Plus,
+  X,
 } from "lucide-react";
 import { ELEMENT_DATA } from "../../configs/paranormal";
 import { TREINO_BONUS } from "../../configs/skills";
+import { CONDITIONS_DATA } from "../../configs/conditions";
 
-export default function CharacterHUD({ char }) {
+export default function CharacterHUD({ char, onUpdateConditions }) {
   const [showHUD, setShowHUD] = useState(true);
+  const [selectedCondition, setSelectedCondition] = useState(null);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   if (!char) return null;
 
@@ -29,7 +39,22 @@ export default function CharacterHUD({ char }) {
     ELEMENT_DATA[char.infos?.afinidade?.toLowerCase()] || ELEMENT_DATA["medo"];
   const elementColor = elementData.color;
 
-  // Ícone Tingido
+  // Pegar as condições do personagem (assumindo char.status.conditions como array de chaves)
+  const activeConditions = char.status?.conditions || [];
+
+  const addCondition = (key) => {
+    if (!activeConditions.includes(key)) {
+      onUpdateConditions([...activeConditions, key]);
+    }
+    setShowAddModal(false);
+    setSearchTerm("");
+  };
+
+  const removeCondition = (e, key) => {
+    e.stopPropagation(); // Evita que clique no 'X' abra o modal de info
+    onUpdateConditions(activeConditions.filter((c) => c !== key));
+  };
+
   const ElementIcon = () => (
     <img
       src={elementData.icon}
@@ -91,19 +116,25 @@ export default function CharacterHUD({ char }) {
 
   return (
     <div style={{ position: "sticky", top: 0, zIndex: 1050, width: "100%" }}>
+      <style>
+        {`
+            .hover-red:hover { color: #ff4444 !important; transform: scale(1.2); }
+            .badge-condition:hover { filter: brightness(1.3); }
+            `}
+      </style>
       <Collapse in={showHUD}>
         <div
           style={{
             backgroundColor: "#080a0dfc",
             backdropFilter: "blur(20px)",
             borderBottom: `4px solid ${elementColor}`,
-            padding: "15px 0", // Aumentado o respiro
+            padding: "15px 0",
             boxShadow: "0 10px 40px rgba(0,0,0,0.8)",
           }}
         >
           <Container fluid="lg">
             <Row className="align-items-center g-0">
-              {/* AVATAR GIGANTE E ELEMENTO TINGIDO */}
+              {/* AVATAR, INFO E BADGES */}
               <Col
                 xs="auto"
                 className="d-flex align-items-center pe-4 border-end border-white border-opacity-10"
@@ -113,8 +144,8 @@ export default function CharacterHUD({ char }) {
                     src={char.infos.portrait}
                     alt="Agente"
                     style={{
-                      width: "80px", // Aumentado de 60px para 80px
-                      height: "80px",
+                      width: "85px",
+                      height: "85px",
                       borderRadius: "15px",
                       border: `3px solid ${elementColor}`,
                       objectFit: "cover",
@@ -144,7 +175,7 @@ export default function CharacterHUD({ char }) {
 
                 <div className="ms-4">
                   <h5
-                    className="mb-1 text-light fw-bold"
+                    className="mb-0 text-light fw-bold"
                     style={{ fontSize: "1.4rem", letterSpacing: "-0.5px" }}
                   >
                     {char.infos.nome?.split(" ")[0].toUpperCase()}
@@ -152,12 +183,59 @@ export default function CharacterHUD({ char }) {
                   <div
                     style={{
                       color: elementColor,
-                      fontSize: "0.8rem",
+                      fontSize: "0.75rem",
                       fontWeight: "900",
                       letterSpacing: "1px",
+                      marginBottom: "5px",
                     }}
                   >
                     NEX {char.infos.nex}% • {char.infos.classe?.toUpperCase()}
+                  </div>
+
+                  {/* CONTAINER DE BADGES DE STATUS */}
+                  <div
+                    className="d-flex flex-wrap gap-1 align-items-center"
+                    style={{ maxWidth: "250px" }}
+                  >
+                    {activeConditions.map((key) => {
+                      const data = CONDITIONS_DATA[key];
+                      if (!data) return null;
+                      return (
+                        <Badge
+                          key={key}
+                          onClick={() => setSelectedCondition(data)}
+                          style={{
+                            fontSize: "0.6rem",
+                            cursor: "pointer",
+                            backgroundColor: `${data.cor}25`,
+                            color: data.cor,
+                            border: `1px solid ${data.cor}60`,
+                            padding: "3px 6px",
+                          }}
+                          className="d-flex align-items-center gap-1 badge-condition"
+                        >
+                          {data.nome.toUpperCase()}
+                          <X
+                            size={10}
+                            onClick={(e) => removeCondition(e, key)}
+                            className="hover-red"
+                          />
+                        </Badge>
+                      );
+                    })}
+                    <Button
+                      variant="outline-light"
+                      onClick={() => setShowAddModal(true)}
+                      style={{
+                        padding: "0 4px",
+                        fontSize: "0.6rem",
+                        height: "18px",
+                        opacity: 0.5,
+                        borderStyle: "dashed",
+                      }}
+                    >
+                      <Plus size={12} />
+                    </Button>
                   </div>
                 </div>
               </Col>
@@ -187,7 +265,7 @@ export default function CharacterHUD({ char }) {
                 )}
               </Col>
 
-              {/* TRINDADE DE DEFESAS */}
+              {/* DEFESAS */}
               <Col
                 xs="auto"
                 className="ps-4 d-flex gap-4 border-start border-white border-opacity-10 align-items-center"
@@ -201,7 +279,6 @@ export default function CharacterHUD({ char }) {
                   </div>
                   <div className="text-light fw-bold h3 mb-0">{defPassiva}</div>
                 </div>
-
                 <div className="text-center">
                   <div
                     style={{
@@ -223,7 +300,6 @@ export default function CharacterHUD({ char }) {
                     </span>
                   </div>
                 </div>
-
                 <div className="text-center">
                   <div
                     style={{
@@ -251,7 +327,7 @@ export default function CharacterHUD({ char }) {
         </div>
       </Collapse>
 
-      {/* BOTÃO DE COLAPSAR MELHORADO */}
+      {/* BOTÃO COLAPSAR */}
       <div
         className="d-flex justify-content-center"
         style={{ marginTop: "-1px" }}
@@ -268,7 +344,6 @@ export default function CharacterHUD({ char }) {
             padding: "2px 20px",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
             boxShadow: `0 5px 15px rgba(0,0,0,0.5)`,
             zIndex: 1100,
           }}
@@ -280,6 +355,94 @@ export default function CharacterHUD({ char }) {
           )}
         </Button>
       </div>
+
+      {/* MODAL DE DESCRIÇÃO DA CONDIÇÃO */}
+      <Modal
+        show={!!selectedCondition}
+        onHide={() => setSelectedCondition(null)}
+        centered
+        contentClassName="bg-dark text-light border-secondary"
+      >
+        <Modal.Header
+          closeButton
+          closeVariant="white"
+          className="border-secondary"
+        >
+          <Modal.Title
+            className="d-flex align-items-center"
+            style={{ color: selectedCondition?.color }}
+          >
+            <Info size={20} className="me-2" />
+            {selectedCondition?.nome.toUpperCase()}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p style={{ fontSize: "1.1rem", lineHeight: "1.6" }}>
+            {selectedCondition?.descricao}
+          </p>
+        </Modal.Body>
+      </Modal>
+      {/* MODAL ADICIONAR CONDIÇÃO */}
+      <Modal
+        show={showAddModal}
+        onHide={() => setShowAddModal(false)}
+        centered
+        contentClassName="bg-dark text-light border-secondary"
+      >
+        <Modal.Header
+          closeButton
+          closeVariant="white"
+          className="border-secondary"
+        >
+          <Modal.Title className="text-uppercase" style={{ fontSize: "1rem" }}>
+            Adicionar Condição
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Control
+            type="text"
+            placeholder="Buscar condição..."
+            className="bg-black text-white border-secondary mb-3 shadow-none"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <div
+            className="d-flex flex-wrap gap-2"
+            style={{
+              maxHeight: "300px",
+              overflowY: "auto",
+              paddingRight: "5px",
+            }}
+          >
+            {Object.keys(CONDITIONS_DATA)
+              .filter((key) =>
+                CONDITIONS_DATA[key].nome
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase()),
+              )
+              .map((key) => (
+                <Button
+                  key={key}
+                  variant="none"
+                  size="sm"
+                  onClick={() => addCondition(key)}
+                  disabled={activeConditions.includes(key)}
+                  style={{
+                    fontSize: "0.7rem",
+                    color: CONDITIONS_DATA[key].cor,
+                    border: `1px solid ${CONDITIONS_DATA[key].cor}40`,
+                    backgroundColor: activeConditions.includes(key)
+                      ? "#222"
+                      : "transparent",
+                    opacity: activeConditions.includes(key) ? 0.3 : 1,
+                  }}
+                >
+                  {CONDITIONS_DATA[key].nome.toUpperCase()}
+                </Button>
+              ))}
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

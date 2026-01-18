@@ -54,6 +54,29 @@ function FichasPage() {
     }
   }
 
+  async function handleUpdateConditions(newConditionsList) {
+    // 1. Atualização instantânea na UI
+    const updatedChar = new Character({
+      ...character,
+      status: {
+        ...character.status,
+        conditions: newConditionsList,
+      },
+    });
+    setCharacter(updatedChar);
+
+    // 2. Sincronização com o Backend
+    try {
+      // Certifique-se de que este método existe no seu CharacterService
+      await CharacterService.updateStatus(character.id, {
+        conditions: newConditionsList,
+      });
+      console.log("Condições atualizadas na Ordem.");
+    } catch (err) {
+      console.error("Falha ao salvar condições:", err);
+    }
+  }
+
   if (loading)
     return (
       <Container className="text-center mt-5">
@@ -63,7 +86,12 @@ function FichasPage() {
 
   return (
     <div>
-      {character && <CharacterHUD char={character} />}
+      {character && (
+        <CharacterHUD
+          char={character}
+          onUpdateConditions={handleUpdateConditions}
+        />
+      )}
       <Container className="mt-4">
         {!character && (
           <>

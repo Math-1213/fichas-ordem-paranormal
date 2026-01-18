@@ -34,7 +34,10 @@ export default class Character {
     this.infos = data.infos;
     this.atributos = data.atributos;
     this.pericias = data.pericias;
-    this.status = data.status;
+    this.status = {
+      ...data.status,
+      conditions: data.status?.conditions || [],
+    };
     this.poderes = data.poderes;
     this.inventario = data.inventario;
     this.rituais = data.rituais;

@@ -7,8 +7,9 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
 ### Adicionado
 
-- Novo Seletor de Personagens
-- Hud do Personagme na ficha
+- Novo Seletor de Personagens.
+- Hud do Personagme na ficha.
+- Adicionado Condições para o HUD.
 
 ### Alterado
 
