@@ -41,12 +41,10 @@ export const baseCharacter = {
     },
     atualidades: {
       bonus: 0,
-      dadosExtras: 0,
       treino: "destreinado",
     },
     ciencias: {
       bonus: 0,
-      dadosExtras: 0,
       treino: "destreinado",
     },
     crime: {
@@ -95,7 +93,6 @@ export const baseCharacter = {
     },
     ocultismo: {
       bonus: 0,
-      dadosExtras: 0,
       treino: "destreinado",
     },
     percepcao: {
@@ -133,7 +130,6 @@ export const baseCharacter = {
     },
     tecnologia: {
       bonus: 0,
-      dadosExtras: 0,
       treino: "destreinado",
     },
     vontade: {
@@ -144,5 +140,156 @@ export const baseCharacter = {
   inventario: [],
   poderes: [],
   rituais: [],
-  dados: []
+  dados: [],
+};
+
+export const baseCreature = {
+  id: null,
+  name: "Nova Entidade",
+  description: "",
+  element: null, // Principal
+  secondaryElements: [], // Outros selecionados
+  type: [], // Creature, Animal, Human, etc
+  size: [], // Small, Medium, Large, Colossal, etc
+  vd: 0,
+  displacement: "9m",
+  stats: {
+    pv: 0,
+    defesa: 0,
+  },
+  attributes: {
+    AGI: 1,
+    FOR: 1,
+    INT: 1,
+    PRE: 1,
+    VIG: 1,
+  },
+  presence: {
+    dt: 0,
+    immune: "",
+    damage: "",
+  },
+  actions: [], // Type, Name, Description, Dices
+  image: "",
+  enigma: "",
+  skills: {
+    acrobacia: {
+      dados: 0,
+      bonus: 0,
+    },
+    adestramento: {
+      dados: 0,
+      bonus: 0,
+    },
+    artes: {
+      dados: 0,
+      bonus: 0,
+    },
+    atletismo: {
+      dados: 0,
+      bonus: 0,
+    },
+    atualidades: {
+      dados: 0,
+      bonus: 0,
+    },
+    ciencias: {
+      dados: 0,
+      bonus: 0,
+    },
+    crime: {
+      dados: 0,
+      bonus: 0,
+    },
+    diplomacia: {
+      dados: 0,
+      bonus: 0,
+    },
+    enganacao: {
+      dados: 0,
+      bonus: 0,
+    },
+    fortitude: {
+      dados: 0,
+      bonus: 0,
+    },
+    furtividade: {
+      dados: 0,
+      bonus: 0,
+    },
+    iniciativa: {
+      dados: 0,
+      bonus: 0,
+    },
+    intimidacao: {
+      dados: 0,
+      bonus: 0,
+    },
+    intuicao: {
+      dados: 0,
+      bonus: 0,
+    },
+    investigacao: {
+      dados: 0,
+      bonus: 0,
+    },
+    luta: {
+      dados: 0,
+      bonus: 0,
+    },
+    medicina: {
+      dados: 0,
+      bonus: 0,
+    },
+    ocultismo: {
+      dados: 0,
+      bonus: 0,
+    },
+    percepcao: {
+      dados: 0,
+      bonus: 0,
+      type: "",
+    },
+    pilotagem: {
+      dados: 0,
+      bonus: 0,
+    },
+    pontaria: {
+      dados: 0,
+      bonus: 0,
+    },
+    profissao: {
+      dados: 0,
+      bonus: 0,
+      type: "",
+    },
+    reflexos: {
+      dados: 0,
+      bonus: 0,
+    },
+    religiao: {
+      dados: 0,
+      bonus: 0,
+    },
+    sobrevivencia: {
+      dados: 0,
+      bonus: 0,
+    },
+    tatica: {
+      dados: 0,
+      bonus: 0,
+    },
+    tecnologia: {
+      bonus: 0,
+
+      treino: "destreinado",
+    },
+    vontade: {
+      dados: 0,
+      bonus: 0,
+    },
+  },
+  immunities: [],
+  resistances: [],
+  vulnerabilities: [],
 };

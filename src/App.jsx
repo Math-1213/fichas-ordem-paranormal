@@ -13,6 +13,7 @@ import CharacterFormPage from "./pages/CharacterFormPage";
 import Home from "./pages/Home";
 import CharacterList from "./components/editor/CharacterSelector/CharacterSelector";
 import Session from "./pages/Session";
+import Bestiary from "./pages/Bestiary";
 
 function AppContent({ currentTrack }) {
   const location = useLocation();
@@ -34,7 +35,7 @@ function AppContent({ currentTrack }) {
         <Route path="/editor/:id" element={<CharacterFormPage />} />
         <Route path="/preEdicao" element={<CharacterList />} />
         <Route path="/session" element={<Session />} />
-        <Route path="/bestiary" element={<Session />} />
+        <Route path="/bestiary" element={<Bestiary />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>

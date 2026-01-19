@@ -6,7 +6,7 @@ store = FileStore("backend/data/bestiary")
 class BestiaryController:
     @staticmethod
     def list_all():
-        return [c.to_json() for c in store.list(Creature)]
+        return [c.to_json() for c in store.list()]
 
     @staticmethod
     def get_by_id(item_id):
