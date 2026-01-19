@@ -71,12 +71,13 @@ Melhorias visuais e de usabilidade.
 
 ### Fase 3 – Funcionalidades de Sessão
 
-- Painel do mestre
-- Controle de iniciativa
+- Painel do mestre [Andamento:1.3.0]: Renomeado para Sessão
+- Controle de iniciativa [Andamento:1.3.0]
+- Bestiario [Andamento:1.3.0]
 - Caderneta do personagem
 
 ### Fase 4 – Refinamento
 
-- Melhorar estilização
+- Melhorar estilização [Andamento:1.3.0]
 - Correções Na Musica
 - Exportar ficha para PDF

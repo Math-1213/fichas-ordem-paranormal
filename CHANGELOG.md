@@ -10,12 +10,13 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 - Novo Seletor de Personagens.
 - Hud do Personagme na ficha.
 - Adicionado Condições para o HUD.
+- Sessão e Bestiario
 
 ### Alterado
 
 - Melhoria na experiência de uso (UX/UI) das informações exibidas ao usuário.
 - Nova versão da Pagina de Atributos
-- Melhorias na NavBar
+- Melhorias na NavBar, Home
 
 ## [1.2.0] - 2026-01-17
 

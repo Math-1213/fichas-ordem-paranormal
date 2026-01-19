@@ -2,6 +2,8 @@ from flask import Flask
 from flask_cors import CORS
 from backend.router.character_routes import character_bp
 from backend.router.music_routes import music_bp
+from backend.router.bestiary_routes import bestiary_bp
+from backend.router.session_routes import session_bp
 
 def create_app() -> Flask:
     """
@@ -20,5 +22,7 @@ def create_app() -> Flask:
     # Registro de rotas através de Blueprints
     app.register_blueprint(character_bp)
     app.register_blueprint(music_bp)
+    app.register_blueprint(bestiary_bp)
+    app.register_blueprint(session_bp)
 
     return app
