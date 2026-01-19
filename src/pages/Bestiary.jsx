@@ -72,6 +72,7 @@ export default function Bestiary() {
           entity={selectedEntity}
           onBack={() => setView("list")}
           onSave={() => {
+            // Fazer Save
             fetchEntities();
             setView("list");
           }}

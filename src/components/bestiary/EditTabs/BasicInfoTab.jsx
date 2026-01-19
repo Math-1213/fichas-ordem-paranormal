@@ -4,8 +4,8 @@ import { Shield, Zap, Brain, Eye, Heart } from "lucide-react";
 import * as S from "./styles";
 
 const ATTR_CONFIG = {
-  forca: { label: "FOR", icon: <Shield size={14} />, color: "#ff3b3b" },
   agilidade: { label: "AGI", icon: <Zap size={14} />, color: "#ffee58" },
+  forca: { label: "FOR", icon: <Shield size={14} />, color: "#ff3b3b" },
   intelecto: { label: "INT", icon: <Brain size={14} />, color: "#3b82f6" },
   presenca: { label: "PRE", icon: <Eye size={14} />, color: "#a855f7" },
   vigor: { label: "VIG", icon: <Heart size={14} />, color: "#22c55e" },
@@ -33,14 +33,14 @@ export default function BasicInfoTab({ formData, handleChange }) {
             <Col md={3}>
               <S.CyberLabel>Tipo_de_Entidade</S.CyberLabel>
               <Form.Select
-                value={formData.type}
+                value={formData.type || ""}
                 onChange={(e) => handleChange("type", e.target.value)}
                 className="bg-black border-secondary text-light"
                 style={{ borderRadius: "0" }}
               >
                 <option value="Criatura">Criatura</option>
                 <option value="Animal">Animal</option>
-                <option value="Humano">Humano</option>
+                <option value="Pessoa">Pessoa</option>
                 <option value="Objeto">Objeto</option>
               </Form.Select>
             </Col>
@@ -63,17 +63,17 @@ export default function BasicInfoTab({ formData, handleChange }) {
             <Col md={4}>
               <S.CyberLabel>Escala (Tamanho)</S.CyberLabel>
               <Form.Select
-                value={formData.size}
+                value={formData.size || ""}
                 onChange={(e) => handleChange("size", e.target.value)}
                 className="bg-black border-secondary text-light"
                 style={{ borderRadius: "0" }}
               >
-                <option value="Minúsculo">Minúsculo</option>
-                <option value="Pequeno">Pequeno</option>
-                <option value="Médio">Médio</option>
-                <option value="Grande">Grande</option>
-                <option value="Enorme">Enorme</option>
-                <option value="Colossal">Colossal</option>
+                <option value="minusculo">Minúsculo</option>
+                <option value="pequeno">Pequeno</option>
+                <option value="medio">Médio</option>
+                <option value="grande">Grande</option>
+                <option value="enorme">Enorme</option>
+                <option value="colossal">Colossal</option>
               </Form.Select>
             </Col>
             <Col md={4}>
@@ -91,7 +91,7 @@ export default function BasicInfoTab({ formData, handleChange }) {
         {/* MATRIZ DE ATRIBUTOS */}
         <Col md={12} className="mt-5">
           <S.CyberLabel style={{ color: "#ffee58" }}>
-            Matriz_de_Atributos_Base
+            Matriz_de_Atributos
           </S.CyberLabel>
           <div className="d-flex justify-content-between gap-2 flex-wrap">
             {Object.entries(ATTR_CONFIG).map(([key, cfg]) => (
@@ -119,9 +119,9 @@ export default function BasicInfoTab({ formData, handleChange }) {
                 </div>
                 <input
                   type="number"
-                  value={formData.attributes[key]}
+                  value={formData.attributes[cfg.label]}
                   onChange={(e) =>
-                    handleChange(`attributes.${key}`, parseInt(e.target.value))
+                    handleChange(`attributes.${cfg.label}`, parseInt(e.target.value))
                   }
                   style={{
                     background: "transparent",
@@ -143,7 +143,7 @@ export default function BasicInfoTab({ formData, handleChange }) {
           <S.CyberLabel>Descrição_da_Entidade</S.CyberLabel>
           <Form.Control
             as="textarea"
-            rows={4}
+            rows={12}
             value={formData.description}
             onChange={(e) => handleChange("description", e.target.value)}
             className="bg-black border-secondary text-light"

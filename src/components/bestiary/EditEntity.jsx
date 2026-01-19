@@ -185,7 +185,7 @@ export default function EditEntity({ entity, onBack, onSave }) {
                     />
                   </div>
                 </Tab>
-                <Tab eventKey="defenses" title="02_SISTEMAS_DEFENSIVOS">
+                <Tab eventKey="defenses" title="02_DEFESAS">
                   <div className="pt-3">
                     <DefensesTab
                       formData={formData}
@@ -193,7 +193,7 @@ export default function EditEntity({ entity, onBack, onSave }) {
                     />
                   </div>
                 </Tab>
-                <Tab eventKey="skills" title="03_MATRIZ_PERICIAS">
+                <Tab eventKey="skills" title="03_PERICIAS">
                   <div className="pt-3">
                     <SkillsTab
                       formData={formData}

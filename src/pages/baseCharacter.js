@@ -280,8 +280,8 @@ export const baseCreature = {
       bonus: 0,
     },
     tecnologia: {
+      dados: 0,
       bonus: 0,
-
       treino: "destreinado",
     },
     vontade: {
