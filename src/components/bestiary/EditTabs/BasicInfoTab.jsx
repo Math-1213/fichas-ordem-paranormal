@@ -63,7 +63,7 @@ export default function BasicInfoTab({ formData, handleChange }) {
             <Col md={4}>
               <S.CyberLabel>Escala (Tamanho)</S.CyberLabel>
               <Form.Select
-                value={formData.size || ""}
+                value={formData.size || "medio"}
                 onChange={(e) => handleChange("size", e.target.value)}
                 className="bg-black border-secondary text-light"
                 style={{ borderRadius: "0" }}

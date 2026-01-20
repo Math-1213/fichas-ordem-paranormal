@@ -81,13 +81,20 @@ export default function EditEntity({ entity, onBack, onSave }) {
               </small>
             </div>
           </div>
-          <div className="d-flex gap-2">
-            <S.CyberButton type="button" onClick={onBack}>
-              <X size={18} /> CANCELAR
-            </S.CyberButton>
-            <S.CyberButton type="submit" primary>
-              <Save size={18} /> UPLOAD_DADOS
-            </S.CyberButton>
+          <div className="d-flex gap-3">
+            {/* Botão de Cancelar - Estilo secundário */}
+            <S.CyberButtonAction type="button" onClick={onBack}>
+              <X size={18} />
+              <span className="d-none d-md-inline">ABORTAR_CONEXAO</span>
+              <span className="d-md-none">X</span>
+            </S.CyberButtonAction>
+
+            {/* Botão de Upload - Estilo Primário (Neon) */}
+            <S.CyberButtonAction $primary type="submit">
+              <Save size={18} />
+              <span className="d-none d-md-inline">UPLOAD_DATAFRAME</span>
+              <span className="d-md-none">SAVE</span>
+            </S.CyberButtonAction>
           </div>
         </S.CyberHeader>
 

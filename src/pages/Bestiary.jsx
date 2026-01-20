@@ -42,6 +42,35 @@ export default function Bestiary() {
     setView("edit"); // Alterado de 'new' para 'edit' para renderizar o componente corretamente
   };
 
+  const handleSave = async (updatedData) => {
+    try {
+      // 1. Limpeza de segurança: garantir que as IDs temporárias de ações
+      // geradas com Date.now() não conflitem se o back gerar as próprias IDs
+      const dataToSave = {
+        ...updatedData,
+        updatedAt: new Date().toISOString(),
+      };
+
+      if (dataToSave.id) {
+        // É uma edição
+        await BestiaryService.update(dataToSave.id, dataToSave);
+        console.log("SISTEMA: Protocolo atualizado com sucesso.");
+      } else {
+        // É uma nova criatura
+        await BestiaryService.create(dataToSave);
+        console.log("SISTEMA: Novo espécime catalogado.");
+      }
+
+      // 2. Atualiza a lista local e volta para a visualização
+      await fetchEntities();
+      setView("list");
+      setSelectedEntity(null);
+    } catch (error) {
+      console.error("FALHA NO SISTEMA:", error);
+      alert("ERRO AO SALVAR: Verifique a conexão com o banco de dados.");
+    }
+  };
+
   if (loading)
     return (
       <div className="vh-100 d-flex justify-content-center align-items-center bg-black">
@@ -70,12 +99,11 @@ export default function Bestiary() {
       {view === "edit" && (
         <EditEntity
           entity={selectedEntity}
-          onBack={() => setView("list")}
-          onSave={() => {
-            // Fazer Save
-            fetchEntities();
+          onBack={() => {
             setView("list");
+            setSelectedEntity(null);
           }}
+          onSave={handleSave}
         />
       )}
     </Container>

@@ -595,3 +595,47 @@ export const CyberInputGroup = styled(InputGroup)`
     border-left: none !important;
   }
 `;
+
+export const CyberButtonAction = styled.button`
+  --color: ${(props) => (props.$primary ? CyberTheme.blue : "#566573")};
+  background: ${(props) =>
+    props.$primary ? "rgba(0, 242, 255, 0.1)" : "transparent"};
+  color: var(--color);
+  border: 1px solid var(--color);
+  padding: 8px 25px;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  /* Corte diagonal em dois cantos opostos */
+  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &:hover {
+    background: var(--color);
+    color: #000;
+    box-shadow: 0 0 20px var(--color);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  svg {
+    transition: transform 0.3s;
+  }
+
+  &:hover svg {
+    transform: scale(1.2)
+      rotate(${(props) => (props.$primary ? "0deg" : "-90deg")});
+  }
+`;

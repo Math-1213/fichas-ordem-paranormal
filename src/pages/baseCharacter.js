@@ -149,8 +149,8 @@ export const baseCreature = {
   description: "",
   element: null, // Principal
   secondaryElements: [], // Outros selecionados
-  type: [], // Creature, Animal, Human, etc
-  size: [], // Small, Medium, Large, Colossal, etc
+  type: "", // Creature, Animal, Human, etc
+  size: "médio", // Small, Medium, Large, Colossal, etc
   vd: 0,
   displacement: "9m",
   stats: {
@@ -282,7 +282,6 @@ export const baseCreature = {
     tecnologia: {
       dados: 0,
       bonus: 0,
-      treino: "destreinado",
     },
     vontade: {
       dados: 0,

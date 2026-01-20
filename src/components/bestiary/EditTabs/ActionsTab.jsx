@@ -19,6 +19,8 @@ export default function ActionsTab({ formData, setFormData }) {
       tipo: "Padrão",
       teste: "",
       dano: "",
+      danoTipo: "", // NOVO
+      resistencia: "", // NOVO (Ex: Fortitude DT 15)
       descricao: "",
     };
     setFormData({ ...formData, actions: [...formData.actions, newAction] });
@@ -79,7 +81,7 @@ export default function ActionsTab({ formData, setFormData }) {
               </div>
               <S.CyberInputGhost
                 value={action.nome}
-                placeholder="NOME_DO_PROTOCOLO..."
+                placeholder="NOME_DO_PROTOCOLO (Ex: ABOCANHAR)..."
                 onChange={(e) =>
                   updateAction(action.id, "nome", e.target.value)
                 }
@@ -91,15 +93,16 @@ export default function ActionsTab({ formData, setFormData }) {
 
             <div className="p-3">
               <Row className="g-3">
-                <Col md={3}>
-                  <S.CyberLabel>EXECUÇÃO</S.CyberLabel>
+                {/* LINHA 1: EXECUÇÃO E TESTE PRINCIPAL */}
+                <Col md={4}>
+                  <S.CyberLabel>TIPO_EXECUÇÃO</S.CyberLabel>
                   <S.CyberInputMiniSelect
                     value={action.tipo}
                     onChange={(e) =>
                       updateAction(action.id, "tipo", e.target.value)
                     }
                     style={{
-                      borderLeft: `3px solid ${TYPE_COLORS[action.tipo]}`,
+                      borderLeft: `4px solid ${TYPE_COLORS[action.tipo]}`,
                     }}
                   >
                     {Object.keys(TYPE_COLORS).map((t) => (
@@ -110,42 +113,72 @@ export default function ActionsTab({ formData, setFormData }) {
                   </S.CyberInputMiniSelect>
                 </Col>
 
-                {/* TESTE / DADOS */}
-                <Col md={4}>
-                  <S.CyberLabel style={{ color: TYPE_COLORS.Movimento }}>
-                    TESTE_SISTEMA
+                <Col md={8}>
+                  <S.CyberLabel style={{ color: S.CyberTheme.yellow }}>
+                    TESTE_DE_ATAQUE / ATIVAÇÃO
                   </S.CyberLabel>
                   <S.CyberInput
                     value={action.teste}
-                    placeholder="Ex: 3d20+15"
-                    focusColor={TYPE_COLORS.Movimento} // Brilho amarelo
+                    placeholder="Ex: 3d20+12 ou Atletismo DT 20"
+                    focusColor={S.CyberTheme.yellow}
                     onChange={(e) =>
                       updateAction(action.id, "teste", e.target.value)
                     }
                   />
                 </Col>
 
-                {/* DANO / EFEITO */}
-                <Col md={5}>
-                  <S.CyberLabel style={{ color: TYPE_COLORS.Padrão }}>
-                    OUTPUT_DANO
+                {/* LINHA 2: DANO, ELEMENTO E RESISTÊNCIA */}
+                <Col md={3}>
+                  <S.CyberLabel style={{ color: S.CyberTheme.red }}>
+                    DANO_VALOR
                   </S.CyberLabel>
                   <S.CyberInput
                     value={action.dano}
-                    placeholder="Ex: 4d6+10 Sangue"
-                    focusColor={TYPE_COLORS.Padrão} // Brilho vermelho
+                    placeholder="Ex: 3d6+5"
+                    focusColor={S.CyberTheme.red}
                     onChange={(e) =>
                       updateAction(action.id, "dano", e.target.value)
                     }
                   />
                 </Col>
 
+                <Col md={4}>
+                  <S.CyberLabel style={{ color: "#a855f7" }}>
+                    TIPO_DANO / ELEMENTO
+                  </S.CyberLabel>
+                  <S.CyberInput
+                    value={action.danoTipo}
+                    placeholder="Ex: Perfuração, Sangue..."
+                    focusColor="#a855f7"
+                    onChange={(e) =>
+                      updateAction(action.id, "danoTipo", e.target.value)
+                    }
+                  />
+                </Col>
+
+                <Col md={5}>
+                  <S.CyberLabel style={{ color: S.CyberTheme.green }}>
+                    DEFESA / RESISTÊNCIA
+                  </S.CyberLabel>
+                  <S.CyberInput
+                    value={action.resistencia}
+                    placeholder="Ex: Fortitude DT 15 reduz metade"
+                    focusColor={S.CyberTheme.green}
+                    onChange={(e) =>
+                      updateAction(action.id, "resistencia", e.target.value)
+                    }
+                  />
+                </Col>
+
+                {/* DESCRIÇÃO COMPLETA */}
                 <Col md={12}>
-                  <S.CyberLabel>LOG_DE_EXECUÇÃO</S.CyberLabel>
+                  <S.CyberLabel>
+                    LOG_DE_EXECUÇÃO / EFEITOS_ADICIONAIS
+                  </S.CyberLabel>
                   <S.DefenseTextArea
-                    rows={8}
+                    rows={4}
                     value={action.descricao}
-                    placeholder="Descreva o efeito visual e mecânico..."
+                    placeholder="Descreva o que acontece se acertar, manter agarrado, etc..."
                     onChange={(e) =>
                       updateAction(action.id, "descricao", e.target.value)
                     }
