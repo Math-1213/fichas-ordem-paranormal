@@ -1,0 +1,364 @@
+{
+  "id": "lino",
+  "infos": {
+    "nome": "Lino Batista",
+    "jogador": "Matheus",
+    "ocupacao": "",
+    "portrait": "",
+    "nivel": 13,
+    "deslocamento": 9,
+    "narrativa": {
+      "historia": "Lino é um doutor formado em Medicina, sempre tentando salvar o Máximo de Vidas.",
+      "aparencia": "Lino, apesar de estar chegando aos 30 anos, tem uma aparência jovem, cabelos e olhos castanho, 1,78m de altura, corpo magro, e utiliza óculos.",
+      "primeiroEncontro": "Durante seu trabalho, encontrou agentes feridos da ordem, e os tratou de forma eficiente, de forma que foi chamado para ajudar no combate ao outro lado.",
+      "personalidade": "Lino é descrito como muito atencioso por seus paciente.",
+      "fobias": "Nenhuma",
+      "piorPesadelo": "Não conseguir salvar ninguém, como se toda a sua vida não tivesse valido para nada"
+    },
+    "classe": "Especialista",
+    "trilha": "Médico de Campo",
+    "classePericias": [],
+    "idade": "29",
+    "nacionalidade": "Brasileiro",
+    "origem": "Agente de Saúde",
+    "origemPericias": [
+      "intuicao",
+      "medicina"
+    ],
+    "patente": "Operador",
+    "nex": 10,
+    "peRodada": 13,
+    "dtRitual": 25,
+    "afinidade": "Nenhum",
+    "carga": 17
+  },
+  "atributos": {
+    "forca": 1,
+    "agilidade": 3,
+    "intelecto": 4,
+    "presenca": 2,
+    "vigor": 2
+  },
+  "pericias": {
+    "acrobacia": {
+      "bonus": 0,
+      "treino": "treinado"
+    },
+    "adestramento": {
+      "bonus": 0,
+      "treino": "destreinado"
+    },
+    "artes": {
+      "bonus": 0,
+      "treino": "destreinado"
+    },
+    "atletismo": {
+      "bonus": 0,
+      "treino": "treinado"
+    },
+    "atualidades": {
+      "bonus": 0,
+      "dadosExtras": 0,
+      "treino": "treinado"
+    },
+    "ciencias": {
+      "bonus": 0,
+      "dadosExtras": 0,
+      "treino": "expert"
+    },
+    "crime": {
+      "bonus": 0,
+      "treino": "destreinado"
+    },
+    "diplomacia": {
+      "bonus": 0,
+      "treino": "veterano"
+    },
+    "enganacao": {
+      "bonus": 0,
+      "treino": "treinado"
+    },
+    "fortitude": {
+      "bonus": 0,
+      "treino": "treinado"
+    },
+    "furtividade": {
+      "bonus": 0,
+      "treino": "treinado"
+    },
+    "iniciativa": {
+      "bonus": 0,
+      "treino": "destreinado"
+    },
+    "intimidacao": {
+      "bonus": 0,
+      "treino": "destreinado"
+    },
+    "intuicao": {
+      "bonus": 0,
+      "treino": "veterano"
+    },
+    "investigacao": {
+      "bonus": 0,
+      "treino": "veterano"
+    },
+    "luta": {
+      "bonus": 0,
+      "treino": "destreinado"
+    },
+    "medicina": {
+      "bonus": 0,
+      "treino": "expert"
+    },
+    "ocultismo": {
+      "bonus": 0,
+      "dadosExtras": 0,
+      "treino": "destreinado"
+    },
+    "percepcao": {
+      "bonus": 0,
+      "treino": "treinado"
+    },
+    "pilotagem": {
+      "bonus": 0,
+      "treino": "veterano"
+    },
+    "pontaria": {
+      "bonus": 0,
+      "treino": "veterano"
+    },
+    "profissao": {
+      "bonus": 0,
+      "treino": "veterano",
+      "type": "Médico"
+    },
+    "reflexos": {
+      "bonus": 0,
+      "treino": "veterano"
+    },
+    "religiao": {
+      "bonus": 0,
+      "treino": "destreinado"
+    },
+    "sobrevivencia": {
+      "bonus": 0,
+      "treino": "veterano"
+    },
+    "tatica": {
+      "bonus": 0,
+      "treino": "destreinado"
+    },
+    "tecnologia": {
+      "bonus": 0,
+      "dadosExtras": 0,
+      "treino": "veterano"
+    },
+    "vontade": {
+      "bonus": 0,
+      "treino": "veterano"
+    }
+  },
+  "status": {
+    "vidaMax": 78,
+    "sanidadeMax": 64,
+    "esforcoMax": 65,
+    "defesas": {
+      "passiva": 13,
+      "bonusReflexos": 0,
+      "bonusFortitude": 0
+    },
+    "resistencias": {
+      "elementos": {
+        "Mental": 0,
+        "Morte": 0,
+        "Conhecimento": 0,
+        "Sangue": 0,
+        "Energia": 0
+      },
+      "outras": {
+        "Dano": 0,
+        "Fisica": 0,
+        "Balistica": 0,
+        "Corte": 0,
+        "Impacto": 0,
+        "Perfuracao": 0,
+        "Eletricidade": 0,
+        "Fogo": 0,
+        "Frio": 0,
+        "Quimica": 0
+      }
+    },
+    "vida": 78,
+    "sanidade": 64,
+    "esforco": 65
+  },
+  "poderes": [
+    {
+      "id": 1,
+      "titulo": "Eclético",
+      "descricao": "Quando faz um teste de uma perícia, você pode gastar 2 PE para receber os benefícios de ser treinado nessa perícia.",
+      "tags": [
+        "classe",
+        "exploracao",
+        "investigacao",
+        "suporte",
+        "classe"
+      ],
+      "isAuto": true
+    },
+    {
+      "id": 2,
+      "titulo": "Perito",
+      "descricao": "Escolha duas perícias nas quais você é treinado (exceto Luta e Pontaria). Quando faz um teste de uma dessas perícias, você pode gastar 2 PE para somar +1d6 no resultado. Conforme avança de NEX, pode gastar +1 PE para aumentar o dado de bônus. Por exemplo, em NEX 55%, pode gastar 4 PE para receber +1d10.",
+      "tags": [
+        "classe",
+        "exploracao",
+        "investigacao",
+        "suporte",
+        "classe"
+      ],
+      "isAuto": true
+    },
+    {
+      "id": 3,
+      "titulo": "Técnica Medicinal",
+      "descricao": "Sempre que cura um personagem, você adiciona seu Intelecto no total de PV curados.",
+      "tags": [
+        "origem",
+        "suporte",
+        "passivo",
+        "origem"
+      ],
+      "isAuto": true
+    },
+    {
+      "id": 4,
+      "titulo": "Paramédico",
+      "descricao": "Você pode usar uma ação padrão e 2 PE para curar 2d10 pontos de vida de si mesmo ou de um aliado adjacente. Você pode curar +1d10 PV respectivamente em NEX 40%, 65% e 99%, gastando +1 PE por dado adicional de cura.",
+      "tags": [
+        "trilha",
+        "suporte",
+        "trilha"
+      ],
+      "isAuto": true
+    },
+    {
+      "id": 5,
+      "titulo": "Equipe de Trauma",
+      "descricao": "Você pode usar uma ação padrão e 2 PE para remover uma condição negativa (exceto morrendo) de um aliado adjacente.",
+      "tags": [
+        "trilha",
+        "suporte",
+        "trilha"
+      ],
+      "isAuto": true
+    },
+    {
+      "id": 6,
+      "titulo": "Resgate",
+      "descricao": "Uma vez por rodada, se estiver em alcance curto de um aliado machucado ou morrendo, você pode se aproximar do aliado com uma ação livre (desde que seja capaz de fazê-lo usando seu deslocamento normal). Além disso, sempre que curar PV ou remover condições do aliado, você e o aliado recebem +5 na Defesa até o início de seu próximo turno. Por fim, para você, o total de espaços ocupados por carregar um personagem é reduzido pela metade.",
+      "tags": [
+        "trilha",
+        "suporte",
+        "exploracao",
+        "passivo",
+        "trilha"
+      ],
+      "isAuto": true
+    },
+    {
+      "id": 1768686871690,
+      "titulo": "Conhecimento Aplicado",
+      "descricao": "Quando faz um teste de perícia (exceto Luta e Pontaria), você pode gastar 2 PE para mudar o atributo-base da perícia para Int.",
+      "tags": [
+        "classe",
+        "outros",
+        "investigacao",
+        "exploracao"
+      ]
+    },
+    {
+      "id": 1768686895090,
+      "titulo": "Pensamento Ágil",
+      "descricao": "Uma vez por rodada, durante uma cena de investigação, você pode gastar 2 PE para fazer uma ação de procurar pistas adicional.",
+      "tags": []
+    },
+    {
+      "id": 1768686906666,
+      "titulo": "Engenhosidade (NEX 40%)",
+      "descricao": "Quando usa sua habilidade Eclético, você pode gastar 2 PE adicionais para receber os benefícios de ser veterano na perícia.",
+      "tags": []
+    },
+    {
+      "id": 1768686909900,
+      "titulo": "Primeira Impressão",
+      "descricao": "Você recebe +2d20 no primeiro teste de Diplomacia, Enganação, Intimidação ou Intuição que fizer em uma cena.",
+      "tags": []
+    },
+    {
+      "id": 1768686910146,
+      "titulo": "Versatilidade - Inventário Otimizado",
+      "descricao": "Você soma seu Intelecto à sua Força para calcular sua capacidade de carga. Por exemplo, se você tem Força 1 e Intelecto 3, seu inventário tem 20 espaços.",
+      "tags": []
+    }
+  ],
+  "inventario": [
+    {
+      "id": 1768687006202,
+      "tipo": "arma",
+      "nome": "Revólver",
+      "categoria": 4,
+      "peso": 1,
+      "alcance": "Curto",
+      "arma": {
+        "tipo": "Balistico",
+        "critico": "20",
+        "ataques": [],
+        "danos": [],
+        "especiais": []
+      },
+      "descricao": "Um revolver Modificado. Pode ser sacado como ação livre. +10 em testes de ocultar."
+    },
+    {
+      "id": 1768687006834,
+      "tipo": "equipamento",
+      "nome": "Mochila Militar",
+      "categoria": 1,
+      "peso": -2,
+      "quantidade": 1,
+      "efeito": "",
+      "especiais": [],
+      "dado": "",
+      "descricao": "Uma mochila leve e de alta qualidade. Ela não usa nenhum espaço e aumenta sua capacidade de carga em 2 espaços."
+    },
+    {
+      "id": 1768687007009,
+      "tipo": "equipamento",
+      "nome": "Kit de Medicina Aprimorado",
+      "categoria": 2,
+      "peso": 1,
+      "quantidade": 1,
+      "efeito": "",
+      "especiais": [],
+      "dado": "",
+      "descricao": "Um conjunto de ferramentas necessárias para o uso de Medicina. Sem o kit, você sofre –5 no teste. O bônus ao usar Medicina é igual a 10."
+    }
+  ],
+  "rituais": [],
+  "dados": [
+    {
+      "nome": "Cura Paramédico",
+      "valor": "2d10+/INT/",
+      "tipo": "soma",
+      "extra": "",
+      "id": "d0ca20e2-f038-4c5b-8d7f-2d8682b5a479"
+    },
+    {
+      "nome": "1d20",
+      "valor": "1d20",
+      "tipo": "teste",
+      "extra": "",
+      "id": "c97f7681-2cb1-4b2f-878a-eb0f2d70656d"
+    }
+  ]
+}
