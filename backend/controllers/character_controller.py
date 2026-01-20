@@ -4,7 +4,7 @@ from backend.core.file_store import FileStore
 import uuid
 
 # Instância única do store para ser usada por todos os métodos do controller
-store = FileStore("backend/data/characters")
+store = FileStore("backend/data/characters", model_class=Character)
 
 class CharacterController:
     """

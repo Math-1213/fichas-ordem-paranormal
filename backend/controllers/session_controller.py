@@ -1,7 +1,7 @@
 from backend.core.file_store import FileStore
 from backend.core.session import Session
 
-store = FileStore("backend/data/session")
+store = FileStore("backend/data/characters", model_class=Session)
 
 class SessionController:
     @staticmethod

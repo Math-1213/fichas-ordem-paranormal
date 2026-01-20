@@ -1,12 +1,29 @@
 from backend.core.file_store import FileStore
 from backend.core.creature import Creature
 
-store = FileStore("backend/data/bestiary")
+store = FileStore("backend/data/bestiary", model_class=Creature)
 
 class BestiaryController:
     @staticmethod
     def list_all():
-        return [c.to_json() for c in store.list()]
+        """
+        Retorna um resumo otimizado das criaturas para os Cards de seleção da vitrine.
+        """
+        creatures = store.list()
+        print(creatures)
+        return [{
+            "id": c.id,
+            "name": c.name,
+            "element": c.element,
+            "secondaryElements": c.secondary_elements,
+            "vd": c.vd,
+            "size": c.size,
+            "image": c.image,
+            "pv": c.stats.get("pv", 0),
+            "defesa": c.stats.get("defesa", 0),
+            "attributes": c.attributes,
+            "updatedAt": c.updated_at
+        } for c in creatures]
 
     @staticmethod
     def get_by_id(item_id):
