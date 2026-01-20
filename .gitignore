@@ -29,6 +29,6 @@ dist-ssr
 # Dados locais / gerados
 # src/data/miguel.json
 # backend/data/
-backend/data/musics
+backend/data/musics/*
 backend/__pycache__/
 environment.json
