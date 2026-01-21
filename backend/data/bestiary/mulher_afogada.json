@@ -1,0 +1,241 @@
+{
+  "id": "mulher_afogada",
+  "name": "MULHER AFOGADA",
+  "element": "Sangue",
+  "secondaryElements": [
+    "Energia",
+    "Medo"
+  ],
+  "description": "Uma lenda urbana que se popularizou entre crianças graças a uma história usada por pais para evitar desperdício de água, mas que tomou proporções terríveis após um famoso escritor adaptar a lenda em um conto de terror.\n\nSua invocação está sempre associada a mulheres que morreram em afogamentos brutais e trágicos, de forma acidental ou intencional.\n\nQuando presente em um ambiente, a mulher afogada se movimenta em forma de Sangue líquido pelos encanamentos de casas assombradas, podendo ser identificada através da coloração avermelhada no fluido escorrendo das saídas de água.\n\nA mulher afogada também pode atacar em surtos de Sangue, puxando o seu alvo para dentro do encanamento, os afogando e depois devorando lentamente dentro dos canos. Por ser uma criatura de Medo, a mulher afogada exige um processo complexo para ser derrotada.\n\nPara ser invocada completamente em forma física, um processo da investigação da sua origem precisa ser completado, e um ritual envolvendo abrir diversas torneiras ao mesmo tempo precisa ser realizado associado aos elementos da sua manifestação.",
+  "vd": "140",
+  "size": "grande",
+  "displacement": "9m / 36m - Forma Liquida",
+  "stats": {
+    "pv": 240,
+    "defesa": 28
+  },
+  "attributes": {
+    "AGI": 4,
+    "FOR": 3,
+    "INT": 2,
+    "PRE": 2,
+    "VIG": 3
+  },
+  "presence": {
+    "dt": "25",
+    "immune": "50%",
+    "damage": "4d8"
+  },
+  "skills": {
+    "acrobacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "adestramento": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "artes": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atletismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atualidades": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ciencias": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "crime": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "diplomacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "enganacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "fortitude": {
+      "dados": 0,
+      "bonus": 10
+    },
+    "furtividade": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "iniciativa": {
+      "dados": 0,
+      "bonus": 10
+    },
+    "intimidacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "intuicao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "investigacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "luta": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "medicina": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ocultismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "percepcao": {
+      "dados": 0,
+      "bonus": 5,
+      "type": "Percepção às cegas"
+    },
+    "pilotagem": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "pontaria": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "profissao": {
+      "dados": 0,
+      "bonus": 0,
+      "type": ""
+    },
+    "reflexos": {
+      "dados": 0,
+      "bonus": 10
+    },
+    "religiao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "sobrevivencia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tatica": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tecnologia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "vontade": {
+      "dados": 0,
+      "bonus": 5
+    }
+  },
+  "actions": [
+    {
+      "id": 1768957596177,
+      "nome": "FORMA DE SANGUE",
+      "tipo": "Passiva",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "",
+      "descricao": "Por padrão, a mulher afogada é encontrada na forma de líquido de Sangue. Nesta forma, ela possui resistência a balístico, corte, impacto, perfuração e Sangue 20; deslocamento 36m e pode percorrer canos, frestas e orifícios, como qualquer líquido; e recebe as habilidades Afogar em Sangue, Arrancar Sangue e Invadir Órgãos (todas as ações marcadas com o ícone 🩸). Ela perde esta habilidade quando é invocada em sua forma física (após seu Enigma de Medo ser desvendado)."
+    },
+    {
+      "id": 1768957596344,
+      "nome": "AGREDIR (MORDIDA)",
+      "tipo": "Padrão",
+      "teste": "3d20+15",
+      "dano": "4d8+8",
+      "danoTipo": "Perfuração",
+      "resistencia": "",
+      "descricao": "MORDIDA Corpo a corpo\nTESTE 3O+15 | DANO 4d8+8 perfuração\nGARRAS Corpo a corpo x2"
+    },
+    {
+      "id": 1768957596571,
+      "nome": "AGREDIR (GARRAS)",
+      "tipo": "Padrão",
+      "teste": "3d20+15",
+      "dano": "4d6+6",
+      "danoTipo": "Corte",
+      "resistencia": "",
+      "descricao": "MORDIDA Corpo a corpo\nGARRAS Corpo a corpo x2"
+    },
+    {
+      "id": 1768957597065,
+      "nome": "AGREDIR (JATO DE SANGUE)",
+      "tipo": "Padrão",
+      "teste": "4d20+10",
+      "dano": "4d8+8",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "JATO DE SANGUE Distância / CURTO"
+    },
+    {
+      "id": 1768957597265,
+      "nome": "SUGAR SANGUE",
+      "tipo": "Movimento",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "",
+      "descricao": "A mulher afogada devora o corpo de um personagem adjacente que tenha morrido nesta cena, recuperando 40 PV no processo."
+    },
+    {
+      "id": 1768957597714,
+      "nome": "🩸AFOGAR EM SANGUE",
+      "tipo": "Padrão",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "Fortitude DT 24 Evita",
+      "descricao": "A mulher afogada invade os orifícios do nariz e da boca de um personagem em alcance curto, afogando-o com Sangue. O personagem fica asfixiado. No início de cada um de seus turnos, pode fazer um teste de Fortitude (DT 24). Se passar, encerra a condição e faz a mulher afogada ser expelida na forma líquida para um espaço adjacente."
+    },
+    {
+      "id": 1768957597889,
+      "nome": "🩸ARRANCAR SANGUE",
+      "tipo": "Reação",
+      "teste": "",
+      "dano": "6d6",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "Toda vez que a mulher afogada é arrancada de um corpo que ela esteja asfixiando com afogar em Sangue, ela carrega consigo parte do sangue da vítima, causando 6d6 pontos de dano de Sangue e deixando-a fraca."
+    },
+    {
+      "id": 1768957598377,
+      "nome": "🩸INVADIR ÓRGÃOS",
+      "tipo": "Movimento",
+      "teste": "",
+      "dano": "6d6",
+      "danoTipo": "Sangue ",
+      "resistencia": "",
+      "descricao": "A mulher afogada invade órgãos vitais de um personagem que ela esteja asfixiando com afogar em Sangue. O personagem sofre 6d6 pontos de dano de Sangue e fica enjoado."
+    }
+  ],
+  "abilities": [],
+  "resistances": [
+    "Balístico",
+    "Energia",
+    "impacto e\nperfuração 10",
+    "Sangue 20"
+  ],
+  "vulnerabilities": [
+    "Morte"
+  ],
+  "immunities": [],
+  "image": "https://i.ytimg.com/vi/A4X7Dkvvlf0/mqdefault.jpg",
+  "enigma": "Quando a mulher afogada assombra um local, todas as fontes de água se tornam armadilhas potenciais: torneiras, canos, privadas, chuveiros… Tudo que estiver conectado a um sistema hidráulico será um possível “ponto de invocação” da criatura e, caso um personagem se aproxime de um desses pontos, ela pode se manifestar em forma física de líquido de Sangue, agarrando esse personagem e tentando arrastá-lo para dentro dos canos onde o devorará aos poucos. Tentar enfrentar a mulher afogada de forma direta é inútil, já que ela consegue se mover livremente por dentro dos encanamentos e se recuperar de seus ferimentos caso seja atacada. A única maneira de derrotá-la é bloquear todas as saídas de água e fechar o registro hidráulico do local, e então abrir todas as torneiras, forçando a sua manifestação física e a deixando sem lugar para fugir caso esteja próxima de ser derrotada.\n\n\"Se deixar a torneira aberta, a mulher afogada desperta.\"",
+  "updatedAt": "2026-01-21T01:11:46.315Z"
+}

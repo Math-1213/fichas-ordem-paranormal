@@ -1,0 +1,187 @@
+{
+  "id": "minotauro",
+  "name": "MINOTAURO",
+  "element": "Sangue",
+  "secondaryElements": [],
+  "description": "A forma de um animal enorme, furioso e bípede com mais de três metros, infectado com pústulas nojentas de Sangue e veias pulsantes por um lado inteiro de seu corpo, o minotauro é originário das lendas da mitologia grega sobre um monstro terrível que habita labirintos.\n\nEm seu braço esquerdo, um enorme machado está fundido em seus ossos e carne, com uma lâmina dupla capaz de destruir o mais resistente dos materiais. O minotauro realiza investidas brutais e enfurecidas que são praticamente impossíveis de conter, buscando manter seus alvos cada vez mais empalados em seus enormes chifres, enquanto usa seu instinto bestial para navegar dentro de seu labirinto, caçando vítimas para destroçar em pequenos pedaços e então devorá-las aos poucos.\n\nUma das primeiras criaturas com registros de ter sido mantida em uma espécie de cativeiro para ser estudada e analisada por investigadores paranormais, há milênios. Até hoje é impossível determinar o real motivo que levaria alguém a manter uma besta terrível como essa vivendo em qualquer lugar.\n",
+  "vd": "280",
+  "size": "grande",
+  "displacement": "12m",
+  "stats": {
+    "pv": 750,
+    "defesa": 44
+  },
+  "attributes": {
+    "AGI": 4,
+    "FOR": 5,
+    "INT": 1,
+    "PRE": 3,
+    "VIG": 5
+  },
+  "presence": {
+    "dt": "35",
+    "immune": "80%",
+    "damage": "8d6"
+  },
+  "skills": {
+    "acrobacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "adestramento": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "artes": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atletismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atualidades": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ciencias": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "crime": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "diplomacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "enganacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "fortitude": {
+      "dados": 0,
+      "bonus": 20
+    },
+    "furtividade": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "iniciativa": {
+      "dados": 0,
+      "bonus": 15
+    },
+    "intimidacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "intuicao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "investigacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "luta": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "medicina": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ocultismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "percepcao": {
+      "dados": 0,
+      "bonus": 20,
+      "type": "Percepção às cegas"
+    },
+    "pilotagem": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "pontaria": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "profissao": {
+      "dados": 0,
+      "bonus": 0,
+      "type": ""
+    },
+    "reflexos": {
+      "dados": 0,
+      "bonus": 15
+    },
+    "religiao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "sobrevivencia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tatica": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tecnologia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "vontade": {
+      "dados": 0,
+      "bonus": 10
+    }
+  },
+  "actions": [
+    {
+      "id": 1768957169018,
+      "nome": "AGREDIR (CHIFRES)",
+      "tipo": "Padrão",
+      "teste": "5d20+30",
+      "dano": "6d12+20",
+      "danoTipo": "Perfuração",
+      "resistencia": "",
+      "descricao": "CHIFRES Corpo a corpo\nMACHADO Corpo a corpo x2"
+    },
+    {
+      "id": 1768957169193,
+      "nome": "AGREDIR (MACHADO)",
+      "tipo": "Padrão",
+      "teste": "5d20+32",
+      "dano": "4d12+20",
+      "danoTipo": "Corte",
+      "resistencia": "",
+      "descricao": "CHIFRES Corpo a corpo\nMACHADO Corpo a corpo x2"
+    },
+    {
+      "id": 1768957169409,
+      "nome": "CRAVAR CHIFRES",
+      "tipo": "Livre",
+      "teste": "",
+      "dano": "CRAVAR CHIFRES",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "Se fizer uma investida com seus chifres e acertar o ataque, o minotauro crava seus chifres no alvo, que fica agarrado. Enquanto mantém um ser agarrado dessa forma o minotauro não pode atacar com seus chifres. Porém, no final de cada turno da vítima no qual ela ainda esteja agarrada pelos chifres, ela sofre 4d12+20 pontos de dano de Sangue."
+    }
+  ],
+  "abilities": [],
+  "resistances": [
+    "Balístico",
+    "impacto",
+    "perfuração e\nSangue 20"
+  ],
+  "vulnerabilities": [
+    "Morte"
+  ],
+  "immunities": [],
+  "image": "https://i.ytimg.com/vi/-7SQMTEao6I/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGHIgSSgsMA8=&rs=AOn4CLBP-EolBo38JpmtTleIsd0vt_GtUw",
+  "enigma": "",
+  "updatedAt": "2026-01-21T01:01:43.002Z"
+}

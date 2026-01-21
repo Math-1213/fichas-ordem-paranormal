@@ -1,0 +1,249 @@
+{
+  "id": "carente",
+  "name": "Carente",
+  "element": "Sangue",
+  "secondaryElements": [
+    "Morte"
+  ],
+  "description": "A criatura mais famosa do escritor de terror Daniel Hartmann, o carente é uma manifestação paranormal originada de uma história de terror que se tornou popular no mundo todo. É uma criatura nascida da inveja de um ser que nunca sentiu amor e, por isso, busca devorar os órgãos de pessoas que já foram mães para consumir o amor que nunca recebeu.\n\nApesar de brutal, um carente não tem a habilidade de abrir portas sozinho. Por causa disso, para enganar seus alvos, o carente originalmente toma a forma de uma pequena criança com lacerações em todo o seu rosto vazio, uma coluna entortada e uma camiseta azul com uma estampa infantil, mimicando o som de um menino ou menina doce e perdida batendo em portas buscando por sua mãe.\n\nPorém, quando alguém comete o grave erro de atender ao chamado e abrir a porta, de dentro do seu rosto rasteja uma criatura bizarra, grotesca e enorme, com mais de três metros de altura, uma pele gosmenta, garras pontudas e curvadas. É uma forma que se assemelha a um inseto monstruoso enorme, com um grande ferrão saindo de um rosto demoníaco.\n\nNo topo, como uma espécie de isca, o corpo da criança fica pendurado, conectado a um tipo de tentáculo com garras.\n\nLembre-se, se você ouvir uma criança batendo à porta chamando pela sua mãe, NÃO ABRA A PORTA. Pois depois que a entrada do carente for permitida em um ambiente pela primeira vez, nada mais poderá impedi-lo de devorar aquilo de que carece.",
+  "vd": "300",
+  "size": "grande",
+  "displacement": "12m",
+  "stats": {
+    "pv": 700,
+    "defesa": 40
+  },
+  "attributes": {
+    "AGI": 4,
+    "FOR": 4,
+    "INT": 2,
+    "PRE": 3,
+    "VIG": 4
+  },
+  "presence": {
+    "dt": "35",
+    "immune": "90%",
+    "damage": "7d8"
+  },
+  "skills": {
+    "acrobacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "adestramento": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "artes": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atletismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atualidades": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ciencias": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "crime": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "diplomacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "enganacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "fortitude": {
+      "dados": 0,
+      "bonus": 25
+    },
+    "furtividade": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "iniciativa": {
+      "dados": 0,
+      "bonus": 15
+    },
+    "intimidacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "intuicao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "investigacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "luta": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "medicina": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ocultismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "percepcao": {
+      "dados": 0,
+      "bonus": 10,
+      "type": "Percepção às cegas"
+    },
+    "pilotagem": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "pontaria": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "profissao": {
+      "dados": 0,
+      "bonus": 0,
+      "type": ""
+    },
+    "reflexos": {
+      "dados": 0,
+      "bonus": 24
+    },
+    "religiao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "sobrevivencia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tatica": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tecnologia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "vontade": {
+      "dados": 0,
+      "bonus": 17
+    }
+  },
+  "actions": [
+    {
+      "id": 1768951256985,
+      "nome": "Carência",
+      "tipo": "Passiva",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "",
+      "descricao": "Qualquer ser que já esteve envolvido na gestação de outro ser recebe +1d20 em ataques contra o carente, porém o carente também recebe +1d20 em ataques contra esse ser."
+    },
+    {
+      "id": 1768951257353,
+      "nome": "REGENERAÇÃO DE SANGUE",
+      "tipo": "Passiva",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "",
+      "descricao": "O carente possui Cura Acelerada 20. Se o carente ficar\ninconsciente ou sofrer dano de Energia, esta habilidade deixa\nde funcionar até o fim da cena."
+    },
+    {
+      "id": 1768951257714,
+      "nome": "AGREDIR (GARRAS DE SANGUE)",
+      "tipo": "Padrão",
+      "teste": "4d20+35",
+      "dano": "2d8+20",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "GARRAS DE SANGUE Corpo a corpo x2\nFERRÃO DE SANGUE Corpo a corpo\nTENTÁCULO Corpo a corpo\n"
+    },
+    {
+      "id": 1768951258130,
+      "nome": "AGREDIR (FERRÃO DE SANGUE)",
+      "tipo": "Padrão",
+      "teste": "4d20+35",
+      "dano": "2d12+20",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "PADRÃO  AGREDIR\nGARRAS DE SANGUE Corpo a corpo x2\nFERRÃO DE SANGUE Corpo a corpo\nTENTÁCULO Corpo a corpo\n"
+    },
+    {
+      "id": 1768951258377,
+      "nome": "AGREDIR (TENTÁCULO)",
+      "tipo": "Padrão",
+      "teste": "4d20+35",
+      "dano": "2d8+20",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "PADRÃO  AGREDIR\nGARRAS DE SANGUE Corpo a corpo x2\nFERRÃO DE SANGUE Corpo a corpo\nTENTÁCULO Corpo a corpo\n"
+    },
+    {
+      "id": 1768951258730,
+      "nome": "FORMA INFANTIL",
+      "tipo": "Movimento",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "",
+      "descricao": "O carente se contorce de volta para o corpo da pequena criança para passar em espaços pequenos, se retraindo e expandindo quando achar necessário. Além disso, o carente não consegue abrir a primeira porta para entrar em um lugar. Uma vez que essa porta é aberta e ele deixa de estar na forma infantil, pode ignorar essa restrição."
+    },
+    {
+      "id": 1768951259153,
+      "nome": "RASTEIRA DE TENTÁCULO",
+      "tipo": "Reação",
+      "teste": "4d20+35",
+      "dano": "2d8+20",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "Uma vez por rodada, quando fica adjacente a dois ou mais seres, o carente faz um ataque de tentáculo contra um deles. Se o carente acertar o ataque, a vítima fica caída e é empurrada 6m para longe dele."
+    },
+    {
+      "id": 1768951259482,
+      "nome": "SUGADA MORTAL",
+      "tipo": "Livre",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "Fortitude DT 35 evita",
+      "descricao": "Usando seu ferrão, o carente consegue sugar fluidos e apodrecer os órgãos internos. Um ser atingido pelo ferrão de sangue fica debilitado e enjoado até o fim da cena (Fortitude DT 35 evita)."
+    },
+    {
+      "id": 1768951259945,
+      "nome": "VOCÊ É MINHA MAMÃE?",
+      "tipo": "Movimento",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "Reflexos DT 25 evit",
+      "descricao": "O carente usa a parte que simula o corpo de uma criança para abraçar um ser adjacente, que fica paralisado até ser solto (Reflexos DT 25 evita). O carente pode manter o abraço indefinidamente, mas será forçado a soltar o alvo se sofrer dano de Energia."
+    }
+  ],
+  "abilities": [],
+  "resistances": [
+    "Balístico",
+    "impacto",
+    "perfuração\ne Sangue 20"
+  ],
+  "vulnerabilities": [
+    "Morte"
+  ],
+  "immunities": [],
+  "image": "https://preview.redd.it/carente-feito-com-hero-forge-v0-0ddcpan6gbxf1.png?width=640&crop=smart&auto=webp&s=7f4c3092f683a41feab64a9dbc37cd736170c782",
+  "enigma": "",
+  "updatedAt": "2026-01-20T23:27:03.020Z"
+}

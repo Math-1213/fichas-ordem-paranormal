@@ -1,0 +1,245 @@
+{
+  "id": "aniquilacao",
+  "name": "Aniquilação",
+  "element": "Sangue",
+  "secondaryElements": [],
+  "description": "A maior criatura já registrada na história da Realidade. Apenas relatos de civilizações distantes foram encontrados como evidência desse ser que só pode ser descrito como um apocalipse paranormal.\n\nUma aberração incomparável, uma monstruosidade com mais de dez metros de altura, esse ser é conhecido por diversos nomes, como “A Besta do Apocalipse”, “O Dragão do Inferno” e “A Aniquilação”.\n\nNão se tem informação de qual seria o acontecimento ou ritual aterrorizador capaz de invocar esse ser medonho, apenas registros históricos longínquos das ruínas devoradas que restaram da passagem dessa criatura.\n\nSeus enormes braços contém braços menores que se desviam deles, e esses mesmos braços contém mais inúmeros braços que brotam de todo o seu comprimento, se movendo de forma irregular, tentando agarrar qualquer coisa que passe perto da criatura. Ao redor de toda sua forma surgem espinhos alongados, especialmente dos enormes tentáculos que se entrelaçam na parte inferior do corpo, e no centro de seu corpo é possível enxergar uma enorme bocarra com dentes longos e afiados do tamanho de pessoas adultas.\n\nAs enormes asas são incapazes de erguer o seu corpo colossal, mas ao se agitarem causam um som ensurdecedor que pode ser escutado a quilômetros de distância, anunciando a sua chegada.\n\nNão existem registros de alguém que tenha sido capaz de matar ou dissipar a Aniquilação, e lendas perdidas no tempo regurgitam a possibilidade de que ela nunca tenha sido de fato derrotada, e está apenas dormente escondida em algum lugar da Realidade, aguardando pelo seu despertar.\n",
+  "vd": "380",
+  "size": "colossal",
+  "displacement": "15m",
+  "stats": {
+    "pv": 1200,
+    "defesa": 58
+  },
+  "attributes": {
+    "AGI": 4,
+    "FOR": 5,
+    "INT": 3,
+    "PRE": 4,
+    "VIG": 5
+  },
+  "presence": {
+    "dt": "45",
+    "immune": "",
+    "damage": "9d8"
+  },
+  "skills": {
+    "acrobacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "adestramento": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "artes": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atletismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atualidades": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ciencias": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "crime": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "diplomacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "enganacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "fortitude": {
+      "dados": 0,
+      "bonus": 30
+    },
+    "furtividade": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "iniciativa": {
+      "dados": 0,
+      "bonus": 20
+    },
+    "intimidacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "intuicao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "investigacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "luta": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "medicina": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ocultismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "percepcao": {
+      "dados": 0,
+      "bonus": 20,
+      "type": "Percepção às cegas"
+    },
+    "pilotagem": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "pontaria": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "profissao": {
+      "dados": 0,
+      "bonus": 0,
+      "type": ""
+    },
+    "reflexos": {
+      "dados": 0,
+      "bonus": 25
+    },
+    "religiao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "sobrevivencia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tatica": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tecnologia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "vontade": {
+      "dados": 0,
+      "bonus": 20
+    }
+  },
+  "actions": [
+    {
+      "id": 1768950254353,
+      "nome": "AGREDIR(Garras)",
+      "tipo": "Padrão",
+      "teste": "5d20+40",
+      "dano": "4d10+30",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "Mesma ação de AGREDIR(TENTÁCULOS ESPINHENTOS)\nCorpo a corpo x2\n\nGARRAS Corpo a corpo x2\nTENTÁCULOS ESPINHENTOS Corpo a corpo x2"
+    },
+    {
+      "id": 1768950254793,
+      "nome": "AGREDIR(TENTÁCULOS ESPINHENTOS)",
+      "tipo": "Padrão",
+      "teste": "5d20+40",
+      "dano": "2d12+30",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "Mesma ação de AGREDIRAGREDIR(Garras)\nCorpo a corpo x2\n\nGARRAS Corpo a corpo x2\nTENTÁCULOS ESPINHENTOS Corpo a corpo x2"
+    },
+    {
+      "id": 1768950255321,
+      "nome": "AGREDIR (DISPARO DE ESPINHOS)",
+      "tipo": "Padrão",
+      "teste": "4d20+40",
+      "dano": "2d10+20",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "PADRÃO  \nDistância x3 - MÉDIO"
+    },
+    {
+      "id": 1768950255850,
+      "nome": "AGARRÃO",
+      "tipo": "Reação",
+      "teste": "5d20+50",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "",
+      "descricao": "Se a Aniquilação acertar um ataque de tentáculos espinhentos, ela pode tentar agarrar o alvo (teste 5d20+50). Ela pode manter até quatro personagens agarrados por vez."
+    },
+    {
+      "id": 1768950256314,
+      "nome": "INSTINTO ANIQUILADOR",
+      "tipo": "Reação",
+      "teste": "5d20+40",
+      "dano": "2d12+30",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "Sempre que um personagem em alcance curto da Aniquilação se movimenta mais do que 3m, a Aniquilação realiza um ataque de tentáculos espinhentos contra o personagem."
+    },
+    {
+      "id": 1768950256769,
+      "nome": "APERTAR E DESTRUIR",
+      "tipo": "Livre",
+      "teste": "",
+      "dano": "40",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "No início do seu turno, a Aniquilação aperta os personagens agarrados com seus tentáculos, causando 40 pontos de dano de Sangue."
+    },
+    {
+      "id": 1768950257210,
+      "nome": "",
+      "tipo": "Movimento",
+      "teste": "BATER AS ASAS",
+      "dano": "8d6",
+      "danoTipo": "Mental",
+      "resistencia": "Fortitude DT 40 reduz o dano à metade e evita os efeitos",
+      "descricao": "A Aniquilação bate suas asas, criando um som ensurdecedor. Cada personagem em alcance longo sofre 8d6 pontos de dano Mental, é empurrado 6m para longe da Aniquilação e fica atordoado por uma rodada (Fortitude DT 40 reduz o dano à metade e evita os efeitos)."
+    },
+    {
+      "id": 1768950257586,
+      "nome": "ESTRANGULAMENTO FINAL",
+      "tipo": "Movimento",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "Reflexos DT 30 evita",
+      "descricao": "A Aniquilação se desloca 15m enquanto seus inúmeros braços agarram e estrangulam personagens no caminho. Cada personagem que ficar adjacente a Aniquilação durante esse deslocamento fica agarrado e asfixiado (Reflexos DT 30 evita). Um personagem agarrado pode escapar gastando uma ação padrão e passando em um teste de Reflexos (DT 30)."
+    },
+    {
+      "id": 1768950319697,
+      "nome": "TEMPESTADE DE ESPINHOS",
+      "tipo": "Completa",
+      "teste": "",
+      "dano": "20d6+20",
+      "danoTipo": "Sangue",
+      "resistencia": "Reflexos DT 40 reduz à metade",
+      "descricao": "A Aniquilação lança todos os seus espinhos. Todos os personagens em alcance médio sofrem 20d6+20 pontos de dano de Sangue (Reflexos DT 40 reduz à metade). A Aniquilação só pode usar esta habilidade uma vez por cena e, quando a usa, perde seu disparo de espinhos até o fim da cena."
+    }
+  ],
+  "abilities": [],
+  "resistances": [
+    "Dano 50"
+  ],
+  "vulnerabilities": [
+    "Morte"
+  ],
+  "immunities": [],
+  "image": "https://i.redd.it/d77ffzvch3if1.jpeg",
+  "enigma": "O Enigma de Medo da Aniquilação é desconhecido. Quando ele for resolvido, a Aniquilação perderá sua resistência a dano e sua habilidade Tempestade de Espinhos.",
+  "updatedAt": "2026-01-20T23:12:49.365Z"
+}

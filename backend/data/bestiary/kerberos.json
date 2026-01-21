@@ -1,0 +1,207 @@
+{
+  "id": "kerberos",
+  "name": "KERBEROS",
+  "element": "Sangue",
+  "secondaryElements": [],
+  "description": "O cão de três cabeças, o demônio do poço, o guardião do portão do inferno. Existem poucos relatos daqueles que encontraram um kerberos dentro da Realidade. Uma besta enorme, com mais de três metros de altura e sete metros de comprimento, seis enormes patas, uma cauda, espinhos e veias saltadas por toda a sua pele vermelha carnosa e gosmenta, e três enormes cabeças com bocas asquerosas e vis, uma diferente da outra.\n\nUm kerberos só pode ser manifestado em um “Inferno” — uma área paranormal tomada pelo Sangue, com a Membrana devastada graças a brutalidades impensáveis. Um kerberos, assim como na lenda grega, é o guardião de uma importante entrada, comumente protegendo a origem da distorção paranormal dessa região. Enfrentar um kerberos diretamente é praticamente suicídio, pois sua bestialidade é devastadora. Porém, kerberos são criaturas ilógicas e não tomam decisões estratégicas, se voltando apenas a proteger um ponto específico. ",
+  "vd": "340",
+  "size": "enorme",
+  "displacement": "18m",
+  "stats": {
+    "pv": 1150,
+    "defesa": 46
+  },
+  "attributes": {
+    "AGI": 4,
+    "FOR": 5,
+    "INT": 0,
+    "PRE": 3,
+    "VIG": 5
+  },
+  "presence": {
+    "dt": "35",
+    "immune": "99%",
+    "damage": "10d6"
+  },
+  "skills": {
+    "acrobacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "adestramento": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "artes": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atletismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atualidades": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ciencias": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "crime": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "diplomacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "enganacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "fortitude": {
+      "dados": 0,
+      "bonus": 25
+    },
+    "furtividade": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "iniciativa": {
+      "dados": 0,
+      "bonus": 15
+    },
+    "intimidacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "intuicao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "investigacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "luta": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "medicina": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ocultismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "percepcao": {
+      "dados": 0,
+      "bonus": 20,
+      "type": "Percepção às cegas"
+    },
+    "pilotagem": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "pontaria": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "profissao": {
+      "dados": 0,
+      "bonus": 0,
+      "type": ""
+    },
+    "reflexos": {
+      "dados": 0,
+      "bonus": 20
+    },
+    "religiao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "sobrevivencia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tatica": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tecnologia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "vontade": {
+      "dados": 0,
+      "bonus": 15
+    }
+  },
+  "actions": [
+    {
+      "id": 1768956492865,
+      "nome": "ATAQUE FLEXÍVEL",
+      "tipo": "Passiva",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "",
+      "descricao": "O kerberos é movido por sede de Sangue e desejo de matar. Ele pode executar até quatro ataques por rodada, combinando ataques corpo a corpo e à distância. Entretanto, ele nunca pode executar o mesmo ataque mais de três vezes na mesma rodada."
+    },
+    {
+      "id": 1768956493146,
+      "nome": "AGREDIR (MORDIDA)",
+      "tipo": "Padrão",
+      "teste": "5d20+40",
+      "dano": "4d12+30",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "MORDIDA Corpo a corpo"
+    },
+    {
+      "id": 1768956493603,
+      "nome": "AGREDIR (DISPARO DE ESPINHOS)",
+      "tipo": "Padrão",
+      "teste": "4d20+35",
+      "dano": "4d8+20",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "DISPARO DE ESPINHOS Distância / MÉDIO"
+    },
+    {
+      "id": 1768956494130,
+      "nome": "DEVORAR",
+      "tipo": "Livre",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "Fortitude DT 40 para evitar o efeito",
+      "descricao": "Uma vez por cena, quando reduz os PV de um personagem a 0 com sua mordida, o kerberos pode devorá-lo, matando-o instantaneamente e recuperando PV iguais à metade dos PV totais da vítima. A vítima tem direito a um teste de Fortitude (DT 40) para evitar o efeito."
+    },
+    {
+      "id": 1768956494425,
+      "nome": "DERRUBAR E DEVORAR",
+      "tipo": "Completa",
+      "teste": "5d20+45",
+      "dano": "4d12+40",
+      "danoTipo": "Sangue",
+      "resistencia": "",
+      "descricao": "O kerberos usa a manobra derrubar em um personagem a até 3m (teste 5O+45). Se vencer o teste de manobra, o kerberos desfere três ataques de mordida contra o personagem. O dano destes ataques aumenta para 4d12+40."
+    }
+  ],
+  "abilities": [],
+  "resistances": [
+    "Balístico",
+    "impacto",
+    "perfuração e\nSangue 20"
+  ],
+  "vulnerabilities": [
+    "Morte"
+  ],
+  "immunities": [],
+  "image": "https://i.redd.it/kerberos-feito-com-hero-forge-v0-unv66z8f9qtf1.png?width=2048&format=png&auto=webp&s=ffee54359dc66d8ead4de78a0f7fcd76e41ea860",
+  "enigma": "",
+  "updatedAt": "2026-01-21T00:53:35.717Z"
+}

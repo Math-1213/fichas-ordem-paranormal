@@ -1,0 +1,229 @@
+{
+  "id": "enpapx",
+  "name": "ENPAP-X",
+  "element": "Sangue",
+  "secondaryElements": [
+    "Conhecimento"
+  ],
+  "description": "Originada de uma lenda perdida da antiga Suméria, a aberração “enpap-X” surgiu da dor e tortura de um prisioneiro de guerra que era obrigado a marcar em sua pele os feitos terríveis cometidos pelo seu soberano.\n\nUm enpap-X pode surgir quando uma pessoa é forçada a viver aprisionada, torturada e acorrentada, estando constantemente exposta a brutalidades e manifestações paranormais, mas nunca de fato tendo a libertação de ter sua vida encerrada.\n\nO ódio, a dor e a angústia aos poucos transformam a mente dessa pessoa em uma tormenta enfurecida e enlouquecida, e as marcas registradas em seu corpo preenchem o vazio da sua mente consumida pelo ódio com apenas uma palavra, um nome lembrado pelo Conhecimento do Outro Lado: enpap-X.\n\nInicialmente agindo de forma controlada, acorrentado pelo seu possuidor, se libertado das suas correntes e ferido, enpap-X se transforma e se expande numa monstruosidade enorme de quatro braços que busca apenas a vingança contra qualquer um em sua frente, o preço de uma eternidade de sofrimento.\n",
+  "vd": "180",
+  "size": "grande",
+  "displacement": "12m",
+  "stats": {
+    "pv": 360,
+    "defesa": 36
+  },
+  "attributes": {
+    "AGI": 2,
+    "FOR": 4,
+    "INT": 1,
+    "PRE": 2,
+    "VIG": 3
+  },
+  "presence": {
+    "dt": "25",
+    "immune": "60%",
+    "damage": "6d6"
+  },
+  "skills": {
+    "acrobacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "adestramento": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "artes": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atletismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "atualidades": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ciencias": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "crime": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "diplomacia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "enganacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "fortitude": {
+      "dados": 0,
+      "bonus": 15
+    },
+    "furtividade": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "iniciativa": {
+      "dados": 0,
+      "bonus": 10
+    },
+    "intimidacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "intuicao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "investigacao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "luta": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "medicina": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "ocultismo": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "percepcao": {
+      "dados": 0,
+      "bonus": 10,
+      "type": "Percepção às cegas"
+    },
+    "pilotagem": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "pontaria": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "profissao": {
+      "dados": 0,
+      "bonus": 0,
+      "type": ""
+    },
+    "reflexos": {
+      "dados": 0,
+      "bonus": 15
+    },
+    "religiao": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "sobrevivencia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tatica": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "tecnologia": {
+      "dados": 0,
+      "bonus": 0
+    },
+    "vontade": {
+      "dados": 0,
+      "bonus": 10
+    }
+  },
+  "actions": [
+    {
+      "id": 1768955959665,
+      "nome": "TRANSFORMAÇÃO",
+      "tipo": "Passiva",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "",
+      "descricao": "O enpap-X começa o combate como um existido comum, usando todas as estatísticas da ficha da página 240. Quando ele é reduzido a 0 PV, porém, em vez de morrer, se transforma: passa a usar a ficha desta página (inclusive gerando o efeito de sua presença perturbadora) e recupera todos os seus PV, ficando com 360 PV. "
+    },
+    {
+      "id": 1768955959809,
+      "nome": "AGREDIR (SOCÃO )",
+      "tipo": "Padrão",
+      "teste": "4d20+20",
+      "dano": "2d10+10",
+      "danoTipo": "Impacto",
+      "resistencia": "",
+      "descricao": "SOCÃO Corpo a corpo x4\n"
+    },
+    {
+      "id": 1768955960201,
+      "nome": "AGREDIR (CORRENTES )",
+      "tipo": "Padrão",
+      "teste": "2d20+15",
+      "dano": "2d8+10",
+      "danoTipo": "Impacto",
+      "resistencia": "",
+      "descricao": "CORRENTES Distância x3 / CURTO"
+    },
+    {
+      "id": 1768955960345,
+      "nome": "ACORRENTAR",
+      "tipo": "Livre",
+      "teste": "2d20+17",
+      "dano": "4d6",
+      "danoTipo": "Impacto",
+      "resistencia": "",
+      "descricao": "Se o enpap-X acertar um ataque de correntes em um personagem Médio ou menor, pode tentar agarrar o alvo à distância (teste 2d20+17). No começo do seu turno, o enpap-X estrangula cada personagem agarrado desta forma, causando 4d6 pontos de dano de impacto. O enpap-X pode manter até dois personagens agarrados simultaneamente."
+    },
+    {
+      "id": 1768955960722,
+      "nome": "FORMA DESENCADEADA",
+      "tipo": "Reação",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "",
+      "descricao": "Quando faz um acerto crítico com um socão ou com uma corrente, o enpap-X pode derrubar o alvo ou empurrá-lo 3m na direção oposta."
+    },
+    {
+      "id": 1768955960881,
+      "nome": "CRESCER",
+      "tipo": "Reação",
+      "teste": "",
+      "dano": "1d6",
+      "danoTipo": "",
+      "resistencia": "",
+      "descricao": "Movido pelo Sangue incontrolável, o enpap-X desenvolve força conforme desfere seus golpes. Sempre que acertar um personagem com seu socão, o enpap-X recebe um bônus cumulativo de +1d6 em suas próximas rolagens de dano até o fim do turno. Ou seja, se acertar o primeiro socão, no segundo recebe +1d6 de dano. Se acertar o segundo, no terceiro recebe +2d6. E se acertar o terceiro, no quarto socão recebe +3d6."
+    },
+    {
+      "id": 1768955961249,
+      "nome": "MARCAS DO TERROR",
+      "tipo": "Movimento",
+      "teste": "",
+      "dano": "4d6",
+      "danoTipo": "Mental",
+      "resistencia": "Vontade DT 25 reduz à metade",
+      "descricao": "O enpap-X faz com que as marcas em seu corpo brilhem com uma luz dourada, revelando as atrocidades eternizadas em sua pele. Todos os personagem em alcance curto do enpap-X sofrem 4d6 pontos de dano mental (Vontade DT 25 reduz à metade). Um personagem que passe no teste de resistência fica imune a esta habilidade até o final da cena."
+    }
+  ],
+  "abilities": [],
+  "resistances": [
+    "Balístico",
+    "impacto e perfuração 10",
+    "Sangue 20"
+  ],
+  "vulnerabilities": [
+    "Morte"
+  ],
+  "immunities": [],
+  "image": "https://i.redd.it/enpap-x-feito-com-hero-forge-v0-uc80h91liksf1.png?width=2048&format=png&auto=webp&s=3ea9a9bd448a7303928fd3f71f73bc2ccdd1496f",
+  "enigma": "",
+  "updatedAt": "2026-01-21T00:44:30.299Z"
+}

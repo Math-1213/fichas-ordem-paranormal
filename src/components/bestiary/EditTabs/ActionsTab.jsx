@@ -4,11 +4,12 @@ import { Plus, Trash2, Sword, Zap, Activity, Hash } from "lucide-react";
 import * as S from "./styles";
 
 const TYPE_COLORS = {
-  Padrão: "#ff3b3b",
-  Movimento: "#ffee58",
+  Completa: "#ff0000",
+  Padrão: "#ff4d00",
+  Movimento: "#ffcc00",
+  Reação: "#00d4ff",
   Livre: "#3b82f6",
-  Reação: "#a855f7",
-  Passiva: "#22c55e",
+  Passiva: "#10b981",
 };
 
 export default function ActionsTab({ formData, setFormData }) {
