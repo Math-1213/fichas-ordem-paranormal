@@ -8,6 +8,7 @@ export default function Bestiary() {
   const [view, setView] = useState("list"); // 'list', 'view', 'edit'
   const [entities, setEntities] = useState([]);
   const [selectedEntity, setSelectedEntity] = useState(null);
+  const [selectedEntityInfos, setSelectedEntityInfos] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // Troca do fetch manual pelo BestiaryService.listAll()
@@ -90,15 +91,18 @@ export default function Bestiary() {
 
       {view === "view" && (
         <ShowEntity
-          entity={selectedEntity}
+          id={selectedEntity.id}
           onBack={() => setView("list")}
-          onEdit={() => setView("edit")}
+          onEdit={(entity) => {
+            setSelectedEntityInfos(entity);
+            setView("edit");
+          }}
         />
       )}
 
       {view === "edit" && (
         <EditEntity
-          entity={selectedEntity}
+          entity={selectedEntityInfos}
           onBack={() => {
             setView("list");
             setSelectedEntity(null);

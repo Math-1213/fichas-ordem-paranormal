@@ -33,6 +33,7 @@ class Creature:
         # Informações de Combate e Sistema
         self.vd: str = data.get("vd", "0")
         self.size: str = data.get("size", "médio")
+        self.type: str = data.get("type", "criatura")
         self.displacement: str = data.get("displacement", "9m")
         self.enigma: str = data.get("enigma", "")
         
@@ -75,6 +76,7 @@ class Creature:
             "description": self.description,
             "vd": self.vd,
             "size": self.size,
+            "type": self.type,
             "displacement": self.displacement,
             "stats": self.stats,
             "attributes": self.attributes,
@@ -89,3 +91,49 @@ class Creature:
             "enigma": self.enigma,
             "updatedAt": self.updated_at
         }
+    
+    def merge(self, new_data: Dict[str, Any]):
+        """
+        Realiza o merge profundo de todos os campos da criatura.
+        """
+        # Campos Simples (Strings e Números)
+        if "name" in new_data: 
+            self.name = new_data["name"]
+            # Opcional: Se quiser que o ID mude se o nome mudar:
+            # self.id = slugify_name(self.name)
+            
+        if "element" in new_data: self.element = new_data["element"]
+        if "description" in new_data: self.description = new_data["description"]
+        if "vd" in new_data: self.vd = str(new_data["vd"])
+        if "size" in new_data: self.size = new_data["size"]
+        if "type" in new_data: self.type = new_data["type"]
+        if "displacement" in new_data: self.displacement = new_data["displacement"]
+        if "image" in new_data: self.image = new_data["image"]
+        if "enigma" in new_data: self.enigma = new_data["enigma"]
+
+        # Listas de Strings (Substituição Simples)
+        if "secondaryElements" in new_data: self.secondary_elements = new_data["secondaryElements"]
+        if "resistances" in new_data: self.resistances = new_data["resistances"]
+        if "vulnerabilities" in new_data: self.vulnerabilities = new_data["vulnerabilities"]
+        if "immunities" in new_data: self.immunities = new_data["immunities"]
+
+        # Dicionários de Nível Único (Merge com update)
+        if "stats" in new_data and isinstance(new_data["stats"], dict):
+            self.stats.update(new_data["stats"])
+        
+        if "attributes" in new_data and isinstance(new_data["attributes"], dict):
+            self.attributes.update(new_data["attributes"])
+            
+        if "presence" in new_data and isinstance(new_data["presence"], dict):
+            self.presence.update(new_data["presence"])
+
+        # Dicionários Complexos ou Listas de Objetos (Substituição)
+        # Para Perícias (skills), Ações (actions) e Habilidades (abilities), 
+        # o front geralmente envia o estado completo da lista após a edição.
+        if "skills" in new_data: self.skills = new_data["skills"]
+        if "actions" in new_data: self.actions = new_data["actions"]
+        if "abilities" in new_data: self.abilities = new_data["abilities"]
+
+        # Metadados
+        from datetime import datetime
+        self.updated_at = datetime.now().isoformat()

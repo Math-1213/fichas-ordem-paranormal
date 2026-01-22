@@ -150,7 +150,7 @@ export const baseCreature = {
   element: null, // Principal
   secondaryElements: [], // Outros selecionados
   type: "", // Creature, Animal, Human, etc
-  size: "médio", // Small, Medium, Large, Colossal, etc
+  size: "medio", // Small, Medium, Large, Colossal, etc
   vd: 0,
   displacement: "9m",
   stats: {

@@ -35,3 +35,21 @@ class BestiaryController:
         creature = Creature.from_json(data)
         store.save(creature)
         return creature.to_json()
+    
+    @staticmethod
+    def update_merge(item_id, new_data):
+        # 1. Tenta carregar os dados atuais
+        existing_data = store.load(item_id)
+        if not existing_data:
+            return None
+
+        # 2. Converte os dados atuais para o modelo Creature
+        creature = Creature.from_json(existing_data)
+        
+        # 3. Faz o merge dos dados (Lógica implementada no próximo passo)
+        creature.merge(new_data)
+        
+        # 4. Salva de volta na Store
+        store.save(creature)
+        
+        return creature.to_json()

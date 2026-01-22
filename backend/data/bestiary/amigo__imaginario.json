@@ -1,152 +1,243 @@
 {
   "id": "amigo__imaginario",
-  "name": "AMIGO  IMAGINÁRIO",
+  "name": "Amigo Imaginario",
   "element": "Sangue",
   "secondaryElements": [
     "Morte"
   ],
-  "description": "",
-  "vd": 0,
-  "size": "médio",
-  "displacement": "9m",
+  "description": "A verdadeira arte é só um reflexo dos sentimentos de quem a contempla, e a criatura da ilha de Tipora é o resultado da devoção de um artista, consumido pela sua própria obsessão, na busca da perfeição. A obra de arte perfeita tomada forma, impecável, manifestada e viva.\n\nCriado pelo delírio coletivo de uma pequena civilização isolada intensificado pelos efeitos do composto impossível gerado conjuntamente pelas entidades de Sangue e Morte através de um processo misterioso associado a um objeto conhecido como Sino de Tenebris, o Amigo Imaginário é um ser encapuzado com mais de dois metros e meio, alongado e curvado. Longos tentáculos se movem sutilmente embaixo do que parece ser um manto marrom, feito de um material irreconhecível, que também esconde braços apodrecidos com dedos esqueléticos e pontudos.\n\nDo abismo em seu rosto, uma cascata da Tinta vermelho-ocre jorra no chão incessantemente. Os arredores parecem derreter. Tudo parece derreter. Nada parece real. Ele é real.\n\nAlimentado pelo medo daqueles que tiveram seus segredos manipulados, a criatura consome e derrete em uma tormenta de euforia e sentimentos daqueles ingênuos demais para conseguir escapar, ou tolos demais para decidir enfrentá-la.\n\nApós ter se originado em uma ilha isolada com um passado ainda mais misterioso, agora abandonada pelos seus antigos habitantes após o evento que ecoa conhecido como “O Incidente da Ilha”, a manifestação original da criatura foi contida. Porém, o trauma daqueles que presenciaram o massacre na pequena igreja da ilha nunca poderá ser esquecido e enquanto a história da ilha de Tipora for recontada por seus sobreviventes, o Medo gerado por sua forma se expandirá de forma cada vez mais horripilante e poderosa.\n\nA paranoia constante, os pesadelos sem fim, a abstinência da tinta no âmago do ser…\nDeus tenha piedade daqueles que escutarem o Sino tocar mais uma vez.",
+  "vd": "360",
+  "size": "grande",
+  "type": "criatura",
+  "displacement": "12m",
   "stats": {
-    "pv": 0,
-    "defesa": 0
+    "pv": 1000,
+    "defesa": 56
   },
   "attributes": {
-    "AGI": 1,
-    "FOR": 1,
-    "INT": 1,
-    "PRE": 1,
-    "VIG": 1
+    "AGI": 5,
+    "FOR": 5,
+    "INT": 3,
+    "PRE": 5,
+    "VIG": 4
   },
   "presence": {
-    "dt": 0,
+    "dt": "40",
     "immune": "",
-    "damage": ""
+    "damage": "8d8"
   },
   "skills": {
     "acrobacia": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "adestramento": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "artes": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "atletismo": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "atualidades": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "ciencias": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "crime": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "diplomacia": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "enganacao": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "fortitude": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 20,
+      "dados": 0
     },
     "furtividade": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "iniciativa": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 30,
+      "dados": 0
     },
     "intimidacao": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "intuicao": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "investigacao": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "luta": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "medicina": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "ocultismo": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "percepcao": {
+      "bonus": 30,
       "dados": 0,
-      "bonus": 0,
-      "type": ""
+      "type": "PERCEPÇÃO ÀS CEGAS (ALCANCE EXTREMO)"
     },
     "pilotagem": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "pontaria": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "profissao": {
-      "dados": 0,
       "bonus": 0,
+      "dados": 0,
       "type": ""
     },
     "reflexos": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 30,
+      "dados": 0
     },
     "religiao": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "sobrevivencia": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "tatica": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "tecnologia": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "vontade": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 30,
+      "dados": 0
     }
   },
-  "actions": [],
+  "actions": [
+    {
+      "id": 1769049127259,
+      "nome": "QUADROS",
+      "tipo": "Passiva",
+      "teste": "",
+      "dano": "8d8",
+      "danoTipo": "Mental",
+      "resistencia": "Vontade DT 40 Evita",
+      "descricao": "A presença do Amigo Imaginário é resultado de uma série de interações entre pessoas e sete quadros influenciados pelo Medo. Essas interações, chamadas de “Entrar no Quadro”, são tentativas de compreender ou se relacionar com a arte exibida na pintura e, embora geralmente sejam intencionais, podem ocorrer inconscientemente. Sempre que uma pessoa observa uma das pinturas por algum tempo, deve fazer um teste de Vontade (DT 40). Se falhar, passa por profundas e perturbadoras experiências mentais que incluem reviver memórias, confrontar traumas, vivenciar ilusões relacionadas ao quadro ou quaisquer efeitos similares que o mestre julgar apropriados. Ao “Entrar no Quadro”, a pessoa sofre 8d8 pontos de dano mental (Vontade DT 40 evita). Quando uma pessoa “Entra no Quadro”, a condição da Membrana na região se deteriora, permitindo que o Medo seja “alimentado” pelo imaginário da população local."
+    },
+    {
+      "id": 1769049127659,
+      "nome": "O SINO",
+      "tipo": "Passiva",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "Vontade DT 40 Evita",
+      "descricao": "Quando o Amigo Imaginário aparece, todas as pessoas em alcance extremo capazes de ouvi-lo escutam um sino, cada vez mais alto, que vem do interior da criatura, como se ela emitisse gritos ritmados. Cada pessoa afetada fica pasma por 1 rodada (Vontade (DT 40 evita e a pessoa não pode mais ser afetada por esta habilidade até o fim da cena). Além disso, qualquer pessoa que tenha falhado e também tenha “Entrado em um Quadro” fica impossibilitada de se afastar do Amigo Imaginário até o fim da cena. O sino se repete no início de cada turno do Amigo Imaginário."
+    },
+    {
+      "id": 1769049128059,
+      "nome": "FRENESI DE SANGUE",
+      "tipo": "Passiva",
+      "teste": "",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "Vontade DT 40 Evita",
+      "descricao": "Ao ficar machucado, o Amigo Imaginário é tomado por uma fúria sanguinolenta e se torna mais ágil e violento. Ele sofre as seguintes alterações:\n- Vigor muda para 5;\n- Fortitude muda para 5d20+30;\n- Recebe deslocamento de escalada 15m | 10⬜;\n- Passa a ter duas ações padrão e duas ações de movimento;\n- O som emitido pela habilidade “O Sino” fica distorcido, causando um formigamento interno, fome, abstinência e necessidade de morder algo.\nEm vez de ficar pasma, a pessoa que falhar no teste deve gastar suas ações para alcançar o ser vivo mais próximo e tentar mordê-lo com força ou morde a si mesma, a critério do mestre. Pessoas que já tenham passado no teste de Vontade contra a versão anterior do Sino precisam fazer testes novamente contra essa versão. O sino se repete nos inícios de cada turno do Amigo Imaginário, mas qualquer pessoa bem-sucedida contra esse efeito fica imune a ele até o fim da cena."
+    },
+    {
+      "id": 1769049128602,
+      "nome": "AGREDIR (Garras)",
+      "tipo": "Padrão",
+      "teste": "5d20+40",
+      "dano": "4d10+10",
+      "danoTipo": "Corte",
+      "resistencia": "",
+      "descricao": "GARRAS Corpo a corpo x2\nTENTÁCULOS Distância / MÉDIO\n"
+    },
+    {
+      "id": 1769049128875,
+      "nome": "AGREDIR (Tentaculos)",
+      "tipo": "Padrão",
+      "teste": "5d20+40",
+      "dano": "4d10+20",
+      "danoTipo": "Impacto",
+      "resistencia": "",
+      "descricao": "GARRAS Corpo a corpo x2\nTENTÁCULOS Distância / MÉDIO\n"
+    },
+    {
+      "id": 1769049129218,
+      "nome": "Agarrão",
+      "tipo": "Reação",
+      "teste": "5d20+42",
+      "dano": "",
+      "danoTipo": "",
+      "resistencia": "",
+      "descricao": "Se o Amigo Imaginário acertar um ataque de tentáculos, pode tentar agarrar o alvo (teste 5d20+42). Uma criatura agarrada dessa forma pode ser libertada se o tentáculo for destruído (Defesa 30, PV 50, imune a Morte e Sangue, vulnerável a Energia). Se o tentáculo for destruído, o Amigo Imaginário perde 50 pontos de vida"
+    },
+    {
+      "id": 1769049129723,
+      "nome": "DERRETER",
+      "tipo": "Completa",
+      "teste": "",
+      "dano": "4d10+10",
+      "danoTipo": "x1 Sangue; x1 Morte",
+      "resistencia": "Fortitude DT 40 reduz à metade",
+      "descricao": "O Amigo Imaginário puxa um alvo agarrado até sua face e despeja sua tinta corrosiva em seu rosto. A vítima sofre 4d10+10 pontos de dano de Morte e 4d10+10 pontos de dano de Sangue (Fortitude DT 40 reduz à metade). "
+    },
+    {
+      "id": 1769049129987,
+      "nome": "DISSOLVER",
+      "tipo": "Completa",
+      "teste": "",
+      "dano": "4d10+20",
+      "danoTipo": "Quimico",
+      "resistencia": "Fortitude DT 40 reduz à metade",
+      "descricao": "O Amigo Imaginário puxa um alvo agarrado e começa a envolvê-lo com outros tentáculos na tentativa de consumir o ser. A vítima sofre 4d10+20 pontos de dano químico (Fortitude DT 40 reduz à metade) e o Amigo Imaginário recupera PV igual ao dano causado. \n"
+    }
+  ],
   "abilities": [],
-  "resistances": [],
-  "vulnerabilities": [],
-  "immunities": [],
+  "resistances": [
+    "Balístico",
+    "corte",
+    "impacto e perfuração 20"
+  ],
+  "vulnerabilities": [
+    "Energia"
+  ],
+  "immunities": [
+    "Morte",
+    "Sangue"
+  ],
   "image": "https://pbs.twimg.com/media/Fzk_-KrX0AARdTK.jpg",
-  "enigma": "",
-  "updatedAt": "2026-01-21T01:52:50.869Z"
+  "enigma": "“Quando o Sino tocar, a criatura vai retornar\ne todo mundo vai morrer.“",
+  "updatedAt": "2026-01-21T23:40:50.391129"
 }

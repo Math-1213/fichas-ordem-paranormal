@@ -11,6 +11,10 @@ export default function EnigmaTab({ formData, handleChange }) {
 
   return (
     <S.ConfidentialFolder>
+      <div className="classified-tape">CLASSIFIED - TOP SECRET</div>
+    
+      <div className="watermark">VOID</div>
+
       {/* CABEÇALHO DO ARQUIVO */}
       <div className="confidential-header">
         <div>

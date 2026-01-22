@@ -6,6 +6,7 @@
   "description": "Originalmente, a aberração de carne foi um experimento fracassado para juntar dois corpos em um só. A dor agoniante das duas cobaias que se mantiveram conscientes durante todo o processo tormentoso se transformou numa fúria desoladora alimentada pelo Sangue. ",
   "vd": "40",
   "size": "grande",
+  "type": "criatura",
   "displacement": "9m",
   "stats": {
     "pv": 70,
@@ -25,150 +26,150 @@
   },
   "skills": {
     "acrobacia": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "adestramento": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "artes": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "atletismo": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "atualidades": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "ciencias": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "crime": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "diplomacia": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "enganacao": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "fortitude": {
-      "dados": 0,
-      "bonus": 10
+      "bonus": 10,
+      "dados": 0
     },
     "furtividade": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "iniciativa": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "intimidacao": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "intuicao": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "investigacao": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "luta": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "medicina": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "ocultismo": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "percepcao": {
-      "dados": 0,
       "bonus": 5,
+      "dados": 0,
       "type": "Percepção às cegas"
     },
     "pilotagem": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "pontaria": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "profissao": {
-      "dados": 0,
       "bonus": 0,
+      "dados": 0,
       "type": ""
     },
     "reflexos": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "religiao": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "sobrevivencia": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "tatica": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "tecnologia": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     },
     "vontade": {
-      "dados": 0,
-      "bonus": 0
+      "bonus": 0,
+      "dados": 0
     }
   },
   "actions": [
     {
-      "id": 1768869380510,
-      "nome": "AGREDIR - Pancada",
-      "tipo": "Padrão",
-      "teste": "3d20+10",
       "dano": "2d6+6",
       "danoTipo": "Impacto",
+      "descricao": "Corpo a corpo x2",
+      "id": 1768869380510,
+      "nome": "AGREDIR - Pancada",
       "resistencia": "",
-      "descricao": "Corpo a corpo x2"
+      "teste": "3d20+10",
+      "tipo": "Padrão"
     },
     {
-      "id": 1768869380670,
-      "nome": "Agarrão",
-      "tipo": "Reação",
-      "teste": "3d20+12",
       "dano": "",
       "danoTipo": "",
+      "descricao": "Se a aberração de carne acertar um ataque de pancada, ela pode tentar agarrar o alvo (teste 3d20+12). Ela pode manter até dois personagens agarrados por vez.",
+      "id": 1768869380670,
+      "nome": "Agarrão",
       "resistencia": "",
-      "descricao": "Se a aberração de carne acertar um ataque de pancada, ela pode tentar agarrar o alvo (teste 3d20+12). Ela pode manter até dois personagens agarrados por vez."
+      "teste": "3d20+12",
+      "tipo": "Reação"
     },
     {
-      "id": 1768869380878,
-      "nome": "Abocanhar",
-      "tipo": "Movimento",
-      "teste": "",
       "dano": "3d6",
       "danoTipo": "Perfuração",
+      "descricao": "A aberração de carne leva até dois personagens agarrados para dentro de sua boca central, que são abocanhados e continuam agarrados. Quando é abocanhado, e no início de cada turno da aberração em que continuar agarrado desta forma, o personagem sofre 3d6 pontos de dano de perfuração (Fortitude DT 15 reduz à metade). Qualquer personagem adjacente a aberração de carne pode gastar uma ação padrão para fazer um teste de Atletismo (DT 20) para tentar tirar outro personagem de dentro da boca.",
+      "id": 1768869380878,
+      "nome": "Abocanhar",
       "resistencia": "Fortitude DT 15 reduz à metade",
-      "descricao": "A aberração de carne leva até dois personagens agarrados para dentro de sua boca central, que são abocanhados e continuam agarrados. Quando é abocanhado, e no início de cada turno da aberração em que continuar agarrado desta forma, o personagem sofre 3d6 pontos de dano de perfuração (Fortitude DT 15 reduz à metade). Qualquer personagem adjacente a aberração de carne pode gastar uma ação padrão para fazer um teste de Atletismo (DT 20) para tentar tirar outro personagem de dentro da boca."
+      "teste": "",
+      "tipo": "Movimento"
     }
   ],
   "abilities": [],
@@ -184,5 +185,5 @@
   "immunities": [],
   "image": "https://i.pinimg.com/236x/f4/a3/9b/f4a39b685992851cb4132a319f3d168e.jpg",
   "enigma": "",
-  "updatedAt": "2026-01-20T00:38:25.858Z"
+  "updatedAt": "2026-01-21T23:26:15.058940"
 }

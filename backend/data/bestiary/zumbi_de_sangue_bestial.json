@@ -4,8 +4,9 @@
   "element": "Sangue",
   "secondaryElements": [],
   "description": "",
-  "vd": 0,
-  "size": "médio",
+  "vd": "0",
+  "size": "grande",
+  "type": "",
   "displacement": "9m",
   "stats": {
     "pv": 0,
@@ -146,5 +147,5 @@
   "immunities": [],
   "image": "https://i.redd.it/zumbis-de-sangue-feito-com-hero-forge-v0-rmamf54e75uf1.png?width=1024&format=png&auto=webp&s=ed67cbd93de4ddbe8ddaf785969c9f5517a857f9",
   "enigma": "",
-  "updatedAt": "2026-01-21T01:16:16.939Z"
+  "updatedAt": "2026-01-21T23:09:40.421917"
 }

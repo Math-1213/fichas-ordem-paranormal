@@ -15,3 +15,10 @@ def get_creature(id):
 @bestiary_bp.post("/")
 def create_creature():
     return jsonify(BestiaryController.create(request.json)), 201
+
+@bestiary_bp.route("/<id>", methods=["PUT"])
+def update_creature(id):
+    updated = BestiaryController.update_merge(id, request.json)
+    if updated:
+        return jsonify(updated), 200
+    return jsonify({"error": "Criatura não encontrada para atualização"}), 404

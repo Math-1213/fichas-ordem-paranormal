@@ -33,15 +33,16 @@ export default function BasicInfoTab({ formData, handleChange }) {
             <Col md={3}>
               <S.CyberLabel>Tipo_de_Entidade</S.CyberLabel>
               <Form.Select
-                value={formData.type || ""}
+                value={formData.type || "criatura"}
                 onChange={(e) => handleChange("type", e.target.value)}
                 className="bg-black border-secondary text-light"
                 style={{ borderRadius: "0" }}
               >
-                <option value="Criatura">Criatura</option>
-                <option value="Animal">Animal</option>
-                <option value="Pessoa">Pessoa</option>
-                <option value="Objeto">Objeto</option>
+                <option value="criatura">Criatura</option>
+                <option value="animal">Animal</option>
+                <option value="pessoa">Pessoa</option>
+                <option value="objeto">Objeto</option>
+                <option value="enxame">Enxame</option>
               </Form.Select>
             </Col>
             <Col md={3}>
@@ -58,6 +59,7 @@ export default function BasicInfoTab({ formData, handleChange }) {
         </Col>
 
         {/* LOGÍSTICA */}
+        {console.log(formData.size)}
         <Col md={12}>
           <Row className="g-3">
             <Col md={4}>
